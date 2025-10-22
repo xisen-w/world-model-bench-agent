@@ -1,0 +1,26 @@
+# Core dependencies for AC-World Video Generation Framework
+
+# OpenAI API for Sora integration
+openai>=1.0.0
+
+# Environment variable management
+python-dotenv>=1.0.0
+
+# HTTP requests for API calls
+requests>=2.31.0
+
+# Optional: For enhanced error handling and type hints
+typing-extensions>=4.5.0
+
+# Optional: For async operations
+aiohttp>=3.8.0
+
+# Optional: For image/video processing (if needed for evaluation)
+# pillow>=10.0.0
+# opencv-python>=4.8.0
+
+# Optional: For CLIP similarity calculations in benchmark evaluation
+# torch>=2.0.0
+# transformers>=4.21.0
+
+
