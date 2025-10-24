@@ -24,7 +24,7 @@ from pathlib import Path
 # Core Data Types
 # ============================================================================
 
-@dataclass
+@dataclass(eq=True, frozen=False)
 class State:
     """Represents a discrete state in the world."""
 
@@ -34,8 +34,20 @@ class State:
     state_id: Optional[str] = None
     """Unique identifier for this state"""
 
-    metadata: Dict = field(default_factory=dict)
+    metadata: Dict = field(default_factory=dict, compare=False)
     """Additional metadata (e.g., object positions, properties)"""
+
+    def __hash__(self):
+        """Make State hashable based on state_id or description."""
+        return hash(self.state_id or self.description)
+
+    def __eq__(self, other):
+        """States are equal if they have the same ID or description."""
+        if not isinstance(other, State):
+            return False
+        if self.state_id and other.state_id:
+            return self.state_id == other.state_id
+        return self.description == other.description
 
     def __str__(self) -> str:
         return self.description
@@ -177,6 +189,189 @@ class World:
             self.actions.append(action)
 
         return transition
+
+    # ========================================================================
+    # Branching / Graph Structure Methods
+    # ========================================================================
+
+    def get_possible_actions(self, state: State) -> List[Action]:
+        """
+        Get all possible actions that can be performed from a given state.
+
+        This enables branching: one state can have multiple action choices.
+
+        Args:
+            state: The state to query
+
+        Returns:
+            List of actions that can be performed from this state
+        """
+        actions = []
+        for transition in self.transitions:
+            if transition.start_state == state:
+                actions.append(transition.action)
+        return actions
+
+    def get_next_states(self, state: State, action: Optional[Action] = None) -> List[State]:
+        """
+        Get possible next states from a given state.
+
+        Args:
+            state: The current state
+            action: Optional action filter. If provided, only returns states
+                   reachable via this action. If None, returns all next states.
+
+        Returns:
+            List of states reachable from the current state
+        """
+        next_states = []
+        for transition in self.transitions:
+            if transition.start_state == state:
+                if action is None or transition.action == action:
+                    next_states.append(transition.end_state)
+        return next_states
+
+    def get_decision_points(self) -> List[Tuple[State, List[Action]]]:
+        """
+        Find all states where multiple actions are possible (branching points).
+
+        These are critical for testing model decision-making capabilities.
+
+        Returns:
+            List of (state, possible_actions) tuples where len(actions) > 1
+        """
+        decision_points = []
+        checked_states = set()
+
+        for state in self.states:
+            if state in checked_states:
+                continue
+
+            possible_actions = self.get_possible_actions(state)
+            if len(possible_actions) > 1:
+                decision_points.append((state, possible_actions))
+
+            checked_states.add(state)
+
+        return decision_points
+
+    def get_all_paths(
+        self,
+        start: Optional[State] = None,
+        goal: Optional[State] = None,
+        max_depth: int = 20
+    ) -> List[List[Transition]]:
+        """
+        Find all possible paths from start to goal state using DFS.
+
+        This is useful for:
+        - Generating all possible video sequences
+        - Testing different action sequences
+        - Benchmark dataset creation
+
+        Args:
+            start: Starting state (defaults to world.initial_state)
+            goal: Goal state (defaults to world.goal_state)
+            max_depth: Maximum path length to prevent infinite loops
+
+        Returns:
+            List of paths, where each path is a list of transitions
+        """
+        start = start or self.initial_state
+        goal = goal or self.goal_state
+
+        if not start or not goal:
+            return []
+
+        all_paths = []
+
+        def dfs(current_state: State, current_path: List[Transition], visited: set):
+            # Base case: reached goal
+            if current_state == goal:
+                all_paths.append(current_path.copy())
+                return
+
+            # Base case: max depth reached
+            if len(current_path) >= max_depth:
+                return
+
+            # Explore all possible next transitions
+            for transition in self.transitions:
+                if transition.start_state == current_state:
+                    # Avoid cycles (visiting same state twice)
+                    if transition.end_state not in visited:
+                        visited.add(transition.end_state)
+                        current_path.append(transition)
+
+                        dfs(transition.end_state, current_path, visited)
+
+                        # Backtrack
+                        current_path.pop()
+                        visited.remove(transition.end_state)
+
+        dfs(start, [], {start})
+        return all_paths
+
+    def get_canonical_path(self) -> List[Transition]:
+        """
+        Get the canonical (primary/default) path from initial to goal state.
+
+        If multiple paths exist, returns the shortest one.
+
+        Returns:
+            List of transitions forming the canonical path
+        """
+        all_paths = self.get_all_paths()
+        if not all_paths:
+            return []
+
+        # Return shortest path as canonical
+        return min(all_paths, key=len)
+
+    def to_linear_path(self, path_id: str = "canonical") -> List[Transition]:
+        """
+        Extract a specific linear path from the branching structure.
+
+        Args:
+            path_id: Identifier for which path to extract
+                    - "canonical": shortest path
+                    - "path_0", "path_1", etc.: specific path by index
+
+        Returns:
+            List of transitions forming the requested path
+        """
+        if path_id == "canonical":
+            return self.get_canonical_path()
+
+        # Handle "path_N" format
+        if path_id.startswith("path_"):
+            try:
+                index = int(path_id.split("_")[1])
+                all_paths = self.get_all_paths()
+                if 0 <= index < len(all_paths):
+                    return all_paths[index]
+            except (IndexError, ValueError):
+                pass
+
+        return []
+
+    def get_branching_factor(self) -> float:
+        """
+        Calculate the average branching factor of the world.
+
+        Branching factor = average number of actions per state.
+
+        Returns:
+            Average number of possible actions per state
+        """
+        if not self.states:
+            return 0.0
+
+        total_branches = sum(
+            len(self.get_possible_actions(state))
+            for state in self.states
+        )
+        return total_branches / len(self.states)
 
     def to_dict(self) -> Dict:
         """Convert to dictionary representation."""
@@ -338,6 +533,158 @@ def create_ikea_desk_world() -> World:
     # Set initial and goal states
     world.initial_state = s0
     world.goal_state = s6
+
+    return world
+
+
+def create_branching_ikea_world() -> World:
+    """
+    Create a branching IKEA desk assembly world with multiple action choices.
+
+    This demonstrates how one state can have multiple possible actions,
+    creating a graph structure with decision points.
+
+    Returns:
+        A World object with branching paths
+    """
+    world = World(
+        name="IKEA_desk_assembly_branching",
+        description="Assembly process with multiple method choices at decision points"
+    )
+
+    # Define states
+    s0 = State(
+        description="Unopened IKEA desk box on the floor",
+        state_id="s0",
+        metadata={"components_visible": False, "assembly_progress": 0.0}
+    )
+
+    # Branching point 1: Different ways to open the box
+    s1a = State(
+        description="Box carefully opened with scissors, all components neatly laid out",
+        state_id="s1a",
+        metadata={"opening_method": "scissors", "assembly_progress": 0.1}
+    )
+
+    s1b = State(
+        description="Box torn open with hands, some components scattered",
+        state_id="s1b",
+        metadata={"opening_method": "hands", "assembly_progress": 0.1}
+    )
+
+    # Both converge to organized state
+    s2 = State(
+        description="Components sorted and organized, instructions visible",
+        state_id="s2",
+        metadata={"components_organized": True, "assembly_progress": 0.2}
+    )
+
+    # Branching point 2: Different assembly orders
+    s3a = State(
+        description="Started by attaching legs to drawer unit (bottom-up approach)",
+        state_id="s3a",
+        metadata={"assembly_approach": "bottom_up", "assembly_progress": 0.4}
+    )
+
+    s3b = State(
+        description="Started by assembling the tabletop frame first (top-down approach)",
+        state_id="s3b",
+        metadata={"assembly_approach": "top_down", "assembly_progress": 0.4}
+    )
+
+    # Both eventually reach completed state
+    s4 = State(
+        description="All major components assembled, desk taking shape",
+        state_id="s4",
+        metadata={"assembly_progress": 0.7}
+    )
+
+    s5 = State(
+        description="Completed desk with all screws tightened, ready to use",
+        state_id="s5",
+        metadata={"assembly_complete": True, "assembly_progress": 1.0}
+    )
+
+    # Define actions for branching point 1 (opening the box)
+    a0a = Action(
+        description="Carefully open box with scissors along the tape lines",
+        action_id="a0a",
+        action_type="unboxing",
+        metadata={"tool": "scissors", "difficulty": "easy"}
+    )
+
+    a0b = Action(
+        description="Tear open the box with hands quickly",
+        action_id="a0b",
+        action_type="unboxing",
+        metadata={"tool": "hands", "difficulty": "medium"}
+    )
+
+    # Actions to converge from different opening methods
+    a1_org = Action(
+        description="Sort and organize all components by type",
+        action_id="a1_org",
+        action_type="organization"
+    )
+
+    # Define actions for branching point 2 (assembly order)
+    a2a = Action(
+        description="Attach legs to drawer unit first (bottom-up)",
+        action_id="a2a",
+        action_type="assembly",
+        metadata={"approach": "bottom_up"}
+    )
+
+    a2b = Action(
+        description="Assemble tabletop frame first (top-down)",
+        action_id="a2b",
+        action_type="assembly",
+        metadata={"approach": "top_down"}
+    )
+
+    # Actions to complete assembly from different approaches
+    a3a = Action(
+        description="Continue bottom-up assembly: add remaining parts",
+        action_id="a3a",
+        action_type="assembly"
+    )
+
+    a3b = Action(
+        description="Continue top-down assembly: attach to base",
+        action_id="a3b",
+        action_type="assembly"
+    )
+
+    # Final action
+    a4 = Action(
+        description="Tighten all screws and perform final checks",
+        action_id="a4",
+        action_type="finishing"
+    )
+
+    # Create branching transitions
+    # Branch 1: Opening the box (2 choices)
+    world.add_transition(s0, a0a, s1a)  # Open with scissors
+    world.add_transition(s0, a0b, s1b)  # Tear with hands
+
+    # Converge: Both opening methods lead to organized state
+    world.add_transition(s1a, a1_org, s2)
+    world.add_transition(s1b, a1_org, s2)
+
+    # Branch 2: Assembly approach (2 choices)
+    world.add_transition(s2, a2a, s3a)  # Bottom-up
+    world.add_transition(s2, a2b, s3b)  # Top-down
+
+    # Continue assembly from both approaches
+    world.add_transition(s3a, a3a, s4)
+    world.add_transition(s3b, a3b, s4)
+
+    # Final step
+    world.add_transition(s4, a4, s5)
+
+    # Set initial and goal states
+    world.initial_state = s0
+    world.goal_state = s5
 
     return world
 
@@ -680,3 +1027,48 @@ if __name__ == "__main__":
     except ValueError as e:
         print(f"\nSkipping Gemini tests: {e}")
         print("To enable Gemini integration, set GEMINI_KEY in your .env file")
+
+    # Demonstrate branching world capabilities
+    print("\n" + "="*70)
+    print("Testing Branching World Capabilities")
+    print("="*70)
+
+    print("\nCreating branching IKEA world with decision points...")
+    branching_world = create_branching_ikea_world()
+
+    print_world_summary(branching_world)
+
+    # Show branching statistics
+    print(f"\nBranching Statistics:")
+    print(f"  Average branching factor: {branching_world.get_branching_factor():.2f}")
+
+    # Show decision points
+    decision_points = branching_world.get_decision_points()
+    print(f"  Number of decision points: {len(decision_points)}")
+
+    if decision_points:
+        print(f"\nDecision Points:")
+        for i, (state, actions) in enumerate(decision_points, 1):
+            print(f"\n  {i}. State: {state.description}")
+            print(f"     Possible actions ({len(actions)}):")
+            for action in actions:
+                print(f"       - {action.description}")
+
+    # Show all possible paths
+    all_paths = branching_world.get_all_paths()
+    print(f"\nTotal possible paths from start to goal: {len(all_paths)}")
+
+    for i, path in enumerate(all_paths):
+        print(f"\n  Path {i+1} ({len(path)} steps):")
+        for j, transition in enumerate(path, 1):
+            print(f"    {j}. [{transition.start_state.state_id}] "
+                  f"--[{transition.action.description}]--> "
+                  f"[{transition.end_state.state_id}]")
+
+    # Show canonical path
+    canonical = branching_world.get_canonical_path()
+    print(f"\nCanonical path (shortest): {len(canonical)} steps")
+
+    # Save branching world
+    branching_output = "ikea_desk_branching_world.json"
+    save_world_to_json(branching_world, branching_output)

@@ -1,0 +1,379 @@
+{
+  "name": "IKEA_desk_assembly_branching",
+  "description": "Assembly process with multiple method choices at decision points",
+  "states": [
+    {
+      "description": "Unopened IKEA desk box on the floor",
+      "state_id": "s0",
+      "metadata": {
+        "components_visible": false,
+        "assembly_progress": 0.0
+      }
+    },
+    {
+      "description": "Box carefully opened with scissors, all components neatly laid out",
+      "state_id": "s1a",
+      "metadata": {
+        "opening_method": "scissors",
+        "assembly_progress": 0.1
+      }
+    },
+    {
+      "description": "Box torn open with hands, some components scattered",
+      "state_id": "s1b",
+      "metadata": {
+        "opening_method": "hands",
+        "assembly_progress": 0.1
+      }
+    },
+    {
+      "description": "Components sorted and organized, instructions visible",
+      "state_id": "s2",
+      "metadata": {
+        "components_organized": true,
+        "assembly_progress": 0.2
+      }
+    },
+    {
+      "description": "Started by attaching legs to drawer unit (bottom-up approach)",
+      "state_id": "s3a",
+      "metadata": {
+        "assembly_approach": "bottom_up",
+        "assembly_progress": 0.4
+      }
+    },
+    {
+      "description": "Started by assembling the tabletop frame first (top-down approach)",
+      "state_id": "s3b",
+      "metadata": {
+        "assembly_approach": "top_down",
+        "assembly_progress": 0.4
+      }
+    },
+    {
+      "description": "All major components assembled, desk taking shape",
+      "state_id": "s4",
+      "metadata": {
+        "assembly_progress": 0.7
+      }
+    },
+    {
+      "description": "Completed desk with all screws tightened, ready to use",
+      "state_id": "s5",
+      "metadata": {
+        "assembly_complete": true,
+        "assembly_progress": 1.0
+      }
+    }
+  ],
+  "actions": [
+    {
+      "description": "Carefully open box with scissors along the tape lines",
+      "action_id": "a0a",
+      "action_type": "unboxing",
+      "metadata": {
+        "tool": "scissors",
+        "difficulty": "easy"
+      }
+    },
+    {
+      "description": "Tear open the box with hands quickly",
+      "action_id": "a0b",
+      "action_type": "unboxing",
+      "metadata": {
+        "tool": "hands",
+        "difficulty": "medium"
+      }
+    },
+    {
+      "description": "Sort and organize all components by type",
+      "action_id": "a1_org",
+      "action_type": "organization",
+      "metadata": {}
+    },
+    {
+      "description": "Attach legs to drawer unit first (bottom-up)",
+      "action_id": "a2a",
+      "action_type": "assembly",
+      "metadata": {
+        "approach": "bottom_up"
+      }
+    },
+    {
+      "description": "Assemble tabletop frame first (top-down)",
+      "action_id": "a2b",
+      "action_type": "assembly",
+      "metadata": {
+        "approach": "top_down"
+      }
+    },
+    {
+      "description": "Continue bottom-up assembly: add remaining parts",
+      "action_id": "a3a",
+      "action_type": "assembly",
+      "metadata": {}
+    },
+    {
+      "description": "Continue top-down assembly: attach to base",
+      "action_id": "a3b",
+      "action_type": "assembly",
+      "metadata": {}
+    },
+    {
+      "description": "Tighten all screws and perform final checks",
+      "action_id": "a4",
+      "action_type": "finishing",
+      "metadata": {}
+    }
+  ],
+  "transitions": [
+    {
+      "transition_id": "t_0",
+      "start_state": {
+        "description": "Unopened IKEA desk box on the floor",
+        "state_id": "s0",
+        "metadata": {
+          "components_visible": false,
+          "assembly_progress": 0.0
+        }
+      },
+      "action": {
+        "description": "Carefully open box with scissors along the tape lines",
+        "action_id": "a0a",
+        "action_type": "unboxing",
+        "metadata": {
+          "tool": "scissors",
+          "difficulty": "easy"
+        }
+      },
+      "end_state": {
+        "description": "Box carefully opened with scissors, all components neatly laid out",
+        "state_id": "s1a",
+        "metadata": {
+          "opening_method": "scissors",
+          "assembly_progress": 0.1
+        }
+      }
+    },
+    {
+      "transition_id": "t_1",
+      "start_state": {
+        "description": "Unopened IKEA desk box on the floor",
+        "state_id": "s0",
+        "metadata": {
+          "components_visible": false,
+          "assembly_progress": 0.0
+        }
+      },
+      "action": {
+        "description": "Tear open the box with hands quickly",
+        "action_id": "a0b",
+        "action_type": "unboxing",
+        "metadata": {
+          "tool": "hands",
+          "difficulty": "medium"
+        }
+      },
+      "end_state": {
+        "description": "Box torn open with hands, some components scattered",
+        "state_id": "s1b",
+        "metadata": {
+          "opening_method": "hands",
+          "assembly_progress": 0.1
+        }
+      }
+    },
+    {
+      "transition_id": "t_2",
+      "start_state": {
+        "description": "Box carefully opened with scissors, all components neatly laid out",
+        "state_id": "s1a",
+        "metadata": {
+          "opening_method": "scissors",
+          "assembly_progress": 0.1
+        }
+      },
+      "action": {
+        "description": "Sort and organize all components by type",
+        "action_id": "a1_org",
+        "action_type": "organization",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Components sorted and organized, instructions visible",
+        "state_id": "s2",
+        "metadata": {
+          "components_organized": true,
+          "assembly_progress": 0.2
+        }
+      }
+    },
+    {
+      "transition_id": "t_3",
+      "start_state": {
+        "description": "Box torn open with hands, some components scattered",
+        "state_id": "s1b",
+        "metadata": {
+          "opening_method": "hands",
+          "assembly_progress": 0.1
+        }
+      },
+      "action": {
+        "description": "Sort and organize all components by type",
+        "action_id": "a1_org",
+        "action_type": "organization",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Components sorted and organized, instructions visible",
+        "state_id": "s2",
+        "metadata": {
+          "components_organized": true,
+          "assembly_progress": 0.2
+        }
+      }
+    },
+    {
+      "transition_id": "t_4",
+      "start_state": {
+        "description": "Components sorted and organized, instructions visible",
+        "state_id": "s2",
+        "metadata": {
+          "components_organized": true,
+          "assembly_progress": 0.2
+        }
+      },
+      "action": {
+        "description": "Attach legs to drawer unit first (bottom-up)",
+        "action_id": "a2a",
+        "action_type": "assembly",
+        "metadata": {
+          "approach": "bottom_up"
+        }
+      },
+      "end_state": {
+        "description": "Started by attaching legs to drawer unit (bottom-up approach)",
+        "state_id": "s3a",
+        "metadata": {
+          "assembly_approach": "bottom_up",
+          "assembly_progress": 0.4
+        }
+      }
+    },
+    {
+      "transition_id": "t_5",
+      "start_state": {
+        "description": "Components sorted and organized, instructions visible",
+        "state_id": "s2",
+        "metadata": {
+          "components_organized": true,
+          "assembly_progress": 0.2
+        }
+      },
+      "action": {
+        "description": "Assemble tabletop frame first (top-down)",
+        "action_id": "a2b",
+        "action_type": "assembly",
+        "metadata": {
+          "approach": "top_down"
+        }
+      },
+      "end_state": {
+        "description": "Started by assembling the tabletop frame first (top-down approach)",
+        "state_id": "s3b",
+        "metadata": {
+          "assembly_approach": "top_down",
+          "assembly_progress": 0.4
+        }
+      }
+    },
+    {
+      "transition_id": "t_6",
+      "start_state": {
+        "description": "Started by attaching legs to drawer unit (bottom-up approach)",
+        "state_id": "s3a",
+        "metadata": {
+          "assembly_approach": "bottom_up",
+          "assembly_progress": 0.4
+        }
+      },
+      "action": {
+        "description": "Continue bottom-up assembly: add remaining parts",
+        "action_id": "a3a",
+        "action_type": "assembly",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "All major components assembled, desk taking shape",
+        "state_id": "s4",
+        "metadata": {
+          "assembly_progress": 0.7
+        }
+      }
+    },
+    {
+      "transition_id": "t_7",
+      "start_state": {
+        "description": "Started by assembling the tabletop frame first (top-down approach)",
+        "state_id": "s3b",
+        "metadata": {
+          "assembly_approach": "top_down",
+          "assembly_progress": 0.4
+        }
+      },
+      "action": {
+        "description": "Continue top-down assembly: attach to base",
+        "action_id": "a3b",
+        "action_type": "assembly",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "All major components assembled, desk taking shape",
+        "state_id": "s4",
+        "metadata": {
+          "assembly_progress": 0.7
+        }
+      }
+    },
+    {
+      "transition_id": "t_8",
+      "start_state": {
+        "description": "All major components assembled, desk taking shape",
+        "state_id": "s4",
+        "metadata": {
+          "assembly_progress": 0.7
+        }
+      },
+      "action": {
+        "description": "Tighten all screws and perform final checks",
+        "action_id": "a4",
+        "action_type": "finishing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Completed desk with all screws tightened, ready to use",
+        "state_id": "s5",
+        "metadata": {
+          "assembly_complete": true,
+          "assembly_progress": 1.0
+        }
+      }
+    }
+  ],
+  "initial_state": {
+    "description": "Unopened IKEA desk box on the floor",
+    "state_id": "s0",
+    "metadata": {
+      "components_visible": false,
+      "assembly_progress": 0.0
+    }
+  },
+  "goal_state": {
+    "description": "Completed desk with all screws tightened, ready to use",
+    "state_id": "s5",
+    "metadata": {
+      "assembly_complete": true,
+      "assembly_progress": 1.0
+    }
+  }
+}
