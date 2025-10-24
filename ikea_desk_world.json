@@ -1,0 +1,330 @@
+{
+  "name": "IKEA_desk_assembly",
+  "description": "Assembly process for a simple IKEA desk (MICKE or similar model)",
+  "states": [
+    {
+      "description": "Unopened IKEA desk box on the floor",
+      "state_id": "s0",
+      "metadata": {
+        "components_visible": false,
+        "assembly_progress": 0.0
+      }
+    },
+    {
+      "description": "Box opened with all components laid out on the floor: 4 legs, 1 tabletop, 1 drawer unit, screws, Allen key",
+      "state_id": "s1",
+      "metadata": {
+        "components_visible": true,
+        "assembly_progress": 0.1
+      }
+    },
+    {
+      "description": "Components sorted and organized by type: legs in one pile, hardware separated, instructions visible",
+      "state_id": "s2",
+      "metadata": {
+        "components_organized": true,
+        "assembly_progress": 0.2
+      }
+    },
+    {
+      "description": "Two legs attached to the drawer unit forming one side of the desk frame",
+      "state_id": "s3",
+      "metadata": {
+        "partial_assembly": true,
+        "assembly_progress": 0.4
+      }
+    },
+    {
+      "description": "All four legs attached to the drawer unit, creating a stable base frame",
+      "state_id": "s4",
+      "metadata": {
+        "frame_complete": true,
+        "assembly_progress": 0.6
+      }
+    },
+    {
+      "description": "Tabletop placed on the frame but not secured, desk is upright but unstable",
+      "state_id": "s5",
+      "metadata": {
+        "tabletop_placed": true,
+        "assembly_progress": 0.8
+      }
+    },
+    {
+      "description": "Completed desk with tabletop secured to the frame, all screws tightened, desk is stable and ready to use",
+      "state_id": "s6",
+      "metadata": {
+        "assembly_complete": true,
+        "assembly_progress": 1.0
+      }
+    }
+  ],
+  "actions": [
+    {
+      "description": "Open the box and remove all components",
+      "action_id": "a0",
+      "action_type": "unboxing",
+      "metadata": {
+        "tools_required": [
+          "hands"
+        ],
+        "duration": "5 minutes"
+      }
+    },
+    {
+      "description": "Sort components by type and lay out the instruction manual",
+      "action_id": "a1",
+      "action_type": "organization",
+      "metadata": {
+        "tools_required": [
+          "hands"
+        ],
+        "duration": "3 minutes"
+      }
+    },
+    {
+      "description": "Attach two legs to the drawer unit using screws and Allen key",
+      "action_id": "a2",
+      "action_type": "assembly",
+      "metadata": {
+        "tools_required": [
+          "Allen key"
+        ],
+        "duration": "10 minutes"
+      }
+    },
+    {
+      "description": "Attach the remaining two legs to complete the base frame",
+      "action_id": "a3",
+      "action_type": "assembly",
+      "metadata": {
+        "tools_required": [
+          "Allen key"
+        ],
+        "duration": "10 minutes"
+      }
+    },
+    {
+      "description": "Flip the frame upright and place the tabletop on the frame",
+      "action_id": "a4",
+      "action_type": "positioning",
+      "metadata": {
+        "tools_required": [
+          "hands"
+        ],
+        "duration": "5 minutes"
+      }
+    },
+    {
+      "description": "Secure the tabletop to the frame with screws and tighten all connections",
+      "action_id": "a5",
+      "action_type": "assembly",
+      "metadata": {
+        "tools_required": [
+          "Allen key",
+          "screwdriver"
+        ],
+        "duration": "15 minutes"
+      }
+    }
+  ],
+  "transitions": [
+    {
+      "transition_id": "t_0",
+      "start_state": {
+        "description": "Unopened IKEA desk box on the floor",
+        "state_id": "s0",
+        "metadata": {
+          "components_visible": false,
+          "assembly_progress": 0.0
+        }
+      },
+      "action": {
+        "description": "Open the box and remove all components",
+        "action_id": "a0",
+        "action_type": "unboxing",
+        "metadata": {
+          "tools_required": [
+            "hands"
+          ],
+          "duration": "5 minutes"
+        }
+      },
+      "end_state": {
+        "description": "Box opened with all components laid out on the floor: 4 legs, 1 tabletop, 1 drawer unit, screws, Allen key",
+        "state_id": "s1",
+        "metadata": {
+          "components_visible": true,
+          "assembly_progress": 0.1
+        }
+      }
+    },
+    {
+      "transition_id": "t_1",
+      "start_state": {
+        "description": "Box opened with all components laid out on the floor: 4 legs, 1 tabletop, 1 drawer unit, screws, Allen key",
+        "state_id": "s1",
+        "metadata": {
+          "components_visible": true,
+          "assembly_progress": 0.1
+        }
+      },
+      "action": {
+        "description": "Sort components by type and lay out the instruction manual",
+        "action_id": "a1",
+        "action_type": "organization",
+        "metadata": {
+          "tools_required": [
+            "hands"
+          ],
+          "duration": "3 minutes"
+        }
+      },
+      "end_state": {
+        "description": "Components sorted and organized by type: legs in one pile, hardware separated, instructions visible",
+        "state_id": "s2",
+        "metadata": {
+          "components_organized": true,
+          "assembly_progress": 0.2
+        }
+      }
+    },
+    {
+      "transition_id": "t_2",
+      "start_state": {
+        "description": "Components sorted and organized by type: legs in one pile, hardware separated, instructions visible",
+        "state_id": "s2",
+        "metadata": {
+          "components_organized": true,
+          "assembly_progress": 0.2
+        }
+      },
+      "action": {
+        "description": "Attach two legs to the drawer unit using screws and Allen key",
+        "action_id": "a2",
+        "action_type": "assembly",
+        "metadata": {
+          "tools_required": [
+            "Allen key"
+          ],
+          "duration": "10 minutes"
+        }
+      },
+      "end_state": {
+        "description": "Two legs attached to the drawer unit forming one side of the desk frame",
+        "state_id": "s3",
+        "metadata": {
+          "partial_assembly": true,
+          "assembly_progress": 0.4
+        }
+      }
+    },
+    {
+      "transition_id": "t_3",
+      "start_state": {
+        "description": "Two legs attached to the drawer unit forming one side of the desk frame",
+        "state_id": "s3",
+        "metadata": {
+          "partial_assembly": true,
+          "assembly_progress": 0.4
+        }
+      },
+      "action": {
+        "description": "Attach the remaining two legs to complete the base frame",
+        "action_id": "a3",
+        "action_type": "assembly",
+        "metadata": {
+          "tools_required": [
+            "Allen key"
+          ],
+          "duration": "10 minutes"
+        }
+      },
+      "end_state": {
+        "description": "All four legs attached to the drawer unit, creating a stable base frame",
+        "state_id": "s4",
+        "metadata": {
+          "frame_complete": true,
+          "assembly_progress": 0.6
+        }
+      }
+    },
+    {
+      "transition_id": "t_4",
+      "start_state": {
+        "description": "All four legs attached to the drawer unit, creating a stable base frame",
+        "state_id": "s4",
+        "metadata": {
+          "frame_complete": true,
+          "assembly_progress": 0.6
+        }
+      },
+      "action": {
+        "description": "Flip the frame upright and place the tabletop on the frame",
+        "action_id": "a4",
+        "action_type": "positioning",
+        "metadata": {
+          "tools_required": [
+            "hands"
+          ],
+          "duration": "5 minutes"
+        }
+      },
+      "end_state": {
+        "description": "Tabletop placed on the frame but not secured, desk is upright but unstable",
+        "state_id": "s5",
+        "metadata": {
+          "tabletop_placed": true,
+          "assembly_progress": 0.8
+        }
+      }
+    },
+    {
+      "transition_id": "t_5",
+      "start_state": {
+        "description": "Tabletop placed on the frame but not secured, desk is upright but unstable",
+        "state_id": "s5",
+        "metadata": {
+          "tabletop_placed": true,
+          "assembly_progress": 0.8
+        }
+      },
+      "action": {
+        "description": "Secure the tabletop to the frame with screws and tighten all connections",
+        "action_id": "a5",
+        "action_type": "assembly",
+        "metadata": {
+          "tools_required": [
+            "Allen key",
+            "screwdriver"
+          ],
+          "duration": "15 minutes"
+        }
+      },
+      "end_state": {
+        "description": "Completed desk with tabletop secured to the frame, all screws tightened, desk is stable and ready to use",
+        "state_id": "s6",
+        "metadata": {
+          "assembly_complete": true,
+          "assembly_progress": 1.0
+        }
+      }
+    }
+  ],
+  "initial_state": {
+    "description": "Unopened IKEA desk box on the floor",
+    "state_id": "s0",
+    "metadata": {
+      "components_visible": false,
+      "assembly_progress": 0.0
+    }
+  },
+  "goal_state": {
+    "description": "Completed desk with tabletop secured to the frame, all screws tightened, desk is stable and ready to use",
+    "state_id": "s6",
+    "metadata": {
+      "assembly_complete": true,
+      "assembly_progress": 1.0
+    }
+  }
+}

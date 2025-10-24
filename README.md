@@ -1,12 +1,12 @@
 # Action-Conditioned World Model Benchmark (AC-World)
 
-## 🎯 Problem Formulation
+## Problem Formulation
 
 **Title:** Action-Conditioned World Model Benchmark (AC-World): Testing Temporal Planning and Scene Consistency
 
 **Goal:** To evaluate an agent's ability to understand, plan, and execute a sequence of actions that transition a system (or scene) from an initial observation to a desired final observation, while maintaining temporal and causal coherence.
 
-## 🧩 Core Problem Setup
+## Core Problem Setup
 
 We define a world model $W$ that maps observations and actions to next observations:
 
@@ -52,7 +52,7 @@ The Action-Conditioned Stream Agent is tested under two regimes:
 - Action Sequence Coherence: smoothness + logical feasibility of the action chain
 - Trajectory Length Optimality
 
-## 🧪 Benchmark Setup & API Prompting Format
+## Benchmark Setup & API Prompting Format
 
 We design the following API-style interface for both training and evaluation:
 
@@ -106,7 +106,7 @@ Task: Generate a minimal sequence of actions to achieve the goal.
   - CLIP similarity = 0.91
   - Trajectory length = 3 (optimal)
 
-## 📹 Optional "Video-Time Prompting" Schema
+## Optional "Video-Time Prompting" Schema
 
 You can encode temporal structure explicitly, to simulate stream reasoning:
 
@@ -123,7 +123,7 @@ $$
 O_{t+1} = f(O_t, A_t)
 $$
 
-## 🧩 Mini Experiment Designs
+## Mini Experiment Designs
 
 | Experiment ID | Type | Input | Output | Goal | Metric |
 |---------------|------|-------|--------|------|--------|
@@ -133,7 +133,7 @@ $$
 | E4 | Temporal Memory Test | $O_{1:T}$ | $\hat{A}_{1:T}$ | Recall actions from context | Temporal consistency |
 | E5 | Action-to-Description | $A_t$ | Textual caption | Translate actions to scene dynamics | BLEU / Caption-Scene Sim. |
 
-## 💡 Open Research Questions
+## Open Research Questions
 
 1. **Action Abstraction Scope:** Should the action set be symbolic (e.g., "stand up", "move left") or continuous (vectorized joint motions)?
 
@@ -144,7 +144,7 @@ $$
 
 4. **Compositionality Test:** Can the model generalize unseen $(O_{start}, O_{goal})$ pairs by recombining known action primitives?
 
-## 🧠 Suggested Testing Prompts (with Expected Results)
+## Suggested Testing Prompts (with Expected Results)
 
 | Prompt | Expected Output | Evaluation Idea |
 |--------|----------------|-----------------|
@@ -154,30 +154,163 @@ $$
 | "Observation1: ball on ground. Observation2: ball in air." | "Throw ball." | Simple action inference |
 | "Observation1: dark room. Observation2: bright room." | "Turn on light." | Contextual causal inference |
 
-## 🧭 Next Step Suggestions
+## Next Step Suggestions
 
 - Start with synthetic image pairs (CLEVR, Physion) for controllable action space
 - Extend to video caption datasets (Something-Something-V2, Ego4D)
 - Define a simple JSON interface for prompt-action evaluation (e.g., `{"obs_start": "...", "obs_goal": "...", "actions": ["..."]}`)
 
-## 🔧 Implementation
+## Implementation
 
 Would you like me to generate the prompt templates and evaluator functions (Python + OpenAI API) for this benchmark next — including the JSON evaluation schema and similarity scoring setup?
 
-## 📁 Project Structure
+## Project Structure
 
 ```
-video_gen/
-├── README.md (this file)
-├── utils/           # Video generation utilities
+world_model_bench_agent/
+├── README.md                    # This file
+├── QUICK_START.md              # Quick start guide
+├── requirements.txt            # Python dependencies
+├── setup.py                    # Package installation
+├── .env                        # Environment variables (API keys)
+├── Makefile                    # Build and test commands
+│
+├── utils/                      # Video generation utilities
 │   ├── __init__.py
-│   ├── sora.py      # OpenAI Sora integration
-│   ├── runway.py    # Runway ML integration
-│   ├── stable_diffusion.py  # Stability AI integration
-│   └── unified_interface.py # Unified API wrapper
-└── experiments/     # Benchmark experiments
-    ├── __init__.py
-    └── ac_world_benchmark.py
+│   ├── veo.py                  # Google Veo 3.1 integration
+│   ├── sora.py                 # OpenAI Sora integration
+│   ├── unified_interface.py    # Unified API wrapper
+│   └── tests/
+│       └── test_veo.py         # Comprehensive Veo test suite
+│
+├── experiments/                # Benchmark experiments
+│   ├── __init__.py
+│   └── ac_world_benchmark.py   # Action-conditioned world model benchmark
+│
+└── examples/
+    ├── example_usage.py         # General usage examples
+    └── example_veo_usage.py     # Veo-specific examples
 ```
+
+## Testing Veo Video Generation
+
+### Prerequisites
+
+1. **Install dependencies:**
+   ```bash
+   pip install google-genai python-dotenv pillow requests
+   ```
+
+2. **Set up API key:**
+   Create a `.env` file in the project root:
+   ```bash
+   GEMINI_KEY=your_google_ai_api_key_here
+   ```
+
+3. **Activate virtual environment (recommended):**
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
+
+### Running the Test Suite
+
+The comprehensive test suite (`utils/tests/test_veo.py`) covers all Veo capabilities:
+
+```bash
+cd world_model_bench_agent
+python utils/tests/test_veo.py
+```
+
+### Test Coverage
+
+The test suite includes 10 tests organized in the following categories:
+
+#### Non-API Tests (Always Run)
+1. **Initialization Test** - Verifies client setup with google-genai SDK
+2. **Supported Features** - Lists all available Veo capabilities
+3. **Paid Feature Guard** - Ensures acknowledgement before API calls
+4. **Helper Methods** - Tests config builders and utilities
+5. **Routing Logic** - Validates smart method selection
+
+#### API Tests (Requires User Confirmation)
+6. **Image Generation** - Tests Gemini 2.5 Flash image generation
+7. **Prompt-Only Video** - Generates video from text prompt only
+8. **Image-to-Video** - Generates image, then creates video from it
+9. **First-Last Frame Video** - Creates video bridging two keyframes
+10. **Reference-Based Video** - Uses reference images to guide generation
+
+### Test Workflow
+
+When you run the test suite:
+
+1. **Non-API tests run automatically** (no charges)
+2. **API tests prompt for confirmation** before making paid API calls
+3. **Each API test shows:**
+   - What it will test
+   - Estimated time (video generation takes several minutes)
+   - Warning about potential charges
+
+Example output:
+```
+======================================================================
+  TEST 7: Image-to-Video Generation (API Call)
+======================================================================
+
+WARNING: This test will make actual API calls to Google Veo.
+This will incur charges on your account and may take several minutes.
+Do you want to proceed? (yes/no): yes
+
+7a. Generating initial image with Gemini...
+   Image generated and saved to test_start_image.png
+
+7b. Generating video from the image...
+   Result ID: operations/abc123...
+   Status: completed
+   Progress: 100.0%
+
+7c. Downloading generated video...
+   Downloaded to: test_image_to_video.mp4
+   SUCCESS: Image-to-video generation works
+```
+
+### Generated Test Files
+
+After running the full test suite, you'll find:
+
+- `test_output_image.png` - Basic image generation
+- `test_output_video.mp4` - Prompt-only video
+- `test_start_image.png` - Start frame for image-to-video
+- `test_image_to_video.mp4` - Image-to-video result
+- `test_first_frame.png`, `test_last_frame.png` - Keyframes
+- `test_first_last_video.mp4` - Keyframe interpolation video
+- `test_ref_1.png`, `test_ref_2.png` - Reference images
+- `test_reference_video.mp4` - Reference-guided video
+
+### Running Individual Tests
+
+You can modify `test_veo.py` to run only specific tests by commenting out unwanted test calls in the `main()` function.
+
+### Test Configuration
+
+Key configurations in the test suite:
+
+```python
+# Model IDs (in utils/veo.py)
+DEFAULT_VEO_MODEL_ID = "veo-3.1-fast-generate-preview"
+DEFAULT_IMAGE_MODEL_ID = "gemini-2.5-flash-image"
+
+# Polling settings
+poll_interval_seconds = 20        # Check status every 20 seconds
+operation_timeout_seconds = 1200  # 20 minute timeout
+```
+
+### Important Notes
+
+- Video generation is a **paid feature** and requires acknowledgement
+- Each video generation can take **several minutes** to complete
+- The test suite uses **polling** to wait for video completion
+- All tests use **720p resolution** by default to reduce costs
+- You can skip any API test by typing "no" when prompted
 
 

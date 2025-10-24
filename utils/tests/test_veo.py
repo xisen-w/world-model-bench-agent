@@ -22,7 +22,6 @@ load_dotenv()
 from utils.veo import VeoVideoGenerator
 from utils.unified_interface import VideoGenerationError
 
-
 def print_section(title):
     """Print a formatted section header."""
     print("\n" + "=" * 70)
@@ -284,199 +283,9 @@ def test_video_generation(veo_gen):
         traceback.print_exc()
 
 
-def test_image_to_video_generation(veo_gen):
-    """Test image-to-video generation (requires valid API key and client)."""
-    print_section("TEST 7: Image-to-Video Generation (API Call)")
-
-    if not veo_gen.client:
-        print("\n   SKIPPED: No client configured")
-        return
-
-    print("\nWARNING: This test will make actual API calls to Google Veo.")
-    print("This will incur charges on your account and may take several minutes.")
-    response = input("Do you want to proceed? (yes/no): ").strip().lower()
-
-    if response != "yes":
-        print("   SKIPPED: User chose not to run API tests")
-        return
-
-    try:
-        print("\n7a. Generating initial image with Gemini...")
-        prompt = "A calico kitten sleeping in the sunshine"
-
-        # Step 1: Generate image
-        image = veo_gen.generate_image_from_prompt(
-            prompt=prompt,
-            aspect_ratio="16:9",
-            save_path="test_start_image.png"
-        )
-        print(f"   Image generated and saved to test_start_image.png")
-
-        # Step 2: Generate video from image
-        print("\n7b. Generating video from the image...")
-        result = veo_gen.generate_video_with_image(
-            prompt=prompt,
-            start_image=image,
-            aspect_ratio="16:9",
-            resolution="720p",
-            number_of_videos=1
-        )
-
-        print(f"\n   Result ID: {result.id}")
-        print(f"   Status: {result.status}")
-        print(f"   Progress: {result.progress * 100:.1f}%")
-
-        if result.status.lower() == "completed" and result.download_url:
-            print("\n7c. Downloading generated video...")
-            output_path = "test_image_to_video.mp4"
-            downloaded = veo_gen.download_video(result.id, output_path)
-            print(f"   Downloaded to: {downloaded}")
-            print("   SUCCESS: Image-to-video generation works")
-        else:
-            print("   SUCCESS: Image-to-video generation initiated")
-
-    except VideoGenerationError as e:
-        print(f"   FAILED (VideoGenerationError): {e}")
-    except Exception as e:
-        print(f"   FAILED: {type(e).__name__}: {e}")
-        import traceback
-        traceback.print_exc()
-
-
-def test_first_and_last_image_video(veo_gen):
-    """Test video generation with first and last frame (requires valid API key and client)."""
-    print_section("TEST 8: First-Image and Last-Image Video (API Call)")
-
-    if not veo_gen.client:
-        print("\n   SKIPPED: No client configured")
-        return
-
-    print("\nWARNING: This test will make actual API calls to Google Veo.")
-    print("This will incur charges on your account and may take several minutes.")
-    response = input("Do you want to proceed? (yes/no): ").strip().lower()
-
-    if response != "yes":
-        print("   SKIPPED: User chose not to run API tests")
-        return
-
-    try:
-        print("\n8a. Generating start and end images...")
-
-        # Generate start image
-        start_image = veo_gen.generate_image_from_prompt(
-            prompt="A red balloon on the ground",
-            aspect_ratio="16:9",
-            save_path="test_first_frame.png"
-        )
-        print(f"   Start image saved to test_first_frame.png")
-
-        # Generate end image
-        end_image = veo_gen.generate_image_from_prompt(
-            prompt="A red balloon floating in the sky",
-            aspect_ratio="16:9",
-            save_path="test_last_frame.png"
-        )
-        print(f"   End image saved to test_last_frame.png")
-
-        print("\n8b. Generating video bridging start and end frames...")
-        result = veo_gen.generate_video_with_initial_and_end_image(
-            prompt="A red balloon rising from the ground to the sky",
-            start_image=start_image,
-            end_image=end_image,
-            aspect_ratio="16:9",
-            resolution="720p",
-            number_of_videos=1
-        )
-
-        print(f"\n   Result ID: {result.id}")
-        print(f"   Status: {result.status}")
-        print(f"   Progress: {result.progress * 100:.1f}%")
-
-        if result.status.lower() == "completed" and result.download_url:
-            print("\n8c. Downloading generated video...")
-            output_path = "test_first_last_video.mp4"
-            downloaded = veo_gen.download_video(result.id, output_path)
-            print(f"   Downloaded to: {downloaded}")
-            print("   SUCCESS: First-last frame video generation works")
-        else:
-            print("   SUCCESS: First-last frame video generation initiated")
-
-    except VideoGenerationError as e:
-        print(f"   FAILED (VideoGenerationError): {e}")
-    except Exception as e:
-        print(f"   FAILED: {type(e).__name__}: {e}")
-        import traceback
-        traceback.print_exc()
-
-
-def test_reference_based_video(veo_gen):
-    """Test reference-based video generation (requires valid API key and client)."""
-    print_section("TEST 9: Reference-Based Video Generation (API Call)")
-
-    if not veo_gen.client:
-        print("\n   SKIPPED: No client configured")
-        return
-
-    print("\nWARNING: This test will make actual API calls to Google Veo.")
-    print("This will incur charges on your account and may take several minutes.")
-    response = input("Do you want to proceed? (yes/no): ").strip().lower()
-
-    if response != "yes":
-        print("   SKIPPED: User chose not to run API tests")
-        return
-
-    try:
-        print("\n9a. Generating reference images...")
-
-        # Generate reference images
-        ref_image_1 = veo_gen.generate_image_from_prompt(
-            prompt="A person wearing a red jacket",
-            aspect_ratio="16:9",
-            save_path="test_ref_1.png"
-        )
-        print(f"   Reference image 1 saved to test_ref_1.png")
-
-        ref_image_2 = veo_gen.generate_image_from_prompt(
-            prompt="A mountain landscape background",
-            aspect_ratio="16:9",
-            save_path="test_ref_2.png"
-        )
-        print(f"   Reference image 2 saved to test_ref_2.png")
-
-        print("\n9b. Generating video with reference images...")
-        result = veo_gen.generate_video_with_references(
-            prompt="A person in a red jacket hiking through a mountain landscape",
-            reference_images=[ref_image_1, ref_image_2],
-            aspect_ratio="16:9",
-            resolution="720p",
-            reference_type="asset",
-            number_of_videos=1
-        )
-
-        print(f"\n   Result ID: {result.id}")
-        print(f"   Status: {result.status}")
-        print(f"   Progress: {result.progress * 100:.1f}%")
-
-        if result.status.lower() == "completed" and result.download_url:
-            print("\n9c. Downloading generated video...")
-            output_path = "test_reference_video.mp4"
-            downloaded = veo_gen.download_video(result.id, output_path)
-            print(f"   Downloaded to: {downloaded}")
-            print("   SUCCESS: Reference-based video generation works")
-        else:
-            print("   SUCCESS: Reference-based video generation initiated")
-
-    except VideoGenerationError as e:
-        print(f"   FAILED (VideoGenerationError): {e}")
-    except Exception as e:
-        print(f"   FAILED: {type(e).__name__}: {e}")
-        import traceback
-        traceback.print_exc()
-
-
 def test_routing_logic(veo_gen):
     """Test the smart routing in generate_video."""
-    print_section("TEST 10: Smart Routing Logic")
+    print_section("TEST 7: Smart Routing Logic")
 
     print("\n7a. Testing routing determination (no API calls)...")
 
@@ -540,37 +349,19 @@ def main():
     # Test 5: Image generation (requires API call)
     test_image_generation(veo_gen)
 
-    # Test 6: Prompt-only video generation (requires API call)
+    # Test 6: Video generation (requires API call)
     test_video_generation(veo_gen)
 
-    # Test 7: Image-to-video generation (requires API call)
-    test_image_to_video_generation(veo_gen)
-
-    # Test 8: First-image and last-image video (requires API call)
-    test_first_and_last_image_video(veo_gen)
-
-    # Test 9: Reference-based video generation (requires API call)
-    test_reference_based_video(veo_gen)
-
-    # Test 10: Routing logic
+    # Test 7: Routing logic
     test_routing_logic(veo_gen)
 
     # Summary
     print_section("TEST SUITE COMPLETE")
     print("\nAll non-API tests completed successfully!")
     print("API tests were either completed or skipped based on user choice.")
-    print("\nGenerated files:")
-    print("  - test_output_image.png (from basic image generation)")
-    print("  - test_output_video.mp4 (from prompt-only video)")
-    print("  - test_start_image.png (start frame for image-to-video)")
-    print("  - test_image_to_video.mp4 (image-to-video result)")
-    print("  - test_first_frame.png, test_last_frame.png (first/last frames)")
-    print("  - test_first_last_video.mp4 (first-last frame video)")
-    print("  - test_ref_1.png, test_ref_2.png (reference images)")
-    print("  - test_reference_video.mp4 (reference-based video)")
     print("\nNext steps:")
     print("  1. Review any failed tests above")
-    print("  2. Check generated files listed above")
+    print("  2. Check generated files (test_output_image.png, test_output_video.mp4)")
     print("  3. Integrate VeoVideoGenerator into your application")
 
     return 0

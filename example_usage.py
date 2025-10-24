@@ -26,14 +26,14 @@ async def main():
     # Register the Sora/OpenAI provider
     sora_api_key = os.getenv("OPENAI_API_KEY")
     if not sora_api_key:
-        print("❌ OPENAI_API_KEY not found in environment variables")
+        print("ERROR: OPENAI_API_KEY not found in environment variables")
         print("Please set your OpenAI API key in a .env file or environment")
         return
 
     sora_generator = SoraVideoGenerator(api_key=sora_api_key)
     manager.register_provider("sora", sora_generator)
 
-    print("🎬 AC-World Video Generation Example")
+    print("AC-World Video Generation Example")
     print("=" * 50)
 
     # Example prompts for different benchmark scenarios
@@ -56,7 +56,7 @@ async def main():
     ]
 
     for i, test_case in enumerate(test_prompts, 1):
-        print(f"\n🧪 Test Case {i}: {test_case['name']}")
+        print(f"\nTest Case {i}: {test_case['name']}")
         print("-" * 40)
         print(f"Prompt: {test_case['prompt']}")
         print(f"Description: {test_case['description']}")
@@ -72,7 +72,7 @@ async def main():
             )
 
             print("
-✅ Video generation started!"            print(f"   ID: {result.id}")
+SUCCESS: Video generation started!"            print(f"   ID: {result.id}")
             print(f"   Status: {result.status}")
             print(f"   Progress: {result.progress:.1%}")
             print(f"   Model: {result.model}")
@@ -87,14 +87,14 @@ async def main():
             with open(f"test_result_{i}.json", "w") as f:
                 f.write(result.to_json())
 
-            print(f"   📄 Results saved to: test_result_{i}.json")
+            print(f"   FILE: Results saved to: test_result_{i}.json")
 
         except Exception as e:
-            print(f"❌ Error in test case {i}: {e}")
+            print(f"ERROR: Error in test case {i}: {e}")
 
     # Show provider information
     print("
-📋 Provider Information:"    print("-" * 30)
+INFO: Provider Information:"    print("-" * 30)
     for provider_name in manager.get_available_providers():
         info = manager.get_provider_info(provider_name)
         print(f"• {provider_name}: {info['name']} ({info['model']})")
@@ -103,7 +103,7 @@ async def main():
 
 def sync_example():
     """Synchronous example for simple usage."""
-    print("\n🔄 Running synchronous example...")
+    print("\n Running synchronous example...")
 
     load_dotenv()
     manager = VideoGenerationManager()
@@ -122,9 +122,9 @@ def sync_example():
                 size="512x512",
                 seconds="5"
             )
-            print(f"✓ Generated video: {result.id}")
+            print(f"Generated video: {result.id}")
         except Exception as e:
-            print(f"✗ Error: {e}")
+            print(f"Error: {e}")
     else:
         print("No OpenAI API key found")
 

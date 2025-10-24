@@ -54,7 +54,7 @@ def setup_veo_generator():
             operation_timeout_seconds=600,  # 10 minute timeout
         )
 
-        print(f"✓ VeoVideoGenerator initialized")
+        print(f"SUCCESS: VeoVideoGenerator initialized")
         print(f"  Provider: {veo_gen.provider_name}")
         print(f"  Model: {veo_gen.model_name}")
         print(f"  Image Model: {veo_gen.image_model_id}")
@@ -86,7 +86,7 @@ def example_1_generate_image(veo_gen):
             save_path="output/example1_cityscape.png"
         )
 
-        print(f"✓ Image generated successfully!")
+        print(f"SUCCESS: Image generated successfully!")
         print(f"  Size: {image.size}")
         print(f"  Format: {image.format}")
         print(f"  Saved to: output/example1_cityscape.png")
@@ -94,7 +94,7 @@ def example_1_generate_image(veo_gen):
         return image
 
     except Exception as e:
-        print(f"✗ Failed: {type(e).__name__}: {e}")
+        print(f"FAILED: Failed: {type(e).__name__}: {e}")
         return None
 
 
@@ -117,7 +117,7 @@ def example_2_generate_video_from_prompt(veo_gen):
             number_of_videos=1
         )
 
-        print(f"\n✓ Video generation complete!")
+        print(f"\nSUCCESS: Video generation complete!")
         print(f"  Video ID: {result.id}")
         print(f"  Status: {result.status}")
         print(f"  Progress: {result.progress * 100:.1f}%")
@@ -133,12 +133,12 @@ def example_2_generate_video_from_prompt(veo_gen):
             output_path = "output/example2_dolphin.mp4"
             print(f"\nDownloading video to {output_path}...")
             veo_gen.download_video(result.id, output_path)
-            print(f"✓ Video downloaded successfully!")
+            print(f"SUCCESS: Video downloaded successfully!")
 
         return result
 
     except Exception as e:
-        print(f"✗ Failed: {type(e).__name__}: {e}")
+        print(f"FAILED: Failed: {type(e).__name__}: {e}")
         import traceback
         traceback.print_exc()
         return None
@@ -156,7 +156,7 @@ def example_3_generate_video_from_image(veo_gen, image=None):
             prompt="A serene forest path in autumn",
             aspect_ratio="16:9"
         )
-        print("✓ Generated starting image")
+        print("SUCCESS: Generated starting image")
 
     prompt = "Camera slowly moves forward along the forest path"
     print(f"\nPrompt: {prompt}")
@@ -171,7 +171,7 @@ def example_3_generate_video_from_image(veo_gen, image=None):
             number_of_videos=1
         )
 
-        print(f"\n✓ Video generation complete!")
+        print(f"\nSUCCESS: Video generation complete!")
         print(f"  Video ID: {result.id}")
         print(f"  Status: {result.status}")
         print(f"  Progress: {result.progress * 100:.1f}%")
@@ -180,12 +180,12 @@ def example_3_generate_video_from_image(veo_gen, image=None):
             output_path = "output/example3_forest_walk.mp4"
             print(f"\nDownloading video to {output_path}...")
             veo_gen.download_video(result.id, output_path)
-            print(f"✓ Video downloaded successfully!")
+            print(f"SUCCESS: Video downloaded successfully!")
 
         return result
 
     except Exception as e:
-        print(f"✗ Failed: {type(e).__name__}: {e}")
+        print(f"FAILED: Failed: {type(e).__name__}: {e}")
         import traceback
         traceback.print_exc()
         return None
@@ -238,7 +238,7 @@ def example_5_check_status(veo_gen, video_id):
         return result
 
     except Exception as e:
-        print(f"✗ Failed: {type(e).__name__}: {e}")
+        print(f"FAILED: Failed: {type(e).__name__}: {e}")
         return None
 
 
@@ -300,7 +300,7 @@ def main():
         return 0
 
     except Exception as e:
-        print(f"\n✗ Error: {type(e).__name__}: {e}")
+        print(f"\nFAILED: Error: {type(e).__name__}: {e}")
         import traceback
         traceback.print_exc()
         return 1

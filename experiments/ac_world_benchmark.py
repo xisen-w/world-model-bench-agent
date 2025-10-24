@@ -92,7 +92,7 @@ class ACWorldBenchmark:
             from utils.sora import SoraVideoGenerator
             sora_provider = SoraVideoGenerator(api_key=api_keys["openai"])
             self.manager.register_provider("sora", sora_provider)
-            self.logger.info("✓ Registered Sora provider")
+            self.logger.info("Registered Sora provider")
 
         # TODO: Add other providers (Runway, Stability AI, etc.)
 

@@ -16,10 +16,10 @@ def check_python_version():
     """Check if Python version is compatible."""
     version = sys.version_info
     if version.major < 3 or (version.major == 3 and version.minor < 8):
-        print(f"❌ Python {version.major}.{version.minor} is not supported")
+        print(f"FAILED: Python {version.major}.{version.minor} is not supported")
         print("   Please use Python 3.8 or higher")
         return False
-    print(f"✅ Python {version.major}.{version.minor}.{version.micro} is compatible")
+    print(f"SUCCESS: Python {version.major}.{version.minor}.{version.micro} is compatible")
     return True
 
 def check_dependencies():
@@ -35,18 +35,18 @@ def check_dependencies():
     for package in required_packages:
         try:
             __import__(package)
-            print(f"✅ {package} is installed")
+            print(f"SUCCESS: {package} is installed")
         except ImportError:
-            print(f"❌ {package} is not installed")
+            print(f"FAILED: {package} is not installed")
             missing_packages.append(package)
 
     if missing_packages:
-        print("📦 Installing missing packages...")        
+        print(" Installing missing packages...")        
         try:
             subprocess.check_call([sys.executable, "-m", "pip", "install"] + missing_packages)
-            print("✅ All dependencies installed successfully!")
+            print("SUCCESS: All dependencies installed successfully!")
         except subprocess.CalledProcessError as e:
-            print(f"❌ Failed to install dependencies: {e}")
+            print(f"FAILED: Failed to install dependencies: {e}")
             return False
 
     return True
@@ -58,23 +58,23 @@ def create_env_file():
     env_example = Path(".env.example")
 
     if env_file.exists():
-        print("✅ .env file already exists")
+        print("SUCCESS: .env file already exists")
         return True
 
     if env_example.exists():
         env_example.copy(env_file)
-        print("✅ Created .env file from .env.example")
+        print("SUCCESS: Created .env file from .env.example")
         print("   Please edit .env and add your API keys")
         return True
     else:
-        print("❌ .env.example file not found")
+        print("FAILED: .env.example file not found")
         return False
 
 
 def validate_configuration():
     """Validate the configuration by checking API keys."""
     if not os.path.exists(".env"):
-        print("❌ .env file not found")
+        print("FAILED: .env file not found")
         return False
 
     # Check for API keys (without revealing them)
@@ -92,39 +92,39 @@ def validate_configuration():
         api_keys_found.append("Stability AI")
 
     if api_keys_found:
-        print(f"✅ Found API keys for: {', '.join(api_keys_found)}")
+        print(f"SUCCESS: Found API keys for: {', '.join(api_keys_found)}")
         return True
     else:
-        print("⚠️  No API keys configured yet")
+        print("WARNING:  No API keys configured yet")
         print("   Please add your API keys to .env file")
         return False
 
 
 def run_tests():
     """Run basic functionality tests."""
-    print("\n🧪 Running functionality tests...")
+    print("\nTesting: Running functionality tests...")
 
     try:
         # Test imports
         from utils import VideoGenerationManager, SoraVideoGenerator
-        print("✅ Core imports successful")
+        print("SUCCESS: Core imports successful")
 
         # Test manager creation
         manager = VideoGenerationManager()
-        print("✅ VideoGenerationManager created")
+        print("SUCCESS: VideoGenerationManager created")
 
         # Test provider registration (without API key)
-        print("✅ Basic functionality tests passed")
+        print("SUCCESS: Basic functionality tests passed")
         return True
 
     except Exception as e:
-        print(f"❌ Test failed: {e}")
+        print(f"FAILED: Test failed: {e}")
         return False
 
 
 def main():
     """Main setup function."""
-    print("🚀 AC-World Video Generation Framework Setup")
+    print(" AC-World Video Generation Framework Setup")
     print("=" * 50)
 
     # Check Python version
@@ -146,7 +146,7 @@ def main():
     if not run_tests():
         return 1
 
-    print("\n🎉 Setup completed successfully!")
+    print("\n Setup completed successfully!")
     print("=" * 50)
     print("Next steps:")
     print("1. Edit .env file and add your API keys")
