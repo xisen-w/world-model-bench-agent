@@ -1,0 +1,695 @@
+{
+  "name": "IKEA_desk_assembly_multi_ending",
+  "description": "Assembly process with multiple possible outcomes (successes and failures)",
+  "states": [
+    {
+      "description": "Unopened IKEA desk box with instruction manual on top",
+      "state_id": "s0",
+      "metadata": {
+        "assembly_progress": 0.0
+      }
+    },
+    {
+      "description": "Box opened, components laid out, instruction manual read carefully",
+      "state_id": "s1a",
+      "metadata": {
+        "instructions_read": true,
+        "assembly_progress": 0.1
+      }
+    },
+    {
+      "description": "Box torn open, components scattered, instruction manual tossed aside",
+      "state_id": "s1b",
+      "metadata": {
+        "instructions_read": false,
+        "assembly_progress": 0.1
+      }
+    },
+    {
+      "description": "Following instructions step-by-step, all parts organized by number",
+      "state_id": "s2a",
+      "metadata": {
+        "following_instructions": true,
+        "assembly_progress": 0.3
+      }
+    },
+    {
+      "description": "Desk frame assembled correctly, checking alignment before final tightening",
+      "state_id": "s3a",
+      "metadata": {
+        "assembly_quality": "high",
+        "assembly_progress": 0.7
+      }
+    },
+    {
+      "description": "Perfect assembly: desk is stable, all screws tight, perfectly aligned, looks professional",
+      "state_id": "s_perfect",
+      "metadata": {
+        "assembly_complete": true,
+        "quality": 1.0,
+        "outcome": "success"
+      }
+    },
+    {
+      "description": "Attempting assembly by intuition, some confusion about which parts go where",
+      "state_id": "s2b",
+      "metadata": {
+        "following_instructions": false,
+        "assembly_progress": 0.2
+      }
+    },
+    {
+      "description": "Frustrated and confused, considering giving up",
+      "state_id": "s2c",
+      "metadata": {
+        "frustration_level": "high",
+        "assembly_progress": 0.15
+      }
+    },
+    {
+      "description": "Gave up halfway: partially assembled desk on floor, tools scattered, person walking away defeated",
+      "state_id": "s_gave_up",
+      "metadata": {
+        "assembly_complete": false,
+        "quality": 0.2,
+        "outcome": "failure"
+      }
+    },
+    {
+      "description": "Desk frame assembled but some parts seem loose, continuing anyway",
+      "state_id": "s3b",
+      "metadata": {
+        "assembly_quality": "medium",
+        "assembly_progress": 0.6
+      }
+    },
+    {
+      "description": "Good assembly: desk is functional and stable, minor cosmetic imperfections",
+      "state_id": "s_good",
+      "metadata": {
+        "assembly_complete": true,
+        "quality": 0.8,
+        "outcome": "success"
+      }
+    },
+    {
+      "description": "Acceptable assembly: desk works but wobbles slightly, some screws could be tighter",
+      "state_id": "s_acceptable",
+      "metadata": {
+        "assembly_complete": true,
+        "quality": 0.6,
+        "outcome": "success"
+      }
+    },
+    {
+      "description": "Desk frame assembled incorrectly, using wrong screws in some places",
+      "state_id": "s3c",
+      "metadata": {
+        "assembly_quality": "low",
+        "assembly_progress": 0.5
+      }
+    },
+    {
+      "description": "Wrong assembly: followed wrong instructions, desk looks strange and parts don't fit properly",
+      "state_id": "s_wrong_assembly",
+      "metadata": {
+        "assembly_complete": false,
+        "quality": 0.3,
+        "outcome": "failure"
+      }
+    },
+    {
+      "description": "Structural failure: desk collapsed when weight was placed on it, critical screws were missing",
+      "state_id": "s_collapsed",
+      "metadata": {
+        "assembly_complete": false,
+        "quality": 0.1,
+        "outcome": "failure"
+      }
+    }
+  ],
+  "actions": [
+    {
+      "description": "Open box carefully and read instruction manual thoroughly",
+      "action_id": "a_read",
+      "action_type": "preparation",
+      "metadata": {}
+    },
+    {
+      "description": "Tear open box and toss instructions aside, attempt assembly by intuition",
+      "action_id": "a_skip",
+      "action_type": "preparation",
+      "metadata": {}
+    },
+    {
+      "description": "Methodically follow each instruction step, double-checking each connection",
+      "action_id": "a_follow",
+      "action_type": "assembly",
+      "metadata": {}
+    },
+    {
+      "description": "Take a breath, re-read instructions, continue methodically",
+      "action_id": "a_persist_good",
+      "action_type": "assembly",
+      "metadata": {}
+    },
+    {
+      "description": "Carefully tighten all screws, check stability, adjust alignment",
+      "action_id": "a_perfect_finish",
+      "action_type": "finishing",
+      "metadata": {}
+    },
+    {
+      "description": "Try to figure it out without instructions, guessing which parts connect",
+      "action_id": "a_wing",
+      "action_type": "assembly",
+      "metadata": {}
+    },
+    {
+      "description": "Become frustrated with confusing parts, consider giving up",
+      "action_id": "a_frustrate",
+      "action_type": "emotional",
+      "metadata": {}
+    },
+    {
+      "description": "Throw hands up in frustration and walk away from half-assembled desk",
+      "action_id": "a_quit",
+      "action_type": "termination",
+      "metadata": {}
+    },
+    {
+      "description": "Rush to finish without checking, just want to be done",
+      "action_id": "a_rush",
+      "action_type": "assembly",
+      "metadata": {}
+    },
+    {
+      "description": "Quickly tighten main screws, skip detailed checks",
+      "action_id": "a_quick_finish",
+      "action_type": "finishing",
+      "metadata": {}
+    },
+    {
+      "description": "Loosely tighten screws, desk wobbles but seems okay",
+      "action_id": "a_sloppy_finish",
+      "action_type": "finishing",
+      "metadata": {}
+    },
+    {
+      "description": "Use whatever screws fit, not checking part numbers",
+      "action_id": "a_wrong_parts",
+      "action_type": "assembly",
+      "metadata": {}
+    },
+    {
+      "description": "Place heavy object on desk to test stability",
+      "action_id": "a_test",
+      "action_type": "testing",
+      "metadata": {}
+    }
+  ],
+  "transitions": [
+    {
+      "transition_id": "t_0",
+      "start_state": {
+        "description": "Unopened IKEA desk box with instruction manual on top",
+        "state_id": "s0",
+        "metadata": {
+          "assembly_progress": 0.0
+        }
+      },
+      "action": {
+        "description": "Open box carefully and read instruction manual thoroughly",
+        "action_id": "a_read",
+        "action_type": "preparation",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Box opened, components laid out, instruction manual read carefully",
+        "state_id": "s1a",
+        "metadata": {
+          "instructions_read": true,
+          "assembly_progress": 0.1
+        }
+      }
+    },
+    {
+      "transition_id": "t_1",
+      "start_state": {
+        "description": "Unopened IKEA desk box with instruction manual on top",
+        "state_id": "s0",
+        "metadata": {
+          "assembly_progress": 0.0
+        }
+      },
+      "action": {
+        "description": "Tear open box and toss instructions aside, attempt assembly by intuition",
+        "action_id": "a_skip",
+        "action_type": "preparation",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Box torn open, components scattered, instruction manual tossed aside",
+        "state_id": "s1b",
+        "metadata": {
+          "instructions_read": false,
+          "assembly_progress": 0.1
+        }
+      }
+    },
+    {
+      "transition_id": "t_2",
+      "start_state": {
+        "description": "Box opened, components laid out, instruction manual read carefully",
+        "state_id": "s1a",
+        "metadata": {
+          "instructions_read": true,
+          "assembly_progress": 0.1
+        }
+      },
+      "action": {
+        "description": "Methodically follow each instruction step, double-checking each connection",
+        "action_id": "a_follow",
+        "action_type": "assembly",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Following instructions step-by-step, all parts organized by number",
+        "state_id": "s2a",
+        "metadata": {
+          "following_instructions": true,
+          "assembly_progress": 0.3
+        }
+      }
+    },
+    {
+      "transition_id": "t_3",
+      "start_state": {
+        "description": "Following instructions step-by-step, all parts organized by number",
+        "state_id": "s2a",
+        "metadata": {
+          "following_instructions": true,
+          "assembly_progress": 0.3
+        }
+      },
+      "action": {
+        "description": "Take a breath, re-read instructions, continue methodically",
+        "action_id": "a_persist_good",
+        "action_type": "assembly",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Desk frame assembled correctly, checking alignment before final tightening",
+        "state_id": "s3a",
+        "metadata": {
+          "assembly_quality": "high",
+          "assembly_progress": 0.7
+        }
+      }
+    },
+    {
+      "transition_id": "t_4",
+      "start_state": {
+        "description": "Desk frame assembled correctly, checking alignment before final tightening",
+        "state_id": "s3a",
+        "metadata": {
+          "assembly_quality": "high",
+          "assembly_progress": 0.7
+        }
+      },
+      "action": {
+        "description": "Carefully tighten all screws, check stability, adjust alignment",
+        "action_id": "a_perfect_finish",
+        "action_type": "finishing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Perfect assembly: desk is stable, all screws tight, perfectly aligned, looks professional",
+        "state_id": "s_perfect",
+        "metadata": {
+          "assembly_complete": true,
+          "quality": 1.0,
+          "outcome": "success"
+        }
+      }
+    },
+    {
+      "transition_id": "t_5",
+      "start_state": {
+        "description": "Box torn open, components scattered, instruction manual tossed aside",
+        "state_id": "s1b",
+        "metadata": {
+          "instructions_read": false,
+          "assembly_progress": 0.1
+        }
+      },
+      "action": {
+        "description": "Try to figure it out without instructions, guessing which parts connect",
+        "action_id": "a_wing",
+        "action_type": "assembly",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Attempting assembly by intuition, some confusion about which parts go where",
+        "state_id": "s2b",
+        "metadata": {
+          "following_instructions": false,
+          "assembly_progress": 0.2
+        }
+      }
+    },
+    {
+      "transition_id": "t_6",
+      "start_state": {
+        "description": "Attempting assembly by intuition, some confusion about which parts go where",
+        "state_id": "s2b",
+        "metadata": {
+          "following_instructions": false,
+          "assembly_progress": 0.2
+        }
+      },
+      "action": {
+        "description": "Become frustrated with confusing parts, consider giving up",
+        "action_id": "a_frustrate",
+        "action_type": "emotional",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Frustrated and confused, considering giving up",
+        "state_id": "s2c",
+        "metadata": {
+          "frustration_level": "high",
+          "assembly_progress": 0.15
+        }
+      }
+    },
+    {
+      "transition_id": "t_7",
+      "start_state": {
+        "description": "Frustrated and confused, considering giving up",
+        "state_id": "s2c",
+        "metadata": {
+          "frustration_level": "high",
+          "assembly_progress": 0.15
+        }
+      },
+      "action": {
+        "description": "Throw hands up in frustration and walk away from half-assembled desk",
+        "action_id": "a_quit",
+        "action_type": "termination",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Gave up halfway: partially assembled desk on floor, tools scattered, person walking away defeated",
+        "state_id": "s_gave_up",
+        "metadata": {
+          "assembly_complete": false,
+          "quality": 0.2,
+          "outcome": "failure"
+        }
+      }
+    },
+    {
+      "transition_id": "t_8",
+      "start_state": {
+        "description": "Frustrated and confused, considering giving up",
+        "state_id": "s2c",
+        "metadata": {
+          "frustration_level": "high",
+          "assembly_progress": 0.15
+        }
+      },
+      "action": {
+        "description": "Rush to finish without checking, just want to be done",
+        "action_id": "a_rush",
+        "action_type": "assembly",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Desk frame assembled but some parts seem loose, continuing anyway",
+        "state_id": "s3b",
+        "metadata": {
+          "assembly_quality": "medium",
+          "assembly_progress": 0.6
+        }
+      }
+    },
+    {
+      "transition_id": "t_9",
+      "start_state": {
+        "description": "Desk frame assembled but some parts seem loose, continuing anyway",
+        "state_id": "s3b",
+        "metadata": {
+          "assembly_quality": "medium",
+          "assembly_progress": 0.6
+        }
+      },
+      "action": {
+        "description": "Quickly tighten main screws, skip detailed checks",
+        "action_id": "a_quick_finish",
+        "action_type": "finishing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Good assembly: desk is functional and stable, minor cosmetic imperfections",
+        "state_id": "s_good",
+        "metadata": {
+          "assembly_complete": true,
+          "quality": 0.8,
+          "outcome": "success"
+        }
+      }
+    },
+    {
+      "transition_id": "t_10",
+      "start_state": {
+        "description": "Desk frame assembled but some parts seem loose, continuing anyway",
+        "state_id": "s3b",
+        "metadata": {
+          "assembly_quality": "medium",
+          "assembly_progress": 0.6
+        }
+      },
+      "action": {
+        "description": "Loosely tighten screws, desk wobbles but seems okay",
+        "action_id": "a_sloppy_finish",
+        "action_type": "finishing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Acceptable assembly: desk works but wobbles slightly, some screws could be tighter",
+        "state_id": "s_acceptable",
+        "metadata": {
+          "assembly_complete": true,
+          "quality": 0.6,
+          "outcome": "success"
+        }
+      }
+    },
+    {
+      "transition_id": "t_11",
+      "start_state": {
+        "description": "Attempting assembly by intuition, some confusion about which parts go where",
+        "state_id": "s2b",
+        "metadata": {
+          "following_instructions": false,
+          "assembly_progress": 0.2
+        }
+      },
+      "action": {
+        "description": "Use whatever screws fit, not checking part numbers",
+        "action_id": "a_wrong_parts",
+        "action_type": "assembly",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Desk frame assembled incorrectly, using wrong screws in some places",
+        "state_id": "s3c",
+        "metadata": {
+          "assembly_quality": "low",
+          "assembly_progress": 0.5
+        }
+      }
+    },
+    {
+      "transition_id": "t_12",
+      "start_state": {
+        "description": "Desk frame assembled incorrectly, using wrong screws in some places",
+        "state_id": "s3c",
+        "metadata": {
+          "assembly_quality": "low",
+          "assembly_progress": 0.5
+        }
+      },
+      "action": {
+        "description": "Rush to finish without checking, just want to be done",
+        "action_id": "a_rush",
+        "action_type": "assembly",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Wrong assembly: followed wrong instructions, desk looks strange and parts don't fit properly",
+        "state_id": "s_wrong_assembly",
+        "metadata": {
+          "assembly_complete": false,
+          "quality": 0.3,
+          "outcome": "failure"
+        }
+      }
+    },
+    {
+      "transition_id": "t_13",
+      "start_state": {
+        "description": "Desk frame assembled incorrectly, using wrong screws in some places",
+        "state_id": "s3c",
+        "metadata": {
+          "assembly_quality": "low",
+          "assembly_progress": 0.5
+        }
+      },
+      "action": {
+        "description": "Loosely tighten screws, desk wobbles but seems okay",
+        "action_id": "a_sloppy_finish",
+        "action_type": "finishing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Acceptable assembly: desk works but wobbles slightly, some screws could be tighter",
+        "state_id": "s_acceptable",
+        "metadata": {
+          "assembly_complete": true,
+          "quality": 0.6,
+          "outcome": "success"
+        }
+      }
+    },
+    {
+      "transition_id": "t_14",
+      "start_state": {
+        "description": "Acceptable assembly: desk works but wobbles slightly, some screws could be tighter",
+        "state_id": "s_acceptable",
+        "metadata": {
+          "assembly_complete": true,
+          "quality": 0.6,
+          "outcome": "success"
+        }
+      },
+      "action": {
+        "description": "Place heavy object on desk to test stability",
+        "action_id": "a_test",
+        "action_type": "testing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Structural failure: desk collapsed when weight was placed on it, critical screws were missing",
+        "state_id": "s_collapsed",
+        "metadata": {
+          "assembly_complete": false,
+          "quality": 0.1,
+          "outcome": "failure"
+        }
+      }
+    }
+  ],
+  "initial_state": {
+    "description": "Unopened IKEA desk box with instruction manual on top",
+    "state_id": "s0",
+    "metadata": {
+      "assembly_progress": 0.0
+    }
+  },
+  "goal_states": [
+    {
+      "description": "Perfect assembly: desk is stable, all screws tight, perfectly aligned, looks professional",
+      "state_id": "s_perfect",
+      "metadata": {
+        "assembly_complete": true,
+        "quality": 1.0,
+        "outcome": "success"
+      }
+    },
+    {
+      "description": "Good assembly: desk is functional and stable, minor cosmetic imperfections",
+      "state_id": "s_good",
+      "metadata": {
+        "assembly_complete": true,
+        "quality": 0.8,
+        "outcome": "success"
+      }
+    },
+    {
+      "description": "Acceptable assembly: desk works but wobbles slightly, some screws could be tighter",
+      "state_id": "s_acceptable",
+      "metadata": {
+        "assembly_complete": true,
+        "quality": 0.6,
+        "outcome": "success"
+      }
+    }
+  ],
+  "final_states": [
+    {
+      "description": "Perfect assembly: desk is stable, all screws tight, perfectly aligned, looks professional",
+      "state_id": "s_perfect",
+      "metadata": {
+        "assembly_complete": true,
+        "quality": 1.0,
+        "outcome": "success"
+      }
+    },
+    {
+      "description": "Good assembly: desk is functional and stable, minor cosmetic imperfections",
+      "state_id": "s_good",
+      "metadata": {
+        "assembly_complete": true,
+        "quality": 0.8,
+        "outcome": "success"
+      }
+    },
+    {
+      "description": "Acceptable assembly: desk works but wobbles slightly, some screws could be tighter",
+      "state_id": "s_acceptable",
+      "metadata": {
+        "assembly_complete": true,
+        "quality": 0.6,
+        "outcome": "success"
+      }
+    },
+    {
+      "description": "Gave up halfway: partially assembled desk on floor, tools scattered, person walking away defeated",
+      "state_id": "s_gave_up",
+      "metadata": {
+        "assembly_complete": false,
+        "quality": 0.2,
+        "outcome": "failure"
+      }
+    },
+    {
+      "description": "Structural failure: desk collapsed when weight was placed on it, critical screws were missing",
+      "state_id": "s_collapsed",
+      "metadata": {
+        "assembly_complete": false,
+        "quality": 0.1,
+        "outcome": "failure"
+      }
+    },
+    {
+      "description": "Wrong assembly: followed wrong instructions, desk looks strange and parts don't fit properly",
+      "state_id": "s_wrong_assembly",
+      "metadata": {
+        "assembly_complete": false,
+        "quality": 0.3,
+        "outcome": "failure"
+      }
+    }
+  ],
+  "goal_state": {
+    "description": "Perfect assembly: desk is stable, all screws tight, perfectly aligned, looks professional",
+    "state_id": "s_perfect",
+    "metadata": {
+      "assembly_complete": true,
+      "quality": 1.0,
+      "outcome": "success"
+    }
+  }
+}

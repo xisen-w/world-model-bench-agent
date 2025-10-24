@@ -167,8 +167,16 @@ class World:
     initial_state: Optional[State] = None
     """The starting state"""
 
-    goal_state: Optional[State] = None
-    """The target/final state"""
+    goal_states: List[State] = field(default_factory=list)
+    """The target/goal states (successful endpoints)"""
+
+    final_states: List[State] = field(default_factory=list)
+    """All possible final states (including failures)"""
+
+    @property
+    def goal_state(self) -> Optional[State]:
+        """Backward compatibility: returns the first goal state."""
+        return self.goal_states[0] if self.goal_states else None
 
     def add_transition(self, start: State, action: Action, end: State) -> Transition:
         """Add a new transition to the world."""
@@ -189,6 +197,68 @@ class World:
             self.actions.append(action)
 
         return transition
+
+    def add_goal_state(self, state: State) -> None:
+        """Add a state to the list of goal states (successful endpoints)."""
+        if state not in self.goal_states:
+            self.goal_states.append(state)
+        if state not in self.final_states:
+            self.final_states.append(state)
+
+    def add_final_state(self, state: State, is_goal: bool = False) -> None:
+        """
+        Add a state to the list of final states.
+
+        Args:
+            state: The final state to add
+            is_goal: If True, also add to goal_states (successful outcome)
+        """
+        if state not in self.final_states:
+            self.final_states.append(state)
+        if is_goal and state not in self.goal_states:
+            self.goal_states.append(state)
+
+    def is_goal_state(self, state: State) -> bool:
+        """Check if a state is a goal (successful endpoint)."""
+        return state in self.goal_states
+
+    def is_final_state(self, state: State) -> bool:
+        """
+        Check if a state is a final state (no outgoing transitions).
+
+        Can be either explicitly marked or auto-detected.
+        """
+        # Check explicit list first
+        if state in self.final_states:
+            return True
+
+        # Auto-detect: no outgoing transitions
+        for transition in self.transitions:
+            if transition.start_state == state:
+                return False
+        return True
+
+    def get_final_states(self, auto_detect: bool = True) -> List[State]:
+        """
+        Get all final states (endpoints with no outgoing transitions).
+
+        Args:
+            auto_detect: If True, automatically detect states with no outgoing edges
+
+        Returns:
+            List of all final states
+        """
+        if not auto_detect:
+            return self.final_states.copy()
+
+        # Combine explicit and auto-detected
+        final = set(self.final_states)
+
+        for state in self.states:
+            if self.is_final_state(state):
+                final.add(state)
+
+        return list(final)
 
     # ========================================================================
     # Branching / Graph Structure Methods
@@ -258,11 +328,12 @@ class World:
     def get_all_paths(
         self,
         start: Optional[State] = None,
-        goal: Optional[State] = None,
-        max_depth: int = 20
+        goals: Optional[List[State]] = None,
+        max_depth: int = 20,
+        to_any_final: bool = False
     ) -> List[List[Transition]]:
         """
-        Find all possible paths from start to goal state using DFS.
+        Find all possible paths from start to goal state(s) using DFS.
 
         This is useful for:
         - Generating all possible video sequences
@@ -271,23 +342,37 @@ class World:
 
         Args:
             start: Starting state (defaults to world.initial_state)
-            goal: Goal state (defaults to world.goal_state)
+            goals: List of goal states (defaults to world.goal_states). If single
+                  State provided, wraps in list. If None, uses world.goal_states
             max_depth: Maximum path length to prevent infinite loops
+            to_any_final: If True, paths terminate at ANY final state (not just goals)
 
         Returns:
             List of paths, where each path is a list of transitions
         """
         start = start or self.initial_state
-        goal = goal or self.goal_state
+        if not start:
+            return []
 
-        if not start or not goal:
+        # Handle goals parameter
+        if goals is None:
+            goals = self.goal_states if self.goal_states else []
+        elif isinstance(goals, State):
+            goals = [goals]
+
+        # If to_any_final, use all final states as targets
+        if to_any_final:
+            goals = self.get_final_states()
+
+        if not goals:
             return []
 
         all_paths = []
+        goal_set = set(goals)
 
         def dfs(current_state: State, current_path: List[Transition], visited: set):
-            # Base case: reached goal
-            if current_state == goal:
+            # Base case: reached any goal/final state
+            if current_state in goal_set:
                 all_paths.append(current_path.copy())
                 return
 
@@ -311,6 +396,37 @@ class World:
 
         dfs(start, [], {start})
         return all_paths
+
+    def get_successful_paths(self, start: Optional[State] = None) -> List[List[Transition]]:
+        """
+        Get all paths from start to ANY goal state (successful outcomes only).
+
+        Args:
+            start: Starting state (defaults to world.initial_state)
+
+        Returns:
+            List of paths that reach goal states
+        """
+        return self.get_all_paths(start=start, goals=self.goal_states)
+
+    def get_failed_paths(self, start: Optional[State] = None) -> List[List[Transition]]:
+        """
+        Get all paths from start to failure states (non-goal final states).
+
+        Args:
+            start: Starting state (defaults to world.initial_state)
+
+        Returns:
+            List of paths that reach failure states
+        """
+        all_final = set(self.get_final_states())
+        goal_set = set(self.goal_states)
+        failure_states = list(all_final - goal_set)
+
+        if not failure_states:
+            return []
+
+        return self.get_all_paths(start=start, goals=failure_states)
 
     def get_canonical_path(self) -> List[Transition]:
         """
@@ -382,6 +498,9 @@ class World:
             "actions": [a.to_dict() for a in self.actions],
             "transitions": [t.to_dict() for t in self.transitions],
             "initial_state": self.initial_state.to_dict() if self.initial_state else None,
+            "goal_states": [s.to_dict() for s in self.goal_states],
+            "final_states": [s.to_dict() for s in self.final_states],
+            # Backward compatibility
             "goal_state": self.goal_state.to_dict() if self.goal_state else None
         }
 
@@ -407,8 +526,15 @@ class World:
 
         if data.get("initial_state"):
             world.initial_state = State.from_dict(data["initial_state"])
-        if data.get("goal_state"):
-            world.goal_state = State.from_dict(data["goal_state"])
+
+        # Load new format (multiple goals/finals)
+        if data.get("goal_states"):
+            world.goal_states = [State.from_dict(s) for s in data["goal_states"]]
+        elif data.get("goal_state"):  # Backward compatibility
+            world.goal_states = [State.from_dict(data["goal_state"])]
+
+        if data.get("final_states"):
+            world.final_states = [State.from_dict(s) for s in data["final_states"]]
 
         return world
 
@@ -532,7 +658,7 @@ def create_ikea_desk_world() -> World:
 
     # Set initial and goal states
     world.initial_state = s0
-    world.goal_state = s6
+    world.add_goal_state(s6)
 
     return world
 
@@ -684,7 +810,247 @@ def create_branching_ikea_world() -> World:
 
     # Set initial and goal states
     world.initial_state = s0
-    world.goal_state = s5
+    world.add_goal_state(s5)
+
+    return world
+
+
+def create_multi_ending_ikea_world() -> World:
+    """
+    Create an IKEA desk assembly world with multiple possible endings.
+
+    This includes:
+    - Multiple success states (goals) with different quality levels
+    - Multiple failure states (non-goals)
+    - Branching paths that lead to different outcomes
+
+    Returns:
+        A World with diverse endpoints including successes and failures
+    """
+    world = World(
+        name="IKEA_desk_assembly_multi_ending",
+        description="Assembly process with multiple possible outcomes (successes and failures)"
+    )
+
+    # Initial state
+    s0 = State(
+        description="Unopened IKEA desk box with instruction manual on top",
+        state_id="s0",
+        metadata={"assembly_progress": 0.0}
+    )
+
+    # Early decision: Read instructions or skip?
+    s1a = State(
+        description="Box opened, components laid out, instruction manual read carefully",
+        state_id="s1a",
+        metadata={"instructions_read": True, "assembly_progress": 0.1}
+    )
+
+    s1b = State(
+        description="Box torn open, components scattered, instruction manual tossed aside",
+        state_id="s1b",
+        metadata={"instructions_read": False, "assembly_progress": 0.1}
+    )
+
+    # Middle states
+    s2a = State(
+        description="Following instructions step-by-step, all parts organized by number",
+        state_id="s2a",
+        metadata={"following_instructions": True, "assembly_progress": 0.3}
+    )
+
+    s2b = State(
+        description="Attempting assembly by intuition, some confusion about which parts go where",
+        state_id="s2b",
+        metadata={"following_instructions": False, "assembly_progress": 0.2}
+    )
+
+    s2c = State(
+        description="Frustrated and confused, considering giving up",
+        state_id="s2c",
+        metadata={"frustration_level": "high", "assembly_progress": 0.15}
+    )
+
+    s3a = State(
+        description="Desk frame assembled correctly, checking alignment before final tightening",
+        state_id="s3a",
+        metadata={"assembly_quality": "high", "assembly_progress": 0.7}
+    )
+
+    s3b = State(
+        description="Desk frame assembled but some parts seem loose, continuing anyway",
+        state_id="s3b",
+        metadata={"assembly_quality": "medium", "assembly_progress": 0.6}
+    )
+
+    s3c = State(
+        description="Desk frame assembled incorrectly, using wrong screws in some places",
+        state_id="s3c",
+        metadata={"assembly_quality": "low", "assembly_progress": 0.5}
+    )
+
+    # SUCCESS STATES (GOALS)
+    s_perfect = State(
+        description="Perfect assembly: desk is stable, all screws tight, perfectly aligned, looks professional",
+        state_id="s_perfect",
+        metadata={"assembly_complete": True, "quality": 1.0, "outcome": "success"}
+    )
+
+    s_good = State(
+        description="Good assembly: desk is functional and stable, minor cosmetic imperfections",
+        state_id="s_good",
+        metadata={"assembly_complete": True, "quality": 0.8, "outcome": "success"}
+    )
+
+    s_acceptable = State(
+        description="Acceptable assembly: desk works but wobbles slightly, some screws could be tighter",
+        state_id="s_acceptable",
+        metadata={"assembly_complete": True, "quality": 0.6, "outcome": "success"}
+    )
+
+    # FAILURE STATES (NOT GOALS)
+    s_gave_up = State(
+        description="Gave up halfway: partially assembled desk on floor, tools scattered, person walking away defeated",
+        state_id="s_gave_up",
+        metadata={"assembly_complete": False, "quality": 0.2, "outcome": "failure"}
+    )
+
+    s_collapsed = State(
+        description="Structural failure: desk collapsed when weight was placed on it, critical screws were missing",
+        state_id="s_collapsed",
+        metadata={"assembly_complete": False, "quality": 0.1, "outcome": "failure"}
+    )
+
+    s_wrong_assembly = State(
+        description="Wrong assembly: followed wrong instructions, desk looks strange and parts don't fit properly",
+        state_id="s_wrong_assembly",
+        metadata={"assembly_complete": False, "quality": 0.3, "outcome": "failure"}
+    )
+
+    # Define actions
+    a_read_carefully = Action(
+        description="Open box carefully and read instruction manual thoroughly",
+        action_id="a_read",
+        action_type="preparation"
+    )
+
+    a_skip_instructions = Action(
+        description="Tear open box and toss instructions aside, attempt assembly by intuition",
+        action_id="a_skip",
+        action_type="preparation"
+    )
+
+    a_follow_steps = Action(
+        description="Methodically follow each instruction step, double-checking each connection",
+        action_id="a_follow",
+        action_type="assembly"
+    )
+
+    a_wing_it = Action(
+        description="Try to figure it out without instructions, guessing which parts connect",
+        action_id="a_wing",
+        action_type="assembly"
+    )
+
+    a_get_frustrated = Action(
+        description="Become frustrated with confusing parts, consider giving up",
+        action_id="a_frustrate",
+        action_type="emotional"
+    )
+
+    a_give_up = Action(
+        description="Throw hands up in frustration and walk away from half-assembled desk",
+        action_id="a_quit",
+        action_type="termination"
+    )
+
+    a_continue_carefully = Action(
+        description="Take a breath, re-read instructions, continue methodically",
+        action_id="a_persist_good",
+        action_type="assembly"
+    )
+
+    a_rush_completion = Action(
+        description="Rush to finish without checking, just want to be done",
+        action_id="a_rush",
+        action_type="assembly"
+    )
+
+    a_use_wrong_parts = Action(
+        description="Use whatever screws fit, not checking part numbers",
+        action_id="a_wrong_parts",
+        action_type="assembly"
+    )
+
+    a_final_tighten = Action(
+        description="Carefully tighten all screws, check stability, adjust alignment",
+        action_id="a_perfect_finish",
+        action_type="finishing"
+    )
+
+    a_quick_finish = Action(
+        description="Quickly tighten main screws, skip detailed checks",
+        action_id="a_quick_finish",
+        action_type="finishing"
+    )
+
+    a_sloppy_finish = Action(
+        description="Loosely tighten screws, desk wobbles but seems okay",
+        action_id="a_sloppy_finish",
+        action_type="finishing"
+    )
+
+    a_test_weight = Action(
+        description="Place heavy object on desk to test stability",
+        action_id="a_test",
+        action_type="testing"
+    )
+
+    # Build branching structure
+    # Initial choice: read vs skip
+    world.add_transition(s0, a_read_carefully, s1a)
+    world.add_transition(s0, a_skip_instructions, s1b)
+
+    # Path 1: Careful approach → Perfect outcome
+    world.add_transition(s1a, a_follow_steps, s2a)
+    world.add_transition(s2a, a_continue_carefully, s3a)
+    world.add_transition(s3a, a_final_tighten, s_perfect)
+
+    # Path 2: Skip instructions → Confusion → Either give up or continue poorly
+    world.add_transition(s1b, a_wing_it, s2b)
+    world.add_transition(s2b, a_get_frustrated, s2c)
+
+    # From frustration, can give up or persist
+    world.add_transition(s2c, a_give_up, s_gave_up)  # FAILURE
+    world.add_transition(s2c, a_rush_completion, s3b)
+
+    # Path 3: Rush to completion → Acceptable or poor outcome
+    world.add_transition(s3b, a_quick_finish, s_good)  # SUCCESS (but not perfect)
+    world.add_transition(s3b, a_sloppy_finish, s_acceptable)  # SUCCESS (barely)
+
+    # Path 4: Wrong parts → Wrong assembly
+    world.add_transition(s2b, a_use_wrong_parts, s3c)
+    world.add_transition(s3c, a_rush_completion, s_wrong_assembly)  # FAILURE
+
+    # Path 5: Sloppy finish → Test → Collapse
+    world.add_transition(s3c, a_sloppy_finish, s_acceptable)  # Might work
+    world.add_transition(s_acceptable, a_test_weight, s_collapsed)  # Or might fail!
+
+    # Set initial state
+    world.initial_state = s0
+
+    # Mark goal states (successful outcomes)
+    world.add_goal_state(s_perfect)
+    world.add_goal_state(s_good)
+    world.add_goal_state(s_acceptable)
+
+    # Mark all final states (including failures)
+    world.add_final_state(s_perfect, is_goal=True)
+    world.add_final_state(s_good, is_goal=True)
+    world.add_final_state(s_acceptable, is_goal=True)
+    world.add_final_state(s_gave_up, is_goal=False)
+    world.add_final_state(s_collapsed, is_goal=False)
+    world.add_final_state(s_wrong_assembly, is_goal=False)
 
     return world
 
@@ -1072,3 +1438,68 @@ if __name__ == "__main__":
     # Save branching world
     branching_output = "ikea_desk_branching_world.json"
     save_world_to_json(branching_world, branching_output)
+
+    # Demonstrate multi-ending world
+    print("\n" + "="*70)
+    print("Testing Multi-Ending World (Success & Failure States)")
+    print("="*70)
+
+    print("\nCreating IKEA world with multiple possible endings...")
+    multi_world = create_multi_ending_ikea_world()
+
+    print_world_summary(multi_world)
+
+    # Show success vs failure breakdown
+    print(f"\nOutcome Analysis:")
+    print(f"  Total final states: {len(multi_world.get_final_states())}")
+    print(f"  Goal states (successes): {len(multi_world.goal_states)}")
+    print(f"  Failure states: {len(multi_world.get_final_states()) - len(multi_world.goal_states)}")
+
+    print(f"\nGoal States (Successful Outcomes):")
+    for i, goal in enumerate(multi_world.goal_states, 1):
+        quality = goal.metadata.get("quality", "N/A")
+        print(f"  {i}. [{goal.state_id}] {goal.description}")
+        print(f"      Quality: {quality}")
+
+    print(f"\nFailure States (Unsuccessful Outcomes):")
+    all_final = set(multi_world.get_final_states())
+    goal_set = set(multi_world.goal_states)
+    failures = all_final - goal_set
+    for i, failure in enumerate(failures, 1):
+        quality = failure.metadata.get("quality", "N/A")
+        print(f"  {i}. [{failure.state_id}] {failure.description}")
+        print(f"      Quality: {quality}")
+
+    # Show path statistics
+    successful_paths = multi_world.get_successful_paths()
+    failed_paths = multi_world.get_failed_paths()
+
+    print(f"\nPath Statistics:")
+    print(f"  Successful paths (reach goals): {len(successful_paths)}")
+    print(f"  Failed paths (reach failures): {len(failed_paths)}")
+    print(f"  Total paths: {len(successful_paths) + len(failed_paths)}")
+
+    # Show some example paths
+    if successful_paths:
+        print(f"\nExample Successful Path (to {successful_paths[0][-1].end_state.state_id}):")
+        for j, transition in enumerate(successful_paths[0], 1):
+            print(f"  {j}. {transition.action.description}")
+
+    if failed_paths:
+        print(f"\nExample Failed Path (to {failed_paths[0][-1].end_state.state_id}):")
+        for j, transition in enumerate(failed_paths[0], 1):
+            print(f"  {j}. {transition.action.description}")
+
+    # Show decision points
+    decision_points = multi_world.get_decision_points()
+    if decision_points:
+        print(f"\nCritical Decision Points: {len(decision_points)}")
+        for i, (state, actions) in enumerate(decision_points[:3], 1):  # Show first 3
+            print(f"\n  {i}. At: {state.description[:60]}...")
+            print(f"     Choices ({len(actions)}):")
+            for action in actions:
+                print(f"       - {action.description}")
+
+    # Save multi-ending world
+    multi_output = "ikea_desk_multi_ending_world.json"
+    save_world_to_json(multi_world, multi_output)

@@ -319,6 +319,26 @@
       "assembly_progress": 0.0
     }
   },
+  "goal_states": [
+    {
+      "description": "Completed desk with tabletop secured to the frame, all screws tightened, desk is stable and ready to use",
+      "state_id": "s6",
+      "metadata": {
+        "assembly_complete": true,
+        "assembly_progress": 1.0
+      }
+    }
+  ],
+  "final_states": [
+    {
+      "description": "Completed desk with tabletop secured to the frame, all screws tightened, desk is stable and ready to use",
+      "state_id": "s6",
+      "metadata": {
+        "assembly_complete": true,
+        "assembly_progress": 1.0
+      }
+    }
+  ],
   "goal_state": {
     "description": "Completed desk with tabletop secured to the frame, all screws tightened, desk is stable and ready to use",
     "state_id": "s6",
