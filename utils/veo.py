@@ -26,7 +26,7 @@ from .unified_interface import (
 )
 
 DEFAULT_IMAGE_MODEL_ID = "gemini-2.5-flash-image"
-DEFAULT_VEO_MODEL_ID = "veo-3.1-generate-preview"
+DEFAULT_VEO_MODEL_ID = "veo-3.1-fast-generate-preview"
 
 
 class VeoVideoGenerator(VideoGenerator):
@@ -520,8 +520,15 @@ class VeoVideoGenerator(VideoGenerator):
 
     def _try_import_types_module(self):
         try:
-            from google.generativeai import types as genai_types  # type: ignore
+            # Try new google-genai SDK first
+            from google.genai import types as genai_types  # type: ignore
+            return genai_types
+        except ImportError:
+            pass
 
+        try:
+            # Fall back to old google-generativeai SDK
+            from google.generativeai import types as genai_types  # type: ignore
             return genai_types
         except ImportError:
             return None
@@ -533,25 +540,29 @@ class VeoVideoGenerator(VideoGenerator):
         negative_prompt: Optional[str] = None,
     ):
         if self.types and hasattr(self.types, "GenerateContentConfig"):
-            image_config = None
+            kwargs: Dict[str, Any] = {
+                "response_modalities": ["IMAGE"],
+            }
+
+            # Build ImageConfig with aspectRatio (camelCase for new SDK)
             if hasattr(self.types, "ImageConfig"):
-                image_config = self.types.ImageConfig(aspect_ratio=aspect_ratio)
-            config = self.types.GenerateContentConfig(
-                response_modalities=["IMAGE"],
-                image_config=image_config,
-            )
-            if negative_prompt and hasattr(config, "negative_prompt"):
-                config.negative_prompt = negative_prompt
-            elif negative_prompt:
-                setattr(config, "negative_prompt", negative_prompt)
+                # Try camelCase first (new SDK), then snake_case (old SDK)
+                try:
+                    kwargs["image_config"] = self.types.ImageConfig(aspectRatio=aspect_ratio)
+                except TypeError:
+                    kwargs["image_config"] = self.types.ImageConfig(aspect_ratio=aspect_ratio)
+
+            # Note: GenerateContentConfig doesn't support negative_prompt
+            # It's only supported in GenerateVideosConfig
+            config = self.types.GenerateContentConfig(**kwargs)
             return config
 
+        # Fallback to dict-based config
         config: Dict[str, Any] = {
             "response_modalities": ["IMAGE"],
             "image_config": {"aspect_ratio": aspect_ratio},
         }
-        if negative_prompt:
-            config["negative_prompt"] = negative_prompt
+        # Note: negative_prompt is not supported for image generation
         return config
 
     def _build_generate_videos_config(
@@ -566,20 +577,41 @@ class VeoVideoGenerator(VideoGenerator):
     ):
         if self.types and hasattr(self.types, "GenerateVideosConfig"):
             kwargs: Dict[str, Any] = {}
-            if aspect_ratio is not None:
-                kwargs["aspect_ratio"] = aspect_ratio
-            if resolution is not None:
-                kwargs["resolution"] = resolution
-            if negative_prompt is not None:
-                kwargs["negative_prompt"] = negative_prompt
-            if number_of_videos is not None:
-                kwargs["number_of_videos"] = number_of_videos
-            if last_frame is not None:
-                kwargs["last_frame"] = last_frame
-            if reference_images:
-                kwargs["reference_images"] = list(reference_images)
-            return self.types.GenerateVideosConfig(**kwargs)
 
+            # Try camelCase first (new SDK), fallback to snake_case (old SDK)
+            # New google-genai SDK uses camelCase, old google-generativeai uses snake_case
+            try:
+                if aspect_ratio is not None:
+                    kwargs["aspectRatio"] = aspect_ratio
+                if resolution is not None:
+                    kwargs["resolution"] = resolution
+                if negative_prompt is not None:
+                    kwargs["negativePrompt"] = negative_prompt
+                if number_of_videos is not None:
+                    kwargs["numberOfVideos"] = number_of_videos
+                if last_frame is not None:
+                    kwargs["lastFrame"] = last_frame
+                if reference_images:
+                    kwargs["referenceImages"] = list(reference_images)
+                return self.types.GenerateVideosConfig(**kwargs)
+            except TypeError:
+                # Fallback to snake_case for old SDK
+                kwargs_snake: Dict[str, Any] = {}
+                if aspect_ratio is not None:
+                    kwargs_snake["aspect_ratio"] = aspect_ratio
+                if resolution is not None:
+                    kwargs_snake["resolution"] = resolution
+                if negative_prompt is not None:
+                    kwargs_snake["negative_prompt"] = negative_prompt
+                if number_of_videos is not None:
+                    kwargs_snake["number_of_videos"] = number_of_videos
+                if last_frame is not None:
+                    kwargs_snake["last_frame"] = last_frame
+                if reference_images:
+                    kwargs_snake["reference_images"] = list(reference_images)
+                return self.types.GenerateVideosConfig(**kwargs_snake)
+
+        # Fallback to dict-based config
         config: Dict[str, Any] = {}
         if aspect_ratio is not None:
             config["aspect_ratio"] = aspect_ratio
@@ -601,10 +633,17 @@ class VeoVideoGenerator(VideoGenerator):
             and hasattr(self.types, "VideoGenerationReferenceImage")
             and callable(getattr(self.types, "VideoGenerationReferenceImage"))
         ):
-            return self.types.VideoGenerationReferenceImage(
-                image=image,
-                reference_type=reference_type,
-            )
+            # Try camelCase first (new SDK), fallback to snake_case (old SDK)
+            try:
+                return self.types.VideoGenerationReferenceImage(
+                    image=image,
+                    referenceType=reference_type,
+                )
+            except TypeError:
+                return self.types.VideoGenerationReferenceImage(
+                    image=image,
+                    reference_type=reference_type,
+                )
         return {"image": image, "reference_type": reference_type}
 
     def _extract_image_from_response(self, response: Any):
