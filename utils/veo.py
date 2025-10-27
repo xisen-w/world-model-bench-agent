@@ -169,6 +169,9 @@ class VeoVideoGenerator(VideoGenerator):
         number_of_videos: int = 1,
     ) -> VideoGenerationResult:
         """Create a Veo video using a single starting image."""
+        # Convert image to types.Image format
+        converted_image = self._convert_to_types_image(start_image)
+
         config = self._build_generate_videos_config(
             aspect_ratio=aspect_ratio,
             resolution=resolution,
@@ -178,7 +181,7 @@ class VeoVideoGenerator(VideoGenerator):
         return self._generate_video_operation(
             prompt=prompt,
             config=config,
-            image=start_image,
+            image=converted_image,
         )
 
     def generate_video_with_initial_and_end_image(
@@ -193,17 +196,21 @@ class VeoVideoGenerator(VideoGenerator):
         number_of_videos: int = 1,
     ) -> VideoGenerationResult:
         """Create a Veo video bridging a start and end frame."""
+        # Convert both images to types.Image format
+        converted_start_image = self._convert_to_types_image(start_image)
+        converted_end_image = self._convert_to_types_image(end_image)
+
         config = self._build_generate_videos_config(
             aspect_ratio=aspect_ratio,
             resolution=resolution,
             negative_prompt=negative_prompt,
             number_of_videos=number_of_videos,
-            last_frame=end_image,
+            last_frame=converted_end_image,
         )
         return self._generate_video_operation(
             prompt=prompt,
             config=config,
-            image=start_image,
+            image=converted_start_image,
         )
 
     def generate_video_from_prompt_only(
@@ -533,6 +540,81 @@ class VeoVideoGenerator(VideoGenerator):
         except ImportError:
             return None
 
+    def _convert_to_types_image(self, image: Any) -> Any:
+        """
+        Convert various image formats to types.Image format required by Veo API.
+
+        Accepts:
+        - PIL Image objects
+        - File paths (str or Path)
+        - types.Image objects (returned as-is)
+
+        Returns:
+        - types.Image object with image_bytes and mime_type
+        """
+        # If already a types.Image, return as-is
+        if self.types and hasattr(self.types, 'Image'):
+            if isinstance(image, self.types.Image):
+                return image
+
+        # Import PIL for image handling
+        try:
+            from PIL import Image as PILImage
+        except ImportError:
+            raise VideoGenerationError(
+                "PIL (Pillow) is required to convert images. Install with: pip install Pillow",
+                provider="google"
+            )
+
+        # Handle different input types
+        pil_image = None
+
+        # Case 1: PIL Image object
+        if isinstance(image, PILImage.Image):
+            pil_image = image
+
+        # Case 2: File path (string or Path)
+        elif isinstance(image, str) or hasattr(image, '__fspath__'):  # str or Path-like
+            try:
+                pil_image = PILImage.open(image)
+            except Exception as e:
+                raise VideoGenerationError(
+                    f"Failed to open image file: {e}",
+                    provider="google"
+                )
+
+        # Case 3: Unknown type
+        else:
+            raise VideoGenerationError(
+                f"Unsupported image type: {type(image)}. Expected PIL Image, file path, or types.Image",
+                provider="google"
+            )
+
+        # Convert PIL image to bytes
+        image_bytes_io = io.BytesIO()
+        # Determine format (default to PNG if not available)
+        image_format = pil_image.format if pil_image.format else 'PNG'
+        pil_image.save(image_bytes_io, format=image_format)
+        image_bytes = image_bytes_io.getvalue()
+
+        # Determine MIME type
+        mime_type_map = {
+            'PNG': 'image/png',
+            'JPEG': 'image/jpeg',
+            'JPG': 'image/jpeg',
+            'WEBP': 'image/webp',
+        }
+        mime_type = mime_type_map.get(image_format.upper(), 'image/png')
+
+        # Create types.Image object
+        if self.types and hasattr(self.types, 'Image'):
+            return self.types.Image(image_bytes=image_bytes, mime_type=mime_type)
+        else:
+            raise VideoGenerationError(
+                "types.Image not available. Ensure google-genai SDK is installed.",
+                provider="google"
+            )
+
     def _build_generate_content_config(
         self,
         *,
@@ -628,6 +710,9 @@ class VeoVideoGenerator(VideoGenerator):
         return config
 
     def _build_reference_image(self, *, image: Any, reference_type: str = "asset"):
+        # Convert image to types.Image format first
+        converted_image = self._convert_to_types_image(image)
+
         if (
             self.types
             and hasattr(self.types, "VideoGenerationReferenceImage")
@@ -636,15 +721,15 @@ class VeoVideoGenerator(VideoGenerator):
             # Try camelCase first (new SDK), fallback to snake_case (old SDK)
             try:
                 return self.types.VideoGenerationReferenceImage(
-                    image=image,
+                    image=converted_image,
                     referenceType=reference_type,
                 )
             except TypeError:
                 return self.types.VideoGenerationReferenceImage(
-                    image=image,
+                    image=converted_image,
                     reference_type=reference_type,
                 )
-        return {"image": image, "reference_type": reference_type}
+        return {"image": converted_image, "reference_type": reference_type}
 
     def _extract_image_from_response(self, response: Any):
         try:

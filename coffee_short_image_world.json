@@ -1,0 +1,67 @@
+{
+  "name": "coffee_making_short_images",
+  "text_world_source": "coffee_making_short",
+  "generation_metadata": {
+    "model": "gemini-2.5-flash-image",
+    "timestamp": "2025-10-27T16:54:15.826751",
+    "generation_strategy": "canonical_path",
+    "aspect_ratio": "16:9",
+    "camera_perspective": "first_person_ego"
+  },
+  "states": [
+    {
+      "state_id": "s0",
+      "text_description": "The kitchen counter has a coffee machine, a bag of whole coffee beans, a carton of milk, a pitcher filled with water, and a ceramic mug. The coffee machine is off and empty.",
+      "image_path": "generated_images/coffee_making_short_images/s0_000.png",
+      "generation_prompt": "First-person ego-centric view at eye level (1.6m height). The kitchen counter has a coffee machine, a bag of whole coffee beans, a carton of milk, a pitcher filled with water, and a ceramic mug. The coffee machine is off and empty.. Realistic style, clear lighting, detailed.",
+      "parent_state_id": null,
+      "parent_action_id": null,
+      "reference_image": null,
+      "metadata": {
+        "progress": 0.0
+      }
+    },
+    {
+      "state_id": "s1",
+      "text_description": "The coffee machine's water reservoir is filled to the indicated line with fresh water. The bag of coffee beans is open.",
+      "image_path": "generated_images/coffee_making_short_images/s1_001.png",
+      "generation_prompt": "Same view and style. The coffee machine's water reservoir is filled to the indicated line with fresh water. The bag of coffee beans is open.. The change from previous: Fill the coffee machine's water reservoir with fresh water..",
+      "parent_state_id": "s0",
+      "parent_action_id": "a0",
+      "reference_image": "generated_images/coffee_making_short_images/s0_000.png",
+      "metadata": {
+        "progress": 0.2
+      }
+    },
+    {
+      "state_id": "s2",
+      "text_description": "The coffee machine's grinder is filled with fresh coffee beans. The water reservoir is still full. The ceramic mug is placed under the coffee spout.",
+      "image_path": "generated_images/coffee_making_short_images/s2_002.png",
+      "generation_prompt": "Same view and style. The coffee machine's grinder is filled with fresh coffee beans. The water reservoir is still full. The ceramic mug is placed under the coffee spout.. The change from previous: Open the bag of coffee beans and pour beans into the coffee machine's grinder..",
+      "parent_state_id": "s1",
+      "parent_action_id": "a1",
+      "reference_image": "generated_images/coffee_making_short_images/s1_001.png",
+      "metadata": {
+        "progress": 0.35
+      }
+    }
+  ],
+  "transitions": [
+    {
+      "start_state_id": "s0",
+      "action_id": "a0",
+      "end_state_id": "s1",
+      "action_description": "Fill the coffee machine's water reservoir with fresh water.",
+      "video_path": null,
+      "metadata": {}
+    },
+    {
+      "start_state_id": "s1",
+      "action_id": "a1",
+      "end_state_id": "s2",
+      "action_description": "Open the bag of coffee beans and pour beans into the coffee machine's grinder.",
+      "video_path": null,
+      "metadata": {}
+    }
+  ]
+}

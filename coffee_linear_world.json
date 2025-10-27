@@ -1,0 +1,301 @@
+{
+  "name": "coffee_making_linear",
+  "description": "Linear world for coffee_making",
+  "states": [
+    {
+      "description": "The kitchen counter has a coffee machine, a bag of whole coffee beans, a carton of milk, a pitcher filled with water, and a ceramic mug. The coffee machine is off and empty.",
+      "state_id": "s0",
+      "metadata": {
+        "progress": 0.0
+      }
+    },
+    {
+      "description": "The coffee machine's water reservoir is filled to the indicated line with fresh water. The bag of coffee beans is open.",
+      "state_id": "s1",
+      "metadata": {
+        "progress": 0.2
+      }
+    },
+    {
+      "description": "The coffee machine's grinder is filled with fresh coffee beans. The water reservoir is still full. The ceramic mug is placed under the coffee spout.",
+      "state_id": "s2",
+      "metadata": {
+        "progress": 0.35
+      }
+    },
+    {
+      "description": "The coffee machine is brewing espresso into the ceramic mug. The grinder is empty. The milk carton and a small stainless steel steaming pitcher are on the counter.",
+      "state_id": "s3",
+      "metadata": {
+        "progress": 0.5
+      }
+    },
+    {
+      "description": "A double shot of espresso is in the ceramic mug. The steaming pitcher is filled with cold milk to just below the spout.",
+      "state_id": "s4",
+      "metadata": {
+        "progress": 0.65
+      }
+    },
+    {
+      "description": "The milk is steamed and frothed in the stainless steel pitcher. Small, tight bubbles create a microfoam. The espresso is still in the ceramic mug.",
+      "state_id": "s5",
+      "metadata": {
+        "progress": 0.8
+      }
+    },
+    {
+      "description": "The frothed milk is being carefully poured into the ceramic mug with the espresso. The beginning of a rosetta latte art design is visible.",
+      "state_id": "s6",
+      "metadata": {
+        "progress": 0.9
+      }
+    },
+    {
+      "description": "A perfect latte with a beautiful rosetta latte art design is complete in the ceramic cup. The counter is clean except for the empty milk carton and steaming pitcher.",
+      "state_id": "s7",
+      "metadata": {
+        "progress": 1.0
+      }
+    }
+  ],
+  "actions": [
+    {
+      "description": "Fill the coffee machine's water reservoir with fresh water.",
+      "action_id": "a0",
+      "action_type": "preparation",
+      "metadata": {}
+    },
+    {
+      "description": "Open the bag of coffee beans and pour beans into the coffee machine's grinder.",
+      "action_id": "a1",
+      "action_type": "preparation",
+      "metadata": {}
+    },
+    {
+      "description": "Place the ceramic mug under the coffee spout and start the coffee machine to brew a double shot of espresso.",
+      "action_id": "a2",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Pour cold milk into the stainless steel steaming pitcher.",
+      "action_id": "a3",
+      "action_type": "preparation",
+      "metadata": {}
+    },
+    {
+      "description": "Steam and froth the milk using the coffee machine's steaming wand.",
+      "action_id": "a4",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Carefully pour the steamed milk into the ceramic mug with the espresso, creating latte art.",
+      "action_id": "a5",
+      "action_type": "finishing",
+      "metadata": {}
+    },
+    {
+      "description": "Finish pouring the milk, completing the latte art design.",
+      "action_id": "a6",
+      "action_type": "finishing",
+      "metadata": {}
+    }
+  ],
+  "transitions": [
+    {
+      "transition_id": "t_0",
+      "start_state": {
+        "description": "The kitchen counter has a coffee machine, a bag of whole coffee beans, a carton of milk, a pitcher filled with water, and a ceramic mug. The coffee machine is off and empty.",
+        "state_id": "s0",
+        "metadata": {
+          "progress": 0.0
+        }
+      },
+      "action": {
+        "description": "Fill the coffee machine's water reservoir with fresh water.",
+        "action_id": "a0",
+        "action_type": "preparation",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "The coffee machine's water reservoir is filled to the indicated line with fresh water. The bag of coffee beans is open.",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.2
+        }
+      }
+    },
+    {
+      "transition_id": "t_1",
+      "start_state": {
+        "description": "The coffee machine's water reservoir is filled to the indicated line with fresh water. The bag of coffee beans is open.",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.2
+        }
+      },
+      "action": {
+        "description": "Open the bag of coffee beans and pour beans into the coffee machine's grinder.",
+        "action_id": "a1",
+        "action_type": "preparation",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "The coffee machine's grinder is filled with fresh coffee beans. The water reservoir is still full. The ceramic mug is placed under the coffee spout.",
+        "state_id": "s2",
+        "metadata": {
+          "progress": 0.35
+        }
+      }
+    },
+    {
+      "transition_id": "t_2",
+      "start_state": {
+        "description": "The coffee machine's grinder is filled with fresh coffee beans. The water reservoir is still full. The ceramic mug is placed under the coffee spout.",
+        "state_id": "s2",
+        "metadata": {
+          "progress": 0.35
+        }
+      },
+      "action": {
+        "description": "Place the ceramic mug under the coffee spout and start the coffee machine to brew a double shot of espresso.",
+        "action_id": "a2",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "The coffee machine is brewing espresso into the ceramic mug. The grinder is empty. The milk carton and a small stainless steel steaming pitcher are on the counter.",
+        "state_id": "s3",
+        "metadata": {
+          "progress": 0.5
+        }
+      }
+    },
+    {
+      "transition_id": "t_3",
+      "start_state": {
+        "description": "The coffee machine is brewing espresso into the ceramic mug. The grinder is empty. The milk carton and a small stainless steel steaming pitcher are on the counter.",
+        "state_id": "s3",
+        "metadata": {
+          "progress": 0.5
+        }
+      },
+      "action": {
+        "description": "Pour cold milk into the stainless steel steaming pitcher.",
+        "action_id": "a3",
+        "action_type": "preparation",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "A double shot of espresso is in the ceramic mug. The steaming pitcher is filled with cold milk to just below the spout.",
+        "state_id": "s4",
+        "metadata": {
+          "progress": 0.65
+        }
+      }
+    },
+    {
+      "transition_id": "t_4",
+      "start_state": {
+        "description": "A double shot of espresso is in the ceramic mug. The steaming pitcher is filled with cold milk to just below the spout.",
+        "state_id": "s4",
+        "metadata": {
+          "progress": 0.65
+        }
+      },
+      "action": {
+        "description": "Steam and froth the milk using the coffee machine's steaming wand.",
+        "action_id": "a4",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "The milk is steamed and frothed in the stainless steel pitcher. Small, tight bubbles create a microfoam. The espresso is still in the ceramic mug.",
+        "state_id": "s5",
+        "metadata": {
+          "progress": 0.8
+        }
+      }
+    },
+    {
+      "transition_id": "t_5",
+      "start_state": {
+        "description": "The milk is steamed and frothed in the stainless steel pitcher. Small, tight bubbles create a microfoam. The espresso is still in the ceramic mug.",
+        "state_id": "s5",
+        "metadata": {
+          "progress": 0.8
+        }
+      },
+      "action": {
+        "description": "Carefully pour the steamed milk into the ceramic mug with the espresso, creating latte art.",
+        "action_id": "a5",
+        "action_type": "finishing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "The frothed milk is being carefully poured into the ceramic mug with the espresso. The beginning of a rosetta latte art design is visible.",
+        "state_id": "s6",
+        "metadata": {
+          "progress": 0.9
+        }
+      }
+    },
+    {
+      "transition_id": "t_6",
+      "start_state": {
+        "description": "The frothed milk is being carefully poured into the ceramic mug with the espresso. The beginning of a rosetta latte art design is visible.",
+        "state_id": "s6",
+        "metadata": {
+          "progress": 0.9
+        }
+      },
+      "action": {
+        "description": "Finish pouring the milk, completing the latte art design.",
+        "action_id": "a6",
+        "action_type": "finishing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "A perfect latte with a beautiful rosetta latte art design is complete in the ceramic cup. The counter is clean except for the empty milk carton and steaming pitcher.",
+        "state_id": "s7",
+        "metadata": {
+          "progress": 1.0
+        }
+      }
+    }
+  ],
+  "initial_state": {
+    "description": "The kitchen counter has a coffee machine, a bag of whole coffee beans, a carton of milk, a pitcher filled with water, and a ceramic mug. The coffee machine is off and empty.",
+    "state_id": "s0",
+    "metadata": {
+      "progress": 0.0
+    }
+  },
+  "goal_states": [
+    {
+      "description": "A perfect latte with a beautiful rosetta latte art design is complete in the ceramic cup. The counter is clean except for the empty milk carton and steaming pitcher.",
+      "state_id": "s7",
+      "metadata": {
+        "progress": 1.0
+      }
+    }
+  ],
+  "final_states": [
+    {
+      "description": "A perfect latte with a beautiful rosetta latte art design is complete in the ceramic cup. The counter is clean except for the empty milk carton and steaming pitcher.",
+      "state_id": "s7",
+      "metadata": {
+        "progress": 1.0
+      }
+    }
+  ],
+  "goal_state": {
+    "description": "A perfect latte with a beautiful rosetta latte art design is complete in the ceramic cup. The counter is clean except for the empty milk carton and steaming pitcher.",
+    "state_id": "s7",
+    "metadata": {
+      "progress": 1.0
+    }
+  }
+}

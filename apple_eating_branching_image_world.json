@@ -1,0 +1,151 @@
+{
+  "name": "apple_eating_branching_images",
+  "text_world_source": "apple_eating_branching",
+  "generation_metadata": {
+    "model": "gemini-2.5-flash-image",
+    "timestamp": "2025-10-27T21:45:27.061255",
+    "generation_strategy": "full_world",
+    "aspect_ratio": "16:9",
+    "camera_perspective": "first_person_ego"
+  },
+  "states": [
+    {
+      "state_id": "s0",
+      "text_description": "Empty white table with only a red apple sitting in the center",
+      "image_path": "generated_images/apple_eating_branching_images/s0_000.png",
+      "generation_prompt": "First-person ego-centric view at eye level (1.6m height). Empty white table with only a red apple sitting in the center. Realistic style, clear lighting, detailed.",
+      "parent_state_id": null,
+      "parent_action_id": null,
+      "reference_image": null,
+      "metadata": {}
+    },
+    {
+      "state_id": "s1a",
+      "text_description": "The red apple has been sliced in half, showing the white flesh and seeds inside. A knife is visible next to the apple halves",
+      "image_path": "generated_images/apple_eating_branching_images/s1a_001.png",
+      "generation_prompt": "Same camera angle and scene layout. HOWEVER, IMPORTANT VISIBLE CHANGE: Cut the apple in half with a knife, exposing the inside. The new state: The red apple has been sliced in half, showing the white flesh and seeds inside. A knife is visible next to the apple halves. Make the change CLEARLY VISIBLE.",
+      "parent_state_id": "s0",
+      "parent_action_id": "a0a",
+      "reference_image": "generated_images/apple_eating_branching_images/s0_000.png",
+      "metadata": {}
+    },
+    {
+      "state_id": "s1b",
+      "text_description": "The apple has a large bite taken out of it, showing teeth marks on one side. The apple is still whole otherwise",
+      "image_path": "generated_images/apple_eating_branching_images/s1b_002.png",
+      "generation_prompt": "Same camera angle and scene layout. HOWEVER, IMPORTANT VISIBLE CHANGE: Take a large bite directly from the apple. The new state: The apple has a large bite taken out of it, showing teeth marks on one side. The apple is still whole otherwise. Make the change CLEARLY VISIBLE.",
+      "parent_state_id": "s0",
+      "parent_action_id": "a0b",
+      "reference_image": "generated_images/apple_eating_branching_images/s0_000.png",
+      "metadata": {}
+    },
+    {
+      "state_id": "s2a",
+      "text_description": "The apple slices have been eaten, leaving only the apple cores and knife on the table",
+      "image_path": "generated_images/apple_eating_branching_images/s2a_003.png",
+      "generation_prompt": "Same camera angle and scene layout. HOWEVER, IMPORTANT VISIBLE CHANGE: Eat the apple slices, leaving only the cores. The new state: The apple slices have been eaten, leaving only the apple cores and knife on the table. Make the change CLEARLY VISIBLE.",
+      "parent_state_id": "s1a",
+      "parent_action_id": "a1a",
+      "reference_image": "generated_images/apple_eating_branching_images/s1a_001.png",
+      "metadata": {}
+    },
+    {
+      "state_id": "s2b",
+      "text_description": "One apple half has been placed in a transparent container. The other half and knife remain on the table",
+      "image_path": "generated_images/apple_eating_branching_images/s2b_004.png",
+      "generation_prompt": "Same camera angle and scene layout. HOWEVER, IMPORTANT VISIBLE CHANGE: Place one apple half in a transparent container. The new state: One apple half has been placed in a transparent container. The other half and knife remain on the table. Make the change CLEARLY VISIBLE.",
+      "parent_state_id": "s1a",
+      "parent_action_id": "a1b",
+      "reference_image": "generated_images/apple_eating_branching_images/s1a_001.png",
+      "metadata": {}
+    },
+    {
+      "state_id": "s2c",
+      "text_description": "The apple has multiple bite marks and only the core remains visible. Apple pieces are scattered on the table",
+      "image_path": "generated_images/apple_eating_branching_images/s2c_005.png",
+      "generation_prompt": "Same camera angle and scene layout. HOWEVER, IMPORTANT VISIBLE CHANGE: Continue biting the apple multiple times until only the core remains. The new state: The apple has multiple bite marks and only the core remains visible. Apple pieces are scattered on the table. Make the change CLEARLY VISIBLE.",
+      "parent_state_id": "s1b",
+      "parent_action_id": "a1c",
+      "reference_image": "generated_images/apple_eating_branching_images/s1b_002.png",
+      "metadata": {}
+    },
+    {
+      "state_id": "s2d",
+      "text_description": "The bitten apple has been cut into slices around the bite mark. Knife and irregular apple pieces on table",
+      "image_path": "generated_images/apple_eating_branching_images/s2d_006.png",
+      "generation_prompt": "Same camera angle and scene layout. HOWEVER, IMPORTANT VISIBLE CHANGE: Use the knife to slice the bitten apple into pieces. The new state: The bitten apple has been cut into slices around the bite mark. Knife and irregular apple pieces on table. Make the change CLEARLY VISIBLE.",
+      "parent_state_id": "s1b",
+      "parent_action_id": "a1d",
+      "reference_image": "generated_images/apple_eating_branching_images/s1b_002.png",
+      "metadata": {}
+    },
+    {
+      "state_id": "s3a",
+      "text_description": "The container with one apple half is on the table. The other half has been eaten, leaving only the core and knife",
+      "image_path": "generated_images/apple_eating_branching_images/s3a_007.png",
+      "generation_prompt": "Same camera angle and scene layout. HOWEVER, IMPORTANT VISIBLE CHANGE: Eat the remaining apple half. The new state: The container with one apple half is on the table. The other half has been eaten, leaving only the core and knife. Make the change CLEARLY VISIBLE.",
+      "parent_state_id": "s2b",
+      "parent_action_id": "a2a",
+      "reference_image": "generated_images/apple_eating_branching_images/s2b_004.png",
+      "metadata": {}
+    }
+  ],
+  "transitions": [
+    {
+      "start_state_id": "s0",
+      "action_id": "a0a",
+      "end_state_id": "s1a",
+      "action_description": "Cut the apple in half with a knife, exposing the inside",
+      "video_path": null,
+      "metadata": {}
+    },
+    {
+      "start_state_id": "s0",
+      "action_id": "a0b",
+      "end_state_id": "s1b",
+      "action_description": "Take a large bite directly from the apple",
+      "video_path": null,
+      "metadata": {}
+    },
+    {
+      "start_state_id": "s1a",
+      "action_id": "a1a",
+      "end_state_id": "s2a",
+      "action_description": "Eat the apple slices, leaving only the cores",
+      "video_path": null,
+      "metadata": {}
+    },
+    {
+      "start_state_id": "s1a",
+      "action_id": "a1b",
+      "end_state_id": "s2b",
+      "action_description": "Place one apple half in a transparent container",
+      "video_path": null,
+      "metadata": {}
+    },
+    {
+      "start_state_id": "s1b",
+      "action_id": "a1c",
+      "end_state_id": "s2c",
+      "action_description": "Continue biting the apple multiple times until only the core remains",
+      "video_path": null,
+      "metadata": {}
+    },
+    {
+      "start_state_id": "s1b",
+      "action_id": "a1d",
+      "end_state_id": "s2d",
+      "action_description": "Use the knife to slice the bitten apple into pieces",
+      "video_path": null,
+      "metadata": {}
+    },
+    {
+      "start_state_id": "s2b",
+      "action_id": "a2a",
+      "end_state_id": "s3a",
+      "action_description": "Eat the remaining apple half",
+      "video_path": null,
+      "metadata": {}
+    }
+  ]
+}

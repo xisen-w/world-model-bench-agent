@@ -1,0 +1,112 @@
+{
+  "name": "IKEA_desk_assembly_multi_ending_images",
+  "text_world_source": "IKEA_desk_assembly_multi_ending",
+  "generation_metadata": {
+    "model": "gemini-2.5-flash-image",
+    "timestamp": "2025-10-27T20:59:32.275774",
+    "generation_strategy": "canonical_path",
+    "aspect_ratio": "16:9",
+    "camera_perspective": "first_person_ego"
+  },
+  "states": [
+    {
+      "state_id": "s0",
+      "text_description": "Unopened IKEA desk box with instruction manual on top",
+      "image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s0_000.png",
+      "generation_prompt": "First-person ego-centric view at eye level (1.6m height). Unopened IKEA desk box with instruction manual on top. Realistic style, clear lighting, detailed.",
+      "parent_state_id": null,
+      "parent_action_id": null,
+      "reference_image": null,
+      "metadata": {
+        "assembly_progress": 0.0
+      }
+    },
+    {
+      "state_id": "s1a",
+      "text_description": "Box opened, components laid out, instruction manual read carefully",
+      "image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s1a_001.png",
+      "generation_prompt": "Same camera angle and scene layout. HOWEVER, IMPORTANT VISIBLE CHANGE: Open box carefully and read instruction manual thoroughly. The new state: Box opened, components laid out, instruction manual read carefully. Make the change CLEARLY VISIBLE.",
+      "parent_state_id": "s0",
+      "parent_action_id": "a_read",
+      "reference_image": "generated_images/IKEA_desk_assembly_multi_ending_images/s0_000.png",
+      "metadata": {
+        "instructions_read": true,
+        "assembly_progress": 0.1
+      }
+    },
+    {
+      "state_id": "s2a",
+      "text_description": "Following instructions step-by-step, all parts organized by number",
+      "image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s2a_002.png",
+      "generation_prompt": "Same camera angle and scene layout. HOWEVER, IMPORTANT VISIBLE CHANGE: Methodically follow each instruction step, double-checking each connection. The new state: Following instructions step-by-step, all parts organized by number. Make the change CLEARLY VISIBLE.",
+      "parent_state_id": "s1a",
+      "parent_action_id": "a_follow",
+      "reference_image": "generated_images/IKEA_desk_assembly_multi_ending_images/s1a_001.png",
+      "metadata": {
+        "following_instructions": true,
+        "assembly_progress": 0.3
+      }
+    },
+    {
+      "state_id": "s3a",
+      "text_description": "Desk frame assembled correctly, checking alignment before final tightening",
+      "image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s3a_003.png",
+      "generation_prompt": "Same camera angle and scene layout. HOWEVER, IMPORTANT VISIBLE CHANGE: Take a breath, re-read instructions, continue methodically. The new state: Desk frame assembled correctly, checking alignment before final tightening. Make the change CLEARLY VISIBLE.",
+      "parent_state_id": "s2a",
+      "parent_action_id": "a_persist_good",
+      "reference_image": "generated_images/IKEA_desk_assembly_multi_ending_images/s2a_002.png",
+      "metadata": {
+        "assembly_quality": "high",
+        "assembly_progress": 0.7
+      }
+    },
+    {
+      "state_id": "s_perfect",
+      "text_description": "Perfect assembly: desk is stable, all screws tight, perfectly aligned, looks professional",
+      "image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s_perfect_004.png",
+      "generation_prompt": "Same camera angle and scene layout. HOWEVER, IMPORTANT VISIBLE CHANGE: Carefully tighten all screws, check stability, adjust alignment. The new state: Perfect assembly: desk is stable, all screws tight, perfectly aligned, looks professional. Make the change CLEARLY VISIBLE.",
+      "parent_state_id": "s3a",
+      "parent_action_id": "a_perfect_finish",
+      "reference_image": "generated_images/IKEA_desk_assembly_multi_ending_images/s3a_003.png",
+      "metadata": {
+        "assembly_complete": true,
+        "quality": 1.0,
+        "outcome": "success"
+      }
+    }
+  ],
+  "transitions": [
+    {
+      "start_state_id": "s0",
+      "action_id": "a_read",
+      "end_state_id": "s1a",
+      "action_description": "Open box carefully and read instruction manual thoroughly",
+      "video_path": null,
+      "metadata": {}
+    },
+    {
+      "start_state_id": "s1a",
+      "action_id": "a_follow",
+      "end_state_id": "s2a",
+      "action_description": "Methodically follow each instruction step, double-checking each connection",
+      "video_path": null,
+      "metadata": {}
+    },
+    {
+      "start_state_id": "s2a",
+      "action_id": "a_persist_good",
+      "end_state_id": "s3a",
+      "action_description": "Take a breath, re-read instructions, continue methodically",
+      "video_path": null,
+      "metadata": {}
+    },
+    {
+      "start_state_id": "s3a",
+      "action_id": "a_perfect_finish",
+      "end_state_id": "s_perfect",
+      "action_description": "Carefully tighten all screws, check stability, adjust alignment",
+      "video_path": null,
+      "metadata": {}
+    }
+  ]
+}

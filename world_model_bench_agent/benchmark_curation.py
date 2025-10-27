@@ -108,9 +108,8 @@ class Action:
             metadata=data.get("metadata", {})
         )
 
-
 @dataclass
-class Transition:
+class Transition: # Agents might be llm-based, we can see the visaul effectiveness. # Expand the world model idea. 
     """Represents a state transition: (state_t, action_t) -> state_{t+1}"""
 
     start_state: State

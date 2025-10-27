@@ -1,0 +1,193 @@
+{
+  "name": "making_tea_linear",
+  "description": "Linear world for making_tea",
+  "states": [
+    {
+      "description": "An empty ceramic cup sits on a wooden table. Next to it is a dry tea bag in its paper wrapper, and a cold, unplugged electric kettle.",
+      "state_id": "s0",
+      "metadata": {
+        "progress": 0.0
+      }
+    },
+    {
+      "description": "The kettle is filled with water and plugged in. The water is beginning to boil, and steam is visible from the kettle spout.",
+      "state_id": "s1",
+      "metadata": {
+        "progress": 0.2
+      }
+    },
+    {
+      "description": "The kettle has finished boiling. The tea bag, still in its wrapper, is placed inside the empty cup. The kettle is positioned to pour.",
+      "state_id": "s2",
+      "metadata": {
+        "progress": 0.5
+      }
+    },
+    {
+      "description": "Hot water from the kettle has been poured into the cup, fully submerging the tea bag. The tea is steeping, and the water is turning a light brown color. Steam is rising from the cup.",
+      "state_id": "s3",
+      "metadata": {
+        "progress": 0.8
+      }
+    },
+    {
+      "description": "The tea bag has been removed from the cup. The cup is filled with hot, dark brown tea, ready to drink. The kettle is empty and unplugged.",
+      "state_id": "s4",
+      "metadata": {
+        "progress": 1.0
+      }
+    }
+  ],
+  "actions": [
+    {
+      "description": "Fill the kettle with water and plug it into the electrical outlet to boil the water.",
+      "action_id": "a0",
+      "action_type": "preparation",
+      "metadata": {}
+    },
+    {
+      "description": "Place the tea bag in the cup and position the boiled kettle for pouring.",
+      "action_id": "a1",
+      "action_type": "preparation",
+      "metadata": {}
+    },
+    {
+      "description": "Pour the hot water from the kettle into the cup, fully submerging the tea bag to steep.",
+      "action_id": "a2",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Remove the tea bag from the cup, leaving the hot tea ready to drink.",
+      "action_id": "a3",
+      "action_type": "finishing",
+      "metadata": {}
+    }
+  ],
+  "transitions": [
+    {
+      "transition_id": "t_0",
+      "start_state": {
+        "description": "An empty ceramic cup sits on a wooden table. Next to it is a dry tea bag in its paper wrapper, and a cold, unplugged electric kettle.",
+        "state_id": "s0",
+        "metadata": {
+          "progress": 0.0
+        }
+      },
+      "action": {
+        "description": "Fill the kettle with water and plug it into the electrical outlet to boil the water.",
+        "action_id": "a0",
+        "action_type": "preparation",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "The kettle is filled with water and plugged in. The water is beginning to boil, and steam is visible from the kettle spout.",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.2
+        }
+      }
+    },
+    {
+      "transition_id": "t_1",
+      "start_state": {
+        "description": "The kettle is filled with water and plugged in. The water is beginning to boil, and steam is visible from the kettle spout.",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.2
+        }
+      },
+      "action": {
+        "description": "Place the tea bag in the cup and position the boiled kettle for pouring.",
+        "action_id": "a1",
+        "action_type": "preparation",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "The kettle has finished boiling. The tea bag, still in its wrapper, is placed inside the empty cup. The kettle is positioned to pour.",
+        "state_id": "s2",
+        "metadata": {
+          "progress": 0.5
+        }
+      }
+    },
+    {
+      "transition_id": "t_2",
+      "start_state": {
+        "description": "The kettle has finished boiling. The tea bag, still in its wrapper, is placed inside the empty cup. The kettle is positioned to pour.",
+        "state_id": "s2",
+        "metadata": {
+          "progress": 0.5
+        }
+      },
+      "action": {
+        "description": "Pour the hot water from the kettle into the cup, fully submerging the tea bag to steep.",
+        "action_id": "a2",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Hot water from the kettle has been poured into the cup, fully submerging the tea bag. The tea is steeping, and the water is turning a light brown color. Steam is rising from the cup.",
+        "state_id": "s3",
+        "metadata": {
+          "progress": 0.8
+        }
+      }
+    },
+    {
+      "transition_id": "t_3",
+      "start_state": {
+        "description": "Hot water from the kettle has been poured into the cup, fully submerging the tea bag. The tea is steeping, and the water is turning a light brown color. Steam is rising from the cup.",
+        "state_id": "s3",
+        "metadata": {
+          "progress": 0.8
+        }
+      },
+      "action": {
+        "description": "Remove the tea bag from the cup, leaving the hot tea ready to drink.",
+        "action_id": "a3",
+        "action_type": "finishing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "The tea bag has been removed from the cup. The cup is filled with hot, dark brown tea, ready to drink. The kettle is empty and unplugged.",
+        "state_id": "s4",
+        "metadata": {
+          "progress": 1.0
+        }
+      }
+    }
+  ],
+  "initial_state": {
+    "description": "An empty ceramic cup sits on a wooden table. Next to it is a dry tea bag in its paper wrapper, and a cold, unplugged electric kettle.",
+    "state_id": "s0",
+    "metadata": {
+      "progress": 0.0
+    }
+  },
+  "goal_states": [
+    {
+      "description": "The tea bag has been removed from the cup. The cup is filled with hot, dark brown tea, ready to drink. The kettle is empty and unplugged.",
+      "state_id": "s4",
+      "metadata": {
+        "progress": 1.0
+      }
+    }
+  ],
+  "final_states": [
+    {
+      "description": "The tea bag has been removed from the cup. The cup is filled with hot, dark brown tea, ready to drink. The kettle is empty and unplugged.",
+      "state_id": "s4",
+      "metadata": {
+        "progress": 1.0
+      }
+    }
+  ],
+  "goal_state": {
+    "description": "The tea bag has been removed from the cup. The cup is filled with hot, dark brown tea, ready to drink. The kettle is empty and unplugged.",
+    "state_id": "s4",
+    "metadata": {
+      "progress": 1.0
+    }
+  }
+}

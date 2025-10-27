@@ -283,11 +283,87 @@ def test_video_generation(veo_gen):
         traceback.print_exc()
 
 
+def test_image_conditioned_video(veo_gen):
+    """Test video generation with initial and end images."""
+    print_section("TEST 7: Image-Conditioned Video Generation (API Call)")
+
+    if not veo_gen.client:
+        print("\n   SKIPPED: No client configured (requires google.generativeai)")
+        return
+
+    print("\nWARNING: This test will make actual API calls to Google Veo.")
+    print("This will incur charges on your account and may take several minutes.")
+    print("This test uses the apple images from generated_images/apple_eating_images/")
+    response = input("Do you want to proceed? (yes/no): ").strip().lower()
+
+    if response != "yes":
+        print("   SKIPPED: User chose not to run API tests")
+        return
+
+    try:
+        # Check if apple images exist
+        start_image_path = "generated_images/apple_eating_images/s0_000.png"
+        end_image_path = "generated_images/apple_eating_images/s1_001.png"
+
+        if not Path(start_image_path).exists() or not Path(end_image_path).exists():
+            print(f"   SKIPPED: Apple images not found. Please run test_dramatic_changes.py first.")
+            return
+
+        print("\n7a. Testing first-frame + last-frame video generation...")
+        print(f"   Start image: {start_image_path} (whole apple)")
+        print(f"   End image: {end_image_path} (cut apple with knife)")
+        print("   Prompt: 'A hand reaches in and cuts the apple in half with a knife'")
+
+        # Upload images first
+        print("\n   Uploading images to Gemini...")
+        start_file = veo_gen.client.files.upload(file=start_image_path)
+        print(f"   Start image uploaded: {start_file.name}")
+
+        end_file = veo_gen.client.files.upload(file=end_image_path)
+        print(f"   End image uploaded: {end_file.name}")
+
+        # Generate video
+        print("\n   Generating video (this will take 2-5 minutes)...")
+        result = veo_gen.generate_video_with_initial_and_end_image(
+            prompt="A hand reaches in and cuts the apple in half with a knife, revealing the inside",
+            start_image=start_file,
+            end_image=end_file,
+            aspect_ratio="16:9",
+            resolution="720p",
+            number_of_videos=1
+        )
+
+        print(f"\n   Result ID: {result.id}")
+        print(f"   Status: {result.status}")
+        print(f"   Progress: {result.progress * 100:.1f}%")
+        print(f"   Model: {result.model}")
+        print(f"   Provider: {result.provider}")
+
+        # Try to save video if available
+        if result.videos:
+            output_path = "test_apple_first_last_video.mp4"
+            with open(output_path, 'wb') as f:
+                f.write(result.videos[0])
+            print(f"   SUCCESS: Video saved to {output_path}")
+        else:
+            print(f"   INFO: Video not immediately available (status: {result.status})")
+            print("   SUCCESS: Video generation initiated without errors")
+
+    except VideoGenerationError as e:
+        print(f"   FAILED (VideoGenerationError): {e}")
+        import traceback
+        traceback.print_exc()
+    except Exception as e:
+        print(f"   FAILED: {type(e).__name__}: {e}")
+        import traceback
+        traceback.print_exc()
+
+
 def test_routing_logic(veo_gen):
     """Test the smart routing in generate_video."""
-    print_section("TEST 7: Smart Routing Logic")
+    print_section("TEST 8: Smart Routing Logic")
 
-    print("\n7a. Testing routing determination (no API calls)...")
+    print("\n8a. Testing routing determination (no API calls)...")
 
     # We'll just test that the routing logic doesn't crash
     # without actually making API calls
@@ -352,7 +428,10 @@ def main():
     # Test 6: Video generation (requires API call)
     test_video_generation(veo_gen)
 
-    # Test 7: Routing logic
+    # Test 7: Image-conditioned video generation (requires API call)
+    test_image_conditioned_video(veo_gen)
+
+    # Test 8: Routing logic
     test_routing_logic(veo_gen)
 
     # Summary

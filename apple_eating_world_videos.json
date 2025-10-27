@@ -1,0 +1,76 @@
+{
+  "name": "apple_eating_images_videos",
+  "image_world_source": "apple_eating_images",
+  "generation_metadata": {
+    "model": "veo-3.1-fast-generate-preview",
+    "timestamp": "2025-10-27T20:45:35.207389",
+    "generation_strategy": "all_transitions",
+    "aspect_ratio": "16:9",
+    "resolution": "720p",
+    "number_of_videos_per_transition": 1
+  },
+  "states": [
+    {
+      "state_id": "s0",
+      "text_description": "Empty white table with only a red apple sitting in the center",
+      "image_path": "generated_images/apple_eating_images/s0_000.png",
+      "generation_prompt": "First-person ego-centric view at eye level (1.6m height). Empty white table with only a red apple sitting in the center. Realistic style, clear lighting, detailed.",
+      "parent_state_id": null,
+      "parent_action_id": null,
+      "reference_image": null,
+      "metadata": {}
+    },
+    {
+      "state_id": "s1",
+      "text_description": "The red apple has been sliced in half, showing the white flesh and seeds inside. A knife is visible next to the apple halves",
+      "image_path": "generated_images/apple_eating_images/s1_001.png",
+      "generation_prompt": "Same camera angle and scene layout. HOWEVER, IMPORTANT VISIBLE CHANGE: Cut the apple in half with a knife, exposing the inside. The new state: The red apple has been sliced in half, showing the white flesh and seeds inside. A knife is visible next to the apple halves. Make the change CLEARLY VISIBLE.",
+      "parent_state_id": "s0",
+      "parent_action_id": "a0",
+      "reference_image": "generated_images/apple_eating_images/s0_000.png",
+      "metadata": {}
+    },
+    {
+      "state_id": "s2",
+      "text_description": "The apple slices have been eaten, leaving only the apple cores and knife on the table",
+      "image_path": "generated_images/apple_eating_images/s2_002.png",
+      "generation_prompt": "Same camera angle and scene layout. HOWEVER, IMPORTANT VISIBLE CHANGE: Eat the apple slices, leaving only the cores. The new state: The apple slices have been eaten, leaving only the apple cores and knife on the table. Make the change CLEARLY VISIBLE.",
+      "parent_state_id": "s1",
+      "parent_action_id": "a1",
+      "reference_image": "generated_images/apple_eating_images/s1_001.png",
+      "metadata": {}
+    }
+  ],
+  "transitions": [
+    {
+      "start_state_id": "s0",
+      "action_id": "a0",
+      "end_state_id": "s1",
+      "action_description": "Cut the apple in half with a knife, exposing the inside",
+      "start_image_path": "generated_images/apple_eating_images/s0_000.png",
+      "end_image_path": "generated_images/apple_eating_images/s1_001.png",
+      "video_path": "generated_videos/apple_eating_images_videos/s0_to_s1_000.mp4",
+      "generation_prompt": "Cut the apple in half with a knife, exposing the inside. Smooth transition showing the action in progress. Starting from: Empty white table with only a red apple sitting in... Ending at: The red apple has been sliced in half, showing the...",
+      "metadata": {
+        "result_id": "models/veo-3.1-fast-generate-preview/operations/cmwq2tb2bwcf",
+        "status": "completed",
+        "number_of_videos": 1
+      }
+    },
+    {
+      "start_state_id": "s1",
+      "action_id": "a1",
+      "end_state_id": "s2",
+      "action_description": "Eat the apple slices, leaving only the cores",
+      "start_image_path": "generated_images/apple_eating_images/s1_001.png",
+      "end_image_path": "generated_images/apple_eating_images/s2_002.png",
+      "video_path": "generated_videos/apple_eating_images_videos/s1_to_s2_001.mp4",
+      "generation_prompt": "Eat the apple slices, leaving only the cores. Smooth transition showing the action in progress. Starting from: The red apple has been sliced in half, showing the... Ending at: The apple slices have been eaten, leaving only the...",
+      "metadata": {
+        "result_id": "models/veo-3.1-fast-generate-preview/operations/jghguhboisze",
+        "status": "completed",
+        "number_of_videos": 1
+      }
+    }
+  ]
+}

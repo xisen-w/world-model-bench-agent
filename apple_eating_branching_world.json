@@ -1,0 +1,253 @@
+{
+  "name": "apple_eating_branching",
+  "description": "Eating an apple with multiple preparation and consumption methods",
+  "states": [
+    {
+      "description": "Empty white table with only a red apple sitting in the center",
+      "state_id": "s0",
+      "metadata": {}
+    },
+    {
+      "description": "The red apple has been sliced in half, showing the white flesh and seeds inside. A knife is visible next to the apple halves",
+      "state_id": "s1a",
+      "metadata": {}
+    },
+    {
+      "description": "The apple has a large bite taken out of it, showing teeth marks on one side. The apple is still whole otherwise",
+      "state_id": "s1b",
+      "metadata": {}
+    },
+    {
+      "description": "The apple slices have been eaten, leaving only the apple cores and knife on the table",
+      "state_id": "s2a",
+      "metadata": {}
+    },
+    {
+      "description": "One apple half has been placed in a transparent container. The other half and knife remain on the table",
+      "state_id": "s2b",
+      "metadata": {}
+    },
+    {
+      "description": "The apple has multiple bite marks and only the core remains visible. Apple pieces are scattered on the table",
+      "state_id": "s2c",
+      "metadata": {}
+    },
+    {
+      "description": "The bitten apple has been cut into slices around the bite mark. Knife and irregular apple pieces on table",
+      "state_id": "s2d",
+      "metadata": {}
+    },
+    {
+      "description": "The container with one apple half is on the table. The other half has been eaten, leaving only the core and knife",
+      "state_id": "s3a",
+      "metadata": {}
+    }
+  ],
+  "actions": [
+    {
+      "description": "Cut the apple in half with a knife, exposing the inside",
+      "action_id": "a0a",
+      "action_type": null,
+      "metadata": {}
+    },
+    {
+      "description": "Take a large bite directly from the apple",
+      "action_id": "a0b",
+      "action_type": null,
+      "metadata": {}
+    },
+    {
+      "description": "Eat the apple slices, leaving only the cores",
+      "action_id": "a1a",
+      "action_type": null,
+      "metadata": {}
+    },
+    {
+      "description": "Place one apple half in a transparent container",
+      "action_id": "a1b",
+      "action_type": null,
+      "metadata": {}
+    },
+    {
+      "description": "Continue biting the apple multiple times until only the core remains",
+      "action_id": "a1c",
+      "action_type": null,
+      "metadata": {}
+    },
+    {
+      "description": "Use the knife to slice the bitten apple into pieces",
+      "action_id": "a1d",
+      "action_type": null,
+      "metadata": {}
+    },
+    {
+      "description": "Eat the remaining apple half",
+      "action_id": "a2a",
+      "action_type": null,
+      "metadata": {}
+    }
+  ],
+  "transitions": [
+    {
+      "transition_id": null,
+      "start_state": {
+        "description": "Empty white table with only a red apple sitting in the center",
+        "state_id": "s0",
+        "metadata": {}
+      },
+      "action": {
+        "description": "Cut the apple in half with a knife, exposing the inside",
+        "action_id": "a0a",
+        "action_type": null,
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "The red apple has been sliced in half, showing the white flesh and seeds inside. A knife is visible next to the apple halves",
+        "state_id": "s1a",
+        "metadata": {}
+      }
+    },
+    {
+      "transition_id": null,
+      "start_state": {
+        "description": "The red apple has been sliced in half, showing the white flesh and seeds inside. A knife is visible next to the apple halves",
+        "state_id": "s1a",
+        "metadata": {}
+      },
+      "action": {
+        "description": "Eat the apple slices, leaving only the cores",
+        "action_id": "a1a",
+        "action_type": null,
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "The apple slices have been eaten, leaving only the apple cores and knife on the table",
+        "state_id": "s2a",
+        "metadata": {}
+      }
+    },
+    {
+      "transition_id": null,
+      "start_state": {
+        "description": "The red apple has been sliced in half, showing the white flesh and seeds inside. A knife is visible next to the apple halves",
+        "state_id": "s1a",
+        "metadata": {}
+      },
+      "action": {
+        "description": "Place one apple half in a transparent container",
+        "action_id": "a1b",
+        "action_type": null,
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "One apple half has been placed in a transparent container. The other half and knife remain on the table",
+        "state_id": "s2b",
+        "metadata": {}
+      }
+    },
+    {
+      "transition_id": null,
+      "start_state": {
+        "description": "Empty white table with only a red apple sitting in the center",
+        "state_id": "s0",
+        "metadata": {}
+      },
+      "action": {
+        "description": "Take a large bite directly from the apple",
+        "action_id": "a0b",
+        "action_type": null,
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "The apple has a large bite taken out of it, showing teeth marks on one side. The apple is still whole otherwise",
+        "state_id": "s1b",
+        "metadata": {}
+      }
+    },
+    {
+      "transition_id": null,
+      "start_state": {
+        "description": "The apple has a large bite taken out of it, showing teeth marks on one side. The apple is still whole otherwise",
+        "state_id": "s1b",
+        "metadata": {}
+      },
+      "action": {
+        "description": "Continue biting the apple multiple times until only the core remains",
+        "action_id": "a1c",
+        "action_type": null,
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "The apple has multiple bite marks and only the core remains visible. Apple pieces are scattered on the table",
+        "state_id": "s2c",
+        "metadata": {}
+      }
+    },
+    {
+      "transition_id": null,
+      "start_state": {
+        "description": "The apple has a large bite taken out of it, showing teeth marks on one side. The apple is still whole otherwise",
+        "state_id": "s1b",
+        "metadata": {}
+      },
+      "action": {
+        "description": "Use the knife to slice the bitten apple into pieces",
+        "action_id": "a1d",
+        "action_type": null,
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "The bitten apple has been cut into slices around the bite mark. Knife and irregular apple pieces on table",
+        "state_id": "s2d",
+        "metadata": {}
+      }
+    },
+    {
+      "transition_id": null,
+      "start_state": {
+        "description": "One apple half has been placed in a transparent container. The other half and knife remain on the table",
+        "state_id": "s2b",
+        "metadata": {}
+      },
+      "action": {
+        "description": "Eat the remaining apple half",
+        "action_id": "a2a",
+        "action_type": null,
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "The container with one apple half is on the table. The other half has been eaten, leaving only the core and knife",
+        "state_id": "s3a",
+        "metadata": {}
+      }
+    }
+  ],
+  "initial_state": {
+    "description": "Empty white table with only a red apple sitting in the center",
+    "state_id": "s0",
+    "metadata": {}
+  },
+  "goal_states": [
+    {
+      "description": "The apple slices have been eaten, leaving only the apple cores and knife on the table",
+      "state_id": "s2a",
+      "metadata": {}
+    },
+    {
+      "description": "The apple has multiple bite marks and only the core remains visible. Apple pieces are scattered on the table",
+      "state_id": "s2c",
+      "metadata": {}
+    },
+    {
+      "description": "The container with one apple half is on the table. The other half has been eaten, leaving only the core and knife",
+      "state_id": "s3a",
+      "metadata": {}
+    }
+  ],
+  "final_states": [],
+  "goal_state": {
+    "description": "The apple slices have been eaten, leaving only the apple cores and knife on the table",
+    "state_id": "s2a",
+    "metadata": {}
+  }
+}

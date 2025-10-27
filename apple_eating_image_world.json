@@ -1,0 +1,61 @@
+{
+  "name": "apple_eating_images",
+  "text_world_source": "apple_eating",
+  "generation_metadata": {
+    "model": "gemini-2.5-flash-image",
+    "timestamp": "2025-10-27T17:01:31.554340",
+    "generation_strategy": "canonical_path",
+    "aspect_ratio": "16:9",
+    "camera_perspective": "first_person_ego"
+  },
+  "states": [
+    {
+      "state_id": "s0",
+      "text_description": "Empty white table with only a red apple sitting in the center",
+      "image_path": "generated_images/apple_eating_images/s0_000.png",
+      "generation_prompt": "First-person ego-centric view at eye level (1.6m height). Empty white table with only a red apple sitting in the center. Realistic style, clear lighting, detailed.",
+      "parent_state_id": null,
+      "parent_action_id": null,
+      "reference_image": null,
+      "metadata": {}
+    },
+    {
+      "state_id": "s1",
+      "text_description": "The red apple has been sliced in half, showing the white flesh and seeds inside. A knife is visible next to the apple halves",
+      "image_path": "generated_images/apple_eating_images/s1_001.png",
+      "generation_prompt": "Same camera angle and scene layout. HOWEVER, IMPORTANT VISIBLE CHANGE: Cut the apple in half with a knife, exposing the inside. The new state: The red apple has been sliced in half, showing the white flesh and seeds inside. A knife is visible next to the apple halves. Make the change CLEARLY VISIBLE.",
+      "parent_state_id": "s0",
+      "parent_action_id": "a0",
+      "reference_image": "generated_images/apple_eating_images/s0_000.png",
+      "metadata": {}
+    },
+    {
+      "state_id": "s2",
+      "text_description": "The apple slices have been eaten, leaving only the apple cores and knife on the table",
+      "image_path": "generated_images/apple_eating_images/s2_002.png",
+      "generation_prompt": "Same camera angle and scene layout. HOWEVER, IMPORTANT VISIBLE CHANGE: Eat the apple slices, leaving only the cores. The new state: The apple slices have been eaten, leaving only the apple cores and knife on the table. Make the change CLEARLY VISIBLE.",
+      "parent_state_id": "s1",
+      "parent_action_id": "a1",
+      "reference_image": "generated_images/apple_eating_images/s1_001.png",
+      "metadata": {}
+    }
+  ],
+  "transitions": [
+    {
+      "start_state_id": "s0",
+      "action_id": "a0",
+      "end_state_id": "s1",
+      "action_description": "Cut the apple in half with a knife, exposing the inside",
+      "video_path": null,
+      "metadata": {}
+    },
+    {
+      "start_state_id": "s1",
+      "action_id": "a1",
+      "end_state_id": "s2",
+      "action_description": "Eat the apple slices, leaving only the cores",
+      "video_path": null,
+      "metadata": {}
+    }
+  ]
+}

@@ -168,28 +168,113 @@ Would you like me to generate the prompt templates and evaluator functions (Pyth
 
 ```
 world_model_bench_agent/
-├── README.md                    # This file
-├── QUICK_START.md              # Quick start guide
-├── requirements.txt            # Python dependencies
-├── setup.py                    # Package installation
-├── .env                        # Environment variables (API keys)
-├── Makefile                    # Build and test commands
+├── README.md                       # This file
+├── QUICK_START_VISION.md          # Quick start for vision world pipeline
+├── VISION_WORLD_DESIGN.md         # System design for image/video worlds
+├── PROGRESS_SUMMARY.md            # Current implementation status
+├── API_KEY_SETUP.md               # Guide to fix API key issues
+├── requirements.txt               # Python dependencies
+├── .env                           # Environment variables (API keys)
 │
-├── utils/                      # Video generation utilities
-│   ├── __init__.py
-│   ├── veo.py                  # Google Veo 3.1 integration
-│   ├── sora.py                 # OpenAI Sora integration
-│   ├── unified_interface.py    # Unified API wrapper
+├── world_model_bench_agent/       # Core benchmark system
+│   ├── benchmark_curation.py           # World model data structures
+│   ├── llm_world_generator.py          # Text world generation with LLM
+│   ├── image_world_generator.py        # Image generation for states (NEW)
+│   ├── interactive_demo.py             # Interactive world exploration
+│   ├── test_generator.py               # Test text world generation
+│   └── test_image_generator.py         # Test image generation (NEW)
+│
+├── utils/                         # Video/image generation utilities
+│   ├── veo.py                          # Google Veo 3.1 + Gemini integration
+│   ├── unified_interface.py            # Unified API wrapper
 │   └── tests/
-│       └── test_veo.py         # Comprehensive Veo test suite
+│       └── test_veo.py                 # Comprehensive Veo test suite
 │
-├── experiments/                # Benchmark experiments
-│   ├── __init__.py
-│   └── ac_world_benchmark.py   # Action-conditioned world model benchmark
+├── generated_images/              # Output directory for images
+│   └── [world_name]_images/
+│       ├── s0_000.png
+│       └── ...
 │
-└── examples/
-    ├── example_usage.py         # General usage examples
-    └── example_veo_usage.py     # Veo-specific examples
+└── examples/                      # Usage examples
+    ├── example_usage.py
+    └── example_veo_usage.py
+```
+
+## NEW: Vision World Pipeline
+
+We've implemented a complete pipeline to convert text-based worlds into vision-based worlds:
+
+### Text → Image → Video Pipeline
+
+**Phase 1: Text World Generation** (IMPLEMENTED)
+```bash
+python world_model_bench_agent/test_generator.py --yes
+```
+- Generates branching worlds with LLM (20-30 states)
+- Multiple success and failure endings
+- Action-conditioned state transitions
+
+**Phase 2: Image World Generation** (IMPLEMENTED)
+```bash
+python world_model_bench_agent/test_image_generator.py --yes
+```
+- Generates consistent images for each state
+- Uses image variation for visual consistency
+- Maintains camera perspective (ego-centric)
+
+**Phase 3: Video Generation** (IMPLEMENTED)
+```bash
+python world_model_bench_agent/test_video_generator.py --yes
+```
+- Generates videos for state transitions
+- Uses Veo's first-frame + last-frame interpolation
+- Action descriptions as video prompts
+- ~$0.05-$0.10 per video, 2-5 minutes generation time
+
+### Key Features
+
+1. **Visual Consistency**: Uses `generate_image_variation()` to maintain:
+   - Same camera angle across states
+   - Consistent scene style
+   - Recognizable objects and environment
+
+2. **Efficient Generation**:
+   - Canonical path strategy (main success path only)
+   - On-demand generation for branches
+   - Lazy loading and caching
+
+3. **Cost Effective**:
+   - Text world: ~$0.001
+   - Image world (20 states): ~$0.04
+   - Video world (20 transitions): ~$1-2
+
+### Quick Start
+
+See `QUICK_START_VISION.md` for detailed instructions.
+
+```python
+from world_model_bench_agent.image_world_generator import ImageWorldGenerator
+from world_model_bench_agent.video_world_generator import VideoWorldGenerator
+from world_model_bench_agent.benchmark_curation import World
+
+# Load text world
+text_world = World.load("coffee_branching_world.json")
+
+# Generate images
+image_gen = ImageWorldGenerator(veo_client)
+image_world = image_gen.generate_image_world(
+    text_world=text_world,
+    strategy="canonical_path"
+)
+image_world.save("coffee_image_world.json")
+
+# Generate videos
+video_gen = VideoWorldGenerator(veo_client)
+video_world = video_gen.generate_video_world(
+    image_world=image_world,
+    strategy="canonical_only"
+)
+video_world.save("coffee_video_world.json")
 ```
 
 ## Testing Veo Video Generation
