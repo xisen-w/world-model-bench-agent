@@ -1,1 +1,64 @@
-venv
+# Environment variables and secrets
+.env
+.env.*
+*.env
+.env.bak
+.env.local
+.env.production
+.env.development
+
+# API Keys and credentials
+**/secrets/
+**/credentials/
+**/*_key.json
+**/*_credentials.json
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+venv/
+ENV/
+env/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Generated files (keep JSON for sharing, but be careful)
+generated_images/
+generated_videos/
+test_*.png
+test_*.jpg
+test_*.mp4
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
