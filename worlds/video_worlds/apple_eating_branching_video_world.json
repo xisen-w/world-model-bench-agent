@@ -1,0 +1,110 @@
+{
+  "name": "apple_eating_branching_images_videos",
+  "image_world_source": "apple_eating_branching_images",
+  "generation_metadata": {
+    "model": "veo-3.1-fast-generate-preview",
+    "generation_strategy": "all_transitions",
+    "aspect_ratio": "16:9",
+    "resolution": "720p",
+    "number_of_videos_per_transition": 1
+  },
+  "states": [
+    {
+      "state_id": "s0",
+      "text_description": "Empty white table with only a red apple sitting in the center",
+      "image_path": "generated_images/apple_eating_branching_images/s0_000.png",
+      "generation_prompt": "First-person ego-centric view at eye level (1.6m height). Empty white table with only a red apple sitting in the center. Realistic style, clear lighting, detailed.",
+      "parent_state_id": null,
+      "parent_action_id": null,
+      "reference_image": null,
+      "metadata": {}
+    },
+    {
+      "state_id": "s1a",
+      "text_description": "The red apple has been sliced in half, showing the white flesh and seeds inside. A knife is visible next to the apple halves",
+      "image_path": "generated_images/apple_eating_branching_images/s1a_001.png",
+      "generation_prompt": "Same camera angle and scene layout. HOWEVER, IMPORTANT VISIBLE CHANGE: Cut the apple in half with a knife, exposing the inside. The new state: The red apple has been sliced in half, showing the white flesh and seeds inside. A knife is visible next to the apple halves. Make the change CLEARLY VISIBLE.",
+      "parent_state_id": "s0",
+      "parent_action_id": "a0a",
+      "reference_image": "generated_images/apple_eating_branching_images/s0_000.png",
+      "metadata": {}
+    },
+    {
+      "state_id": "s1b",
+      "text_description": "The apple has a large bite taken out of it, showing teeth marks on one side. The apple is still whole otherwise",
+      "image_path": "generated_images/apple_eating_branching_images/s1b_002.png",
+      "generation_prompt": "Same camera angle and scene layout. HOWEVER, IMPORTANT VISIBLE CHANGE: Take a large bite directly from the apple. The new state: The apple has a large bite taken out of it, showing teeth marks on one side. The apple is still whole otherwise. Make the change CLEARLY VISIBLE.",
+      "parent_state_id": "s0",
+      "parent_action_id": "a0b",
+      "reference_image": "generated_images/apple_eating_branching_images/s0_000.png",
+      "metadata": {}
+    },
+    {
+      "state_id": "s2a",
+      "text_description": "The apple slices have been eaten, leaving only the apple cores and knife on the table",
+      "image_path": "generated_images/apple_eating_branching_images/s2a_003.png",
+      "generation_prompt": "Same camera angle and scene layout. HOWEVER, IMPORTANT VISIBLE CHANGE: Eat the apple slices, leaving only the cores. The new state: The apple slices have been eaten, leaving only the apple cores and knife on the table. Make the change CLEARLY VISIBLE.",
+      "parent_state_id": "s1a",
+      "parent_action_id": "a1a",
+      "reference_image": "generated_images/apple_eating_branching_images/s1a_001.png",
+      "metadata": {}
+    },
+    {
+      "state_id": "s2b",
+      "text_description": "One apple half has been placed in a transparent container. The other half and knife remain on the table",
+      "image_path": "generated_images/apple_eating_branching_images/s2b_004.png",
+      "generation_prompt": "Same camera angle and scene layout. HOWEVER, IMPORTANT VISIBLE CHANGE: Place one apple half in a transparent container. The new state: One apple half has been placed in a transparent container. The other half and knife remain on the table. Make the change CLEARLY VISIBLE.",
+      "parent_state_id": "s1a",
+      "parent_action_id": "a1b",
+      "reference_image": "generated_images/apple_eating_branching_images/s1a_001.png",
+      "metadata": {}
+    },
+    {
+      "state_id": "s2c",
+      "text_description": "The apple has multiple bite marks and only the core remains visible. Apple pieces are scattered on the table",
+      "image_path": "generated_images/apple_eating_branching_images/s2c_005.png",
+      "generation_prompt": "Same camera angle and scene layout. HOWEVER, IMPORTANT VISIBLE CHANGE: Continue biting the apple multiple times until only the core remains. The new state: The apple has multiple bite marks and only the core remains visible. Apple pieces are scattered on the table. Make the change CLEARLY VISIBLE.",
+      "parent_state_id": "s1b",
+      "parent_action_id": "a1c",
+      "reference_image": "generated_images/apple_eating_branching_images/s1b_002.png",
+      "metadata": {}
+    },
+    {
+      "state_id": "s2d",
+      "text_description": "The bitten apple has been cut into slices around the bite mark. Knife and irregular apple pieces on table",
+      "image_path": "generated_images/apple_eating_branching_images/s2d_006.png",
+      "generation_prompt": "Same camera angle and scene layout. HOWEVER, IMPORTANT VISIBLE CHANGE: Use the knife to slice the bitten apple into pieces. The new state: The bitten apple has been cut into slices around the bite mark. Knife and irregular apple pieces on table. Make the change CLEARLY VISIBLE.",
+      "parent_state_id": "s1b",
+      "parent_action_id": "a1d",
+      "reference_image": "generated_images/apple_eating_branching_images/s1b_002.png",
+      "metadata": {}
+    },
+    {
+      "state_id": "s3a",
+      "text_description": "The container with one apple half is on the table. The other half has been eaten, leaving only the core and knife",
+      "image_path": "generated_images/apple_eating_branching_images/s3a_007.png",
+      "generation_prompt": "Same camera angle and scene layout. HOWEVER, IMPORTANT VISIBLE CHANGE: Eat the remaining apple half. The new state: The container with one apple half is on the table. The other half has been eaten, leaving only the core and knife. Make the change CLEARLY VISIBLE.",
+      "parent_state_id": "s2b",
+      "parent_action_id": "a2a",
+      "reference_image": "generated_images/apple_eating_branching_images/s2b_004.png",
+      "metadata": {}
+    }
+  ],
+  "transitions": [
+    {
+      "start_state_id": "s0",
+      "action_id": "a0a",
+      "end_state_id": "s1a",
+      "action_description": "Cut the apple in half with a knife, exposing the inside",
+      "start_image_path": "generated_images/apple_eating_branching_images/s0_000.png",
+      "end_image_path": "generated_images/apple_eating_branching_images/s1a_001.png",
+      "video_path": "generated_videos/apple_eating_branching_images_videos/s0_to_s1a_000.mp4",
+      "generation_prompt": "# Initial State (Frame-Accurate Description)\n\n**Scene:** dining table, overhead pendant (3000 K) as practical\n\nEmpty white table with only a red apple sitting in the center\n\n**Key Objects:** knife, apple, table\n\n**Camera & Framing:**\n- **View:** Egocentric first-person POV\n- **Angle:** Eye level or slightly downward (~20-30\u00b0) toward surface\n- **Lens:** 35 mm / 65 mm spherical primes at T2.8\u2013T4\n- **Depth of Field:** Shallow, focus on primary objects; background softly out of focus\n- **Composition:** Objects arranged naturally; no hands in contact yet\n\n**Lighting:**\n- **Key:** overhead pendant (3000 K) as practical\n- **Fill:** 4\u00d74 white bounce camera right at surface level\n- **Environment:** none (clarity preferred)\n- **Color:** clean tungsten practical with soft amber lift; midtones neutral porcelain whites; natural waxy sheen on objects; shadows cool-teal bias in falloff; blacks lifted slightly to preserve texture\n\n**Physical State:**\n- All objects at rest, stable positions\n- No motion blur, sharp detail on hero objects\n- Natural shadows indicating light source direction\n- Surface clean/appropriate for scene (cutting board texture, etc.)\n\n**Format & Quality:**\n- 4.0 s; 180\u00b0\n- digital capture emulating 65 mm photochemical contrast\n- fine, tight grain; gentle halation on metallic speculars\n\n**Cut the apple in half with a knife, exposing the inside**\n\n**Egocentric POV:**\nFirst-person view from above the cutting surface. Both hands visible in frame:\n- **Dominant hand** (right): grips knife handle firmly, knuckles forward, wrist relaxed\n- **Off hand** (left): stabilizes object with fingertips, thumb arced over top, keeping clear of blade path\n\n**Physical Motion:**\nNatural cutting sequence:\n1. Position off-hand to stabilize object (visible finger placement)\n2. Raise knife blade 2-3 inches above surface\n3. Execute controlled downward slice with slight rocking motion\n4. Blade passes through object with clean separation\n5. Gentle scrape sound as knife contacts cutting board\n6. Slight pressure release, fingers adjust object position\n\n**Continuity:**\n- Maintain consistent hand position and skin tone throughout\n- Object remains stationary except when deliberately moved\n- Cutting board stays fixed; no sliding\n- Crumbs/debris accumulate naturally at cut site\n- Blade shows appropriate moisture/residue after contact\n\n# Final State (Frame-Accurate Description)\n\n**Scene:** dining table (post-action)\n\nThe red apple has been sliced in half, showing the white flesh and seeds inside. A knife is visible next to the apple halves\n\n**Changes from Initial State:**\n- Action 'Cut the apple in half with a knife, exposing the inside' has been completed\n- Object positions updated\n- Appropriate residue/traces left by action\n\n**Camera & Framing:**\n- **View:** Same egocentric POV as initial state\n- **Continuity:** Same lens, angle, and framing maintained\n- **Focus:** Adjusted if object depth changed, but smoothly\n\n**Physical Verification:**\n- All moved objects show new stable positions\n- No objects floating or defying physics\n- Appropriate interaction marks (moisture, crumbs, residue)\n- Tools/utensils returned to rest position\n- Hands have cleared frame (unless frozen in final pose)\n\n**Lighting:**\n- Consistent with initial state unless action changed environment\n- New object positions create new shadow patterns\n- No sudden lighting jumps or color shifts\n\n**Quality Markers:**\n- Clean final frame composition\n- Hero objects in focus and well-lit\n- Natural resting state after motion\n- Appropriate sound: final contact, settling, silence\n\n# Continuity & Constraints\n\n**Object Identity:**\n- **knife:** Exact same instance maintained (same label, color, texture, wear)\n- **apple:** Exact same instance maintained (same label, color, texture, wear)\n- **table:** Exact same instance maintained (same label, color, texture, wear)\n\n**Physical Laws:**\n- Gravity operates normally\n- No object teleportation\n- Realistic momentum and friction\n\n**Temporal Continuity:**\n- No instant transitions or jumps\n- Smooth motion sequences (grasp \u2192 lift \u2192 move \u2192 place)\n- Realistic action duration (not sped up or slowed down unnaturally)\n- Hand/arm motion follows natural human kinematics\n\n**Camera Rules:**\n- Egocentric POV maintained throughout\n- No sudden camera cuts or angle changes\n- Focus shifts smoothly if object depth changes\n- Frame keeps primary action visible\n\n**Environmental Stability:**\n- Lighting remains consistent unless action changes it (e.g., opening fridge)\n- Background objects remain static unless deliberately moved\n- Surfaces don't shift or warp\n- Ambient sounds appropriate to action\n\n**Prohibition List:**\n- No objects appearing/disappearing outside action\n- No physics violations (floating, passing through solid objects)\n- No sudden lighting/color jumps\n- No visible artifacts or glitches\n- No loss of object detail/texture\n\n# Success Criteria\n\n**Action Sequence Verification:**\n1. Hand(s) enter frame and approach object\n2. Execute action: Cut the apple in half with a knife, exposing the inside\n3. Complete action and hands withdraw\n4. Final state achieved and stable\n\n**Frame Requirements:**\n1. **First frame (0.0s):** Matches initial state description exactly\n2. **Mid-sequence:** Shows continuous action with visible intermediate steps\n3. **Final frame (4.0 s):** Matches final state description exactly\n\n**Physical Verification:**\n- All objects in expected positions\n- No physics violations observed\n- Egocentric perspective maintained\n\n**Quality Gates:**\n- No visible glitches, artifacts, or impossible physics\n- Smooth motion throughout (no stuttering or jumps)\n- Audio-visual sync (sounds match visible actions)\n- Proper egocentric perspective maintained\n- All hero objects maintain identity and detail",
+      "metadata": {
+        "result_id": "models/veo-3.1-fast-generate-preview/operations/ogce41hm872y",
+        "status": "completed",
+        "number_of_videos": 1
+      }
+    }
+  ]
+}

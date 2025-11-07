@@ -1,0 +1,301 @@
+{
+  "name": "formal_dining_table_setting_linear",
+  "description": "Linear world for formal_dining_table_setting",
+  "states": [
+    {
+      "description": "Bare dining table covered with a white tablecloth. Utensils (3 forks, 3 knives, 2 spoons) and dishes (dinner plate, water glass, wine glass) are nearby, unplaced.",
+      "state_id": "s0",
+      "metadata": {
+        "progress": 0.0
+      }
+    },
+    {
+      "description": "Dinner plate placed in the center of the table. A fork is placed to the left of the plate. A knife is placed to the right of the plate, blade facing inward. A spoon is placed to the right of the knife.",
+      "state_id": "s1",
+      "metadata": {
+        "progress": 0.2
+      }
+    },
+    {
+      "description": "The remaining forks, knives, and spoons are still unplaced. The first fork is correctly placed. The water glass has been placed above the plate, and slightly to the right.",
+      "state_id": "s2",
+      "metadata": {
+        "progress": 0.3
+      }
+    },
+    {
+      "description": "The second fork has been incorrectly placed to the *inside* of the first fork, violating the 'outside-in' rule. The remaining utensils are still unplaced. Wine glass is incorrectly placed below the water glass.",
+      "state_id": "s3",
+      "metadata": {
+        "progress": 0.4
+      }
+    },
+    {
+      "description": "The second fork is removed and repositioned outside the first fork, correcting the order.  The remaining forks, knives, and spoons are still unplaced. Wine glass is still incorrectly placed.",
+      "state_id": "s4",
+      "metadata": {
+        "progress": 0.5
+      }
+    },
+    {
+      "description": "All three forks placed, outside-in order.  All three knives placed with blades facing inward to the right of the plate. Both spoons are placed to the right of the knives. Water glass and wine glass are incorrectly placed below each other.",
+      "state_id": "s5",
+      "metadata": {
+        "progress": 0.7
+      }
+    },
+    {
+      "description": "All utensils in place. Plates centered. Water glass corrected, moved slightly up and right. Wine glass corrected, placed at the correct location, above and to the right of the plate.",
+      "state_id": "s6",
+      "metadata": {
+        "progress": 0.8
+      }
+    },
+    {
+      "description": "Formal dining table setting complete: three forks (outside-in), three knives (blades in), two spoons (right of knives), centered plate, water glass and wine glass upper right.",
+      "state_id": "s7",
+      "metadata": {
+        "progress": 1.0
+      }
+    }
+  ],
+  "actions": [
+    {
+      "description": "Place the dinner plate in the center of the place setting; Place the first fork to the left of the plate; Place the first knife to the right of the plate, blade facing inwards; Place the first spoon to the right of the knife.",
+      "action_id": "a0",
+      "action_type": "preparation",
+      "metadata": {}
+    },
+    {
+      "description": "Place the water glass above the plate and slightly right.",
+      "action_id": "a1",
+      "action_type": "preparation",
+      "metadata": {}
+    },
+    {
+      "description": "Attempt to place the second fork, but place it inside the first fork, violating correct order. Then try to place the wine glass, place it below the water glass.",
+      "action_id": "a2",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Remove the incorrectly placed fork and reposition it to the correct outside position, and reposition the wine glass to correct position.",
+      "action_id": "a3",
+      "action_type": "corrective action",
+      "metadata": {}
+    },
+    {
+      "description": "Complete placement of the remaining forks (outside-in order), knives (blades facing in) and spoons. Try to place the water glass and wine glass, but make mistake.",
+      "action_id": "a4",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Correct the water glass and wine glass placement by moving them to the proper location above and to the right of the plate.",
+      "action_id": "a5",
+      "action_type": "corrective action",
+      "metadata": {}
+    },
+    {
+      "description": "Final check and confirmation: all items are correctly positioned, the table setting is complete.",
+      "action_id": "a6",
+      "action_type": "finishing",
+      "metadata": {}
+    }
+  ],
+  "transitions": [
+    {
+      "transition_id": "t_0",
+      "start_state": {
+        "description": "Bare dining table covered with a white tablecloth. Utensils (3 forks, 3 knives, 2 spoons) and dishes (dinner plate, water glass, wine glass) are nearby, unplaced.",
+        "state_id": "s0",
+        "metadata": {
+          "progress": 0.0
+        }
+      },
+      "action": {
+        "description": "Place the dinner plate in the center of the place setting; Place the first fork to the left of the plate; Place the first knife to the right of the plate, blade facing inwards; Place the first spoon to the right of the knife.",
+        "action_id": "a0",
+        "action_type": "preparation",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Dinner plate placed in the center of the table. A fork is placed to the left of the plate. A knife is placed to the right of the plate, blade facing inward. A spoon is placed to the right of the knife.",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.2
+        }
+      }
+    },
+    {
+      "transition_id": "t_1",
+      "start_state": {
+        "description": "Dinner plate placed in the center of the table. A fork is placed to the left of the plate. A knife is placed to the right of the plate, blade facing inward. A spoon is placed to the right of the knife.",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.2
+        }
+      },
+      "action": {
+        "description": "Place the water glass above the plate and slightly right.",
+        "action_id": "a1",
+        "action_type": "preparation",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "The remaining forks, knives, and spoons are still unplaced. The first fork is correctly placed. The water glass has been placed above the plate, and slightly to the right.",
+        "state_id": "s2",
+        "metadata": {
+          "progress": 0.3
+        }
+      }
+    },
+    {
+      "transition_id": "t_2",
+      "start_state": {
+        "description": "The remaining forks, knives, and spoons are still unplaced. The first fork is correctly placed. The water glass has been placed above the plate, and slightly to the right.",
+        "state_id": "s2",
+        "metadata": {
+          "progress": 0.3
+        }
+      },
+      "action": {
+        "description": "Attempt to place the second fork, but place it inside the first fork, violating correct order. Then try to place the wine glass, place it below the water glass.",
+        "action_id": "a2",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "The second fork has been incorrectly placed to the *inside* of the first fork, violating the 'outside-in' rule. The remaining utensils are still unplaced. Wine glass is incorrectly placed below the water glass.",
+        "state_id": "s3",
+        "metadata": {
+          "progress": 0.4
+        }
+      }
+    },
+    {
+      "transition_id": "t_3",
+      "start_state": {
+        "description": "The second fork has been incorrectly placed to the *inside* of the first fork, violating the 'outside-in' rule. The remaining utensils are still unplaced. Wine glass is incorrectly placed below the water glass.",
+        "state_id": "s3",
+        "metadata": {
+          "progress": 0.4
+        }
+      },
+      "action": {
+        "description": "Remove the incorrectly placed fork and reposition it to the correct outside position, and reposition the wine glass to correct position.",
+        "action_id": "a3",
+        "action_type": "corrective action",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "The second fork is removed and repositioned outside the first fork, correcting the order.  The remaining forks, knives, and spoons are still unplaced. Wine glass is still incorrectly placed.",
+        "state_id": "s4",
+        "metadata": {
+          "progress": 0.5
+        }
+      }
+    },
+    {
+      "transition_id": "t_4",
+      "start_state": {
+        "description": "The second fork is removed and repositioned outside the first fork, correcting the order.  The remaining forks, knives, and spoons are still unplaced. Wine glass is still incorrectly placed.",
+        "state_id": "s4",
+        "metadata": {
+          "progress": 0.5
+        }
+      },
+      "action": {
+        "description": "Complete placement of the remaining forks (outside-in order), knives (blades facing in) and spoons. Try to place the water glass and wine glass, but make mistake.",
+        "action_id": "a4",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "All three forks placed, outside-in order.  All three knives placed with blades facing inward to the right of the plate. Both spoons are placed to the right of the knives. Water glass and wine glass are incorrectly placed below each other.",
+        "state_id": "s5",
+        "metadata": {
+          "progress": 0.7
+        }
+      }
+    },
+    {
+      "transition_id": "t_5",
+      "start_state": {
+        "description": "All three forks placed, outside-in order.  All three knives placed with blades facing inward to the right of the plate. Both spoons are placed to the right of the knives. Water glass and wine glass are incorrectly placed below each other.",
+        "state_id": "s5",
+        "metadata": {
+          "progress": 0.7
+        }
+      },
+      "action": {
+        "description": "Correct the water glass and wine glass placement by moving them to the proper location above and to the right of the plate.",
+        "action_id": "a5",
+        "action_type": "corrective action",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "All utensils in place. Plates centered. Water glass corrected, moved slightly up and right. Wine glass corrected, placed at the correct location, above and to the right of the plate.",
+        "state_id": "s6",
+        "metadata": {
+          "progress": 0.8
+        }
+      }
+    },
+    {
+      "transition_id": "t_6",
+      "start_state": {
+        "description": "All utensils in place. Plates centered. Water glass corrected, moved slightly up and right. Wine glass corrected, placed at the correct location, above and to the right of the plate.",
+        "state_id": "s6",
+        "metadata": {
+          "progress": 0.8
+        }
+      },
+      "action": {
+        "description": "Final check and confirmation: all items are correctly positioned, the table setting is complete.",
+        "action_id": "a6",
+        "action_type": "finishing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Formal dining table setting complete: three forks (outside-in), three knives (blades in), two spoons (right of knives), centered plate, water glass and wine glass upper right.",
+        "state_id": "s7",
+        "metadata": {
+          "progress": 1.0
+        }
+      }
+    }
+  ],
+  "initial_state": {
+    "description": "Bare dining table covered with a white tablecloth. Utensils (3 forks, 3 knives, 2 spoons) and dishes (dinner plate, water glass, wine glass) are nearby, unplaced.",
+    "state_id": "s0",
+    "metadata": {
+      "progress": 0.0
+    }
+  },
+  "goal_states": [
+    {
+      "description": "Formal dining table setting complete: three forks (outside-in), three knives (blades in), two spoons (right of knives), centered plate, water glass and wine glass upper right.",
+      "state_id": "s7",
+      "metadata": {
+        "progress": 1.0
+      }
+    }
+  ],
+  "final_states": [
+    {
+      "description": "Formal dining table setting complete: three forks (outside-in), three knives (blades in), two spoons (right of knives), centered plate, water glass and wine glass upper right.",
+      "state_id": "s7",
+      "metadata": {
+        "progress": 1.0
+      }
+    }
+  ],
+  "goal_state": {
+    "description": "Formal dining table setting complete: three forks (outside-in), three knives (blades in), two spoons (right of knives), centered plate, water glass and wine glass upper right.",
+    "state_id": "s7",
+    "metadata": {
+      "progress": 1.0
+    }
+  }
+}

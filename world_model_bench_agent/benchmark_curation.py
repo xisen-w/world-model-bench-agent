@@ -504,8 +504,16 @@ class World:
         }
 
     def save(self, filepath: str) -> None:
-        """Save world to JSON file."""
-        with open(filepath, 'w') as f:
+        """Save world to JSON file. If path doesn't include directory, saves to worlds/llm_worlds/."""
+        from pathlib import Path
+        filepath_obj = Path(filepath)
+
+        # If just a filename, save to worlds/llm_worlds/
+        if filepath_obj.parent == Path('.'):
+            filepath_obj = Path('worlds/llm_worlds') / filepath_obj
+            filepath_obj.parent.mkdir(parents=True, exist_ok=True)
+
+        with open(filepath_obj, 'w') as f:
             json.dump(self.to_dict(), f, indent=2)
 
     @classmethod

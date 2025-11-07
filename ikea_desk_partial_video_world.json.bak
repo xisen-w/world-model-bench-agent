@@ -1,0 +1,285 @@
+{
+  "name": "IKEA_desk_assembly_multi_ending_images_videos",
+  "image_world_source": "IKEA_desk_assembly_multi_ending_images",
+  "generation_metadata": {
+    "model": "veo-2.0",
+    "timestamp": "2025-10-29T14:58:00",
+    "generation_strategy": "all_transitions",
+    "aspect_ratio": "16:9",
+    "resolution": "720p",
+    "number_of_videos_per_transition": 1,
+    "note": "Partial generation - 8 of 15 videos due to quota limit"
+  },
+  "states": [
+    {
+      "state_id": "s0",
+      "text_description": "Unopened IKEA desk box with instruction manual on top",
+      "image_path": "/Users/wangxiang/Desktop/my_workspace/memory/world_model_bench_agent/generated_images/IKEA_desk_assembly_multi_ending_images/s0_000.png",
+      "generation_prompt": "First-person ego-centric view at eye level (1.6m height). Unopened IKEA desk box with instruction manual on top. Realistic style, clear lighting, detailed.",
+      "parent_state_id": null,
+      "parent_action_id": null,
+      "reference_image": null,
+      "metadata": {"assembly_progress": 0.0}
+    },
+    {
+      "state_id": "s1a",
+      "text_description": "Box opened, components laid out, instruction manual read carefully",
+      "image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s1a_001.png",
+      "parent_state_id": "s0",
+      "parent_action_id": "a_read",
+      "metadata": {"instructions_read": true, "assembly_progress": 0.1}
+    },
+    {
+      "state_id": "s1b",
+      "text_description": "Box torn open, components scattered, instruction manual tossed aside",
+      "image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s1b_002.png",
+      "parent_state_id": "s0",
+      "parent_action_id": "a_skip",
+      "metadata": {"instructions_read": false, "assembly_progress": 0.1}
+    },
+    {
+      "state_id": "s2a",
+      "text_description": "Following instructions step-by-step, all parts organized by number",
+      "image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s2a_003.png",
+      "parent_state_id": "s1a",
+      "parent_action_id": "a_follow",
+      "metadata": {"following_instructions": true, "assembly_progress": 0.3}
+    },
+    {
+      "state_id": "s2b",
+      "text_description": "Attempting assembly by intuition, some confusion about which parts go where",
+      "image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s2b_004.png",
+      "parent_state_id": "s1b",
+      "parent_action_id": "a_wing",
+      "metadata": {"following_instructions": false, "assembly_progress": 0.2}
+    },
+    {
+      "state_id": "s3a",
+      "text_description": "Desk frame assembled correctly, checking alignment before final tightening",
+      "image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s3a_005.png",
+      "parent_state_id": "s2a",
+      "parent_action_id": "a_persist_good",
+      "metadata": {"assembly_quality": "high", "assembly_progress": 0.7}
+    },
+    {
+      "state_id": "s2c",
+      "text_description": "Frustrated and confused, considering giving up",
+      "image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s2c_006.png",
+      "parent_state_id": "s2b",
+      "parent_action_id": "a_frustrate",
+      "metadata": {"frustration_level": "high", "assembly_progress": 0.15}
+    },
+    {
+      "state_id": "s3c",
+      "text_description": "Desk frame assembled incorrectly, using wrong screws in some places",
+      "image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s3c_007.png",
+      "parent_state_id": "s2b",
+      "parent_action_id": "a_wrong_parts",
+      "metadata": {"assembly_quality": "low", "assembly_progress": 0.5}
+    },
+    {
+      "state_id": "s_perfect",
+      "text_description": "Perfect assembly: desk is stable, all screws tight, perfectly aligned, looks professional",
+      "image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s_perfect_008.png",
+      "parent_state_id": "s3a",
+      "parent_action_id": "a_perfect_finish",
+      "metadata": {"assembly_complete": true, "quality": 1.0, "outcome": "success"}
+    },
+    {
+      "state_id": "s_gave_up",
+      "text_description": "Gave up halfway: partially assembled desk on floor, tools scattered, person walking away defeated",
+      "image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s_gave_up_009.png",
+      "metadata": {"assembly_complete": false, "quality": 0.2, "outcome": "failure"}
+    },
+    {
+      "state_id": "s3b",
+      "text_description": "Desk frame assembled but some parts seem loose, continuing anyway",
+      "image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s3b_010.png",
+      "metadata": {"assembly_quality": "medium", "assembly_progress": 0.6}
+    },
+    {
+      "state_id": "s_wrong_assembly",
+      "text_description": "Wrong assembly: followed wrong instructions, desk looks strange and parts don't fit properly",
+      "image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s_wrong_assembly_011.png",
+      "metadata": {"assembly_complete": false, "quality": 0.3, "outcome": "failure"}
+    },
+    {
+      "state_id": "s_acceptable",
+      "text_description": "Acceptable assembly: desk works but wobbles slightly, some screws could be tighter",
+      "image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s_acceptable_012.png",
+      "metadata": {"assembly_complete": true, "quality": 0.6, "outcome": "success"}
+    },
+    {
+      "state_id": "s_good",
+      "text_description": "Good assembly: desk is functional and stable, minor cosmetic imperfections",
+      "image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s_good_013.png",
+      "metadata": {"assembly_complete": true, "quality": 0.8, "outcome": "success"}
+    },
+    {
+      "state_id": "s_collapsed",
+      "text_description": "Structural failure: desk collapsed when weight was placed on it, critical screws were missing",
+      "image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s_collapsed_014.png",
+      "metadata": {"assembly_complete": false, "quality": 0.1, "outcome": "failure"}
+    }
+  ],
+  "transitions": [
+    {
+      "start_state_id": "s0",
+      "action_id": "a_read",
+      "end_state_id": "s1a",
+      "action_description": "Open box carefully and read instruction manual thoroughly",
+      "start_image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s0_000.png",
+      "end_image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s1a_001.png",
+      "video_path": "/Users/wangxiang/Desktop/my_workspace/memory/world_model_bench_agent/generated_videos/IKEA_desk_assembly_multi_ending_images_videos/s0_to_s1a_000.mp4",
+      "generation_prompt": "Opening box carefully and reading manual",
+      "metadata": {}
+    },
+    {
+      "start_state_id": "s0",
+      "action_id": "a_skip",
+      "end_state_id": "s1b",
+      "action_description": "Tear open box and toss instructions aside, attempt assembly by intuition",
+      "start_image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s0_000.png",
+      "end_image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s1b_002.png",
+      "video_path": "/Users/wangxiang/Desktop/my_workspace/memory/world_model_bench_agent/generated_videos/IKEA_desk_assembly_multi_ending_images_videos/s0_to_s1b_001.mp4",
+      "generation_prompt": "Tearing open box and skipping instructions",
+      "metadata": {}
+    },
+    {
+      "start_state_id": "s1a",
+      "action_id": "a_follow",
+      "end_state_id": "s2a",
+      "action_description": "Methodically follow each instruction step, double-checking each connection",
+      "start_image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s1a_001.png",
+      "end_image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s2a_003.png",
+      "video_path": "/Users/wangxiang/Desktop/my_workspace/memory/world_model_bench_agent/generated_videos/IKEA_desk_assembly_multi_ending_images_videos/s1a_to_s2a_002.mp4",
+      "generation_prompt": "Following instructions methodically",
+      "metadata": {}
+    },
+    {
+      "start_state_id": "s1b",
+      "action_id": "a_wing",
+      "end_state_id": "s2b",
+      "action_description": "Try to figure it out without instructions, guessing which parts connect",
+      "start_image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s1b_002.png",
+      "end_image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s2b_004.png",
+      "video_path": "/Users/wangxiang/Desktop/my_workspace/memory/world_model_bench_agent/generated_videos/IKEA_desk_assembly_multi_ending_images_videos/s1b_to_s2b_003.mp4",
+      "generation_prompt": "Attempting assembly by intuition",
+      "metadata": {}
+    },
+    {
+      "start_state_id": "s2a",
+      "action_id": "a_persist_good",
+      "end_state_id": "s3a",
+      "action_description": "Take a breath, re-read instructions, continue methodically",
+      "start_image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s2a_003.png",
+      "end_image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s3a_005.png",
+      "video_path": "/Users/wangxiang/Desktop/my_workspace/memory/world_model_bench_agent/generated_videos/IKEA_desk_assembly_multi_ending_images_videos/s2a_to_s3a_004.mp4",
+      "generation_prompt": "Continuing methodically",
+      "metadata": {}
+    },
+    {
+      "start_state_id": "s2b",
+      "action_id": "a_frustrate",
+      "end_state_id": "s2c",
+      "action_description": "Become frustrated with confusing parts, consider giving up",
+      "start_image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s2b_004.png",
+      "end_image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s2c_006.png",
+      "video_path": "/Users/wangxiang/Desktop/my_workspace/memory/world_model_bench_agent/generated_videos/IKEA_desk_assembly_multi_ending_images_videos/s2b_to_s2c_005.mp4",
+      "generation_prompt": "Getting frustrated",
+      "metadata": {}
+    },
+    {
+      "start_state_id": "s2b",
+      "action_id": "a_wrong_parts",
+      "end_state_id": "s3c",
+      "action_description": "Use whatever screws fit, not checking part numbers",
+      "start_image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s2b_004.png",
+      "end_image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s3c_007.png",
+      "video_path": "/Users/wangxiang/Desktop/my_workspace/memory/world_model_bench_agent/generated_videos/IKEA_desk_assembly_multi_ending_images_videos/s2b_to_s3c_006.mp4",
+      "generation_prompt": "Using wrong parts",
+      "metadata": {}
+    },
+    {
+      "start_state_id": "s3a",
+      "action_id": "a_perfect_finish",
+      "end_state_id": "s_perfect",
+      "action_description": "Carefully tighten all screws, check stability, adjust alignment",
+      "start_image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s3a_005.png",
+      "end_image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s_perfect_008.png",
+      "video_path": "/Users/wangxiang/Desktop/my_workspace/memory/world_model_bench_agent/generated_videos/IKEA_desk_assembly_multi_ending_images_videos/s3a_to_s_perfect_007.mp4",
+      "generation_prompt": "Perfect finishing touches",
+      "metadata": {}
+    },
+    {
+      "start_state_id": "s2c",
+      "action_id": "a_quit",
+      "end_state_id": "s_gave_up",
+      "action_description": "Throw hands up in frustration and walk away from half-assembled desk",
+      "start_image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s2c_006.png",
+      "end_image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s_gave_up_009.png",
+      "video_path": null,
+      "metadata": {"note": "No video - quota limit"}
+    },
+    {
+      "start_state_id": "s2c",
+      "action_id": "a_rush",
+      "end_state_id": "s3b",
+      "action_description": "Rush to finish without checking, just want to be done",
+      "start_image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s2c_006.png",
+      "end_image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s3b_010.png",
+      "video_path": null,
+      "metadata": {"note": "No video - quota limit"}
+    },
+    {
+      "start_state_id": "s3c",
+      "action_id": "a_rush",
+      "end_state_id": "s_wrong_assembly",
+      "action_description": "Rush to finish without checking, just want to be done",
+      "start_image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s3c_007.png",
+      "end_image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s_wrong_assembly_011.png",
+      "video_path": null,
+      "metadata": {"note": "No video - quota limit"}
+    },
+    {
+      "start_state_id": "s3c",
+      "action_id": "a_sloppy_finish",
+      "end_state_id": "s_acceptable",
+      "action_description": "Loosely tighten screws, desk wobbles but seems okay",
+      "start_image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s3c_007.png",
+      "end_image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s_acceptable_012.png",
+      "video_path": null,
+      "metadata": {"note": "No video - quota limit"}
+    },
+    {
+      "start_state_id": "s3b",
+      "action_id": "a_quick_finish",
+      "end_state_id": "s_good",
+      "action_description": "Quickly tighten main screws, skip detailed checks",
+      "start_image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s3b_010.png",
+      "end_image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s_good_013.png",
+      "video_path": null,
+      "metadata": {"note": "No video - quota limit"}
+    },
+    {
+      "start_state_id": "s3b",
+      "action_id": "a_sloppy_finish",
+      "end_state_id": "s_acceptable",
+      "action_description": "Loosely tighten screws, desk wobbles but seems okay",
+      "start_image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s3b_010.png",
+      "end_image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s_acceptable_012.png",
+      "video_path": null,
+      "metadata": {"note": "No video - quota limit"}
+    },
+    {
+      "start_state_id": "s_acceptable",
+      "action_id": "a_test",
+      "end_state_id": "s_collapsed",
+      "action_description": "Place heavy object on desk to test stability",
+      "start_image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s_acceptable_012.png",
+      "end_image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s_collapsed_014.png",
+      "video_path": null,
+      "metadata": {"note": "No video - quota limit"}
+    }
+  ]
+}

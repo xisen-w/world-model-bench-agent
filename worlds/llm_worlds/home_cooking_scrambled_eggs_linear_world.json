@@ -1,0 +1,373 @@
+{
+  "name": "home_cooking_scrambled_eggs_linear",
+  "description": "Linear world for home_cooking_scrambled_eggs",
+  "states": [
+    {
+      "description": "Clean kitchen. Wok on counter. Eggs, scallions, salt, oil on counter. Stove off. Progress: 0.0",
+      "state_id": "s0",
+      "metadata": {
+        "progress": 0.0
+      }
+    },
+    {
+      "description": "Wok on burner. Oil in wok. Stove on medium heat. Progress: 0.1",
+      "state_id": "s1",
+      "metadata": {
+        "progress": 0.1
+      }
+    },
+    {
+      "description": "Oil shimmering in wok, almost ready. Progress: 0.2",
+      "state_id": "s2",
+      "metadata": {
+        "progress": 0.2
+      }
+    },
+    {
+      "description": "Eggs cracked into a bowl. Scallions chopped. Salt ready. Progress: 0.3",
+      "state_id": "s3",
+      "metadata": {
+        "progress": 0.3
+      }
+    },
+    {
+      "description": "Egg mixture poured into the hot wok, starting to set. Progress: 0.4",
+      "state_id": "s4",
+      "metadata": {
+        "progress": 0.4
+      }
+    },
+    {
+      "description": "Gently stirring the eggs with a spatula, cooking begins. Progress: 0.5",
+      "state_id": "s5",
+      "metadata": {
+        "progress": 0.5
+      }
+    },
+    {
+      "description": "Eggs are mostly cooked, still slightly moist. Scallions are added. Progress: 0.7",
+      "state_id": "s6",
+      "metadata": {
+        "progress": 0.7
+      }
+    },
+    {
+      "description": "Eggs are almost fully cooked, fluffy and golden. Progress: 0.8",
+      "state_id": "s7",
+      "metadata": {
+        "progress": 0.8
+      }
+    },
+    {
+      "description": "Scrambled eggs removed from heat, seasoned to taste. Progress: 0.9",
+      "state_id": "s8",
+      "metadata": {
+        "progress": 0.9
+      }
+    },
+    {
+      "description": "Perfectly cooked scrambled eggs with scallions served on a plate, golden and fluffy. Progress: 1.0",
+      "state_id": "s9",
+      "metadata": {
+        "progress": 1.0
+      }
+    }
+  ],
+  "actions": [
+    {
+      "description": "Place wok on burner and pour oil into it. Turn stove on to medium heat.",
+      "action_id": "a0",
+      "action_type": "preparation",
+      "metadata": {}
+    },
+    {
+      "description": "Wait for oil to heat up until it shimmers (about 1 minute).",
+      "action_id": "a1",
+      "action_type": "preparation",
+      "metadata": {}
+    },
+    {
+      "description": "Crack eggs into a bowl, chop scallions, and prepare salt.",
+      "action_id": "a2",
+      "action_type": "preparation",
+      "metadata": {}
+    },
+    {
+      "description": "Pour the egg mixture into the hot wok.",
+      "action_id": "a3",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Gently stir the eggs with a spatula as they begin to cook.",
+      "action_id": "a4",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Continue stirring, ensuring eggs cook evenly. Add chopped scallions. ",
+      "action_id": "a5",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Continue cooking until eggs are set but still slightly moist and fluffy.",
+      "action_id": "a6",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Remove the wok from the heat.",
+      "action_id": "a7",
+      "action_type": "finishing",
+      "metadata": {}
+    },
+    {
+      "description": "Season eggs with salt and serve on a plate.",
+      "action_id": "a8",
+      "action_type": "finishing",
+      "metadata": {}
+    }
+  ],
+  "transitions": [
+    {
+      "transition_id": "t_0",
+      "start_state": {
+        "description": "Clean kitchen. Wok on counter. Eggs, scallions, salt, oil on counter. Stove off. Progress: 0.0",
+        "state_id": "s0",
+        "metadata": {
+          "progress": 0.0
+        }
+      },
+      "action": {
+        "description": "Place wok on burner and pour oil into it. Turn stove on to medium heat.",
+        "action_id": "a0",
+        "action_type": "preparation",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Wok on burner. Oil in wok. Stove on medium heat. Progress: 0.1",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.1
+        }
+      }
+    },
+    {
+      "transition_id": "t_1",
+      "start_state": {
+        "description": "Wok on burner. Oil in wok. Stove on medium heat. Progress: 0.1",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.1
+        }
+      },
+      "action": {
+        "description": "Wait for oil to heat up until it shimmers (about 1 minute).",
+        "action_id": "a1",
+        "action_type": "preparation",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Oil shimmering in wok, almost ready. Progress: 0.2",
+        "state_id": "s2",
+        "metadata": {
+          "progress": 0.2
+        }
+      }
+    },
+    {
+      "transition_id": "t_2",
+      "start_state": {
+        "description": "Oil shimmering in wok, almost ready. Progress: 0.2",
+        "state_id": "s2",
+        "metadata": {
+          "progress": 0.2
+        }
+      },
+      "action": {
+        "description": "Crack eggs into a bowl, chop scallions, and prepare salt.",
+        "action_id": "a2",
+        "action_type": "preparation",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Eggs cracked into a bowl. Scallions chopped. Salt ready. Progress: 0.3",
+        "state_id": "s3",
+        "metadata": {
+          "progress": 0.3
+        }
+      }
+    },
+    {
+      "transition_id": "t_3",
+      "start_state": {
+        "description": "Eggs cracked into a bowl. Scallions chopped. Salt ready. Progress: 0.3",
+        "state_id": "s3",
+        "metadata": {
+          "progress": 0.3
+        }
+      },
+      "action": {
+        "description": "Pour the egg mixture into the hot wok.",
+        "action_id": "a3",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Egg mixture poured into the hot wok, starting to set. Progress: 0.4",
+        "state_id": "s4",
+        "metadata": {
+          "progress": 0.4
+        }
+      }
+    },
+    {
+      "transition_id": "t_4",
+      "start_state": {
+        "description": "Egg mixture poured into the hot wok, starting to set. Progress: 0.4",
+        "state_id": "s4",
+        "metadata": {
+          "progress": 0.4
+        }
+      },
+      "action": {
+        "description": "Gently stir the eggs with a spatula as they begin to cook.",
+        "action_id": "a4",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Gently stirring the eggs with a spatula, cooking begins. Progress: 0.5",
+        "state_id": "s5",
+        "metadata": {
+          "progress": 0.5
+        }
+      }
+    },
+    {
+      "transition_id": "t_5",
+      "start_state": {
+        "description": "Gently stirring the eggs with a spatula, cooking begins. Progress: 0.5",
+        "state_id": "s5",
+        "metadata": {
+          "progress": 0.5
+        }
+      },
+      "action": {
+        "description": "Continue stirring, ensuring eggs cook evenly. Add chopped scallions. ",
+        "action_id": "a5",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Eggs are mostly cooked, still slightly moist. Scallions are added. Progress: 0.7",
+        "state_id": "s6",
+        "metadata": {
+          "progress": 0.7
+        }
+      }
+    },
+    {
+      "transition_id": "t_6",
+      "start_state": {
+        "description": "Eggs are mostly cooked, still slightly moist. Scallions are added. Progress: 0.7",
+        "state_id": "s6",
+        "metadata": {
+          "progress": 0.7
+        }
+      },
+      "action": {
+        "description": "Continue cooking until eggs are set but still slightly moist and fluffy.",
+        "action_id": "a6",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Eggs are almost fully cooked, fluffy and golden. Progress: 0.8",
+        "state_id": "s7",
+        "metadata": {
+          "progress": 0.8
+        }
+      }
+    },
+    {
+      "transition_id": "t_7",
+      "start_state": {
+        "description": "Eggs are almost fully cooked, fluffy and golden. Progress: 0.8",
+        "state_id": "s7",
+        "metadata": {
+          "progress": 0.8
+        }
+      },
+      "action": {
+        "description": "Remove the wok from the heat.",
+        "action_id": "a7",
+        "action_type": "finishing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Scrambled eggs removed from heat, seasoned to taste. Progress: 0.9",
+        "state_id": "s8",
+        "metadata": {
+          "progress": 0.9
+        }
+      }
+    },
+    {
+      "transition_id": "t_8",
+      "start_state": {
+        "description": "Scrambled eggs removed from heat, seasoned to taste. Progress: 0.9",
+        "state_id": "s8",
+        "metadata": {
+          "progress": 0.9
+        }
+      },
+      "action": {
+        "description": "Season eggs with salt and serve on a plate.",
+        "action_id": "a8",
+        "action_type": "finishing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Perfectly cooked scrambled eggs with scallions served on a plate, golden and fluffy. Progress: 1.0",
+        "state_id": "s9",
+        "metadata": {
+          "progress": 1.0
+        }
+      }
+    }
+  ],
+  "initial_state": {
+    "description": "Clean kitchen. Wok on counter. Eggs, scallions, salt, oil on counter. Stove off. Progress: 0.0",
+    "state_id": "s0",
+    "metadata": {
+      "progress": 0.0
+    }
+  },
+  "goal_states": [
+    {
+      "description": "Perfectly cooked scrambled eggs with scallions served on a plate, golden and fluffy. Progress: 1.0",
+      "state_id": "s9",
+      "metadata": {
+        "progress": 1.0
+      }
+    }
+  ],
+  "final_states": [
+    {
+      "description": "Perfectly cooked scrambled eggs with scallions served on a plate, golden and fluffy. Progress: 1.0",
+      "state_id": "s9",
+      "metadata": {
+        "progress": 1.0
+      }
+    }
+  ],
+  "goal_state": {
+    "description": "Perfectly cooked scrambled eggs with scallions served on a plate, golden and fluffy. Progress: 1.0",
+    "state_id": "s9",
+    "metadata": {
+      "progress": 1.0
+    }
+  }
+}

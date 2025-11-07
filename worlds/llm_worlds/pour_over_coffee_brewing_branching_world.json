@@ -1,0 +1,804 @@
+{
+  "name": "pour_over_coffee_brewing_branching",
+  "description": "Branching world with multiple paths and endings",
+  "states": [
+    {
+      "description": "Coffee station with whole beans, grinder, pour-over dripper, filter in dripper, kettle with hot water (93\u00b0C), scale, and empty cup. Beans are whole.",
+      "state_id": "s0",
+      "metadata": {
+        "progress": 0.0
+      }
+    },
+    {
+      "description": "Whole beans measured (20g) and ready. Grinder set to medium-coarse. Filter is wet and seated in the dripper, placed on the scale.",
+      "state_id": "s1",
+      "metadata": {
+        "progress": 0.1
+      }
+    },
+    {
+      "description": "Measured beans ground to medium-coarse and in the dripper. Scale reads 20g of grounds.",
+      "state_id": "s2",
+      "metadata": {
+        "progress": 0.3
+      }
+    },
+    {
+      "description": "Ground coffee is blooming with 40g of hot water (93\u00b0C). Blooming for 30 seconds.",
+      "state_id": "s3",
+      "metadata": {
+        "progress": 0.4
+      }
+    },
+    {
+      "description": "Water pouring onto grounds. Flow rate is medium. Observing extraction.",
+      "state_id": "s4",
+      "metadata": {
+        "progress": 0.5
+      }
+    },
+    {
+      "description": "Water pouring onto grounds. Flow rate slightly slowed. Coffee extraction is progressing well, observing the flow rate of the water.",
+      "state_id": "s5",
+      "metadata": {
+        "progress": 0.6
+      }
+    },
+    {
+      "description": "Coffee brewing is nearly complete. Water level nearly reached. Extraction looks good, no bitter or sour notes detected.",
+      "state_id": "s6",
+      "metadata": {
+        "progress": 0.7
+      }
+    },
+    {
+      "description": "All water has dripped through the grounds. Dripper removed from the cup.",
+      "state_id": "s7",
+      "metadata": {
+        "progress": 0.8
+      }
+    },
+    {
+      "description": "Freshly brewed pour-over coffee in the cup, aromatic and well-extracted. Grounds remain in the filter.",
+      "state_id": "s8",
+      "metadata": {
+        "progress": 1.0
+      }
+    },
+    {
+      "description": "The beans are ground, but the grind size is inconsistent. Some particles are very fine (fines), some are large, and many are a mixture of sizes.",
+      "state_id": "s1_alt_0",
+      "metadata": {
+        "progress": "0.1"
+      }
+    },
+    {
+      "description": "The whole beans are measured and ready. The grinder is set to medium-coarse, and the grounds are ready.",
+      "state_id": "s1_alt_1",
+      "metadata": {
+        "progress": "0.3"
+      }
+    },
+    {
+      "description": "The pour-over coffee is clear, aromatic, and rich with a full body. The bloom was perfect, the water dripped consistently, and the resulting coffee is a perfect balance of acidity, sweetness, and bitterness. The grounds are evenly saturated and neatly contained in the filter.",
+      "state_id": "s_perfect",
+      "metadata": {
+        "quality": 1.0,
+        "outcome": "success",
+        "reason": "Expert technique applied throughout the entire process: accurate water temperature, consistent pouring speed, and appropriate bloom time."
+      }
+    },
+    {
+      "description": "The coffee has a burnt and acrid taste, and is undrinkable. The grounds were over-extracted, possibly due to excessively hot water or pouring for too long. The filter may have overflowed, creating a mess.",
+      "state_id": "f_wrong_result",
+      "metadata": {
+        "quality": 0.1,
+        "outcome": "failure",
+        "reason": "Significant error: Water was too hot, grind size was too fine, or pouring was too aggressive."
+      }
+    },
+    {
+      "description": "The water flows through the grounds much faster, leading to a thinner, less concentrated initial brew. Some grounds appear less extracted than others, indicating channeling.",
+      "state_id": "s4_alt_0",
+      "metadata": {
+        "progress": "0.3"
+      }
+    },
+    {
+      "description": "The coffee is well-brewed, with a pleasant aroma and good flavor. There's a slight imbalance in the taste profile \u2013 perhaps a touch too much bitterness or a hint of underdeveloped acidity. The grounds appear mostly evenly saturated.",
+      "state_id": "s_good",
+      "metadata": {
+        "quality": 0.8,
+        "outcome": "success",
+        "reason": "Good technique with minor imperfections: slight inconsistency in pouring, or water temperature not perfectly calibrated."
+      }
+    },
+    {
+      "description": "The coffee is drinkable, but the flavor is somewhat muted. The brew is a little weak or slightly bitter. The grounds appear somewhat unevenly saturated.",
+      "state_id": "s_acceptable",
+      "metadata": {
+        "quality": 0.6,
+        "outcome": "success",
+        "reason": "Minor errors in technique: pouring too quickly at some points, or slightly off water temperature."
+      }
+    }
+  ],
+  "actions": [
+    {
+      "description": "Measure 20g of whole beans.",
+      "action_id": "a0",
+      "action_type": "preparation",
+      "metadata": {}
+    },
+    {
+      "description": "Grind the measured beans to a medium-coarse consistency.",
+      "action_id": "a1",
+      "action_type": "preparation",
+      "metadata": {}
+    },
+    {
+      "description": "Bloom the grounds with 40g of hot water (93\u00b0C) for 30 seconds.",
+      "action_id": "a2",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Begin pouring hot water slowly in a circular motion, maintaining a medium flow rate.",
+      "action_id": "a3",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Observe extraction and adjust the flow rate to maintain a consistent drip rate (slightly slowed).",
+      "action_id": "a4",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Continue pouring until the desired amount of coffee has been extracted, and most of the water has dripped through.",
+      "action_id": "a5",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Remove the dripper from the cup.",
+      "action_id": "a6",
+      "action_type": "finishing",
+      "metadata": {}
+    },
+    {
+      "description": "Discard the used grounds and enjoy the coffee.",
+      "action_id": "a7",
+      "action_type": "finishing",
+      "metadata": {}
+    },
+    {
+      "description": "Attempt to grind the beans using a blade grinder instead of a burr grinder, estimating the grind size by time.",
+      "action_id": null,
+      "action_type": "risky",
+      "metadata": {
+        "deviation_type": "risky",
+        "risk_level": "high",
+        "likely_outcome": "failure"
+      }
+    },
+    {
+      "description": "Inspect the grounds and realize the grind is too inconsistent. Discard the grounds and re-grind the beans using a burr grinder set to a medium-coarse setting.",
+      "action_id": "None_1",
+      "action_type": null,
+      "metadata": {}
+    },
+    {
+      "description": "Proceed with brewing the pour-over: bloom with 40g of hot water (200F) for 30 seconds, then slowly pour the remaining water (300g) over the grounds, ensuring even saturation.  Remove the dripper once dripping stops.",
+      "action_id": "None_2",
+      "action_type": null,
+      "metadata": {}
+    },
+    {
+      "description": "Use pre-ground coffee of the correct amount, skipping the grinding step.",
+      "action_id": null,
+      "action_type": "shortcut",
+      "metadata": {
+        "deviation_type": "shortcut",
+        "risk_level": "medium",
+        "likely_outcome": "partial_success"
+      }
+    },
+    {
+      "description": "Pour the excessively hot water over the coffee grounds continuously and slowly for a prolonged period, beyond the recommended brew time.",
+      "action_id": "None_1",
+      "action_type": null,
+      "metadata": {}
+    },
+    {
+      "description": "Increase the flow rate significantly, attempting to rush the brewing process and extract more coffee quickly.",
+      "action_id": null,
+      "action_type": "risky",
+      "metadata": {
+        "deviation_type": "risky",
+        "risk_level": "high",
+        "likely_outcome": "failure"
+      }
+    },
+    {
+      "description": "Decrease the flow rate to medium and swirl the coffee bed to agitate and redistribute the grounds.",
+      "action_id": "None_1",
+      "action_type": null,
+      "metadata": {}
+    },
+    {
+      "description": "Stop pouring the water and assume the extraction is complete; proceed to remove the pour-over setup.",
+      "action_id": null,
+      "action_type": "shortcut",
+      "metadata": {
+        "deviation_type": "shortcut",
+        "risk_level": "medium",
+        "likely_outcome": "partial_success"
+      }
+    },
+    {
+      "description": "Attempt to reuse the coffee grounds for a second, weaker brew by immediately adding more hot water to the dripper.",
+      "action_id": null,
+      "action_type": "risky",
+      "metadata": {
+        "deviation_type": "risky",
+        "risk_level": "medium",
+        "likely_outcome": "partial_success"
+      }
+    },
+    {
+      "description": "Quickly rinse the dripper and set it aside for the next use without cleaning thoroughly.",
+      "action_id": null,
+      "action_type": "shortcut",
+      "metadata": {
+        "deviation_type": "shortcut",
+        "risk_level": "low",
+        "likely_outcome": "partial_success"
+      }
+    }
+  ],
+  "transitions": [
+    {
+      "transition_id": "t_0",
+      "start_state": {
+        "description": "Coffee station with whole beans, grinder, pour-over dripper, filter in dripper, kettle with hot water (93\u00b0C), scale, and empty cup. Beans are whole.",
+        "state_id": "s0",
+        "metadata": {
+          "progress": 0.0
+        }
+      },
+      "action": {
+        "description": "Measure 20g of whole beans.",
+        "action_id": "a0",
+        "action_type": "preparation",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Whole beans measured (20g) and ready. Grinder set to medium-coarse. Filter is wet and seated in the dripper, placed on the scale.",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.1
+        }
+      }
+    },
+    {
+      "transition_id": "t_1",
+      "start_state": {
+        "description": "Whole beans measured (20g) and ready. Grinder set to medium-coarse. Filter is wet and seated in the dripper, placed on the scale.",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.1
+        }
+      },
+      "action": {
+        "description": "Grind the measured beans to a medium-coarse consistency.",
+        "action_id": "a1",
+        "action_type": "preparation",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Measured beans ground to medium-coarse and in the dripper. Scale reads 20g of grounds.",
+        "state_id": "s2",
+        "metadata": {
+          "progress": 0.3
+        }
+      }
+    },
+    {
+      "transition_id": "t_2",
+      "start_state": {
+        "description": "Measured beans ground to medium-coarse and in the dripper. Scale reads 20g of grounds.",
+        "state_id": "s2",
+        "metadata": {
+          "progress": 0.3
+        }
+      },
+      "action": {
+        "description": "Bloom the grounds with 40g of hot water (93\u00b0C) for 30 seconds.",
+        "action_id": "a2",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Ground coffee is blooming with 40g of hot water (93\u00b0C). Blooming for 30 seconds.",
+        "state_id": "s3",
+        "metadata": {
+          "progress": 0.4
+        }
+      }
+    },
+    {
+      "transition_id": "t_3",
+      "start_state": {
+        "description": "Ground coffee is blooming with 40g of hot water (93\u00b0C). Blooming for 30 seconds.",
+        "state_id": "s3",
+        "metadata": {
+          "progress": 0.4
+        }
+      },
+      "action": {
+        "description": "Begin pouring hot water slowly in a circular motion, maintaining a medium flow rate.",
+        "action_id": "a3",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Water pouring onto grounds. Flow rate is medium. Observing extraction.",
+        "state_id": "s4",
+        "metadata": {
+          "progress": 0.5
+        }
+      }
+    },
+    {
+      "transition_id": "t_4",
+      "start_state": {
+        "description": "Water pouring onto grounds. Flow rate is medium. Observing extraction.",
+        "state_id": "s4",
+        "metadata": {
+          "progress": 0.5
+        }
+      },
+      "action": {
+        "description": "Observe extraction and adjust the flow rate to maintain a consistent drip rate (slightly slowed).",
+        "action_id": "a4",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Water pouring onto grounds. Flow rate slightly slowed. Coffee extraction is progressing well, observing the flow rate of the water.",
+        "state_id": "s5",
+        "metadata": {
+          "progress": 0.6
+        }
+      }
+    },
+    {
+      "transition_id": "t_5",
+      "start_state": {
+        "description": "Water pouring onto grounds. Flow rate slightly slowed. Coffee extraction is progressing well, observing the flow rate of the water.",
+        "state_id": "s5",
+        "metadata": {
+          "progress": 0.6
+        }
+      },
+      "action": {
+        "description": "Continue pouring until the desired amount of coffee has been extracted, and most of the water has dripped through.",
+        "action_id": "a5",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Coffee brewing is nearly complete. Water level nearly reached. Extraction looks good, no bitter or sour notes detected.",
+        "state_id": "s6",
+        "metadata": {
+          "progress": 0.7
+        }
+      }
+    },
+    {
+      "transition_id": "t_6",
+      "start_state": {
+        "description": "Coffee brewing is nearly complete. Water level nearly reached. Extraction looks good, no bitter or sour notes detected.",
+        "state_id": "s6",
+        "metadata": {
+          "progress": 0.7
+        }
+      },
+      "action": {
+        "description": "Remove the dripper from the cup.",
+        "action_id": "a6",
+        "action_type": "finishing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "All water has dripped through the grounds. Dripper removed from the cup.",
+        "state_id": "s7",
+        "metadata": {
+          "progress": 0.8
+        }
+      }
+    },
+    {
+      "transition_id": "t_7",
+      "start_state": {
+        "description": "All water has dripped through the grounds. Dripper removed from the cup.",
+        "state_id": "s7",
+        "metadata": {
+          "progress": 0.8
+        }
+      },
+      "action": {
+        "description": "Discard the used grounds and enjoy the coffee.",
+        "action_id": "a7",
+        "action_type": "finishing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Freshly brewed pour-over coffee in the cup, aromatic and well-extracted. Grounds remain in the filter.",
+        "state_id": "s8",
+        "metadata": {
+          "progress": 1.0
+        }
+      }
+    },
+    {
+      "transition_id": "t_8",
+      "start_state": {
+        "description": "Whole beans measured (20g) and ready. Grinder set to medium-coarse. Filter is wet and seated in the dripper, placed on the scale.",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.1
+        }
+      },
+      "action": {
+        "description": "Attempt to grind the beans using a blade grinder instead of a burr grinder, estimating the grind size by time.",
+        "action_id": null,
+        "action_type": "risky",
+        "metadata": {
+          "deviation_type": "risky",
+          "risk_level": "high",
+          "likely_outcome": "failure"
+        }
+      },
+      "end_state": {
+        "description": "The beans are ground, but the grind size is inconsistent. Some particles are very fine (fines), some are large, and many are a mixture of sizes.",
+        "state_id": "s1_alt_0",
+        "metadata": {
+          "progress": "0.1"
+        }
+      }
+    },
+    {
+      "transition_id": "t_9",
+      "start_state": {
+        "description": "The beans are ground, but the grind size is inconsistent. Some particles are very fine (fines), some are large, and many are a mixture of sizes.",
+        "state_id": "s1_alt_0",
+        "metadata": {
+          "progress": "0.1"
+        }
+      },
+      "action": {
+        "description": "Inspect the grounds and realize the grind is too inconsistent. Discard the grounds and re-grind the beans using a burr grinder set to a medium-coarse setting.",
+        "action_id": "None_1",
+        "action_type": null,
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "The whole beans are measured and ready. The grinder is set to medium-coarse, and the grounds are ready.",
+        "state_id": "s1_alt_1",
+        "metadata": {
+          "progress": "0.3"
+        }
+      }
+    },
+    {
+      "transition_id": "t_10",
+      "start_state": {
+        "description": "The whole beans are measured and ready. The grinder is set to medium-coarse, and the grounds are ready.",
+        "state_id": "s1_alt_1",
+        "metadata": {
+          "progress": "0.3"
+        }
+      },
+      "action": {
+        "description": "Proceed with brewing the pour-over: bloom with 40g of hot water (200F) for 30 seconds, then slowly pour the remaining water (300g) over the grounds, ensuring even saturation.  Remove the dripper once dripping stops.",
+        "action_id": "None_2",
+        "action_type": null,
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "The pour-over coffee is clear, aromatic, and rich with a full body. The bloom was perfect, the water dripped consistently, and the resulting coffee is a perfect balance of acidity, sweetness, and bitterness. The grounds are evenly saturated and neatly contained in the filter.",
+        "state_id": "s_perfect",
+        "metadata": {
+          "quality": 1.0,
+          "outcome": "success",
+          "reason": "Expert technique applied throughout the entire process: accurate water temperature, consistent pouring speed, and appropriate bloom time."
+        }
+      }
+    },
+    {
+      "transition_id": "t_11",
+      "start_state": {
+        "description": "Whole beans measured (20g) and ready. Grinder set to medium-coarse. Filter is wet and seated in the dripper, placed on the scale.",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.1
+        }
+      },
+      "action": {
+        "description": "Use pre-ground coffee of the correct amount, skipping the grinding step.",
+        "action_id": null,
+        "action_type": "shortcut",
+        "metadata": {
+          "deviation_type": "shortcut",
+          "risk_level": "medium",
+          "likely_outcome": "partial_success"
+        }
+      },
+      "end_state": {
+        "description": "Pre-ground coffee (20g) is in the wet filter, which is seated on the dripper, placed on the scale. Water is heated to a high temperature, hotter than 200\u00b0F (93\u00b0C).",
+        "state_id": "s1_alt_0",
+        "metadata": {
+          "progress": "0.3"
+        }
+      }
+    },
+    {
+      "transition_id": "t_12",
+      "start_state": {
+        "description": "Pre-ground coffee (20g) is in the wet filter, which is seated on the dripper, placed on the scale. Water is heated to a high temperature, hotter than 200\u00b0F (93\u00b0C).",
+        "state_id": "s1_alt_0",
+        "metadata": {
+          "progress": "0.3"
+        }
+      },
+      "action": {
+        "description": "Pour the excessively hot water over the coffee grounds continuously and slowly for a prolonged period, beyond the recommended brew time.",
+        "action_id": "None_1",
+        "action_type": null,
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "The coffee has a burnt and acrid taste, and is undrinkable. The grounds were over-extracted, possibly due to excessively hot water or pouring for too long. The filter may have overflowed, creating a mess.",
+        "state_id": "f_wrong_result",
+        "metadata": {
+          "quality": 0.1,
+          "outcome": "failure",
+          "reason": "Significant error: Water was too hot, grind size was too fine, or pouring was too aggressive."
+        }
+      }
+    },
+    {
+      "transition_id": "t_13",
+      "start_state": {
+        "description": "Water pouring onto grounds. Flow rate is medium. Observing extraction.",
+        "state_id": "s4",
+        "metadata": {
+          "progress": 0.5
+        }
+      },
+      "action": {
+        "description": "Increase the flow rate significantly, attempting to rush the brewing process and extract more coffee quickly.",
+        "action_id": null,
+        "action_type": "risky",
+        "metadata": {
+          "deviation_type": "risky",
+          "risk_level": "high",
+          "likely_outcome": "failure"
+        }
+      },
+      "end_state": {
+        "description": "The water flows through the grounds much faster, leading to a thinner, less concentrated initial brew. Some grounds appear less extracted than others, indicating channeling.",
+        "state_id": "s4_alt_0",
+        "metadata": {
+          "progress": "0.3"
+        }
+      }
+    },
+    {
+      "transition_id": "t_14",
+      "start_state": {
+        "description": "The water flows through the grounds much faster, leading to a thinner, less concentrated initial brew. Some grounds appear less extracted than others, indicating channeling.",
+        "state_id": "s4_alt_0",
+        "metadata": {
+          "progress": "0.3"
+        }
+      },
+      "action": {
+        "description": "Decrease the flow rate to medium and swirl the coffee bed to agitate and redistribute the grounds.",
+        "action_id": "None_1",
+        "action_type": null,
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "The coffee is well-brewed, with a pleasant aroma and good flavor. There's a slight imbalance in the taste profile \u2013 perhaps a touch too much bitterness or a hint of underdeveloped acidity. The grounds appear mostly evenly saturated.",
+        "state_id": "s_good",
+        "metadata": {
+          "quality": 0.8,
+          "outcome": "success",
+          "reason": "Good technique with minor imperfections: slight inconsistency in pouring, or water temperature not perfectly calibrated."
+        }
+      }
+    },
+    {
+      "transition_id": "t_15",
+      "start_state": {
+        "description": "Water pouring onto grounds. Flow rate is medium. Observing extraction.",
+        "state_id": "s4",
+        "metadata": {
+          "progress": 0.5
+        }
+      },
+      "action": {
+        "description": "Stop pouring the water and assume the extraction is complete; proceed to remove the pour-over setup.",
+        "action_id": null,
+        "action_type": "shortcut",
+        "metadata": {
+          "deviation_type": "shortcut",
+          "risk_level": "medium",
+          "likely_outcome": "partial_success"
+        }
+      },
+      "end_state": {
+        "description": "The coffee has a burnt and acrid taste, and is undrinkable. The grounds were over-extracted, possibly due to excessively hot water or pouring for too long. The filter may have overflowed, creating a mess.",
+        "state_id": "f_wrong_result",
+        "metadata": {
+          "quality": 0.1,
+          "outcome": "failure",
+          "reason": "Significant error: Water was too hot, grind size was too fine, or pouring was too aggressive."
+        }
+      }
+    },
+    {
+      "transition_id": "t_16",
+      "start_state": {
+        "description": "All water has dripped through the grounds. Dripper removed from the cup.",
+        "state_id": "s7",
+        "metadata": {
+          "progress": 0.8
+        }
+      },
+      "action": {
+        "description": "Attempt to reuse the coffee grounds for a second, weaker brew by immediately adding more hot water to the dripper.",
+        "action_id": null,
+        "action_type": "risky",
+        "metadata": {
+          "deviation_type": "risky",
+          "risk_level": "medium",
+          "likely_outcome": "partial_success"
+        }
+      },
+      "end_state": {
+        "description": "The coffee is drinkable, but the flavor is somewhat muted. The brew is a little weak or slightly bitter. The grounds appear somewhat unevenly saturated.",
+        "state_id": "s_acceptable",
+        "metadata": {
+          "quality": 0.6,
+          "outcome": "success",
+          "reason": "Minor errors in technique: pouring too quickly at some points, or slightly off water temperature."
+        }
+      }
+    },
+    {
+      "transition_id": "t_17",
+      "start_state": {
+        "description": "All water has dripped through the grounds. Dripper removed from the cup.",
+        "state_id": "s7",
+        "metadata": {
+          "progress": 0.8
+        }
+      },
+      "action": {
+        "description": "Quickly rinse the dripper and set it aside for the next use without cleaning thoroughly.",
+        "action_id": null,
+        "action_type": "shortcut",
+        "metadata": {
+          "deviation_type": "shortcut",
+          "risk_level": "low",
+          "likely_outcome": "partial_success"
+        }
+      },
+      "end_state": {
+        "description": "The coffee has a burnt and acrid taste, and is undrinkable. The grounds were over-extracted, possibly due to excessively hot water or pouring for too long. The filter may have overflowed, creating a mess.",
+        "state_id": "f_wrong_result",
+        "metadata": {
+          "quality": 0.1,
+          "outcome": "failure",
+          "reason": "Significant error: Water was too hot, grind size was too fine, or pouring was too aggressive."
+        }
+      }
+    }
+  ],
+  "initial_state": {
+    "description": "Coffee station with whole beans, grinder, pour-over dripper, filter in dripper, kettle with hot water (93\u00b0C), scale, and empty cup. Beans are whole.",
+    "state_id": "s0",
+    "metadata": {
+      "progress": 0.0
+    }
+  },
+  "goal_states": [
+    {
+      "description": "The pour-over coffee is clear, aromatic, and rich with a full body. The bloom was perfect, the water dripped consistently, and the resulting coffee is a perfect balance of acidity, sweetness, and bitterness. The grounds are evenly saturated and neatly contained in the filter.",
+      "state_id": "s_perfect",
+      "metadata": {
+        "quality": 1.0,
+        "outcome": "success",
+        "reason": "Expert technique applied throughout the entire process: accurate water temperature, consistent pouring speed, and appropriate bloom time."
+      }
+    },
+    {
+      "description": "The coffee is well-brewed, with a pleasant aroma and good flavor. There's a slight imbalance in the taste profile \u2013 perhaps a touch too much bitterness or a hint of underdeveloped acidity. The grounds appear mostly evenly saturated.",
+      "state_id": "s_good",
+      "metadata": {
+        "quality": 0.8,
+        "outcome": "success",
+        "reason": "Good technique with minor imperfections: slight inconsistency in pouring, or water temperature not perfectly calibrated."
+      }
+    },
+    {
+      "description": "The coffee is drinkable, but the flavor is somewhat muted. The brew is a little weak or slightly bitter. The grounds appear somewhat unevenly saturated.",
+      "state_id": "s_acceptable",
+      "metadata": {
+        "quality": 0.6,
+        "outcome": "success",
+        "reason": "Minor errors in technique: pouring too quickly at some points, or slightly off water temperature."
+      }
+    }
+  ],
+  "final_states": [
+    {
+      "description": "The pour-over coffee is clear, aromatic, and rich with a full body. The bloom was perfect, the water dripped consistently, and the resulting coffee is a perfect balance of acidity, sweetness, and bitterness. The grounds are evenly saturated and neatly contained in the filter.",
+      "state_id": "s_perfect",
+      "metadata": {
+        "quality": 1.0,
+        "outcome": "success",
+        "reason": "Expert technique applied throughout the entire process: accurate water temperature, consistent pouring speed, and appropriate bloom time."
+      }
+    },
+    {
+      "description": "The coffee is well-brewed, with a pleasant aroma and good flavor. There's a slight imbalance in the taste profile \u2013 perhaps a touch too much bitterness or a hint of underdeveloped acidity. The grounds appear mostly evenly saturated.",
+      "state_id": "s_good",
+      "metadata": {
+        "quality": 0.8,
+        "outcome": "success",
+        "reason": "Good technique with minor imperfections: slight inconsistency in pouring, or water temperature not perfectly calibrated."
+      }
+    },
+    {
+      "description": "The coffee is drinkable, but the flavor is somewhat muted. The brew is a little weak or slightly bitter. The grounds appear somewhat unevenly saturated.",
+      "state_id": "s_acceptable",
+      "metadata": {
+        "quality": 0.6,
+        "outcome": "success",
+        "reason": "Minor errors in technique: pouring too quickly at some points, or slightly off water temperature."
+      }
+    },
+    {
+      "description": "The brewing process was abandoned midway through. The water was poured, but not fully, and the brewing was not completed. The grounds were partially wet, and some water remained in the kettle.",
+      "state_id": "f_gave_up",
+      "metadata": {
+        "quality": 0.0,
+        "outcome": "failure",
+        "reason": "The user lost focus or was interrupted and stopped pouring before the process was completed."
+      }
+    },
+    {
+      "description": "The coffee has a burnt and acrid taste, and is undrinkable. The grounds were over-extracted, possibly due to excessively hot water or pouring for too long. The filter may have overflowed, creating a mess.",
+      "state_id": "f_wrong_result",
+      "metadata": {
+        "quality": 0.1,
+        "outcome": "failure",
+        "reason": "Significant error: Water was too hot, grind size was too fine, or pouring was too aggressive."
+      }
+    }
+  ],
+  "goal_state": {
+    "description": "The pour-over coffee is clear, aromatic, and rich with a full body. The bloom was perfect, the water dripped consistently, and the resulting coffee is a perfect balance of acidity, sweetness, and bitterness. The grounds are evenly saturated and neatly contained in the filter.",
+    "state_id": "s_perfect",
+    "metadata": {
+      "quality": 1.0,
+      "outcome": "success",
+      "reason": "Expert technique applied throughout the entire process: accurate water temperature, consistent pouring speed, and appropriate bloom time."
+    }
+  }
+}

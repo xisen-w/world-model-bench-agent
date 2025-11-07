@@ -1,0 +1,301 @@
+{
+  "name": "waste_recycling_sorting_linear",
+  "description": "Linear world for waste_recycling_sorting",
+  "states": [
+    {
+      "description": "Mixed waste pile containing: plastic bottles, paper, cardboard, metal cans, food-stained paper, and a plastic-coated cardboard container. Four bins labeled: Paper, Plastic, Metal, Contaminated/Trash.",
+      "state_id": "s0",
+      "metadata": {
+        "progress": 0.0
+      }
+    },
+    {
+      "description": "Plastic bottles and metal cans separated. Paper and the plastic-coated cardboard container remain in the mixed waste pile. Food-stained paper is also still in the pile.",
+      "state_id": "s1",
+      "metadata": {
+        "progress": 0.2
+      }
+    },
+    {
+      "description": "Plastic bottles in Plastic bin. Metal cans in Metal bin. Remaining in the mixed waste pile: Paper and plastic-coated cardboard container, plus food-stained paper. A paper item is mistakenly placed in the Metal bin.",
+      "state_id": "s2",
+      "metadata": {
+        "progress": 0.3
+      }
+    },
+    {
+      "description": "Plastic bottles in Plastic bin. Metal cans in Metal bin. Paper correctly separated into Paper bin. The plastic-coated cardboard container is now recognized as 'Contaminated'. Food-stained paper sorted as contaminated. The paper item, mistakenly in the Metal bin, is being corrected.",
+      "state_id": "s3",
+      "metadata": {
+        "progress": 0.6
+      }
+    },
+    {
+      "description": "Plastic bottles in Plastic bin. Metal cans in Metal bin. Paper correctly sorted in Paper bin. Plastic-coated cardboard container and food-stained paper in Contaminated/Trash bin. The paper item, removed from the Metal bin, is ready to be re-sorted.",
+      "state_id": "s4",
+      "metadata": {
+        "progress": 0.7
+      }
+    },
+    {
+      "description": "Plastic bottles in Plastic bin. Metal cans in Metal bin. Paper correctly sorted in Paper bin. Plastic-coated cardboard container and food-stained paper in Contaminated/Trash bin. The misclassified paper is in the Paper bin.",
+      "state_id": "s5",
+      "metadata": {
+        "progress": 0.8
+      }
+    },
+    {
+      "description": "Plastic bottles in Plastic bin. Metal cans in Metal bin. Paper in Paper bin. Plastic-coated cardboard container and food-stained paper in Contaminated/Trash bin. All items correctly sorted. Final inspection in progress.",
+      "state_id": "s6",
+      "metadata": {
+        "progress": 0.9
+      }
+    },
+    {
+      "description": "Plastic bottles in Plastic bin. Metal cans in Metal bin. Paper in Paper bin. Plastic-coated cardboard container and food-stained paper in Contaminated/Trash bin. All items correctly sorted and no contamination. Task completed.",
+      "state_id": "s7",
+      "metadata": {
+        "progress": 1.0
+      }
+    }
+  ],
+  "actions": [
+    {
+      "description": "Separate plastic bottles and metal cans from the mixed waste pile.",
+      "action_id": "a0",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Place plastic bottles into Plastic bin and metal cans into Metal bin. Begin sorting the remaining paper, cardboard and food stained items.",
+      "action_id": "a1",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Identify and begin the correct handling of the plastic-coated cardboard container by classifying it as contaminated. Also classify food stained paper as contaminated and move paper to paper bin.",
+      "action_id": "a2",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Move the misclassified paper item from the Metal bin into the Paper bin and the food stained items and plastic coated cardboard to Contaminated/Trash bin.",
+      "action_id": "a3",
+      "action_type": "correction",
+      "metadata": {}
+    },
+    {
+      "description": "Re-sort the paper item, now in the Paper bin.",
+      "action_id": "a4",
+      "action_type": "correction",
+      "metadata": {}
+    },
+    {
+      "description": "Perform final check, ensuring all items are correctly sorted and there is no contamination.",
+      "action_id": "a5",
+      "action_type": "finishing",
+      "metadata": {}
+    },
+    {
+      "description": "Confirm all items are sorted and free of contamination.",
+      "action_id": "a6",
+      "action_type": "finishing",
+      "metadata": {}
+    }
+  ],
+  "transitions": [
+    {
+      "transition_id": "t_0",
+      "start_state": {
+        "description": "Mixed waste pile containing: plastic bottles, paper, cardboard, metal cans, food-stained paper, and a plastic-coated cardboard container. Four bins labeled: Paper, Plastic, Metal, Contaminated/Trash.",
+        "state_id": "s0",
+        "metadata": {
+          "progress": 0.0
+        }
+      },
+      "action": {
+        "description": "Separate plastic bottles and metal cans from the mixed waste pile.",
+        "action_id": "a0",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Plastic bottles and metal cans separated. Paper and the plastic-coated cardboard container remain in the mixed waste pile. Food-stained paper is also still in the pile.",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.2
+        }
+      }
+    },
+    {
+      "transition_id": "t_1",
+      "start_state": {
+        "description": "Plastic bottles and metal cans separated. Paper and the plastic-coated cardboard container remain in the mixed waste pile. Food-stained paper is also still in the pile.",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.2
+        }
+      },
+      "action": {
+        "description": "Place plastic bottles into Plastic bin and metal cans into Metal bin. Begin sorting the remaining paper, cardboard and food stained items.",
+        "action_id": "a1",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Plastic bottles in Plastic bin. Metal cans in Metal bin. Remaining in the mixed waste pile: Paper and plastic-coated cardboard container, plus food-stained paper. A paper item is mistakenly placed in the Metal bin.",
+        "state_id": "s2",
+        "metadata": {
+          "progress": 0.3
+        }
+      }
+    },
+    {
+      "transition_id": "t_2",
+      "start_state": {
+        "description": "Plastic bottles in Plastic bin. Metal cans in Metal bin. Remaining in the mixed waste pile: Paper and plastic-coated cardboard container, plus food-stained paper. A paper item is mistakenly placed in the Metal bin.",
+        "state_id": "s2",
+        "metadata": {
+          "progress": 0.3
+        }
+      },
+      "action": {
+        "description": "Identify and begin the correct handling of the plastic-coated cardboard container by classifying it as contaminated. Also classify food stained paper as contaminated and move paper to paper bin.",
+        "action_id": "a2",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Plastic bottles in Plastic bin. Metal cans in Metal bin. Paper correctly separated into Paper bin. The plastic-coated cardboard container is now recognized as 'Contaminated'. Food-stained paper sorted as contaminated. The paper item, mistakenly in the Metal bin, is being corrected.",
+        "state_id": "s3",
+        "metadata": {
+          "progress": 0.6
+        }
+      }
+    },
+    {
+      "transition_id": "t_3",
+      "start_state": {
+        "description": "Plastic bottles in Plastic bin. Metal cans in Metal bin. Paper correctly separated into Paper bin. The plastic-coated cardboard container is now recognized as 'Contaminated'. Food-stained paper sorted as contaminated. The paper item, mistakenly in the Metal bin, is being corrected.",
+        "state_id": "s3",
+        "metadata": {
+          "progress": 0.6
+        }
+      },
+      "action": {
+        "description": "Move the misclassified paper item from the Metal bin into the Paper bin and the food stained items and plastic coated cardboard to Contaminated/Trash bin.",
+        "action_id": "a3",
+        "action_type": "correction",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Plastic bottles in Plastic bin. Metal cans in Metal bin. Paper correctly sorted in Paper bin. Plastic-coated cardboard container and food-stained paper in Contaminated/Trash bin. The paper item, removed from the Metal bin, is ready to be re-sorted.",
+        "state_id": "s4",
+        "metadata": {
+          "progress": 0.7
+        }
+      }
+    },
+    {
+      "transition_id": "t_4",
+      "start_state": {
+        "description": "Plastic bottles in Plastic bin. Metal cans in Metal bin. Paper correctly sorted in Paper bin. Plastic-coated cardboard container and food-stained paper in Contaminated/Trash bin. The paper item, removed from the Metal bin, is ready to be re-sorted.",
+        "state_id": "s4",
+        "metadata": {
+          "progress": 0.7
+        }
+      },
+      "action": {
+        "description": "Re-sort the paper item, now in the Paper bin.",
+        "action_id": "a4",
+        "action_type": "correction",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Plastic bottles in Plastic bin. Metal cans in Metal bin. Paper correctly sorted in Paper bin. Plastic-coated cardboard container and food-stained paper in Contaminated/Trash bin. The misclassified paper is in the Paper bin.",
+        "state_id": "s5",
+        "metadata": {
+          "progress": 0.8
+        }
+      }
+    },
+    {
+      "transition_id": "t_5",
+      "start_state": {
+        "description": "Plastic bottles in Plastic bin. Metal cans in Metal bin. Paper correctly sorted in Paper bin. Plastic-coated cardboard container and food-stained paper in Contaminated/Trash bin. The misclassified paper is in the Paper bin.",
+        "state_id": "s5",
+        "metadata": {
+          "progress": 0.8
+        }
+      },
+      "action": {
+        "description": "Perform final check, ensuring all items are correctly sorted and there is no contamination.",
+        "action_id": "a5",
+        "action_type": "finishing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Plastic bottles in Plastic bin. Metal cans in Metal bin. Paper in Paper bin. Plastic-coated cardboard container and food-stained paper in Contaminated/Trash bin. All items correctly sorted. Final inspection in progress.",
+        "state_id": "s6",
+        "metadata": {
+          "progress": 0.9
+        }
+      }
+    },
+    {
+      "transition_id": "t_6",
+      "start_state": {
+        "description": "Plastic bottles in Plastic bin. Metal cans in Metal bin. Paper in Paper bin. Plastic-coated cardboard container and food-stained paper in Contaminated/Trash bin. All items correctly sorted. Final inspection in progress.",
+        "state_id": "s6",
+        "metadata": {
+          "progress": 0.9
+        }
+      },
+      "action": {
+        "description": "Confirm all items are sorted and free of contamination.",
+        "action_id": "a6",
+        "action_type": "finishing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Plastic bottles in Plastic bin. Metal cans in Metal bin. Paper in Paper bin. Plastic-coated cardboard container and food-stained paper in Contaminated/Trash bin. All items correctly sorted and no contamination. Task completed.",
+        "state_id": "s7",
+        "metadata": {
+          "progress": 1.0
+        }
+      }
+    }
+  ],
+  "initial_state": {
+    "description": "Mixed waste pile containing: plastic bottles, paper, cardboard, metal cans, food-stained paper, and a plastic-coated cardboard container. Four bins labeled: Paper, Plastic, Metal, Contaminated/Trash.",
+    "state_id": "s0",
+    "metadata": {
+      "progress": 0.0
+    }
+  },
+  "goal_states": [
+    {
+      "description": "Plastic bottles in Plastic bin. Metal cans in Metal bin. Paper in Paper bin. Plastic-coated cardboard container and food-stained paper in Contaminated/Trash bin. All items correctly sorted and no contamination. Task completed.",
+      "state_id": "s7",
+      "metadata": {
+        "progress": 1.0
+      }
+    }
+  ],
+  "final_states": [
+    {
+      "description": "Plastic bottles in Plastic bin. Metal cans in Metal bin. Paper in Paper bin. Plastic-coated cardboard container and food-stained paper in Contaminated/Trash bin. All items correctly sorted and no contamination. Task completed.",
+      "state_id": "s7",
+      "metadata": {
+        "progress": 1.0
+      }
+    }
+  ],
+  "goal_state": {
+    "description": "Plastic bottles in Plastic bin. Metal cans in Metal bin. Paper in Paper bin. Plastic-coated cardboard container and food-stained paper in Contaminated/Trash bin. All items correctly sorted and no contamination. Task completed.",
+    "state_id": "s7",
+    "metadata": {
+      "progress": 1.0
+    }
+  }
+}

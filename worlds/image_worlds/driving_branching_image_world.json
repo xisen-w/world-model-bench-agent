@@ -1,0 +1,281 @@
+{
+  "name": "starting_to_drive_branching",
+  "text_world_source": "driving_branching_world",
+  "generation_metadata": {
+    "model": "gemini-2.5-flash-image",
+    "timestamp": "2025-10-29T16:41:30.444018",
+    "generation_strategy": "full_world",
+    "aspect_ratio": "16:9",
+    "camera_perspective": "first_person_ego"
+  },
+  "states": [
+    {
+      "state_id": "s0",
+      "text_description": "Driver sitting in parked car, engine off, car in a parking space in the parking lot. Seat and mirrors are unadjusted. Seatbelt unfastened.",
+      "image_path": "generated_images/starting_to_drive_branching/s0_000.png",
+      "generation_prompt": "First-person ego-centric view at eye level (1.6m height). Driver sitting in parked car, engine off, car in a parking space in the parking lot. Seat and mirrors are unadjusted. Seatbelt unfastened.. Realistic style, clear lighting, detailed.",
+      "parent_state_id": null,
+      "parent_action_id": null,
+      "reference_image": null,
+      "metadata": {
+        "progress": 0.0
+      }
+    },
+    {
+      "state_id": "s1",
+      "text_description": "Driver has adjusted seat and mirrors for optimal visibility and comfort. Seatbelt remains unfastened.",
+      "image_path": "generated_images/starting_to_drive_branching/s1_001.png",
+      "generation_prompt": "Same camera angle and scene layout. HOWEVER, IMPORTANT VISIBLE CHANGE: Adjust seat and mirrors to correct position.. The new state: Driver has adjusted seat and mirrors for optimal visibility and comfort. Seatbelt remains unfastened.. Make the change CLEARLY VISIBLE.",
+      "parent_state_id": "s0",
+      "parent_action_id": "a0",
+      "reference_image": "generated_images/starting_to_drive_branching/s0_000.png",
+      "metadata": {
+        "progress": 0.1
+      }
+    },
+    {
+      "state_id": "s2",
+      "text_description": "Driver has fastened seatbelt, confirming a secure fit. Car engine still off.",
+      "image_path": "generated_images/starting_to_drive_branching/s2_002.png",
+      "generation_prompt": "Same camera angle and scene layout. HOWEVER, IMPORTANT VISIBLE CHANGE: Fasten seatbelt.. The new state: Driver has fastened seatbelt, confirming a secure fit. Car engine still off.. Make the change CLEARLY VISIBLE.",
+      "parent_state_id": "s1",
+      "parent_action_id": "a1",
+      "reference_image": "generated_images/starting_to_drive_branching/s1_001.png",
+      "metadata": {
+        "progress": 0.3
+      }
+    },
+    {
+      "state_id": "s1_alt_0",
+      "text_description": "The car starts moving slowly out of the parking space, turn signal activated, the driver remains focused on the surroundings.",
+      "image_path": "generated_images/starting_to_drive_branching/s1_alt_0_003.png",
+      "generation_prompt": "Same camera angle and scene layout. HOWEVER, IMPORTANT VISIBLE CHANGE: Begin driving without fastening the seatbelt, assuming the short distance traveled doesn't warrant it.. The new state: The car starts moving slowly out of the parking space, turn signal activated, the driver remains focused on the surroundings.. Make the change CLEARLY VISIBLE.",
+      "parent_state_id": "s1",
+      "parent_action_id": null,
+      "reference_image": "generated_images/starting_to_drive_branching/s1_001.png",
+      "metadata": {
+        "progress": "0.4"
+      }
+    },
+    {
+      "state_id": "s3",
+      "text_description": "Driver has checked the immediate surroundings, including the rearview and side mirrors, ensuring no obstructions. Car engine still off.",
+      "image_path": "generated_images/starting_to_drive_branching/s3_004.png",
+      "generation_prompt": "Same camera angle and scene layout. HOWEVER, IMPORTANT VISIBLE CHANGE: Check surroundings (mirrors and visually).. The new state: Driver has checked the immediate surroundings, including the rearview and side mirrors, ensuring no obstructions. Car engine still off.. Make the change CLEARLY VISIBLE.",
+      "parent_state_id": "s2",
+      "parent_action_id": "a2",
+      "reference_image": "generated_images/starting_to_drive_branching/s2_002.png",
+      "metadata": {
+        "progress": 0.4
+      }
+    },
+    {
+      "state_id": "s_perfect",
+      "text_description": "The car smoothly exits the parking space, signaling clearly, and merges into traffic without incident. The driver maintains a safe following distance, observes all traffic laws, and anticipates potential hazards. All safety checks were performed meticulously, and the car is perfectly aligned in its lane.",
+      "image_path": "generated_images/starting_to_drive_branching/s_perfect_005.png",
+      "generation_prompt": "Same camera angle and scene layout. HOWEVER, IMPORTANT VISIBLE CHANGE: Carefully maneuver the car out of the parking space, checking mirrors and blind spots before signaling and merging into traffic.. The new state: The car smoothly exits the parking space, signaling clearly, and merges into traffic without incident. The driver maintains a safe following distance, observes all traffic laws, and anticipates potential hazards. All safety checks were performed meticulously, and the car is perfectly aligned in its lane.. Make the change CLEARLY VISIBLE.",
+      "parent_state_id": "s1_alt_0",
+      "parent_action_id": "None_1",
+      "reference_image": "generated_images/starting_to_drive_branching/s1_alt_0_003.png",
+      "metadata": {
+        "quality": 1.0,
+        "outcome": "success",
+        "reason": "The driver executed every step flawlessly, demonstrating excellent driving skills and adherence to safety protocols. No errors were made."
+      }
+    },
+    {
+      "state_id": "s4",
+      "text_description": "Driver has turned the ignition and the engine is now running. The car is still parked. Parking brake is engaged.",
+      "image_path": "generated_images/starting_to_drive_branching/s4_006.png",
+      "generation_prompt": "Same camera angle and scene layout. HOWEVER, IMPORTANT VISIBLE CHANGE: Start the engine.. The new state: Driver has turned the ignition and the engine is now running. The car is still parked. Parking brake is engaged.. Make the change CLEARLY VISIBLE.",
+      "parent_state_id": "s3",
+      "parent_action_id": "a3",
+      "reference_image": "generated_images/starting_to_drive_branching/s3_004.png",
+      "metadata": {
+        "progress": 0.5
+      }
+    },
+    {
+      "state_id": "s_good",
+      "text_description": "The car safely exits the parking space and merges into traffic. The driver signaled appropriately and maintained a safe following distance. There was a minor hesitation while merging, requiring a brief adjustment, but the maneuver was completed safely. All safety checks were performed.",
+      "image_path": "generated_images/starting_to_drive_branching/s_good_007.png",
+      "generation_prompt": "Same camera angle and scene layout. HOWEVER, IMPORTANT VISIBLE CHANGE: Attempt to start driving by rolling the car forward from a slight incline without starting the engine (hoping it will 'bump start').. The new state: The car safely exits the parking space and merges into traffic. The driver signaled appropriately and maintained a safe following distance. There was a minor hesitation while merging, requiring a brief adjustment, but the maneuver was completed safely. All safety checks were performed.. Make the change CLEARLY VISIBLE.",
+      "parent_state_id": "s3",
+      "parent_action_id": null,
+      "reference_image": "generated_images/starting_to_drive_branching/s3_004.png",
+      "metadata": {
+        "quality": 0.8,
+        "outcome": "success",
+        "reason": "The driver executed the maneuver successfully, with a small adjustment required. All safety protocols were followed, with only a minor delay."
+      }
+    },
+    {
+      "state_id": "s3_alt_0",
+      "text_description": "The car is now in drive, and the driver begins to accelerate slowly, intending to merge into traffic.",
+      "image_path": "generated_images/starting_to_drive_branching/s3_alt_0_008.png",
+      "generation_prompt": "Same camera angle and scene layout. HOWEVER, IMPORTANT VISIBLE CHANGE: Quickly glance at the rearview mirror and then immediately put the car in drive.. The new state: The car is now in drive, and the driver begins to accelerate slowly, intending to merge into traffic.. Make the change CLEARLY VISIBLE.",
+      "parent_state_id": "s3",
+      "parent_action_id": null,
+      "reference_image": "generated_images/starting_to_drive_branching/s3_004.png",
+      "metadata": {
+        "progress": "0.2"
+      }
+    },
+    {
+      "state_id": "s5",
+      "text_description": "Driver has released the parking brake. Car is still stationary, ready to move.",
+      "image_path": "generated_images/starting_to_drive_branching/s5_009.png",
+      "generation_prompt": "Same camera angle and scene layout. HOWEVER, IMPORTANT VISIBLE CHANGE: Release parking brake.. The new state: Driver has released the parking brake. Car is still stationary, ready to move.. Make the change CLEARLY VISIBLE.",
+      "parent_state_id": "s4",
+      "parent_action_id": "a4",
+      "reference_image": "generated_images/starting_to_drive_branching/s4_006.png",
+      "metadata": {
+        "progress": 0.7
+      }
+    },
+    {
+      "state_id": "s6",
+      "text_description": "Driver has checked blind spots and is preparing to pull out of the parking space. Car is in gear.",
+      "image_path": "generated_images/starting_to_drive_branching/s6_010.png",
+      "generation_prompt": "Same camera angle and scene layout. HOWEVER, IMPORTANT VISIBLE CHANGE: Check blind spots and prepare to pull out.. The new state: Driver has checked blind spots and is preparing to pull out of the parking space. Car is in gear.. Make the change CLEARLY VISIBLE.",
+      "parent_state_id": "s5",
+      "parent_action_id": "a5",
+      "reference_image": "generated_images/starting_to_drive_branching/s5_009.png",
+      "metadata": {
+        "progress": 0.8
+      }
+    },
+    {
+      "state_id": "s7",
+      "text_description": "Car safely driving on the road, having pulled out of the parking space and merged into traffic. All safety checks complete.",
+      "image_path": "generated_images/starting_to_drive_branching/s7_011.png",
+      "generation_prompt": "Same camera angle and scene layout. HOWEVER, IMPORTANT VISIBLE CHANGE: Pull out of parking space and merge into traffic safely.. The new state: Car safely driving on the road, having pulled out of the parking space and merged into traffic. All safety checks complete.. Make the change CLEARLY VISIBLE.",
+      "parent_state_id": "s6",
+      "parent_action_id": "a6",
+      "reference_image": "generated_images/starting_to_drive_branching/s6_010.png",
+      "metadata": {
+        "progress": 1.0
+      }
+    },
+    {
+      "state_id": "s_acceptable",
+      "text_description": "The car successfully merges into traffic after some initial difficulty, requiring a slightly longer time to position and merge. The driver signaled, but the merge was a bit hesitant. The car is on the road, traveling in the correct lane, after all safety checks were performed.",
+      "image_path": "generated_images/starting_to_drive_branching/s_acceptable_012.png",
+      "generation_prompt": "Same camera angle and scene layout. HOWEVER, IMPORTANT VISIBLE CHANGE: Quickly pull out of the parking space without thoroughly checking for approaching traffic, relying on a quick glance and the assumption there's enough space.. The new state: The car successfully merges into traffic after some initial difficulty, requiring a slightly longer time to position and merge. The driver signaled, but the merge was a bit hesitant. The car is on the road, traveling in the correct lane, after all safety checks were performed.. Make the change CLEARLY VISIBLE.",
+      "parent_state_id": "s6",
+      "parent_action_id": null,
+      "reference_image": "generated_images/starting_to_drive_branching/s6_010.png",
+      "metadata": {
+        "quality": 0.6,
+        "outcome": "success",
+        "reason": "The driver completed the task safely, though with some initial awkwardness in execution. Safety checks were performed, but the merge was not ideal."
+      }
+    }
+  ],
+  "transitions": [
+    {
+      "start_state_id": "s0",
+      "action_id": "a0",
+      "end_state_id": "s1",
+      "action_description": "Adjust seat and mirrors to correct position.",
+      "video_path": null,
+      "metadata": {}
+    },
+    {
+      "start_state_id": "s1",
+      "action_id": "a1",
+      "end_state_id": "s2",
+      "action_description": "Fasten seatbelt.",
+      "video_path": null,
+      "metadata": {}
+    },
+    {
+      "start_state_id": "s1",
+      "action_id": null,
+      "end_state_id": "s1_alt_0",
+      "action_description": "Begin driving without fastening the seatbelt, assuming the short distance traveled doesn't warrant it.",
+      "video_path": null,
+      "metadata": {}
+    },
+    {
+      "start_state_id": "s1",
+      "action_id": null,
+      "end_state_id": "s1_alt_0",
+      "action_description": "Begin driving without fastening the seatbelt.",
+      "video_path": null,
+      "metadata": {}
+    },
+    {
+      "start_state_id": "s2",
+      "action_id": "a2",
+      "end_state_id": "s3",
+      "action_description": "Check surroundings (mirrors and visually).",
+      "video_path": null,
+      "metadata": {}
+    },
+    {
+      "start_state_id": "s1_alt_0",
+      "action_id": "None_1",
+      "end_state_id": "s_perfect",
+      "action_description": "Carefully maneuver the car out of the parking space, checking mirrors and blind spots before signaling and merging into traffic.",
+      "video_path": null,
+      "metadata": {}
+    },
+    {
+      "start_state_id": "s3",
+      "action_id": "a3",
+      "end_state_id": "s4",
+      "action_description": "Start the engine.",
+      "video_path": null,
+      "metadata": {}
+    },
+    {
+      "start_state_id": "s3",
+      "action_id": null,
+      "end_state_id": "s_good",
+      "action_description": "Attempt to start driving by rolling the car forward from a slight incline without starting the engine (hoping it will 'bump start').",
+      "video_path": null,
+      "metadata": {}
+    },
+    {
+      "start_state_id": "s3",
+      "action_id": null,
+      "end_state_id": "s3_alt_0",
+      "action_description": "Quickly glance at the rearview mirror and then immediately put the car in drive.",
+      "video_path": null,
+      "metadata": {}
+    },
+    {
+      "start_state_id": "s4",
+      "action_id": "a4",
+      "end_state_id": "s5",
+      "action_description": "Release parking brake.",
+      "video_path": null,
+      "metadata": {}
+    },
+    {
+      "start_state_id": "s5",
+      "action_id": "a5",
+      "end_state_id": "s6",
+      "action_description": "Check blind spots and prepare to pull out.",
+      "video_path": null,
+      "metadata": {}
+    },
+    {
+      "start_state_id": "s6",
+      "action_id": "a6",
+      "end_state_id": "s7",
+      "action_description": "Pull out of parking space and merge into traffic safely.",
+      "video_path": null,
+      "metadata": {}
+    },
+    {
+      "start_state_id": "s6",
+      "action_id": null,
+      "end_state_id": "s_acceptable",
+      "action_description": "Quickly pull out of the parking space without thoroughly checking for approaching traffic, relying on a quick glance and the assumption there's enough space.",
+      "video_path": null,
+      "metadata": {}
+    }
+  ]
+}

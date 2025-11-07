@@ -19,7 +19,6 @@ from world_model_bench_agent.benchmark_curation import (
     State,
     Action,
     Transition,
-    StateActionGenerator
 )
 
 
@@ -32,22 +31,27 @@ class LLMWorldGenerator:
     2. expand_to_branching_world(): Adds branches, alternatives, and multiple endings
     """
 
-    def __init__(self, api_key: Optional[str] = None):
+    def __init__(self, api_key: Optional[str] = None, output_dir: str = "worlds/llm_worlds"):
         """
         Initialize the generator with Gemini API.
 
         Args:
             api_key: Google AI API key. If None, reads from GEMINI_KEY env var.
+            output_dir: Directory to save generated worlds. Defaults to "worlds/llm_worlds"
         """
         self.api_key = api_key or os.getenv("GEMINI_KEY")
         if not self.api_key:
             raise ValueError("GEMINI_KEY not found. Please set it in .env or pass it directly.")
 
+        self.output_dir = output_dir
+        os.makedirs(self.output_dir, exist_ok=True)
+
         # Initialize Gemini client
         try:
             from google import genai
             self.client = genai.Client(api_key=self.api_key)
-            self.model_id = "gemini-2.0-flash-exp"
+            # Use lite model with high quotas (4000 RPM, 4M TPM)
+            self.model_id = "gemini-2.0-flash-lite"
         except ImportError:
             raise ImportError("google-genai package not found. Install with: pip install google-genai")
 
@@ -87,14 +91,27 @@ class LLMWorldGenerator:
         print(f"\nGenerating linear world for scenario: {scenario}")
         print(f"Steps: {num_steps + 2} (including start and goal)")
 
+        # Detect driving scenario and use specialized prompt
+        is_driving = self._is_driving_scenario(scenario)
+
         # Build prompt
-        prompt = self._build_linear_world_prompt(
-            scenario=scenario,
-            initial_description=initial_description,
-            goal_description=goal_description,
-            num_steps=num_steps,
-            context=context
-        )
+        if is_driving:
+            print("  (Using driving-specific prompt generation)")
+            prompt = self._build_driving_linear_world_prompt(
+                scenario=scenario,
+                initial_description=initial_description,
+                goal_description=goal_description,
+                num_steps=num_steps,
+                context=context
+            )
+        else:
+            prompt = self._build_linear_world_prompt(
+                scenario=scenario,
+                initial_description=initial_description,
+                goal_description=goal_description,
+                num_steps=num_steps,
+                context=context
+            )
 
         # Call LLM
         print("Calling Gemini LLM...")
@@ -733,6 +750,156 @@ JSON:"""
                     queue.append(next_state)
 
         return reachable
+
+    # ========================================================================
+    # Driving-Specific World Generation
+    # ========================================================================
+
+    def _is_driving_scenario(self, scenario: str) -> bool:
+        """Detect if this is a driving scenario."""
+        driving_keywords = ["driving", "drive", "car", "vehicle", "starting"]
+        scenario_lower = scenario.lower()
+        return any(keyword in scenario_lower for keyword in driving_keywords)
+
+    def _build_driving_linear_world_prompt(
+        self,
+        scenario: str,
+        initial_description: str,
+        goal_description: str,
+        num_steps: int,
+        context: Optional[str]
+    ) -> str:
+        """Build prompt for driving scenario with heavy visual guidance."""
+        prompt = f"""You are a world model generator for driving scenarios. Generate a linear sequence of states and actions for starting to drive a car.
+
+Scenario: {scenario}
+Initial State: {initial_description}
+Goal State: {goal_description}
+Number of intermediate steps: {num_steps}
+"""
+        if context:
+            prompt += f"Additional Context: {context}\n"
+
+        prompt += f"""
+Generate a detailed state-action sequence with exactly {num_steps + 2} states (including initial and goal).
+
+CRITICAL REQUIREMENTS FOR DRIVING SCENARIOS:
+
+Each state description MUST specify from DRIVER'S EGOCENTRIC FIRST-PERSON PERSPECTIVE:
+
+1. **DASHBOARD STATUS** (Most important for visual distinction):
+   - Are dashboard indicator lights ON or OFF?
+   - If ON, specify which colored lights are visible (red check engine, yellow battery warning, green ready light, blue high beam, etc.)
+   - Speedometer reading (0 mph when parked, 15-25 mph when driving)
+   - Gear indicator display (P for Park, D for Drive, R for Reverse, N for Neutral)
+   - Is the dashboard glowing/illuminated or completely dark?
+
+   Example good: "dashboard completely DARK with all indicator lights OFF"
+   Example bad: "dashboard is off" (not specific enough)
+
+2. **SEATBELT STATUS** (Critical visual indicator):
+   - Is the seatbelt BUCKLED with the strap clearly visible across the driver's chest as a diagonal line from left shoulder to right hip?
+   - OR is it UNBUCKLED, hanging loose on the left side of the seat with no strap across the torso?
+   - This distinction must be EXPLICIT in every state description.
+
+   Example good: "seatbelt hanging loose and unbuckled on left side, no strap across chest"
+   Example bad: "seatbelt not fastened" (not visually descriptive)
+
+3. **HAND POSITIONS** (Creates visual variety):
+   - Where exactly are the driver's hands?
+   - Options: resting on lap, gripping steering wheel at 10 and 2 o'clock, on parking brake lever, on gear shift, on ignition key/button, adjusting mirrors, etc.
+   - Be specific about which hand is where.
+
+   Example good: "both hands resting on lap, not touching steering wheel"
+   Example bad: "hands idle" (not specific enough)
+
+4. **PARKING BRAKE** (Clear physical indicator):
+   - Is the parking brake lever in UP position (raised/engaged, clearly elevated between seats)?
+   - OR is it in DOWN position (lowered/released, flush with console)?
+   - Visible position must be stated.
+
+   Example good: "parking brake lever in UP engaged position, visible between seats"
+   Example bad: "parking brake on" (not visually descriptive)
+
+5. **IGNITION/ENGINE STATUS**:
+   - Key in OFF position (or button unpressed) with dashboard dark?
+   - OR engine running with dashboard illuminated and multiple colored indicator lights visible?
+   - State must match dashboard light status.
+
+6. **STEERING WHEEL INTERACTION**:
+   - Is it untouched and straight ahead?
+   - OR are hands actively gripping it?
+   - Position and interaction state.
+
+7. **ENVIRONMENT VIEW THROUGH WINDSHIELD**:
+   - What's visible through the windshield from driver's seated position?
+   - Stationary parking lot view with parked cars visible?
+   - OR moving road view indicating motion?
+   - This changes dramatically between parked and driving states.
+
+8. **GEAR SHIFT POSITION** (if visible):
+   - In Park position?
+   - Moved to Drive?
+   - Physical position of shift lever or display indicator.
+
+ACTIONS MUST SPECIFY:
+
+1. **Which hand performs what specific movement**:
+   - Example good: "Driver grasps seatbelt with left hand, pulls it diagonally across chest"
+   - Example bad: "Driver fastens seatbelt"
+
+2. **What VISUAL ELEMENT changes**:
+   - Example: "Dashboard lights turn ON, multiple colored indicators now glowing"
+   - Example: "Seatbelt strap appears across chest as diagonal line"
+   - Example: "Parking brake lever moves from UP to DOWN position"
+
+3. **Physical indicators that change position**:
+   - Parking brake lever UP → DOWN
+   - Gear shift P → D
+   - Ignition key OFF → ON
+   - Hands on lap → on wheel
+
+4. **What sounds occur** (optional but helpful):
+   - Seatbelt click
+   - Engine ignition sound
+   - Gear shift clunk
+
+EXAMPLE EXCELLENT STATE (s0 - initial):
+"Driver sitting in parked car from first-person perspective, both hands resting on lap not touching steering wheel, seatbelt hanging loose and unbuckled on left side with no strap across chest, dashboard completely DARK with all indicator lights OFF and instruments unlit, parking brake lever in UP engaged position clearly visible between seats, key in OFF position in ignition, windshield showing stationary parking lot view with parked cars visible, steering wheel untouched and centered in lower view, gear indicator showing P for Park."
+
+EXAMPLE EXCELLENT ACTION (a1 - fasten seatbelt):
+"Driver grasps seatbelt buckle with left hand from left side of seat, pulls seatbelt strap diagonally across chest from left shoulder toward right hip, guides metal buckle with right hand into receiver on right side of seat, pushes buckle in with audible click, releases both hands - seatbelt strap now secured and clearly visible as diagonal black strap across torso."
+
+EXAMPLE EXCELLENT STATE (s2 - after seatbelt):
+"Driver in parked car from first-person view, both hands returning to rest on lap, seatbelt now BUCKLED with strap clearly visible as diagonal line across chest from left shoulder to right hip with metal buckle secured on right side, dashboard still completely DARK with no lights illuminated, parking brake lever still in UP engaged position, engine still off with key in OFF position, windshield still showing stationary parking lot view, steering wheel untouched."
+
+EXAMPLE EXCELLENT STATE (s4 - after starting engine):
+"Driver in parked car from first-person view, right hand just released from ignition key, left hand resting on lap, seatbelt buckled across chest, dashboard now BRIGHTLY LIT with multiple colored indicator lights glowing (red check engine light, yellow battery warning, green ready indicator, blue high beam indicator), speedometer illuminated showing 0 mph, gear indicator display lit showing P, parking brake lever still in UP position, engine now running (audible idle), windshield still showing parking lot view."
+
+Requirements summary:
+1. Each state has DETAILED VISUAL SPECIFICATION with emphasis on dashboard, seatbelt, hand positions
+2. Progressive change across states is OBVIOUS and DRAMATIC
+3. Actions specify exact hand movements and resulting visual changes
+4. Maintain consistent first-person driver perspective
+5. Each state is VISUALLY DISTINCT from previous states
+
+Output ONLY valid JSON in this exact format:
+{{
+  "states": [
+    {{"id": "s0", "description": "...[FULL DETAILED DESCRIPTION AS SHOWN ABOVE]...", "progress": 0.0}},
+    {{"id": "s1", "description": "...[FULL DETAILED DESCRIPTION]...", "progress": 0.15}},
+    ...
+    {{"id": "s{num_steps + 1}", "description": "...[FULL DETAILED DESCRIPTION]...", "progress": 1.0}}
+  ],
+  "actions": [
+    {{"id": "a0", "description": "...[SPECIFIC ACTION WITH HAND MOVEMENTS]...", "from_state": "s0", "to_state": "s1", "action_type": "preparation"}},
+    {{"id": "a1", "description": "...[SPECIFIC ACTION]...", "from_state": "s1", "to_state": "s2", "action_type": "preparation"}},
+    ...
+  ]
+}}
+
+JSON:"""
+        return prompt
 
 
 # ============================================================================

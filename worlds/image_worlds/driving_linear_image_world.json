@@ -1,0 +1,247 @@
+{
+  "name": "starting_to_drive_linear",
+  "text_world_source": "starting_to_drive_linear",
+  "generation_metadata": {
+    "model": "gemini-2.5-flash-image",
+    "timestamp": "2025-10-30T15:58:19.855244",
+    "generation_strategy": "canonical_path",
+    "aspect_ratio": "16:9",
+    "camera_perspective": "first_person_ego"
+  },
+  "states": [
+    {
+      "state_id": "s0",
+      "text_description": "Driver sitting in parked car from first-person perspective, both hands resting on lap not touching steering wheel, seatbelt hanging loose and unbuckled on left side with no strap across chest, dashboard completely DARK with all indicator lights OFF and instruments unlit, parking brake lever in UP engaged position clearly visible between seats, key in OFF position in ignition, windshield showing stationary parking lot view with parked cars visible, steering wheel untouched and centered in lower view, gear indicator showing P for Park.",
+      "image_path": "generated_images/starting_to_drive_linear/s0_000.png",
+      "generation_prompt": "FIXED CAMERA POSITION (CRITICAL - MUST NOT CHANGE):\n- Position: Driver's seat, eye level (1.6m height), first-person egocentric view\n- Direction: Looking straight ahead through windshield\n- Framing: Steering wheel centered in bottom-middle of frame, dashboard visible at bottom edge, rearview mirror at top-center\n- Lens: 35mm equivalent, natural field of view\n- THIS CAMERA POSITION MUST REMAIN PIXEL-PERFECT IDENTICAL ACROSS ALL IMAGES\n\nINITIAL DRIVING STATE - Full Visual Specification:\n\nScene: Car interior from driver's first-person perspective\n\nDriver sitting in parked car from first-person perspective, both hands resting on lap not touching steering wheel, seatbelt hanging loose and unbuckled on left side with no strap across chest, dashboard completely DARK with all indicator lights OFF and instruments unlit, parking brake lever in UP engaged position clearly visible between seats, key in OFF position in ignition, windshield showing stationary parking lot view with parked cars visible, steering wheel untouched and centered in lower view, gear indicator showing P for Park.\n\nMUST SHOW (Required Visual Elements):\n\nSteering Wheel:\n- Centered in lower-middle portion of frame\n- Straight ahead orientation\n- Clearly visible\n\nDashboard:\n- Visible along bottom edge of frame\n- Indicator lights: ALL OFF (completely dark dashboard)\n- Speedometer: not mentioned\n- Gear display: P (Park)\n\nDriver Elements:\n- Hands: resting on lap, not touching steering wheel\n- Seatbelt: BUCKLED - diagonal strap visible across chest from left shoulder to right hip\n\nVehicle Controls:\n- Parking brake: lever in UP position (engaged)\n- Ignition: OFF position\n\nEnvironment:\n- Through windshield: stationary parking lot view\n\nRearview Mirror:\n- Visible at top-center of frame\n- Showing reflection of back seat\n\nPhotorealistic rendering, clear focus, natural lighting through windshield.",
+      "parent_state_id": null,
+      "parent_action_id": null,
+      "reference_image": null,
+      "metadata": {
+        "progress": 0.0,
+        "driving_elements": {
+          "dashboard_lights": "ALL OFF (completely dark dashboard)",
+          "seatbelt": "BUCKLED - diagonal strap visible across chest from left shoulder to right hip",
+          "hands": "resting on lap, not touching steering wheel",
+          "parking_brake": "lever in UP position (engaged)",
+          "gear": "P (Park)",
+          "environment": "stationary parking lot view",
+          "ignition": "OFF position",
+          "speedometer": "not mentioned"
+        }
+      }
+    },
+    {
+      "state_id": "s1",
+      "text_description": "Driver from first-person perspective, right hand reaching up to adjust rearview mirror, left hand still resting on lap, seatbelt hanging loose, dashboard still dark, parking brake lever up, engine off, stationary parking lot view.",
+      "image_path": "generated_images/starting_to_drive_linear/s1_001.png",
+      "generation_prompt": "FIXED CAMERA POSITION (CRITICAL - MUST NOT CHANGE):\n- Position: Driver's seat, eye level (1.6m height), first-person egocentric view\n- Direction: Looking straight ahead through windshield\n- Framing: Steering wheel centered in bottom-middle of frame, dashboard visible at bottom edge, rearview mirror at top-center\n- Lens: 35mm equivalent, natural field of view\n- THIS CAMERA POSITION MUST REMAIN PIXEL-PERFECT IDENTICAL ACROSS ALL IMAGES\n\nVARIATION IMAGE - Maintain Exact Camera Position\n\nCRITICAL: Generate variation of previous image with IDENTICAL camera angle and framing.\n\nACTION PERFORMED: Driver reaches up with right hand to adjust rearview mirror, moves it slightly, releases hand, then returns right hand to lap.\n\nWHAT MUST STAY IDENTICAL (DO NOT CHANGE):\n- Camera position and angle (locked driver POV)\n- Steering wheel position and appearance (same location in frame)\n- Dashboard layout and structure (same design)\n- Rearview mirror position (same location at top-center)\n- Windshield frame and edges\n- Overall car interior structure\n- Lighting conditions (unless specifically changed by action)\n\nONLY THESE ELEMENTS CHANGE:\n\nSeatbelt:\n- BEFORE: BUCKLED - diagonal strap visible across chest from left shoulder to right hip\n- AFTER: UNBUCKLED - hanging loose on left side, no strap across chest\n- MAKE THIS CHANGE CLEARLY VISIBLE\n\n\nNew State Description: Driver from first-person perspective, right hand reaching up to adjust rearview mirror, left hand still resting on lap, seatbelt hanging loose, dashboard still dark, parking brake lever up, engine off, stationary parking lot view.\n\nEMPHASIS: Make the visual changes DRAMATIC and OBVIOUS while keeping everything else pixel-perfect identical.\nUse the previous image as a strong reference for camera angle, framing, and unchanged elements.\nPhotorealistic rendering, maintain continuity.",
+      "parent_state_id": "s0",
+      "parent_action_id": "a0",
+      "reference_image": "generated_images/starting_to_drive_linear/s0_000.png",
+      "metadata": {
+        "progress": 0.1,
+        "driving_elements": {
+          "dashboard_lights": "ALL OFF (completely dark dashboard)",
+          "seatbelt": "UNBUCKLED - hanging loose on left side, no strap across chest",
+          "hands": "resting on lap, not touching steering wheel",
+          "parking_brake": "lever in UP position (engaged)",
+          "gear": "P (Park)",
+          "environment": "stationary parking lot view",
+          "ignition": "OFF position",
+          "speedometer": "not mentioned"
+        }
+      }
+    },
+    {
+      "state_id": "s2",
+      "text_description": "Driver in parked car, both hands resting on lap, seatbelt hanging loose and unbuckled, dashboard still completely DARK with all indicator lights OFF, parking brake lever in UP engaged position, engine still off with key in OFF position, windshield still showing stationary parking lot view, steering wheel untouched and centered, gear indicator P.",
+      "image_path": "generated_images/starting_to_drive_linear/s2_002.png",
+      "generation_prompt": "FIXED CAMERA POSITION (CRITICAL - MUST NOT CHANGE):\n- Position: Driver's seat, eye level (1.6m height), first-person egocentric view\n- Direction: Looking straight ahead through windshield\n- Framing: Steering wheel centered in bottom-middle of frame, dashboard visible at bottom edge, rearview mirror at top-center\n- Lens: 35mm equivalent, natural field of view\n- THIS CAMERA POSITION MUST REMAIN PIXEL-PERFECT IDENTICAL ACROSS ALL IMAGES\n\nVARIATION IMAGE - Maintain Exact Camera Position\n\nCRITICAL: Generate variation of previous image with IDENTICAL camera angle and framing.\n\nACTION PERFORMED: Driver grasps seatbelt buckle with left hand from left side of seat, pulls seatbelt strap diagonally across chest from left shoulder toward right hip, guides metal buckle with right hand into receiver on right side of seat, pushes buckle in with audible click, releases both hands - seatbelt strap now secured and clearly visible as diagonal black strap across torso.\n\nWHAT MUST STAY IDENTICAL (DO NOT CHANGE):\n- Camera position and angle (locked driver POV)\n- Steering wheel position and appearance (same location in frame)\n- Dashboard layout and structure (same design)\n- Rearview mirror position (same location at top-center)\n- Windshield frame and edges\n- Overall car interior structure\n- Lighting conditions (unless specifically changed by action)\n\nONLY THESE ELEMENTS CHANGE:\n\nSeatbelt:\n- BEFORE: UNBUCKLED - hanging loose on left side, no strap across chest\n- AFTER: BUCKLED - diagonal strap visible across chest from left shoulder to right hip\n- MAKE THIS CHANGE CLEARLY VISIBLE\n\n\nNew State Description: Driver in parked car, both hands resting on lap, seatbelt hanging loose and unbuckled, dashboard still completely DARK with all indicator lights OFF, parking brake lever in UP engaged position, engine still off with key in OFF position, windshield still showing stationary parking lot view, steering wheel untouched and centered, gear indicator P.\n\nEMPHASIS: Make the visual changes DRAMATIC and OBVIOUS while keeping everything else pixel-perfect identical.\nUse the previous image as a strong reference for camera angle, framing, and unchanged elements.\nPhotorealistic rendering, maintain continuity.",
+      "parent_state_id": "s1",
+      "parent_action_id": "a1",
+      "reference_image": "generated_images/starting_to_drive_linear/s1_001.png",
+      "metadata": {
+        "progress": 0.2,
+        "driving_elements": {
+          "dashboard_lights": "ALL OFF (completely dark dashboard)",
+          "seatbelt": "BUCKLED - diagonal strap visible across chest from left shoulder to right hip",
+          "hands": "resting on lap, not touching steering wheel",
+          "parking_brake": "lever in UP position (engaged)",
+          "gear": "P (Park)",
+          "environment": "stationary parking lot view",
+          "ignition": "OFF position",
+          "speedometer": "not mentioned"
+        }
+      }
+    },
+    {
+      "state_id": "s3",
+      "text_description": "Driver from first-person view, both hands returning to rest on lap, seatbelt now BUCKLED with strap clearly visible as diagonal line across chest from left shoulder to right hip with metal buckle secured on right side, dashboard still completely DARK with no lights illuminated, parking brake lever still in UP engaged position, engine still off with key in OFF position, windshield still showing stationary parking lot view, steering wheel untouched.",
+      "image_path": "generated_images/starting_to_drive_linear/s3_003.png",
+      "generation_prompt": "FIXED CAMERA POSITION (CRITICAL - MUST NOT CHANGE):\n- Position: Driver's seat, eye level (1.6m height), first-person egocentric view\n- Direction: Looking straight ahead through windshield\n- Framing: Steering wheel centered in bottom-middle of frame, dashboard visible at bottom edge, rearview mirror at top-center\n- Lens: 35mm equivalent, natural field of view\n- THIS CAMERA POSITION MUST REMAIN PIXEL-PERFECT IDENTICAL ACROSS ALL IMAGES\n\nVARIATION IMAGE - Maintain Exact Camera Position\n\nCRITICAL: Generate variation of previous image with IDENTICAL camera angle and framing.\n\nACTION PERFORMED: Driver grasps seatbelt buckle with left hand from left side of seat, pulls seatbelt strap diagonally across chest from left shoulder toward right hip, guides metal buckle with right hand into receiver on right side of seat, pushes buckle in with audible click, releases both hands - seatbelt strap now secured and clearly visible as diagonal black strap across torso.\n\nWHAT MUST STAY IDENTICAL (DO NOT CHANGE):\n- Camera position and angle (locked driver POV)\n- Steering wheel position and appearance (same location in frame)\n- Dashboard layout and structure (same design)\n- Rearview mirror position (same location at top-center)\n- Windshield frame and edges\n- Overall car interior structure\n- Lighting conditions (unless specifically changed by action)\n\nONLY THESE ELEMENTS CHANGE:\n\n\nNew State Description: Driver from first-person view, both hands returning to rest on lap, seatbelt now BUCKLED with strap clearly visible as diagonal line across chest from left shoulder to right hip with metal buckle secured on right side, dashboard still completely DARK with no lights illuminated, parking brake lever still in UP engaged position, engine still off with key in OFF position, windshield still showing stationary parking lot view, steering wheel untouched.\n\nEMPHASIS: Make the visual changes DRAMATIC and OBVIOUS while keeping everything else pixel-perfect identical.\nUse the previous image as a strong reference for camera angle, framing, and unchanged elements.\nPhotorealistic rendering, maintain continuity.",
+      "parent_state_id": "s2",
+      "parent_action_id": "a2",
+      "reference_image": "generated_images/starting_to_drive_linear/s2_002.png",
+      "metadata": {
+        "progress": 0.3,
+        "driving_elements": {
+          "dashboard_lights": "ALL OFF (completely dark dashboard)",
+          "seatbelt": "BUCKLED - diagonal strap visible across chest from left shoulder to right hip",
+          "hands": "resting on lap, not touching steering wheel",
+          "parking_brake": "lever in UP position (engaged)",
+          "gear": "P (Park)",
+          "environment": "stationary parking lot view",
+          "ignition": "OFF position",
+          "speedometer": "not mentioned"
+        }
+      }
+    },
+    {
+      "state_id": "s4",
+      "text_description": "Driver in parked car from first-person view, right hand now on ignition key/button, left hand resting on lap, seatbelt buckled across chest, dashboard now BRIGHTLY LIT with multiple colored indicator lights glowing (red check engine light, yellow battery warning, green ready indicator, blue high beam indicator), speedometer illuminated showing 0 mph, gear indicator display lit showing P, parking brake lever still in UP position, engine now running (audible idle), windshield still showing parking lot view.",
+      "image_path": "generated_images/starting_to_drive_linear/s4_004.png",
+      "generation_prompt": "FIXED CAMERA POSITION (CRITICAL - MUST NOT CHANGE):\n- Position: Driver's seat, eye level (1.6m height), first-person egocentric view\n- Direction: Looking straight ahead through windshield\n- Framing: Steering wheel centered in bottom-middle of frame, dashboard visible at bottom edge, rearview mirror at top-center\n- Lens: 35mm equivalent, natural field of view\n- THIS CAMERA POSITION MUST REMAIN PIXEL-PERFECT IDENTICAL ACROSS ALL IMAGES\n\nVARIATION IMAGE - Maintain Exact Camera Position\n\nCRITICAL: Generate variation of previous image with IDENTICAL camera angle and framing.\n\nACTION PERFORMED: Driver's right hand moves to and turns ignition key, engine makes starting sound, dashboard lights turn ON, multiple colored indicators now glowing.\n\nWHAT MUST STAY IDENTICAL (DO NOT CHANGE):\n- Camera position and angle (locked driver POV)\n- Steering wheel position and appearance (same location in frame)\n- Dashboard layout and structure (same design)\n- Rearview mirror position (same location at top-center)\n- Windshield frame and edges\n- Overall car interior structure\n- Lighting conditions (unless specifically changed by action)\n\nONLY THESE ELEMENTS CHANGE:\n\nDashboard Indicator Lights:\n- BEFORE: ALL OFF (completely dark dashboard)\n- AFTER: ON with indicators glowing (red check engine light, yellow battery warning, green ready indicator, blue high beam indicator)\n- MAKE THIS CHANGE DRAMATIC AND OBVIOUS\n\nSpeedometer:\n- BEFORE: not mentioned\n- AFTER: 0 mph\n\n\nNew State Description: Driver in parked car from first-person view, right hand now on ignition key/button, left hand resting on lap, seatbelt buckled across chest, dashboard now BRIGHTLY LIT with multiple colored indicator lights glowing (red check engine light, yellow battery warning, green ready indicator, blue high beam indicator), speedometer illuminated showing 0 mph, gear indicator display lit showing P, parking brake lever still in UP position, engine now running (audible idle), windshield still showing parking lot view.\n\nEMPHASIS: Make the visual changes DRAMATIC and OBVIOUS while keeping everything else pixel-perfect identical.\nUse the previous image as a strong reference for camera angle, framing, and unchanged elements.\nPhotorealistic rendering, maintain continuity.",
+      "parent_state_id": "s3",
+      "parent_action_id": "a3",
+      "reference_image": "generated_images/starting_to_drive_linear/s3_003.png",
+      "metadata": {
+        "progress": 0.45,
+        "driving_elements": {
+          "dashboard_lights": "ON with indicators glowing (red check engine light, yellow battery warning, green ready indicator, blue high beam indicator)",
+          "seatbelt": "BUCKLED - diagonal strap visible across chest from left shoulder to right hip",
+          "hands": "resting on lap, not touching steering wheel",
+          "parking_brake": "lever in UP position (engaged)",
+          "gear": "P (Park)",
+          "environment": "stationary parking lot view",
+          "ignition": "ON - engine running",
+          "speedometer": "0 mph"
+        }
+      }
+    },
+    {
+      "state_id": "s5",
+      "text_description": "Driver in parked car, right hand now released from ignition, left hand resting on lap, seatbelt buckled, dashboard illuminated with various indicator lights ON, speedometer 0 mph, gear indicator P, parking brake lever still UP, engine running, windshield view of parking lot.",
+      "image_path": "generated_images/starting_to_drive_linear/s5_005.png",
+      "generation_prompt": "FIXED CAMERA POSITION (CRITICAL - MUST NOT CHANGE):\n- Position: Driver's seat, eye level (1.6m height), first-person egocentric view\n- Direction: Looking straight ahead through windshield\n- Framing: Steering wheel centered in bottom-middle of frame, dashboard visible at bottom edge, rearview mirror at top-center\n- Lens: 35mm equivalent, natural field of view\n- THIS CAMERA POSITION MUST REMAIN PIXEL-PERFECT IDENTICAL ACROSS ALL IMAGES\n\nVARIATION IMAGE - Maintain Exact Camera Position\n\nCRITICAL: Generate variation of previous image with IDENTICAL camera angle and framing.\n\nACTION PERFORMED: Driver releases ignition key, right hand returns to lap, dashboard lights remain ON.\n\nWHAT MUST STAY IDENTICAL (DO NOT CHANGE):\n- Camera position and angle (locked driver POV)\n- Steering wheel position and appearance (same location in frame)\n- Dashboard layout and structure (same design)\n- Rearview mirror position (same location at top-center)\n- Windshield frame and edges\n- Overall car interior structure\n- Lighting conditions (unless specifically changed by action)\n\nONLY THESE ELEMENTS CHANGE:\n\nDashboard Indicator Lights:\n- BEFORE: ON with indicators glowing (red check engine light, yellow battery warning, green ready indicator, blue high beam indicator)\n- AFTER: ON and illuminated with colored indicators\n- MAKE THIS CHANGE DRAMATIC AND OBVIOUS\n\n\nNew State Description: Driver in parked car, right hand now released from ignition, left hand resting on lap, seatbelt buckled, dashboard illuminated with various indicator lights ON, speedometer 0 mph, gear indicator P, parking brake lever still UP, engine running, windshield view of parking lot.\n\nEMPHASIS: Make the visual changes DRAMATIC and OBVIOUS while keeping everything else pixel-perfect identical.\nUse the previous image as a strong reference for camera angle, framing, and unchanged elements.\nPhotorealistic rendering, maintain continuity.",
+      "parent_state_id": "s4",
+      "parent_action_id": "a4",
+      "reference_image": "generated_images/starting_to_drive_linear/s4_004.png",
+      "metadata": {
+        "progress": 0.6,
+        "driving_elements": {
+          "dashboard_lights": "ON and illuminated with colored indicators",
+          "seatbelt": "BUCKLED - diagonal strap visible across chest from left shoulder to right hip",
+          "hands": "resting on lap, not touching steering wheel",
+          "parking_brake": "lever in UP position (engaged)",
+          "gear": "P (Park)",
+          "environment": "stationary parking lot view",
+          "ignition": "ON - engine running",
+          "speedometer": "0 mph"
+        }
+      }
+    },
+    {
+      "state_id": "s6",
+      "text_description": "Driver in parked car from first-person perspective, right hand moving to gear shift, left hand on steering wheel, seatbelt buckled, dashboard illuminated, speedometer 0 mph, gear indicator now showing D, parking brake lever still in UP position, engine running, windshield view of parking lot, hands on wheel ready for action.",
+      "image_path": "generated_images/starting_to_drive_linear/s6_006.png",
+      "generation_prompt": "FIXED CAMERA POSITION (CRITICAL - MUST NOT CHANGE):\n- Position: Driver's seat, eye level (1.6m height), first-person egocentric view\n- Direction: Looking straight ahead through windshield\n- Framing: Steering wheel centered in bottom-middle of frame, dashboard visible at bottom edge, rearview mirror at top-center\n- Lens: 35mm equivalent, natural field of view\n- THIS CAMERA POSITION MUST REMAIN PIXEL-PERFECT IDENTICAL ACROSS ALL IMAGES\n\nVARIATION IMAGE - Maintain Exact Camera Position\n\nCRITICAL: Generate variation of previous image with IDENTICAL camera angle and framing.\n\nACTION PERFORMED: Driver's right hand moves to and shifts gear shift to D (Drive) position.\n\nWHAT MUST STAY IDENTICAL (DO NOT CHANGE):\n- Camera position and angle (locked driver POV)\n- Steering wheel position and appearance (same location in frame)\n- Dashboard layout and structure (same design)\n- Rearview mirror position (same location at top-center)\n- Windshield frame and edges\n- Overall car interior structure\n- Lighting conditions (unless specifically changed by action)\n\nONLY THESE ELEMENTS CHANGE:\n\nDashboard Indicator Lights:\n- BEFORE: ON and illuminated with colored indicators\n- AFTER: ON with indicators glowing (green ready indicator)\n- MAKE THIS CHANGE DRAMATIC AND OBVIOUS\n\nDriver's Hands:\n- BEFORE: resting on lap, not touching steering wheel\n- AFTER: gripping steering wheel (active driving position)\n\n\nNew State Description: Driver in parked car from first-person perspective, right hand moving to gear shift, left hand on steering wheel, seatbelt buckled, dashboard illuminated, speedometer 0 mph, gear indicator now showing D, parking brake lever still in UP position, engine running, windshield view of parking lot, hands on wheel ready for action.\n\nEMPHASIS: Make the visual changes DRAMATIC and OBVIOUS while keeping everything else pixel-perfect identical.\nUse the previous image as a strong reference for camera angle, framing, and unchanged elements.\nPhotorealistic rendering, maintain continuity.",
+      "parent_state_id": "s5",
+      "parent_action_id": "a5",
+      "reference_image": "generated_images/starting_to_drive_linear/s5_005.png",
+      "metadata": {
+        "progress": 0.8,
+        "driving_elements": {
+          "dashboard_lights": "ON with indicators glowing (green ready indicator)",
+          "seatbelt": "BUCKLED - diagonal strap visible across chest from left shoulder to right hip",
+          "hands": "gripping steering wheel (active driving position)",
+          "parking_brake": "lever in UP position (engaged)",
+          "gear": "P (Park)",
+          "environment": "stationary parking lot view",
+          "ignition": "ON - engine running",
+          "speedometer": "0 mph"
+        }
+      }
+    },
+    {
+      "state_id": "s7",
+      "text_description": "Driver in car, left hand gripping steering wheel at 9 and 3 o'clock positions, right hand released from gear shift and now on steering wheel, seatbelt buckled, dashboard illuminated, speedometer reading 15 mph, gear indicator D, parking brake lever is in DOWN position, engine running, windshield view now shows moving road view, car is moving safely on the road.",
+      "image_path": "generated_images/starting_to_drive_linear/s7_007.png",
+      "generation_prompt": "FIXED CAMERA POSITION (CRITICAL - MUST NOT CHANGE):\n- Position: Driver's seat, eye level (1.6m height), first-person egocentric view\n- Direction: Looking straight ahead through windshield\n- Framing: Steering wheel centered in bottom-middle of frame, dashboard visible at bottom edge, rearview mirror at top-center\n- Lens: 35mm equivalent, natural field of view\n- THIS CAMERA POSITION MUST REMAIN PIXEL-PERFECT IDENTICAL ACROSS ALL IMAGES\n\nVARIATION IMAGE - Maintain Exact Camera Position\n\nCRITICAL: Generate variation of previous image with IDENTICAL camera angle and framing.\n\nACTION PERFORMED: Driver's right foot depresses accelerator, left hand grips steering wheel at 9 and 3 o'clock, right hand moves from gear shift to steering wheel, and then right foot releases parking brake (audible click) and car begins to move forward.\n\nWHAT MUST STAY IDENTICAL (DO NOT CHANGE):\n- Camera position and angle (locked driver POV)\n- Steering wheel position and appearance (same location in frame)\n- Dashboard layout and structure (same design)\n- Rearview mirror position (same location at top-center)\n- Windshield frame and edges\n- Overall car interior structure\n- Lighting conditions (unless specifically changed by action)\n\nONLY THESE ELEMENTS CHANGE:\n\nDashboard Indicator Lights:\n- BEFORE: ON with indicators glowing (green ready indicator)\n- AFTER: ON and illuminated with colored indicators\n- MAKE THIS CHANGE DRAMATIC AND OBVIOUS\n\nParking Brake:\n- BEFORE: lever in UP position (engaged)\n- AFTER: lever in DOWN position (released)\n\nView Through Windshield:\n- BEFORE: stationary parking lot view\n- AFTER: moving road view (in motion)\n\nSpeedometer:\n- BEFORE: 0 mph\n- AFTER: 15 mph\n\n\nNew State Description: Driver in car, left hand gripping steering wheel at 9 and 3 o'clock positions, right hand released from gear shift and now on steering wheel, seatbelt buckled, dashboard illuminated, speedometer reading 15 mph, gear indicator D, parking brake lever is in DOWN position, engine running, windshield view now shows moving road view, car is moving safely on the road.\n\nEMPHASIS: Make the visual changes DRAMATIC and OBVIOUS while keeping everything else pixel-perfect identical.\nUse the previous image as a strong reference for camera angle, framing, and unchanged elements.\nPhotorealistic rendering, maintain continuity.",
+      "parent_state_id": "s6",
+      "parent_action_id": "a6",
+      "reference_image": "generated_images/starting_to_drive_linear/s6_006.png",
+      "metadata": {
+        "progress": 1.0,
+        "driving_elements": {
+          "dashboard_lights": "ON and illuminated with colored indicators",
+          "seatbelt": "BUCKLED - diagonal strap visible across chest from left shoulder to right hip",
+          "hands": "gripping steering wheel (active driving position)",
+          "parking_brake": "lever in DOWN position (released)",
+          "gear": "P (Park)",
+          "environment": "moving road view (in motion)",
+          "ignition": "ON - engine running",
+          "speedometer": "15 mph"
+        }
+      }
+    }
+  ],
+  "transitions": [
+    {
+      "start_state_id": "s0",
+      "action_id": "a0",
+      "end_state_id": "s1",
+      "action_description": "Driver reaches up with right hand to adjust rearview mirror, moves it slightly, releases hand, then returns right hand to lap.",
+      "video_path": null,
+      "metadata": {}
+    },
+    {
+      "start_state_id": "s1",
+      "action_id": "a1",
+      "end_state_id": "s2",
+      "action_description": "Driver grasps seatbelt buckle with left hand from left side of seat, pulls seatbelt strap diagonally across chest from left shoulder toward right hip, guides metal buckle with right hand into receiver on right side of seat, pushes buckle in with audible click, releases both hands - seatbelt strap now secured and clearly visible as diagonal black strap across torso.",
+      "video_path": null,
+      "metadata": {}
+    },
+    {
+      "start_state_id": "s2",
+      "action_id": "a2",
+      "end_state_id": "s3",
+      "action_description": "Driver grasps seatbelt buckle with left hand from left side of seat, pulls seatbelt strap diagonally across chest from left shoulder toward right hip, guides metal buckle with right hand into receiver on right side of seat, pushes buckle in with audible click, releases both hands - seatbelt strap now secured and clearly visible as diagonal black strap across torso.",
+      "video_path": null,
+      "metadata": {}
+    },
+    {
+      "start_state_id": "s3",
+      "action_id": "a3",
+      "end_state_id": "s4",
+      "action_description": "Driver's right hand moves to and turns ignition key, engine makes starting sound, dashboard lights turn ON, multiple colored indicators now glowing.",
+      "video_path": null,
+      "metadata": {}
+    },
+    {
+      "start_state_id": "s4",
+      "action_id": "a4",
+      "end_state_id": "s5",
+      "action_description": "Driver releases ignition key, right hand returns to lap, dashboard lights remain ON.",
+      "video_path": null,
+      "metadata": {}
+    },
+    {
+      "start_state_id": "s5",
+      "action_id": "a5",
+      "end_state_id": "s6",
+      "action_description": "Driver's right hand moves to and shifts gear shift to D (Drive) position.",
+      "video_path": null,
+      "metadata": {}
+    },
+    {
+      "start_state_id": "s6",
+      "action_id": "a6",
+      "end_state_id": "s7",
+      "action_description": "Driver's right foot depresses accelerator, left hand grips steering wheel at 9 and 3 o'clock, right hand moves from gear shift to steering wheel, and then right foot releases parking brake (audible click) and car begins to move forward.",
+      "video_path": null,
+      "metadata": {}
+    }
+  ]
+}

@@ -1,0 +1,668 @@
+{
+  "name": "Cloth Folding and Sorting",
+  "description": "A multi-ending world about folding and sorting laundry with different approaches and outcomes",
+  "states": [
+    {
+      "description": "Large pile of clean laundry dumped on bed - mixed clothes, towels, and linens all jumbled together",
+      "state_id": "s0",
+      "metadata": {
+        "sorting_progress": 0.0,
+        "organization_level": "chaotic"
+      }
+    },
+    {
+      "description": "Clothes carefully sorted into neat piles by category - shirts, pants, towels, linens each in separate stacks",
+      "state_id": "s1a",
+      "metadata": {
+        "sorting_progress": 0.3,
+        "organization_level": "organized",
+        "sorted_by_category": true
+      }
+    },
+    {
+      "description": "Grabbed random items from pile and started folding without sorting - mixed categories scattered around",
+      "state_id": "s1b",
+      "metadata": {
+        "sorting_progress": 0.1,
+        "organization_level": "messy",
+        "sorted_by_category": false
+      }
+    },
+    {
+      "description": "Methodically folding each category using proper techniques - crisp folds, uniform stack heights",
+      "state_id": "s2a",
+      "metadata": {
+        "sorting_progress": 0.6,
+        "organization_level": "excellent",
+        "folding_quality": "professional"
+      }
+    },
+    {
+      "description": "Haphazardly folding items in random order - some folded neatly, others crumpled, losing track of what's done",
+      "state_id": "s2b",
+      "metadata": {
+        "sorting_progress": 0.3,
+        "organization_level": "chaotic",
+        "folding_quality": "inconsistent"
+      }
+    },
+    {
+      "description": "All items folded beautifully - stacks organized by type, ready to be put away in drawers",
+      "state_id": "s3a",
+      "metadata": {
+        "sorting_progress": 0.9,
+        "organization_level": "perfect",
+        "folding_quality": "excellent"
+      }
+    },
+    {
+      "description": "Frustrated with tedious folding - some items tossed in wrinkled balls, debating whether to continue",
+      "state_id": "s2c",
+      "metadata": {
+        "sorting_progress": 0.25,
+        "organization_level": "deteriorating",
+        "frustration_level": "high"
+      }
+    },
+    {
+      "description": "Mixed results - some items folded acceptably, others barely folded, piles starting to tip over",
+      "state_id": "s3b",
+      "metadata": {
+        "sorting_progress": 0.6,
+        "organization_level": "unstable",
+        "folding_quality": "mediocre"
+      }
+    },
+    {
+      "description": "Gave up on folding properly - just making rough rectangles and stacking loosely",
+      "state_id": "s3c",
+      "metadata": {
+        "sorting_progress": 0.5,
+        "organization_level": "barely acceptable",
+        "folding_quality": "minimal"
+      }
+    },
+    {
+      "description": "Perfect completion: All laundry folded using Marie Kondo method, organized by category, stacked vertically in drawers for easy visibility",
+      "state_id": "s_perfect",
+      "metadata": {
+        "sorting_complete": true,
+        "quality": 1.0,
+        "outcome": "success",
+        "organization_level": "marie_kondo_level",
+        "time_taken": "careful"
+      }
+    },
+    {
+      "description": "Well organized: All laundry folded neatly, sorted by type, stacks are stable and tidy in closet",
+      "state_id": "s_organized",
+      "metadata": {
+        "sorting_complete": true,
+        "quality": 0.8,
+        "outcome": "success",
+        "organization_level": "very_good",
+        "time_taken": "moderate"
+      }
+    },
+    {
+      "description": "Acceptable finish: Laundry mostly folded, some wrinkles remain, stacks are uneven but functional",
+      "state_id": "s_acceptable",
+      "metadata": {
+        "sorting_complete": true,
+        "quality": 0.6,
+        "outcome": "success",
+        "organization_level": "adequate",
+        "wrinkles": "some"
+      }
+    },
+    {
+      "description": "Gave up frustrated: Half-folded pile abandoned on bed, many items still wrinkled and unfolded",
+      "state_id": "s_gave_up",
+      "metadata": {
+        "sorting_complete": false,
+        "quality": 0.2,
+        "outcome": "failure",
+        "organization_level": "failed",
+        "items_unfinished": "many"
+      }
+    },
+    {
+      "description": "Stuffed drawers: Gave up folding, just crammed everything into drawers - clothes compressed and wrinkled",
+      "state_id": "s_stuffed",
+      "metadata": {
+        "sorting_complete": false,
+        "quality": 0.3,
+        "outcome": "failure",
+        "organization_level": "compressed_chaos",
+        "wrinkles": "severe"
+      }
+    },
+    {
+      "description": "Stack collapse: Poorly stacked piles toppled over when moving them, clothes scattered across floor requiring re-folding",
+      "state_id": "s_avalanche",
+      "metadata": {
+        "sorting_complete": false,
+        "quality": 0.1,
+        "outcome": "failure",
+        "organization_level": "disaster",
+        "needs_refold": true
+      }
+    }
+  ],
+  "actions": [
+    {
+      "description": "Sort all clothes carefully by category before folding - shirts, pants, towels, linens",
+      "action_id": "a_sort_carefully",
+      "action_type": "preparation",
+      "metadata": {}
+    },
+    {
+      "description": "Skip sorting step and start folding items randomly from the pile",
+      "action_id": "a_skip_sorting",
+      "action_type": "preparation",
+      "metadata": {}
+    },
+    {
+      "description": "Fold each category methodically using proper folding techniques, taking time to make crisp folds",
+      "action_id": "a_fold_methodical",
+      "action_type": "execution",
+      "metadata": {}
+    },
+    {
+      "description": "Fold items randomly without system, using inconsistent techniques",
+      "action_id": "a_fold_random",
+      "action_type": "execution",
+      "metadata": {}
+    },
+    {
+      "description": "Continue folding carefully maintaining high quality standards throughout",
+      "action_id": "a_persist_quality",
+      "action_type": "persistence",
+      "metadata": {}
+    },
+    {
+      "description": "Get frustrated with tedious folding task, quality starts to decline",
+      "action_id": "a_get_frustrated",
+      "action_type": "emotional",
+      "metadata": {}
+    },
+    {
+      "description": "Finish with Marie Kondo vertical folding method, organize perfectly in drawers",
+      "action_id": "a_perfect_finish",
+      "action_type": "finishing",
+      "metadata": {}
+    },
+    {
+      "description": "Complete folding competently, stack neatly in closet",
+      "action_id": "a_good_finish",
+      "action_type": "finishing",
+      "metadata": {}
+    },
+    {
+      "description": "Give up in frustration, leave half-folded pile on bed",
+      "action_id": "a_quit_frustrated",
+      "action_type": "termination",
+      "metadata": {}
+    },
+    {
+      "description": "Rush through remaining items just to finish, quality suffers",
+      "action_id": "a_rush_finish",
+      "action_type": "finishing",
+      "metadata": {}
+    },
+    {
+      "description": "Give up folding, just stuff remaining clothes into drawers unfolded",
+      "action_id": "a_stuff_drawers",
+      "action_type": "termination",
+      "metadata": {}
+    },
+    {
+      "description": "Stack items sloppily without care for stability",
+      "action_id": "a_sloppy_stack",
+      "action_type": "finishing",
+      "metadata": {}
+    },
+    {
+      "description": "Fold quickly but acceptably, prioritize speed over perfection",
+      "action_id": "a_quick_acceptable",
+      "action_type": "finishing",
+      "metadata": {}
+    },
+    {
+      "description": "Try to move unstable stacks to closet",
+      "action_id": "a_move_stacks",
+      "action_type": "finishing",
+      "metadata": {}
+    }
+  ],
+  "transitions": [
+    {
+      "transition_id": "t_0",
+      "start_state": {
+        "description": "Large pile of clean laundry dumped on bed - mixed clothes, towels, and linens all jumbled together",
+        "state_id": "s0",
+        "metadata": {
+          "sorting_progress": 0.0,
+          "organization_level": "chaotic"
+        }
+      },
+      "action": {
+        "description": "Sort all clothes carefully by category before folding - shirts, pants, towels, linens",
+        "action_id": "a_sort_carefully",
+        "action_type": "preparation",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Clothes carefully sorted into neat piles by category - shirts, pants, towels, linens each in separate stacks",
+        "state_id": "s1a",
+        "metadata": {
+          "sorting_progress": 0.3,
+          "organization_level": "organized",
+          "sorted_by_category": true
+        }
+      }
+    },
+    {
+      "transition_id": "t_1",
+      "start_state": {
+        "description": "Large pile of clean laundry dumped on bed - mixed clothes, towels, and linens all jumbled together",
+        "state_id": "s0",
+        "metadata": {
+          "sorting_progress": 0.0,
+          "organization_level": "chaotic"
+        }
+      },
+      "action": {
+        "description": "Skip sorting step and start folding items randomly from the pile",
+        "action_id": "a_skip_sorting",
+        "action_type": "preparation",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Grabbed random items from pile and started folding without sorting - mixed categories scattered around",
+        "state_id": "s1b",
+        "metadata": {
+          "sorting_progress": 0.1,
+          "organization_level": "messy",
+          "sorted_by_category": false
+        }
+      }
+    },
+    {
+      "transition_id": "t_2",
+      "start_state": {
+        "description": "Clothes carefully sorted into neat piles by category - shirts, pants, towels, linens each in separate stacks",
+        "state_id": "s1a",
+        "metadata": {
+          "sorting_progress": 0.3,
+          "organization_level": "organized",
+          "sorted_by_category": true
+        }
+      },
+      "action": {
+        "description": "Fold each category methodically using proper folding techniques, taking time to make crisp folds",
+        "action_id": "a_fold_methodical",
+        "action_type": "execution",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Methodically folding each category using proper techniques - crisp folds, uniform stack heights",
+        "state_id": "s2a",
+        "metadata": {
+          "sorting_progress": 0.6,
+          "organization_level": "excellent",
+          "folding_quality": "professional"
+        }
+      }
+    },
+    {
+      "transition_id": "t_3",
+      "start_state": {
+        "description": "Grabbed random items from pile and started folding without sorting - mixed categories scattered around",
+        "state_id": "s1b",
+        "metadata": {
+          "sorting_progress": 0.1,
+          "organization_level": "messy",
+          "sorted_by_category": false
+        }
+      },
+      "action": {
+        "description": "Fold items randomly without system, using inconsistent techniques",
+        "action_id": "a_fold_random",
+        "action_type": "execution",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Haphazardly folding items in random order - some folded neatly, others crumpled, losing track of what's done",
+        "state_id": "s2b",
+        "metadata": {
+          "sorting_progress": 0.3,
+          "organization_level": "chaotic",
+          "folding_quality": "inconsistent"
+        }
+      }
+    },
+    {
+      "transition_id": "t_4",
+      "start_state": {
+        "description": "Methodically folding each category using proper techniques - crisp folds, uniform stack heights",
+        "state_id": "s2a",
+        "metadata": {
+          "sorting_progress": 0.6,
+          "organization_level": "excellent",
+          "folding_quality": "professional"
+        }
+      },
+      "action": {
+        "description": "Continue folding carefully maintaining high quality standards throughout",
+        "action_id": "a_persist_quality",
+        "action_type": "persistence",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "All items folded beautifully - stacks organized by type, ready to be put away in drawers",
+        "state_id": "s3a",
+        "metadata": {
+          "sorting_progress": 0.9,
+          "organization_level": "perfect",
+          "folding_quality": "excellent"
+        }
+      }
+    },
+    {
+      "transition_id": "t_5",
+      "start_state": {
+        "description": "Haphazardly folding items in random order - some folded neatly, others crumpled, losing track of what's done",
+        "state_id": "s2b",
+        "metadata": {
+          "sorting_progress": 0.3,
+          "organization_level": "chaotic",
+          "folding_quality": "inconsistent"
+        }
+      },
+      "action": {
+        "description": "Get frustrated with tedious folding task, quality starts to decline",
+        "action_id": "a_get_frustrated",
+        "action_type": "emotional",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Frustrated with tedious folding - some items tossed in wrinkled balls, debating whether to continue",
+        "state_id": "s2c",
+        "metadata": {
+          "sorting_progress": 0.25,
+          "organization_level": "deteriorating",
+          "frustration_level": "high"
+        }
+      }
+    },
+    {
+      "transition_id": "t_6",
+      "start_state": {
+        "description": "Haphazardly folding items in random order - some folded neatly, others crumpled, losing track of what's done",
+        "state_id": "s2b",
+        "metadata": {
+          "sorting_progress": 0.3,
+          "organization_level": "chaotic",
+          "folding_quality": "inconsistent"
+        }
+      },
+      "action": {
+        "description": "Stack items sloppily without care for stability",
+        "action_id": "a_sloppy_stack",
+        "action_type": "finishing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Mixed results - some items folded acceptably, others barely folded, piles starting to tip over",
+        "state_id": "s3b",
+        "metadata": {
+          "sorting_progress": 0.6,
+          "organization_level": "unstable",
+          "folding_quality": "mediocre"
+        }
+      }
+    },
+    {
+      "transition_id": "t_7",
+      "start_state": {
+        "description": "All items folded beautifully - stacks organized by type, ready to be put away in drawers",
+        "state_id": "s3a",
+        "metadata": {
+          "sorting_progress": 0.9,
+          "organization_level": "perfect",
+          "folding_quality": "excellent"
+        }
+      },
+      "action": {
+        "description": "Finish with Marie Kondo vertical folding method, organize perfectly in drawers",
+        "action_id": "a_perfect_finish",
+        "action_type": "finishing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Perfect completion: All laundry folded using Marie Kondo method, organized by category, stacked vertically in drawers for easy visibility",
+        "state_id": "s_perfect",
+        "metadata": {
+          "sorting_complete": true,
+          "quality": 1.0,
+          "outcome": "success",
+          "organization_level": "marie_kondo_level",
+          "time_taken": "careful"
+        }
+      }
+    },
+    {
+      "transition_id": "t_8",
+      "start_state": {
+        "description": "All items folded beautifully - stacks organized by type, ready to be put away in drawers",
+        "state_id": "s3a",
+        "metadata": {
+          "sorting_progress": 0.9,
+          "organization_level": "perfect",
+          "folding_quality": "excellent"
+        }
+      },
+      "action": {
+        "description": "Complete folding competently, stack neatly in closet",
+        "action_id": "a_good_finish",
+        "action_type": "finishing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Well organized: All laundry folded neatly, sorted by type, stacks are stable and tidy in closet",
+        "state_id": "s_organized",
+        "metadata": {
+          "sorting_complete": true,
+          "quality": 0.8,
+          "outcome": "success",
+          "organization_level": "very_good",
+          "time_taken": "moderate"
+        }
+      }
+    },
+    {
+      "transition_id": "t_9",
+      "start_state": {
+        "description": "Frustrated with tedious folding - some items tossed in wrinkled balls, debating whether to continue",
+        "state_id": "s2c",
+        "metadata": {
+          "sorting_progress": 0.25,
+          "organization_level": "deteriorating",
+          "frustration_level": "high"
+        }
+      },
+      "action": {
+        "description": "Give up in frustration, leave half-folded pile on bed",
+        "action_id": "a_quit_frustrated",
+        "action_type": "termination",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Gave up frustrated: Half-folded pile abandoned on bed, many items still wrinkled and unfolded",
+        "state_id": "s_gave_up",
+        "metadata": {
+          "sorting_complete": false,
+          "quality": 0.2,
+          "outcome": "failure",
+          "organization_level": "failed",
+          "items_unfinished": "many"
+        }
+      }
+    },
+    {
+      "transition_id": "t_10",
+      "start_state": {
+        "description": "Frustrated with tedious folding - some items tossed in wrinkled balls, debating whether to continue",
+        "state_id": "s2c",
+        "metadata": {
+          "sorting_progress": 0.25,
+          "organization_level": "deteriorating",
+          "frustration_level": "high"
+        }
+      },
+      "action": {
+        "description": "Rush through remaining items just to finish, quality suffers",
+        "action_id": "a_rush_finish",
+        "action_type": "finishing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Gave up on folding properly - just making rough rectangles and stacking loosely",
+        "state_id": "s3c",
+        "metadata": {
+          "sorting_progress": 0.5,
+          "organization_level": "barely acceptable",
+          "folding_quality": "minimal"
+        }
+      }
+    },
+    {
+      "transition_id": "t_11",
+      "start_state": {
+        "description": "Gave up on folding properly - just making rough rectangles and stacking loosely",
+        "state_id": "s3c",
+        "metadata": {
+          "sorting_progress": 0.5,
+          "organization_level": "barely acceptable",
+          "folding_quality": "minimal"
+        }
+      },
+      "action": {
+        "description": "Fold quickly but acceptably, prioritize speed over perfection",
+        "action_id": "a_quick_acceptable",
+        "action_type": "finishing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Acceptable finish: Laundry mostly folded, some wrinkles remain, stacks are uneven but functional",
+        "state_id": "s_acceptable",
+        "metadata": {
+          "sorting_complete": true,
+          "quality": 0.6,
+          "outcome": "success",
+          "organization_level": "adequate",
+          "wrinkles": "some"
+        }
+      }
+    },
+    {
+      "transition_id": "t_12",
+      "start_state": {
+        "description": "Gave up on folding properly - just making rough rectangles and stacking loosely",
+        "state_id": "s3c",
+        "metadata": {
+          "sorting_progress": 0.5,
+          "organization_level": "barely acceptable",
+          "folding_quality": "minimal"
+        }
+      },
+      "action": {
+        "description": "Give up folding, just stuff remaining clothes into drawers unfolded",
+        "action_id": "a_stuff_drawers",
+        "action_type": "termination",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Stuffed drawers: Gave up folding, just crammed everything into drawers - clothes compressed and wrinkled",
+        "state_id": "s_stuffed",
+        "metadata": {
+          "sorting_complete": false,
+          "quality": 0.3,
+          "outcome": "failure",
+          "organization_level": "compressed_chaos",
+          "wrinkles": "severe"
+        }
+      }
+    },
+    {
+      "transition_id": "t_13",
+      "start_state": {
+        "description": "Mixed results - some items folded acceptably, others barely folded, piles starting to tip over",
+        "state_id": "s3b",
+        "metadata": {
+          "sorting_progress": 0.6,
+          "organization_level": "unstable",
+          "folding_quality": "mediocre"
+        }
+      },
+      "action": {
+        "description": "Fold quickly but acceptably, prioritize speed over perfection",
+        "action_id": "a_quick_acceptable",
+        "action_type": "finishing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Acceptable finish: Laundry mostly folded, some wrinkles remain, stacks are uneven but functional",
+        "state_id": "s_acceptable",
+        "metadata": {
+          "sorting_complete": true,
+          "quality": 0.6,
+          "outcome": "success",
+          "organization_level": "adequate",
+          "wrinkles": "some"
+        }
+      }
+    },
+    {
+      "transition_id": "t_14",
+      "start_state": {
+        "description": "Mixed results - some items folded acceptably, others barely folded, piles starting to tip over",
+        "state_id": "s3b",
+        "metadata": {
+          "sorting_progress": 0.6,
+          "organization_level": "unstable",
+          "folding_quality": "mediocre"
+        }
+      },
+      "action": {
+        "description": "Try to move unstable stacks to closet",
+        "action_id": "a_move_stacks",
+        "action_type": "finishing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Stack collapse: Poorly stacked piles toppled over when moving them, clothes scattered across floor requiring re-folding",
+        "state_id": "s_avalanche",
+        "metadata": {
+          "sorting_complete": false,
+          "quality": 0.1,
+          "outcome": "failure",
+          "organization_level": "disaster",
+          "needs_refold": true
+        }
+      }
+    }
+  ],
+  "initial_state": {
+    "description": "Large pile of clean laundry dumped on bed - mixed clothes, towels, and linens all jumbled together",
+    "state_id": "s0",
+    "metadata": {
+      "sorting_progress": 0.0,
+      "organization_level": "chaotic"
+    }
+  },
+  "goal_states": [],
+  "final_states": [],
+  "goal_state": null
+}

@@ -1,0 +1,795 @@
+{
+  "name": "water_oil_density_experiment_branching",
+  "description": "Branching world with multiple paths and endings",
+  "states": [
+    {
+      "description": "Clear container, measuring cup with water, small bottle of cooking oil, food coloring drops, and spoon are on the table. The container is empty.",
+      "state_id": "s0",
+      "metadata": {
+        "progress": 0.0
+      }
+    },
+    {
+      "description": "The measuring cup contains water. The container is ready.",
+      "state_id": "s1",
+      "metadata": {
+        "progress": 0.1
+      }
+    },
+    {
+      "description": "Water is in the container. Food coloring is being added to the water.",
+      "state_id": "s2",
+      "metadata": {
+        "progress": 0.3
+      }
+    },
+    {
+      "description": "Colored water is in the container, food coloring has been added. The oil bottle is in hand.",
+      "state_id": "s3",
+      "metadata": {
+        "progress": 0.4
+      }
+    },
+    {
+      "description": "Colored water and oil are in the container. Clear oil layer is forming above the colored water layer.",
+      "state_id": "s4",
+      "metadata": {
+        "progress": 0.7
+      }
+    },
+    {
+      "description": "The spoon is used to gently stir the contents of the container.",
+      "state_id": "s5",
+      "metadata": {
+        "progress": 0.5
+      }
+    },
+    {
+      "description": "The spoon is out of the container and there is a mixture of water and oil in the container, but they have not separated completely.",
+      "state_id": "s6",
+      "metadata": {
+        "progress": 0.6
+      }
+    },
+    {
+      "description": "The container holds distinct layers of colored water (bottom) and oil (top), with a clear separation visible. Observations recorded.",
+      "state_id": "s7",
+      "metadata": {
+        "progress": 1.0
+      }
+    },
+    {
+      "description": "The measuring cup now contains both water and a layer of oil. The oil is on top of the water, and they are starting to separate, though there may be some initial mixing.",
+      "state_id": "s1_alt_0",
+      "metadata": {
+        "progress": "0.2"
+      }
+    },
+    {
+      "description": "The oil and water have largely separated into two distinct layers. Some minor blurring may still be present at the interface due to surface tension, but the layers are clearly defined.",
+      "state_id": "s1_alt_1",
+      "metadata": {
+        "progress": "0.5"
+      }
+    },
+    {
+      "description": "The water layer is now a vibrant blue color, while the oil layer remains transparent. The boundary between the two layers is becoming more defined.",
+      "state_id": "s1_alt_2",
+      "metadata": {
+        "progress": "0.7"
+      }
+    },
+    {
+      "description": "The clear glass container displays a perfect separation of the colored water and oil layers. The water, a vibrant blue, sits at the bottom, and the oil, a transparent yellow, floats on top. There is a razor-sharp, distinct boundary between the two layers, with no mixing or blurring. All observations, including precise measurements of the layer heights and colors, are meticulously recorded in the lab notebook, including notes on the experimental setup and environmental conditions. The data is consistent with the expected density difference, and all equipment is clean and returned to its proper place.",
+      "state_id": "s_perfect",
+      "metadata": {
+        "quality": 1.0,
+        "outcome": "success",
+        "reason": "Correct procedure followed precisely; careful observation and data recording; all expected results achieved."
+      }
+    },
+    {
+      "description": "After attempting to combine the water and oil in the container, the experimenter became frustrated with the mixing and gave up before fully observing the separation. The container is left partially full with a messy mixture. No data was recorded. Equipment is left uncleaned.",
+      "state_id": "f_gave_up",
+      "metadata": {
+        "quality": 0.1,
+        "outcome": "failure",
+        "reason": "Experimenter lost interest/failed to follow through with the experiment."
+      }
+    },
+    {
+      "description": "The oil is now in the container with the colored water, and the contents are mixed. The initial mixing is noticeable, making it harder to discern layers at first, but with the rapid pouring the layering process begins.",
+      "state_id": "s3_alt_0",
+      "metadata": {
+        "progress": "0.3"
+      }
+    },
+    {
+      "description": "The container clearly shows the water (blue) at the bottom and oil (yellow) above. The separation between the layers is mostly distinct, although there is a very slight amount of mixing at the interface. Observations of layer heights and a general description of the separation are recorded. The recorded data appears accurate, and the final result is in line with the expected outcome of the experiment. Equipment is cleaned and stored.",
+      "state_id": "s_good",
+      "metadata": {
+        "quality": 0.8,
+        "outcome": "success",
+        "reason": "Minor imperfections in the separation; some slight mixing at the interface; general data recording."
+      }
+    },
+    {
+      "description": "The colored water and oil layers are visible in the container, with the denser water at the bottom and oil on top. The boundary between the two is somewhat blurred, and there's some evidence of mixing. Basic observations are recorded in the notebook, including the overall order of the layers. The height of the layers is estimated, but not measured precisely. The recorded data still allows one to conclude the water is denser. Equipment is mostly clean.",
+      "state_id": "s_acceptable",
+      "metadata": {
+        "quality": 0.6,
+        "outcome": "success",
+        "reason": "Noticeable blurring at the interface; some mixing; incomplete data recording; estimate measurements."
+      }
+    }
+  ],
+  "actions": [
+    {
+      "description": "Pour water from the measuring cup into the clear container.",
+      "action_id": "a0",
+      "action_type": "preparation",
+      "metadata": {}
+    },
+    {
+      "description": "Add a few drops of food coloring to the water in the container.",
+      "action_id": "a1",
+      "action_type": "preparation",
+      "metadata": {}
+    },
+    {
+      "description": "Pour cooking oil slowly from the bottle into the container, above the colored water.",
+      "action_id": "a2",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Observe the layers forming - oil on top, water below",
+      "action_id": "a3",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Gently stir the contents with the spoon to mix the water and oil. ",
+      "action_id": "a4",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Remove the spoon and observe the separation. Wait to see the layers form.",
+      "action_id": "a5",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Allow the layers to fully separate, recording observations and finishing the experiment.",
+      "action_id": "a6",
+      "action_type": "finishing",
+      "metadata": {}
+    },
+    {
+      "description": "Quickly pour a small amount of oil directly into the measuring cup containing water, skipping the food coloring step for now. Observe if the oil and water separate.",
+      "action_id": null,
+      "action_type": "risky",
+      "metadata": {
+        "deviation_type": "risky",
+        "risk_level": "medium",
+        "likely_outcome": "partial_success"
+      }
+    },
+    {
+      "description": "Wait for a few minutes to allow the oil and water to fully separate. Gently tap the measuring cup to help dislodge any trapped air bubbles.",
+      "action_id": "None_1",
+      "action_type": null,
+      "metadata": {}
+    },
+    {
+      "description": "Add a few drops of blue food coloring to the water layer. Gently swirl the measuring cup to mix the food coloring with the water, avoiding disturbing the oil layer.",
+      "action_id": "None_2",
+      "action_type": null,
+      "metadata": {}
+    },
+    {
+      "description": "Carefully observe the separation of the colored water and oil layers, noting the distinct boundary, colors, and the relative positions. Record all observations, including precise measurements of layer heights and colors, and the experimental setup in the lab notebook. Ensure all equipment is cleaned and returned.",
+      "action_id": "None_3",
+      "action_type": null,
+      "metadata": {}
+    },
+    {
+      "description": "Quickly proceed to the next step, assuming the color will eventually mix.",
+      "action_id": null,
+      "action_type": "shortcut",
+      "metadata": {
+        "deviation_type": "shortcut",
+        "risk_level": "low",
+        "likely_outcome": "partial_success"
+      }
+    },
+    {
+      "description": "Shake the container vigorously, but it only mixes partially before the experimenter grows impatient and stops.",
+      "action_id": "None_1",
+      "action_type": null,
+      "metadata": {}
+    },
+    {
+      "description": "Quickly pour all the oil into the water to speed up the layering process, potentially mixing them and making observation difficult.",
+      "action_id": null,
+      "action_type": "risky",
+      "metadata": {
+        "deviation_type": "risky",
+        "risk_level": "medium",
+        "likely_outcome": "partial_success"
+      }
+    },
+    {
+      "description": "Allow the mixture to settle and separate for a few minutes while observing carefully.",
+      "action_id": "None_1",
+      "action_type": null,
+      "metadata": {}
+    },
+    {
+      "description": "Quickly pour the oil into the water without waiting to observe the initial layering process.",
+      "action_id": null,
+      "action_type": "shortcut",
+      "metadata": {
+        "deviation_type": "shortcut",
+        "risk_level": "low",
+        "likely_outcome": "partial_success"
+      }
+    },
+    {
+      "description": "Quickly stir the mixture with the spoon to try and force the layers to separate faster. Observe and record any changes.",
+      "action_id": null,
+      "action_type": "risky",
+      "metadata": {
+        "deviation_type": "risky",
+        "risk_level": "medium",
+        "likely_outcome": "partial_success"
+      }
+    },
+    {
+      "description": "Quickly scoop out a portion of the mixture with the spoon and immediately try to measure its density. Assume that the separation is good enough for an approximate result.",
+      "action_id": null,
+      "action_type": "shortcut",
+      "metadata": {
+        "deviation_type": "shortcut",
+        "risk_level": "medium",
+        "likely_outcome": "partial_success"
+      }
+    }
+  ],
+  "transitions": [
+    {
+      "transition_id": "t_0",
+      "start_state": {
+        "description": "Clear container, measuring cup with water, small bottle of cooking oil, food coloring drops, and spoon are on the table. The container is empty.",
+        "state_id": "s0",
+        "metadata": {
+          "progress": 0.0
+        }
+      },
+      "action": {
+        "description": "Pour water from the measuring cup into the clear container.",
+        "action_id": "a0",
+        "action_type": "preparation",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "The measuring cup contains water. The container is ready.",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.1
+        }
+      }
+    },
+    {
+      "transition_id": "t_1",
+      "start_state": {
+        "description": "The measuring cup contains water. The container is ready.",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.1
+        }
+      },
+      "action": {
+        "description": "Add a few drops of food coloring to the water in the container.",
+        "action_id": "a1",
+        "action_type": "preparation",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Water is in the container. Food coloring is being added to the water.",
+        "state_id": "s2",
+        "metadata": {
+          "progress": 0.3
+        }
+      }
+    },
+    {
+      "transition_id": "t_2",
+      "start_state": {
+        "description": "Water is in the container. Food coloring is being added to the water.",
+        "state_id": "s2",
+        "metadata": {
+          "progress": 0.3
+        }
+      },
+      "action": {
+        "description": "Pour cooking oil slowly from the bottle into the container, above the colored water.",
+        "action_id": "a2",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Colored water is in the container, food coloring has been added. The oil bottle is in hand.",
+        "state_id": "s3",
+        "metadata": {
+          "progress": 0.4
+        }
+      }
+    },
+    {
+      "transition_id": "t_3",
+      "start_state": {
+        "description": "Colored water is in the container, food coloring has been added. The oil bottle is in hand.",
+        "state_id": "s3",
+        "metadata": {
+          "progress": 0.4
+        }
+      },
+      "action": {
+        "description": "Observe the layers forming - oil on top, water below",
+        "action_id": "a3",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Colored water and oil are in the container. Clear oil layer is forming above the colored water layer.",
+        "state_id": "s4",
+        "metadata": {
+          "progress": 0.7
+        }
+      }
+    },
+    {
+      "transition_id": "t_4",
+      "start_state": {
+        "description": "Colored water and oil are in the container. Clear oil layer is forming above the colored water layer.",
+        "state_id": "s4",
+        "metadata": {
+          "progress": 0.7
+        }
+      },
+      "action": {
+        "description": "Gently stir the contents with the spoon to mix the water and oil. ",
+        "action_id": "a4",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "The spoon is used to gently stir the contents of the container.",
+        "state_id": "s5",
+        "metadata": {
+          "progress": 0.5
+        }
+      }
+    },
+    {
+      "transition_id": "t_5",
+      "start_state": {
+        "description": "The spoon is used to gently stir the contents of the container.",
+        "state_id": "s5",
+        "metadata": {
+          "progress": 0.5
+        }
+      },
+      "action": {
+        "description": "Remove the spoon and observe the separation. Wait to see the layers form.",
+        "action_id": "a5",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "The spoon is out of the container and there is a mixture of water and oil in the container, but they have not separated completely.",
+        "state_id": "s6",
+        "metadata": {
+          "progress": 0.6
+        }
+      }
+    },
+    {
+      "transition_id": "t_6",
+      "start_state": {
+        "description": "The spoon is out of the container and there is a mixture of water and oil in the container, but they have not separated completely.",
+        "state_id": "s6",
+        "metadata": {
+          "progress": 0.6
+        }
+      },
+      "action": {
+        "description": "Allow the layers to fully separate, recording observations and finishing the experiment.",
+        "action_id": "a6",
+        "action_type": "finishing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "The container holds distinct layers of colored water (bottom) and oil (top), with a clear separation visible. Observations recorded.",
+        "state_id": "s7",
+        "metadata": {
+          "progress": 1.0
+        }
+      }
+    },
+    {
+      "transition_id": "t_7",
+      "start_state": {
+        "description": "The measuring cup contains water. The container is ready.",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.1
+        }
+      },
+      "action": {
+        "description": "Quickly pour a small amount of oil directly into the measuring cup containing water, skipping the food coloring step for now. Observe if the oil and water separate.",
+        "action_id": null,
+        "action_type": "risky",
+        "metadata": {
+          "deviation_type": "risky",
+          "risk_level": "medium",
+          "likely_outcome": "partial_success"
+        }
+      },
+      "end_state": {
+        "description": "The measuring cup now contains both water and a layer of oil. The oil is on top of the water, and they are starting to separate, though there may be some initial mixing.",
+        "state_id": "s1_alt_0",
+        "metadata": {
+          "progress": "0.2"
+        }
+      }
+    },
+    {
+      "transition_id": "t_8",
+      "start_state": {
+        "description": "The measuring cup now contains both water and a layer of oil. The oil is on top of the water, and they are starting to separate, though there may be some initial mixing.",
+        "state_id": "s1_alt_0",
+        "metadata": {
+          "progress": "0.2"
+        }
+      },
+      "action": {
+        "description": "Wait for a few minutes to allow the oil and water to fully separate. Gently tap the measuring cup to help dislodge any trapped air bubbles.",
+        "action_id": "None_1",
+        "action_type": null,
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "The oil and water have largely separated into two distinct layers. Some minor blurring may still be present at the interface due to surface tension, but the layers are clearly defined.",
+        "state_id": "s1_alt_1",
+        "metadata": {
+          "progress": "0.5"
+        }
+      }
+    },
+    {
+      "transition_id": "t_9",
+      "start_state": {
+        "description": "The oil and water have largely separated into two distinct layers. Some minor blurring may still be present at the interface due to surface tension, but the layers are clearly defined.",
+        "state_id": "s1_alt_1",
+        "metadata": {
+          "progress": "0.5"
+        }
+      },
+      "action": {
+        "description": "Add a few drops of blue food coloring to the water layer. Gently swirl the measuring cup to mix the food coloring with the water, avoiding disturbing the oil layer.",
+        "action_id": "None_2",
+        "action_type": null,
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "The water layer is now a vibrant blue color, while the oil layer remains transparent. The boundary between the two layers is becoming more defined.",
+        "state_id": "s1_alt_2",
+        "metadata": {
+          "progress": "0.7"
+        }
+      }
+    },
+    {
+      "transition_id": "t_10",
+      "start_state": {
+        "description": "The water layer is now a vibrant blue color, while the oil layer remains transparent. The boundary between the two layers is becoming more defined.",
+        "state_id": "s1_alt_2",
+        "metadata": {
+          "progress": "0.7"
+        }
+      },
+      "action": {
+        "description": "Carefully observe the separation of the colored water and oil layers, noting the distinct boundary, colors, and the relative positions. Record all observations, including precise measurements of layer heights and colors, and the experimental setup in the lab notebook. Ensure all equipment is cleaned and returned.",
+        "action_id": "None_3",
+        "action_type": null,
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "The clear glass container displays a perfect separation of the colored water and oil layers. The water, a vibrant blue, sits at the bottom, and the oil, a transparent yellow, floats on top. There is a razor-sharp, distinct boundary between the two layers, with no mixing or blurring. All observations, including precise measurements of the layer heights and colors, are meticulously recorded in the lab notebook, including notes on the experimental setup and environmental conditions. The data is consistent with the expected density difference, and all equipment is clean and returned to its proper place.",
+        "state_id": "s_perfect",
+        "metadata": {
+          "quality": 1.0,
+          "outcome": "success",
+          "reason": "Correct procedure followed precisely; careful observation and data recording; all expected results achieved."
+        }
+      }
+    },
+    {
+      "transition_id": "t_11",
+      "start_state": {
+        "description": "The measuring cup contains water. The container is ready.",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.1
+        }
+      },
+      "action": {
+        "description": "Quickly proceed to the next step, assuming the color will eventually mix.",
+        "action_id": null,
+        "action_type": "shortcut",
+        "metadata": {
+          "deviation_type": "shortcut",
+          "risk_level": "low",
+          "likely_outcome": "partial_success"
+        }
+      },
+      "end_state": {
+        "description": "The measuring cup now contains a mixture of water and oil. The experimenter expects it to mix fully and quickly.",
+        "state_id": "s1_alt_0",
+        "metadata": {
+          "progress": "0.4"
+        }
+      }
+    },
+    {
+      "transition_id": "t_12",
+      "start_state": {
+        "description": "The measuring cup now contains a mixture of water and oil. The experimenter expects it to mix fully and quickly.",
+        "state_id": "s1_alt_0",
+        "metadata": {
+          "progress": "0.4"
+        }
+      },
+      "action": {
+        "description": "Shake the container vigorously, but it only mixes partially before the experimenter grows impatient and stops.",
+        "action_id": "None_1",
+        "action_type": null,
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "After attempting to combine the water and oil in the container, the experimenter became frustrated with the mixing and gave up before fully observing the separation. The container is left partially full with a messy mixture. No data was recorded. Equipment is left uncleaned.",
+        "state_id": "f_gave_up",
+        "metadata": {
+          "quality": 0.1,
+          "outcome": "failure",
+          "reason": "Experimenter lost interest/failed to follow through with the experiment."
+        }
+      }
+    },
+    {
+      "transition_id": "t_13",
+      "start_state": {
+        "description": "Colored water is in the container, food coloring has been added. The oil bottle is in hand.",
+        "state_id": "s3",
+        "metadata": {
+          "progress": 0.4
+        }
+      },
+      "action": {
+        "description": "Quickly pour all the oil into the water to speed up the layering process, potentially mixing them and making observation difficult.",
+        "action_id": null,
+        "action_type": "risky",
+        "metadata": {
+          "deviation_type": "risky",
+          "risk_level": "medium",
+          "likely_outcome": "partial_success"
+        }
+      },
+      "end_state": {
+        "description": "The oil is now in the container with the colored water, and the contents are mixed. The initial mixing is noticeable, making it harder to discern layers at first, but with the rapid pouring the layering process begins.",
+        "state_id": "s3_alt_0",
+        "metadata": {
+          "progress": "0.3"
+        }
+      }
+    },
+    {
+      "transition_id": "t_14",
+      "start_state": {
+        "description": "The oil is now in the container with the colored water, and the contents are mixed. The initial mixing is noticeable, making it harder to discern layers at first, but with the rapid pouring the layering process begins.",
+        "state_id": "s3_alt_0",
+        "metadata": {
+          "progress": "0.3"
+        }
+      },
+      "action": {
+        "description": "Allow the mixture to settle and separate for a few minutes while observing carefully.",
+        "action_id": "None_1",
+        "action_type": null,
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "The container clearly shows the water (blue) at the bottom and oil (yellow) above. The separation between the layers is mostly distinct, although there is a very slight amount of mixing at the interface. Observations of layer heights and a general description of the separation are recorded. The recorded data appears accurate, and the final result is in line with the expected outcome of the experiment. Equipment is cleaned and stored.",
+        "state_id": "s_good",
+        "metadata": {
+          "quality": 0.8,
+          "outcome": "success",
+          "reason": "Minor imperfections in the separation; some slight mixing at the interface; general data recording."
+        }
+      }
+    },
+    {
+      "transition_id": "t_15",
+      "start_state": {
+        "description": "Colored water is in the container, food coloring has been added. The oil bottle is in hand.",
+        "state_id": "s3",
+        "metadata": {
+          "progress": 0.4
+        }
+      },
+      "action": {
+        "description": "Quickly pour the oil into the water without waiting to observe the initial layering process.",
+        "action_id": null,
+        "action_type": "shortcut",
+        "metadata": {
+          "deviation_type": "shortcut",
+          "risk_level": "low",
+          "likely_outcome": "partial_success"
+        }
+      },
+      "end_state": {
+        "description": "After attempting to combine the water and oil in the container, the experimenter became frustrated with the mixing and gave up before fully observing the separation. The container is left partially full with a messy mixture. No data was recorded. Equipment is left uncleaned.",
+        "state_id": "f_gave_up",
+        "metadata": {
+          "quality": 0.1,
+          "outcome": "failure",
+          "reason": "Experimenter lost interest/failed to follow through with the experiment."
+        }
+      }
+    },
+    {
+      "transition_id": "t_16",
+      "start_state": {
+        "description": "The spoon is out of the container and there is a mixture of water and oil in the container, but they have not separated completely.",
+        "state_id": "s6",
+        "metadata": {
+          "progress": 0.6
+        }
+      },
+      "action": {
+        "description": "Quickly stir the mixture with the spoon to try and force the layers to separate faster. Observe and record any changes.",
+        "action_id": null,
+        "action_type": "risky",
+        "metadata": {
+          "deviation_type": "risky",
+          "risk_level": "medium",
+          "likely_outcome": "partial_success"
+        }
+      },
+      "end_state": {
+        "description": "The colored water and oil layers are visible in the container, with the denser water at the bottom and oil on top. The boundary between the two is somewhat blurred, and there's some evidence of mixing. Basic observations are recorded in the notebook, including the overall order of the layers. The height of the layers is estimated, but not measured precisely. The recorded data still allows one to conclude the water is denser. Equipment is mostly clean.",
+        "state_id": "s_acceptable",
+        "metadata": {
+          "quality": 0.6,
+          "outcome": "success",
+          "reason": "Noticeable blurring at the interface; some mixing; incomplete data recording; estimate measurements."
+        }
+      }
+    },
+    {
+      "transition_id": "t_17",
+      "start_state": {
+        "description": "The spoon is out of the container and there is a mixture of water and oil in the container, but they have not separated completely.",
+        "state_id": "s6",
+        "metadata": {
+          "progress": 0.6
+        }
+      },
+      "action": {
+        "description": "Quickly scoop out a portion of the mixture with the spoon and immediately try to measure its density. Assume that the separation is good enough for an approximate result.",
+        "action_id": null,
+        "action_type": "shortcut",
+        "metadata": {
+          "deviation_type": "shortcut",
+          "risk_level": "medium",
+          "likely_outcome": "partial_success"
+        }
+      },
+      "end_state": {
+        "description": "After attempting to combine the water and oil in the container, the experimenter became frustrated with the mixing and gave up before fully observing the separation. The container is left partially full with a messy mixture. No data was recorded. Equipment is left uncleaned.",
+        "state_id": "f_gave_up",
+        "metadata": {
+          "quality": 0.1,
+          "outcome": "failure",
+          "reason": "Experimenter lost interest/failed to follow through with the experiment."
+        }
+      }
+    }
+  ],
+  "initial_state": {
+    "description": "Clear container, measuring cup with water, small bottle of cooking oil, food coloring drops, and spoon are on the table. The container is empty.",
+    "state_id": "s0",
+    "metadata": {
+      "progress": 0.0
+    }
+  },
+  "goal_states": [
+    {
+      "description": "The clear glass container displays a perfect separation of the colored water and oil layers. The water, a vibrant blue, sits at the bottom, and the oil, a transparent yellow, floats on top. There is a razor-sharp, distinct boundary between the two layers, with no mixing or blurring. All observations, including precise measurements of the layer heights and colors, are meticulously recorded in the lab notebook, including notes on the experimental setup and environmental conditions. The data is consistent with the expected density difference, and all equipment is clean and returned to its proper place.",
+      "state_id": "s_perfect",
+      "metadata": {
+        "quality": 1.0,
+        "outcome": "success",
+        "reason": "Correct procedure followed precisely; careful observation and data recording; all expected results achieved."
+      }
+    },
+    {
+      "description": "The container clearly shows the water (blue) at the bottom and oil (yellow) above. The separation between the layers is mostly distinct, although there is a very slight amount of mixing at the interface. Observations of layer heights and a general description of the separation are recorded. The recorded data appears accurate, and the final result is in line with the expected outcome of the experiment. Equipment is cleaned and stored.",
+      "state_id": "s_good",
+      "metadata": {
+        "quality": 0.8,
+        "outcome": "success",
+        "reason": "Minor imperfections in the separation; some slight mixing at the interface; general data recording."
+      }
+    },
+    {
+      "description": "The colored water and oil layers are visible in the container, with the denser water at the bottom and oil on top. The boundary between the two is somewhat blurred, and there's some evidence of mixing. Basic observations are recorded in the notebook, including the overall order of the layers. The height of the layers is estimated, but not measured precisely. The recorded data still allows one to conclude the water is denser. Equipment is mostly clean.",
+      "state_id": "s_acceptable",
+      "metadata": {
+        "quality": 0.6,
+        "outcome": "success",
+        "reason": "Noticeable blurring at the interface; some mixing; incomplete data recording; estimate measurements."
+      }
+    }
+  ],
+  "final_states": [
+    {
+      "description": "The clear glass container displays a perfect separation of the colored water and oil layers. The water, a vibrant blue, sits at the bottom, and the oil, a transparent yellow, floats on top. There is a razor-sharp, distinct boundary between the two layers, with no mixing or blurring. All observations, including precise measurements of the layer heights and colors, are meticulously recorded in the lab notebook, including notes on the experimental setup and environmental conditions. The data is consistent with the expected density difference, and all equipment is clean and returned to its proper place.",
+      "state_id": "s_perfect",
+      "metadata": {
+        "quality": 1.0,
+        "outcome": "success",
+        "reason": "Correct procedure followed precisely; careful observation and data recording; all expected results achieved."
+      }
+    },
+    {
+      "description": "The container clearly shows the water (blue) at the bottom and oil (yellow) above. The separation between the layers is mostly distinct, although there is a very slight amount of mixing at the interface. Observations of layer heights and a general description of the separation are recorded. The recorded data appears accurate, and the final result is in line with the expected outcome of the experiment. Equipment is cleaned and stored.",
+      "state_id": "s_good",
+      "metadata": {
+        "quality": 0.8,
+        "outcome": "success",
+        "reason": "Minor imperfections in the separation; some slight mixing at the interface; general data recording."
+      }
+    },
+    {
+      "description": "The colored water and oil layers are visible in the container, with the denser water at the bottom and oil on top. The boundary between the two is somewhat blurred, and there's some evidence of mixing. Basic observations are recorded in the notebook, including the overall order of the layers. The height of the layers is estimated, but not measured precisely. The recorded data still allows one to conclude the water is denser. Equipment is mostly clean.",
+      "state_id": "s_acceptable",
+      "metadata": {
+        "quality": 0.6,
+        "outcome": "success",
+        "reason": "Noticeable blurring at the interface; some mixing; incomplete data recording; estimate measurements."
+      }
+    },
+    {
+      "description": "After attempting to combine the water and oil in the container, the experimenter became frustrated with the mixing and gave up before fully observing the separation. The container is left partially full with a messy mixture. No data was recorded. Equipment is left uncleaned.",
+      "state_id": "f_gave_up",
+      "metadata": {
+        "quality": 0.1,
+        "outcome": "failure",
+        "reason": "Experimenter lost interest/failed to follow through with the experiment."
+      }
+    }
+  ],
+  "goal_state": {
+    "description": "The clear glass container displays a perfect separation of the colored water and oil layers. The water, a vibrant blue, sits at the bottom, and the oil, a transparent yellow, floats on top. There is a razor-sharp, distinct boundary between the two layers, with no mixing or blurring. All observations, including precise measurements of the layer heights and colors, are meticulously recorded in the lab notebook, including notes on the experimental setup and environmental conditions. The data is consistent with the expected density difference, and all equipment is clean and returned to its proper place.",
+    "state_id": "s_perfect",
+    "metadata": {
+      "quality": 1.0,
+      "outcome": "success",
+      "reason": "Correct procedure followed precisely; careful observation and data recording; all expected results achieved."
+    }
+  }
+}

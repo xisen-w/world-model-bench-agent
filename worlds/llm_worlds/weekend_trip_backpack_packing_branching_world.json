@@ -1,0 +1,844 @@
+{
+  "name": "weekend_trip_backpack_packing_branching",
+  "description": "Branching world with multiple paths and endings",
+  "states": [
+    {
+      "description": "Empty backpack (40L). Checklist on table: clothes (2 sets), toiletries, chargers, documents, medicine, water bottle. Items scattered on bed.",
+      "state_id": "s0",
+      "metadata": {
+        "progress": 0.0
+      }
+    },
+    {
+      "description": "Clothes (1 set) neatly folded and placed at the bottom of the backpack. Remaining clothes, toiletries, chargers, documents, medicine, and water bottle on the bed.",
+      "state_id": "s1",
+      "metadata": {
+        "progress": 0.2
+      }
+    },
+    {
+      "description": "Toiletries placed in a ziplock bag (for potential liquid restrictions) and then added to the backpack, on top of clothes. Remaining items on bed.",
+      "state_id": "s2",
+      "metadata": {
+        "progress": 0.3
+      }
+    },
+    {
+      "description": "Chargers and documents placed in a separate compartment or pocket of the backpack, accessible from the outside. Medicine and water bottle on bed.",
+      "state_id": "s3",
+      "metadata": {
+        "progress": 0.5
+      }
+    },
+    {
+      "description": "Medicine placed in a side pocket of the backpack, along with any necessary instructions.",
+      "state_id": "s4",
+      "metadata": {
+        "progress": 0.6
+      }
+    },
+    {
+      "description": "Water bottle placed on top of clothes but easily accessible. Backpack is nearly full.",
+      "state_id": "s5",
+      "metadata": {
+        "progress": 0.7
+      }
+    },
+    {
+      "description": "Backpack is packed, checked for weight (slightly exceeding carry-on limit). Clothes are rearranged; bulky jacket on bed is swapped for a thinner one.",
+      "state_id": "s6",
+      "metadata": {
+        "progress": 0.8
+      }
+    },
+    {
+      "description": "Backpack is repacked; weight checked and now within carry-on limits. All items are inside, but there is still some space available.",
+      "state_id": "s7",
+      "metadata": {
+        "progress": 0.9
+      }
+    },
+    {
+      "description": "Backpack is packed efficiently, weight is well-distributed, easy-access items on top, and within airline carry-on limits. Checklist is complete.",
+      "state_id": "s8",
+      "metadata": {
+        "progress": 1.0
+      }
+    },
+    {
+      "description": "All items are laid out. Clothes are separated from toiletries, chargers, documents, medicine, and water bottle. Preliminary assessment of weight and priority is completed.",
+      "state_id": "s1_alt_0",
+      "metadata": {
+        "progress": "0.2"
+      }
+    },
+    {
+      "description": "The backpack is perfectly packed. Weight is optimally distributed with heavier items low and centered. Frequently used items like water bottle and snacks are in easy-access pockets. The bag weighs exactly 20 lbs and fits perfectly within the airline carry-on size restrictions. The checklist is completed with all items accounted for, and the packing process was efficient and without any forgotten items. There's even space left over for souvenirs!",
+      "state_id": "s_perfect",
+      "metadata": {
+        "quality": 1.0,
+        "outcome": "success",
+        "reason": "All goals were achieved with optimal efficiency and effectiveness. No wasted space or weight. Checklist 100% complete."
+      }
+    },
+    {
+      "description": "While attempting to close the backpack, the zipper fails catastrophically, rendering the bag unusable. Several items are also damaged in the process (e.g., a bottle leaked on clothing). The trip will need to be cancelled or reorganized with a different bag.",
+      "state_id": "f_critical_damage",
+      "metadata": {
+        "quality": 0.2,
+        "outcome": "failure",
+        "reason": "A critical failure (bag damage) occurred during the packing/closing process, resulting in unusable equipment and potential damage to the contents."
+      }
+    },
+    {
+      "description": "The medicine and water bottle are in the side pocket. This leaves the bed clear of those items and gets them into the backpack.",
+      "state_id": "s3_alt_0",
+      "metadata": {
+        "progress": "0.3"
+      }
+    },
+    {
+      "description": "The backpack is packed well, with reasonable weight distribution. Heavier items are mostly at the bottom. The essential items are accessible. The bag is under the carry-on weight limit, though a little more space could have been utilized. The checklist is completed. A few minor items could have been organized better.",
+      "state_id": "s_good",
+      "metadata": {
+        "quality": 0.8,
+        "outcome": "success",
+        "reason": "Most goals were achieved. Slight inefficiencies in packing, but overall a successful packing job. Minor item placement issues."
+      }
+    },
+    {
+      "description": "The backpack is packed, and everything needed for the weekend is inside. Weight distribution is acceptable, though the bag feels slightly unbalanced. Essentials are accessible, but it required some digging. The bag is within carry-on weight limits, though it's close. The checklist is completed. Some items are wrinkled.",
+      "state_id": "s_acceptable",
+      "metadata": {
+        "quality": 0.6,
+        "outcome": "success",
+        "reason": "The core goals were met (everything needed is packed), but with noticeable inefficiencies and less-than-ideal organization. Some items are less accessible than preferred."
+      }
+    }
+  ],
+  "actions": [
+    {
+      "description": "Place one set of clothes at the bottom of the backpack.",
+      "action_id": "a0",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Place toiletries (in a ziplock bag) on top of the clothes.",
+      "action_id": "a1",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Place chargers and documents in an accessible compartment.",
+      "action_id": "a2",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Put the medicine into a side pocket.",
+      "action_id": "a3",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Place the water bottle on top of clothes for easy access.",
+      "action_id": "a4",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Check the weight of the backpack and repack. Swap bulky jacket for a thinner one",
+      "action_id": "a5",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Repack the backpack to ensure items are secure and accessible, also within weight limits. ",
+      "action_id": "a6",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Final check and finalize. Backpack is complete and ready for the trip.",
+      "action_id": "a7",
+      "action_type": "finishing",
+      "metadata": {}
+    },
+    {
+      "description": "Quickly stuff all remaining items (toiletries, chargers, documents, medicine, and water bottle) haphazardly into the backpack without any specific order or organization.",
+      "action_id": null,
+      "action_type": "risky",
+      "metadata": {
+        "deviation_type": "risky",
+        "risk_level": "medium",
+        "likely_outcome": "partial_success"
+      }
+    },
+    {
+      "description": "Repack items strategically: place the folded clothes at the bottom, pack heavy items (chargers, medicine) low and centered, toiletries in a leak-proof container and then in a side pocket, documents in a secure inside pocket, water bottle in an easily accessible pocket, and distribute remaining clothes and any snacks to fill remaining spaces while ensuring the bag weighs 20 lbs and is within carry-on size.",
+      "action_id": "None_1",
+      "action_type": null,
+      "metadata": {}
+    },
+    {
+      "description": "Quickly toss the toiletries into a side pocket of the backpack instead of the main compartment.",
+      "action_id": null,
+      "action_type": "shortcut",
+      "metadata": {
+        "deviation_type": "shortcut",
+        "risk_level": "low",
+        "likely_outcome": "success"
+      }
+    },
+    {
+      "description": "Forcefully attempt to close the backpack, pulling the zipper around the overstuffed main compartment and the tightly packed side pocket.",
+      "action_id": "None_1",
+      "action_type": null,
+      "metadata": {}
+    },
+    {
+      "description": "Quickly stuff the medicine and water bottle together into the same side pocket.",
+      "action_id": null,
+      "action_type": "risky",
+      "metadata": {
+        "deviation_type": "risky",
+        "risk_level": "medium",
+        "likely_outcome": "partial_success"
+      }
+    },
+    {
+      "description": "Place heavier items like shoes and toiletries at the bottom of the main compartment, followed by clothes.",
+      "action_id": "None_1",
+      "action_type": null,
+      "metadata": {}
+    },
+    {
+      "description": "Quickly grab the medicine and put it in any available space in the backpack, focusing on speed rather than perfect organization.",
+      "action_id": null,
+      "action_type": "shortcut",
+      "metadata": {
+        "deviation_type": "shortcut",
+        "risk_level": "low",
+        "likely_outcome": "success"
+      }
+    },
+    {
+      "description": "Assume the backpack is light enough. Quickly zip up the backpack, not bothering to weigh it or swap the jacket. Proceed with the trip.",
+      "action_id": null,
+      "action_type": "risky",
+      "metadata": {
+        "deviation_type": "risky",
+        "risk_level": "medium",
+        "likely_outcome": "partial_success"
+      }
+    },
+    {
+      "description": "Quickly close the backpack, hoping the weight is okay and the contents won't shift too much during travel.",
+      "action_id": null,
+      "action_type": "shortcut",
+      "metadata": {
+        "deviation_type": "shortcut",
+        "risk_level": "medium",
+        "likely_outcome": "partial_success"
+      }
+    },
+    {
+      "description": "Assume the remaining space is negligible and the trip is unlikely to require more items. Close the backpack and skip the final check.",
+      "action_id": null,
+      "action_type": "risky",
+      "metadata": {
+        "deviation_type": "risky",
+        "risk_level": "low",
+        "likely_outcome": "partial_success"
+      }
+    },
+    {
+      "description": "Assume the remaining space is negligible and declare the backpack complete, skipping a final thorough inspection for optimal packing or potential item organization.",
+      "action_id": null,
+      "action_type": "shortcut",
+      "metadata": {
+        "deviation_type": "shortcut",
+        "risk_level": "low",
+        "likely_outcome": "success"
+      }
+    }
+  ],
+  "transitions": [
+    {
+      "transition_id": "t_0",
+      "start_state": {
+        "description": "Empty backpack (40L). Checklist on table: clothes (2 sets), toiletries, chargers, documents, medicine, water bottle. Items scattered on bed.",
+        "state_id": "s0",
+        "metadata": {
+          "progress": 0.0
+        }
+      },
+      "action": {
+        "description": "Place one set of clothes at the bottom of the backpack.",
+        "action_id": "a0",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Clothes (1 set) neatly folded and placed at the bottom of the backpack. Remaining clothes, toiletries, chargers, documents, medicine, and water bottle on the bed.",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.2
+        }
+      }
+    },
+    {
+      "transition_id": "t_1",
+      "start_state": {
+        "description": "Clothes (1 set) neatly folded and placed at the bottom of the backpack. Remaining clothes, toiletries, chargers, documents, medicine, and water bottle on the bed.",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.2
+        }
+      },
+      "action": {
+        "description": "Place toiletries (in a ziplock bag) on top of the clothes.",
+        "action_id": "a1",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Toiletries placed in a ziplock bag (for potential liquid restrictions) and then added to the backpack, on top of clothes. Remaining items on bed.",
+        "state_id": "s2",
+        "metadata": {
+          "progress": 0.3
+        }
+      }
+    },
+    {
+      "transition_id": "t_2",
+      "start_state": {
+        "description": "Toiletries placed in a ziplock bag (for potential liquid restrictions) and then added to the backpack, on top of clothes. Remaining items on bed.",
+        "state_id": "s2",
+        "metadata": {
+          "progress": 0.3
+        }
+      },
+      "action": {
+        "description": "Place chargers and documents in an accessible compartment.",
+        "action_id": "a2",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Chargers and documents placed in a separate compartment or pocket of the backpack, accessible from the outside. Medicine and water bottle on bed.",
+        "state_id": "s3",
+        "metadata": {
+          "progress": 0.5
+        }
+      }
+    },
+    {
+      "transition_id": "t_3",
+      "start_state": {
+        "description": "Chargers and documents placed in a separate compartment or pocket of the backpack, accessible from the outside. Medicine and water bottle on bed.",
+        "state_id": "s3",
+        "metadata": {
+          "progress": 0.5
+        }
+      },
+      "action": {
+        "description": "Put the medicine into a side pocket.",
+        "action_id": "a3",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Medicine placed in a side pocket of the backpack, along with any necessary instructions.",
+        "state_id": "s4",
+        "metadata": {
+          "progress": 0.6
+        }
+      }
+    },
+    {
+      "transition_id": "t_4",
+      "start_state": {
+        "description": "Medicine placed in a side pocket of the backpack, along with any necessary instructions.",
+        "state_id": "s4",
+        "metadata": {
+          "progress": 0.6
+        }
+      },
+      "action": {
+        "description": "Place the water bottle on top of clothes for easy access.",
+        "action_id": "a4",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Water bottle placed on top of clothes but easily accessible. Backpack is nearly full.",
+        "state_id": "s5",
+        "metadata": {
+          "progress": 0.7
+        }
+      }
+    },
+    {
+      "transition_id": "t_5",
+      "start_state": {
+        "description": "Water bottle placed on top of clothes but easily accessible. Backpack is nearly full.",
+        "state_id": "s5",
+        "metadata": {
+          "progress": 0.7
+        }
+      },
+      "action": {
+        "description": "Check the weight of the backpack and repack. Swap bulky jacket for a thinner one",
+        "action_id": "a5",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Backpack is packed, checked for weight (slightly exceeding carry-on limit). Clothes are rearranged; bulky jacket on bed is swapped for a thinner one.",
+        "state_id": "s6",
+        "metadata": {
+          "progress": 0.8
+        }
+      }
+    },
+    {
+      "transition_id": "t_6",
+      "start_state": {
+        "description": "Backpack is packed, checked for weight (slightly exceeding carry-on limit). Clothes are rearranged; bulky jacket on bed is swapped for a thinner one.",
+        "state_id": "s6",
+        "metadata": {
+          "progress": 0.8
+        }
+      },
+      "action": {
+        "description": "Repack the backpack to ensure items are secure and accessible, also within weight limits. ",
+        "action_id": "a6",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Backpack is repacked; weight checked and now within carry-on limits. All items are inside, but there is still some space available.",
+        "state_id": "s7",
+        "metadata": {
+          "progress": 0.9
+        }
+      }
+    },
+    {
+      "transition_id": "t_7",
+      "start_state": {
+        "description": "Backpack is repacked; weight checked and now within carry-on limits. All items are inside, but there is still some space available.",
+        "state_id": "s7",
+        "metadata": {
+          "progress": 0.9
+        }
+      },
+      "action": {
+        "description": "Final check and finalize. Backpack is complete and ready for the trip.",
+        "action_id": "a7",
+        "action_type": "finishing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Backpack is packed efficiently, weight is well-distributed, easy-access items on top, and within airline carry-on limits. Checklist is complete.",
+        "state_id": "s8",
+        "metadata": {
+          "progress": 1.0
+        }
+      }
+    },
+    {
+      "transition_id": "t_8",
+      "start_state": {
+        "description": "Clothes (1 set) neatly folded and placed at the bottom of the backpack. Remaining clothes, toiletries, chargers, documents, medicine, and water bottle on the bed.",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.2
+        }
+      },
+      "action": {
+        "description": "Quickly stuff all remaining items (toiletries, chargers, documents, medicine, and water bottle) haphazardly into the backpack without any specific order or organization.",
+        "action_id": null,
+        "action_type": "risky",
+        "metadata": {
+          "deviation_type": "risky",
+          "risk_level": "medium",
+          "likely_outcome": "partial_success"
+        }
+      },
+      "end_state": {
+        "description": "All items are laid out. Clothes are separated from toiletries, chargers, documents, medicine, and water bottle. Preliminary assessment of weight and priority is completed.",
+        "state_id": "s1_alt_0",
+        "metadata": {
+          "progress": "0.2"
+        }
+      }
+    },
+    {
+      "transition_id": "t_9",
+      "start_state": {
+        "description": "All items are laid out. Clothes are separated from toiletries, chargers, documents, medicine, and water bottle. Preliminary assessment of weight and priority is completed.",
+        "state_id": "s1_alt_0",
+        "metadata": {
+          "progress": "0.2"
+        }
+      },
+      "action": {
+        "description": "Repack items strategically: place the folded clothes at the bottom, pack heavy items (chargers, medicine) low and centered, toiletries in a leak-proof container and then in a side pocket, documents in a secure inside pocket, water bottle in an easily accessible pocket, and distribute remaining clothes and any snacks to fill remaining spaces while ensuring the bag weighs 20 lbs and is within carry-on size.",
+        "action_id": "None_1",
+        "action_type": null,
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "The backpack is perfectly packed. Weight is optimally distributed with heavier items low and centered. Frequently used items like water bottle and snacks are in easy-access pockets. The bag weighs exactly 20 lbs and fits perfectly within the airline carry-on size restrictions. The checklist is completed with all items accounted for, and the packing process was efficient and without any forgotten items. There's even space left over for souvenirs!",
+        "state_id": "s_perfect",
+        "metadata": {
+          "quality": 1.0,
+          "outcome": "success",
+          "reason": "All goals were achieved with optimal efficiency and effectiveness. No wasted space or weight. Checklist 100% complete."
+        }
+      }
+    },
+    {
+      "transition_id": "t_10",
+      "start_state": {
+        "description": "Clothes (1 set) neatly folded and placed at the bottom of the backpack. Remaining clothes, toiletries, chargers, documents, medicine, and water bottle on the bed.",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.2
+        }
+      },
+      "action": {
+        "description": "Quickly toss the toiletries into a side pocket of the backpack instead of the main compartment.",
+        "action_id": null,
+        "action_type": "shortcut",
+        "metadata": {
+          "deviation_type": "shortcut",
+          "risk_level": "low",
+          "likely_outcome": "success"
+        }
+      },
+      "end_state": {
+        "description": "The side pocket is now crammed full with toiletries of various shapes and sizes. The pocket is bulging noticeably, putting significant strain on the zipper.",
+        "state_id": "s1_alt_0",
+        "metadata": {
+          "progress": "0.5"
+        }
+      }
+    },
+    {
+      "transition_id": "t_11",
+      "start_state": {
+        "description": "The side pocket is now crammed full with toiletries of various shapes and sizes. The pocket is bulging noticeably, putting significant strain on the zipper.",
+        "state_id": "s1_alt_0",
+        "metadata": {
+          "progress": "0.5"
+        }
+      },
+      "action": {
+        "description": "Forcefully attempt to close the backpack, pulling the zipper around the overstuffed main compartment and the tightly packed side pocket.",
+        "action_id": "None_1",
+        "action_type": null,
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "While attempting to close the backpack, the zipper fails catastrophically, rendering the bag unusable. Several items are also damaged in the process (e.g., a bottle leaked on clothing). The trip will need to be cancelled or reorganized with a different bag.",
+        "state_id": "f_critical_damage",
+        "metadata": {
+          "quality": 0.2,
+          "outcome": "failure",
+          "reason": "A critical failure (bag damage) occurred during the packing/closing process, resulting in unusable equipment and potential damage to the contents."
+        }
+      }
+    },
+    {
+      "transition_id": "t_12",
+      "start_state": {
+        "description": "Chargers and documents placed in a separate compartment or pocket of the backpack, accessible from the outside. Medicine and water bottle on bed.",
+        "state_id": "s3",
+        "metadata": {
+          "progress": 0.5
+        }
+      },
+      "action": {
+        "description": "Quickly stuff the medicine and water bottle together into the same side pocket.",
+        "action_id": null,
+        "action_type": "risky",
+        "metadata": {
+          "deviation_type": "risky",
+          "risk_level": "medium",
+          "likely_outcome": "partial_success"
+        }
+      },
+      "end_state": {
+        "description": "The medicine and water bottle are in the side pocket. This leaves the bed clear of those items and gets them into the backpack.",
+        "state_id": "s3_alt_0",
+        "metadata": {
+          "progress": "0.3"
+        }
+      }
+    },
+    {
+      "transition_id": "t_13",
+      "start_state": {
+        "description": "The medicine and water bottle are in the side pocket. This leaves the bed clear of those items and gets them into the backpack.",
+        "state_id": "s3_alt_0",
+        "metadata": {
+          "progress": "0.3"
+        }
+      },
+      "action": {
+        "description": "Place heavier items like shoes and toiletries at the bottom of the main compartment, followed by clothes.",
+        "action_id": "None_1",
+        "action_type": null,
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "The backpack is packed well, with reasonable weight distribution. Heavier items are mostly at the bottom. The essential items are accessible. The bag is under the carry-on weight limit, though a little more space could have been utilized. The checklist is completed. A few minor items could have been organized better.",
+        "state_id": "s_good",
+        "metadata": {
+          "quality": 0.8,
+          "outcome": "success",
+          "reason": "Most goals were achieved. Slight inefficiencies in packing, but overall a successful packing job. Minor item placement issues."
+        }
+      }
+    },
+    {
+      "transition_id": "t_14",
+      "start_state": {
+        "description": "Chargers and documents placed in a separate compartment or pocket of the backpack, accessible from the outside. Medicine and water bottle on bed.",
+        "state_id": "s3",
+        "metadata": {
+          "progress": 0.5
+        }
+      },
+      "action": {
+        "description": "Quickly grab the medicine and put it in any available space in the backpack, focusing on speed rather than perfect organization.",
+        "action_id": null,
+        "action_type": "shortcut",
+        "metadata": {
+          "deviation_type": "shortcut",
+          "risk_level": "low",
+          "likely_outcome": "success"
+        }
+      },
+      "end_state": {
+        "description": "The medicine is now in the main compartment, but its packaging is slightly crumpled. The water bottle is still on the bed.  The backpack's main compartment is more crowded.",
+        "state_id": "s3_alt_0",
+        "metadata": {
+          "progress": "0.2"
+        }
+      }
+    },
+    {
+      "transition_id": "t_15",
+      "start_state": {
+        "description": "Water bottle placed on top of clothes but easily accessible. Backpack is nearly full.",
+        "state_id": "s5",
+        "metadata": {
+          "progress": 0.7
+        }
+      },
+      "action": {
+        "description": "Assume the backpack is light enough. Quickly zip up the backpack, not bothering to weigh it or swap the jacket. Proceed with the trip.",
+        "action_id": null,
+        "action_type": "risky",
+        "metadata": {
+          "deviation_type": "risky",
+          "risk_level": "medium",
+          "likely_outcome": "partial_success"
+        }
+      },
+      "end_state": {
+        "description": "The backpack is packed, and everything needed for the weekend is inside. Weight distribution is acceptable, though the bag feels slightly unbalanced. Essentials are accessible, but it required some digging. The bag is within carry-on weight limits, though it's close. The checklist is completed. Some items are wrinkled.",
+        "state_id": "s_acceptable",
+        "metadata": {
+          "quality": 0.6,
+          "outcome": "success",
+          "reason": "The core goals were met (everything needed is packed), but with noticeable inefficiencies and less-than-ideal organization. Some items are less accessible than preferred."
+        }
+      }
+    },
+    {
+      "transition_id": "t_16",
+      "start_state": {
+        "description": "Water bottle placed on top of clothes but easily accessible. Backpack is nearly full.",
+        "state_id": "s5",
+        "metadata": {
+          "progress": 0.7
+        }
+      },
+      "action": {
+        "description": "Quickly close the backpack, hoping the weight is okay and the contents won't shift too much during travel.",
+        "action_id": null,
+        "action_type": "shortcut",
+        "metadata": {
+          "deviation_type": "shortcut",
+          "risk_level": "medium",
+          "likely_outcome": "partial_success"
+        }
+      },
+      "end_state": {
+        "description": "While attempting to close the backpack, the zipper fails catastrophically, rendering the bag unusable. Several items are also damaged in the process (e.g., a bottle leaked on clothing). The trip will need to be cancelled or reorganized with a different bag.",
+        "state_id": "f_critical_damage",
+        "metadata": {
+          "quality": 0.2,
+          "outcome": "failure",
+          "reason": "A critical failure (bag damage) occurred during the packing/closing process, resulting in unusable equipment and potential damage to the contents."
+        }
+      }
+    },
+    {
+      "transition_id": "t_17",
+      "start_state": {
+        "description": "Backpack is repacked; weight checked and now within carry-on limits. All items are inside, but there is still some space available.",
+        "state_id": "s7",
+        "metadata": {
+          "progress": 0.9
+        }
+      },
+      "action": {
+        "description": "Assume the remaining space is negligible and the trip is unlikely to require more items. Close the backpack and skip the final check.",
+        "action_id": null,
+        "action_type": "risky",
+        "metadata": {
+          "deviation_type": "risky",
+          "risk_level": "low",
+          "likely_outcome": "partial_success"
+        }
+      },
+      "end_state": {
+        "description": "The backpack is perfectly packed. Weight is optimally distributed with heavier items low and centered. Frequently used items like water bottle and snacks are in easy-access pockets. The bag weighs exactly 20 lbs and fits perfectly within the airline carry-on size restrictions. The checklist is completed with all items accounted for, and the packing process was efficient and without any forgotten items. There's even space left over for souvenirs!",
+        "state_id": "s_perfect",
+        "metadata": {
+          "quality": 1.0,
+          "outcome": "success",
+          "reason": "All goals were achieved with optimal efficiency and effectiveness. No wasted space or weight. Checklist 100% complete."
+        }
+      }
+    },
+    {
+      "transition_id": "t_18",
+      "start_state": {
+        "description": "Backpack is repacked; weight checked and now within carry-on limits. All items are inside, but there is still some space available.",
+        "state_id": "s7",
+        "metadata": {
+          "progress": 0.9
+        }
+      },
+      "action": {
+        "description": "Assume the remaining space is negligible and declare the backpack complete, skipping a final thorough inspection for optimal packing or potential item organization.",
+        "action_id": null,
+        "action_type": "shortcut",
+        "metadata": {
+          "deviation_type": "shortcut",
+          "risk_level": "low",
+          "likely_outcome": "success"
+        }
+      },
+      "end_state": {
+        "description": "While attempting to close the backpack, the zipper fails catastrophically, rendering the bag unusable. Several items are also damaged in the process (e.g., a bottle leaked on clothing). The trip will need to be cancelled or reorganized with a different bag.",
+        "state_id": "f_critical_damage",
+        "metadata": {
+          "quality": 0.2,
+          "outcome": "failure",
+          "reason": "A critical failure (bag damage) occurred during the packing/closing process, resulting in unusable equipment and potential damage to the contents."
+        }
+      }
+    }
+  ],
+  "initial_state": {
+    "description": "Empty backpack (40L). Checklist on table: clothes (2 sets), toiletries, chargers, documents, medicine, water bottle. Items scattered on bed.",
+    "state_id": "s0",
+    "metadata": {
+      "progress": 0.0
+    }
+  },
+  "goal_states": [
+    {
+      "description": "The backpack is perfectly packed. Weight is optimally distributed with heavier items low and centered. Frequently used items like water bottle and snacks are in easy-access pockets. The bag weighs exactly 20 lbs and fits perfectly within the airline carry-on size restrictions. The checklist is completed with all items accounted for, and the packing process was efficient and without any forgotten items. There's even space left over for souvenirs!",
+      "state_id": "s_perfect",
+      "metadata": {
+        "quality": 1.0,
+        "outcome": "success",
+        "reason": "All goals were achieved with optimal efficiency and effectiveness. No wasted space or weight. Checklist 100% complete."
+      }
+    },
+    {
+      "description": "The backpack is packed well, with reasonable weight distribution. Heavier items are mostly at the bottom. The essential items are accessible. The bag is under the carry-on weight limit, though a little more space could have been utilized. The checklist is completed. A few minor items could have been organized better.",
+      "state_id": "s_good",
+      "metadata": {
+        "quality": 0.8,
+        "outcome": "success",
+        "reason": "Most goals were achieved. Slight inefficiencies in packing, but overall a successful packing job. Minor item placement issues."
+      }
+    },
+    {
+      "description": "The backpack is packed, and everything needed for the weekend is inside. Weight distribution is acceptable, though the bag feels slightly unbalanced. Essentials are accessible, but it required some digging. The bag is within carry-on weight limits, though it's close. The checklist is completed. Some items are wrinkled.",
+      "state_id": "s_acceptable",
+      "metadata": {
+        "quality": 0.6,
+        "outcome": "success",
+        "reason": "The core goals were met (everything needed is packed), but with noticeable inefficiencies and less-than-ideal organization. Some items are less accessible than preferred."
+      }
+    }
+  ],
+  "final_states": [
+    {
+      "description": "The backpack is perfectly packed. Weight is optimally distributed with heavier items low and centered. Frequently used items like water bottle and snacks are in easy-access pockets. The bag weighs exactly 20 lbs and fits perfectly within the airline carry-on size restrictions. The checklist is completed with all items accounted for, and the packing process was efficient and without any forgotten items. There's even space left over for souvenirs!",
+      "state_id": "s_perfect",
+      "metadata": {
+        "quality": 1.0,
+        "outcome": "success",
+        "reason": "All goals were achieved with optimal efficiency and effectiveness. No wasted space or weight. Checklist 100% complete."
+      }
+    },
+    {
+      "description": "The backpack is packed well, with reasonable weight distribution. Heavier items are mostly at the bottom. The essential items are accessible. The bag is under the carry-on weight limit, though a little more space could have been utilized. The checklist is completed. A few minor items could have been organized better.",
+      "state_id": "s_good",
+      "metadata": {
+        "quality": 0.8,
+        "outcome": "success",
+        "reason": "Most goals were achieved. Slight inefficiencies in packing, but overall a successful packing job. Minor item placement issues."
+      }
+    },
+    {
+      "description": "The backpack is packed, and everything needed for the weekend is inside. Weight distribution is acceptable, though the bag feels slightly unbalanced. Essentials are accessible, but it required some digging. The bag is within carry-on weight limits, though it's close. The checklist is completed. Some items are wrinkled.",
+      "state_id": "s_acceptable",
+      "metadata": {
+        "quality": 0.6,
+        "outcome": "success",
+        "reason": "The core goals were met (everything needed is packed), but with noticeable inefficiencies and less-than-ideal organization. Some items are less accessible than preferred."
+      }
+    },
+    {
+      "description": "After struggling for an hour, the user gave up packing the backpack. The contents of the items are scattered across the bed. The checklist is abandoned, and the trip is unlikely to happen as planned.",
+      "state_id": "f_gave_up",
+      "metadata": {
+        "quality": 0.1,
+        "outcome": "failure",
+        "reason": "The user failed to complete the packing process. Overwhelmed and stopped packing halfway."
+      }
+    },
+    {
+      "description": "While attempting to close the backpack, the zipper fails catastrophically, rendering the bag unusable. Several items are also damaged in the process (e.g., a bottle leaked on clothing). The trip will need to be cancelled or reorganized with a different bag.",
+      "state_id": "f_critical_damage",
+      "metadata": {
+        "quality": 0.2,
+        "outcome": "failure",
+        "reason": "A critical failure (bag damage) occurred during the packing/closing process, resulting in unusable equipment and potential damage to the contents."
+      }
+    }
+  ],
+  "goal_state": {
+    "description": "The backpack is perfectly packed. Weight is optimally distributed with heavier items low and centered. Frequently used items like water bottle and snacks are in easy-access pockets. The bag weighs exactly 20 lbs and fits perfectly within the airline carry-on size restrictions. The checklist is completed with all items accounted for, and the packing process was efficient and without any forgotten items. There's even space left over for souvenirs!",
+    "state_id": "s_perfect",
+    "metadata": {
+      "quality": 1.0,
+      "outcome": "success",
+      "reason": "All goals were achieved with optimal efficiency and effectiveness. No wasted space or weight. Checklist 100% complete."
+    }
+  }
+}

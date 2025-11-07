@@ -1,0 +1,337 @@
+{
+  "name": "desk_room_organization_linear",
+  "description": "Linear world for desk_room_organization",
+  "states": [
+    {
+      "description": "Messy desk: papers scattered, cables tangled, books piled, stationery mixed, trash visible, storage boxes on the side are empty.",
+      "state_id": "s0",
+      "metadata": {
+        "progress": 0.0
+      }
+    },
+    {
+      "description": "Papers are being sorted into categories: important, to-file, to-discard. Some are stacked neatly. Trash bag is nearby.",
+      "state_id": "s1",
+      "metadata": {
+        "progress": 0.2
+      }
+    },
+    {
+      "description": "Most papers are sorted, some filed in a drawer/folder. Trash is starting to fill up. Cables are still tangled.",
+      "state_id": "s2",
+      "metadata": {
+        "progress": 0.35
+      }
+    },
+    {
+      "description": "Papers are filed, trash is mostly disposed of. Now beginning to address the cables. Cables are being untangled and assessed for re-routing.",
+      "state_id": "s3",
+      "metadata": {
+        "progress": 0.45
+      }
+    },
+    {
+      "description": "Cables are mostly untangled and starting to be bundled with cable ties or clips. A new piece of paper with an important note has appeared on the desk. This is an interruption.",
+      "state_id": "s4",
+      "metadata": {
+        "progress": 0.55
+      }
+    },
+    {
+      "description": "The new paper has been addressed (read, noted, filed). Cables are bundled and neatly arranged. Books are being selected for the shelf or storage box.",
+      "state_id": "s5",
+      "metadata": {
+        "progress": 0.65
+      }
+    },
+    {
+      "description": "Books are placed on the shelf or in the storage box. Stationery is being organized, some in pencil holders, some in drawers. The desk surface is mostly clear.",
+      "state_id": "s6",
+      "metadata": {
+        "progress": 0.75
+      }
+    },
+    {
+      "description": "Stationery is organized, trash has been completely removed. The desk surface is wiped down. Final checks are underway.",
+      "state_id": "s7",
+      "metadata": {
+        "progress": 0.9
+      }
+    },
+    {
+      "description": "Organized desk: papers filed, cables bundled, books on shelf/in box, stationery in holder, trash removed, clean surface. All items have been arranged and nothing out of place. The task is completed.",
+      "state_id": "s8",
+      "metadata": {
+        "progress": 1.0
+      }
+    }
+  ],
+  "actions": [
+    {
+      "description": "Begin sorting papers into piles: to-file, to-discard, important.",
+      "action_id": "a0",
+      "action_type": "preparation",
+      "metadata": {}
+    },
+    {
+      "description": "File the 'to-file' papers and dispose of the trash.",
+      "action_id": "a1",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Begin untangling and assessing cables, considering how to bundle them.",
+      "action_id": "a2",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Bundle the cables and address a new piece of paper that appeared on the desk.",
+      "action_id": "a3",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Process the new paper and continue bundling cables. Start addressing the books to put them away.",
+      "action_id": "a4",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Place the books on the shelf or in storage boxes, and organize the stationery.",
+      "action_id": "a5",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Complete stationery organization and wipe down desk surface. Removing any remaining trash",
+      "action_id": "a6",
+      "action_type": "finishing",
+      "metadata": {}
+    },
+    {
+      "description": "Final check and confirmation of completed organization.  The desk is finished and clean.",
+      "action_id": "a7",
+      "action_type": "finishing",
+      "metadata": {}
+    }
+  ],
+  "transitions": [
+    {
+      "transition_id": "t_0",
+      "start_state": {
+        "description": "Messy desk: papers scattered, cables tangled, books piled, stationery mixed, trash visible, storage boxes on the side are empty.",
+        "state_id": "s0",
+        "metadata": {
+          "progress": 0.0
+        }
+      },
+      "action": {
+        "description": "Begin sorting papers into piles: to-file, to-discard, important.",
+        "action_id": "a0",
+        "action_type": "preparation",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Papers are being sorted into categories: important, to-file, to-discard. Some are stacked neatly. Trash bag is nearby.",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.2
+        }
+      }
+    },
+    {
+      "transition_id": "t_1",
+      "start_state": {
+        "description": "Papers are being sorted into categories: important, to-file, to-discard. Some are stacked neatly. Trash bag is nearby.",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.2
+        }
+      },
+      "action": {
+        "description": "File the 'to-file' papers and dispose of the trash.",
+        "action_id": "a1",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Most papers are sorted, some filed in a drawer/folder. Trash is starting to fill up. Cables are still tangled.",
+        "state_id": "s2",
+        "metadata": {
+          "progress": 0.35
+        }
+      }
+    },
+    {
+      "transition_id": "t_2",
+      "start_state": {
+        "description": "Most papers are sorted, some filed in a drawer/folder. Trash is starting to fill up. Cables are still tangled.",
+        "state_id": "s2",
+        "metadata": {
+          "progress": 0.35
+        }
+      },
+      "action": {
+        "description": "Begin untangling and assessing cables, considering how to bundle them.",
+        "action_id": "a2",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Papers are filed, trash is mostly disposed of. Now beginning to address the cables. Cables are being untangled and assessed for re-routing.",
+        "state_id": "s3",
+        "metadata": {
+          "progress": 0.45
+        }
+      }
+    },
+    {
+      "transition_id": "t_3",
+      "start_state": {
+        "description": "Papers are filed, trash is mostly disposed of. Now beginning to address the cables. Cables are being untangled and assessed for re-routing.",
+        "state_id": "s3",
+        "metadata": {
+          "progress": 0.45
+        }
+      },
+      "action": {
+        "description": "Bundle the cables and address a new piece of paper that appeared on the desk.",
+        "action_id": "a3",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Cables are mostly untangled and starting to be bundled with cable ties or clips. A new piece of paper with an important note has appeared on the desk. This is an interruption.",
+        "state_id": "s4",
+        "metadata": {
+          "progress": 0.55
+        }
+      }
+    },
+    {
+      "transition_id": "t_4",
+      "start_state": {
+        "description": "Cables are mostly untangled and starting to be bundled with cable ties or clips. A new piece of paper with an important note has appeared on the desk. This is an interruption.",
+        "state_id": "s4",
+        "metadata": {
+          "progress": 0.55
+        }
+      },
+      "action": {
+        "description": "Process the new paper and continue bundling cables. Start addressing the books to put them away.",
+        "action_id": "a4",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "The new paper has been addressed (read, noted, filed). Cables are bundled and neatly arranged. Books are being selected for the shelf or storage box.",
+        "state_id": "s5",
+        "metadata": {
+          "progress": 0.65
+        }
+      }
+    },
+    {
+      "transition_id": "t_5",
+      "start_state": {
+        "description": "The new paper has been addressed (read, noted, filed). Cables are bundled and neatly arranged. Books are being selected for the shelf or storage box.",
+        "state_id": "s5",
+        "metadata": {
+          "progress": 0.65
+        }
+      },
+      "action": {
+        "description": "Place the books on the shelf or in storage boxes, and organize the stationery.",
+        "action_id": "a5",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Books are placed on the shelf or in the storage box. Stationery is being organized, some in pencil holders, some in drawers. The desk surface is mostly clear.",
+        "state_id": "s6",
+        "metadata": {
+          "progress": 0.75
+        }
+      }
+    },
+    {
+      "transition_id": "t_6",
+      "start_state": {
+        "description": "Books are placed on the shelf or in the storage box. Stationery is being organized, some in pencil holders, some in drawers. The desk surface is mostly clear.",
+        "state_id": "s6",
+        "metadata": {
+          "progress": 0.75
+        }
+      },
+      "action": {
+        "description": "Complete stationery organization and wipe down desk surface. Removing any remaining trash",
+        "action_id": "a6",
+        "action_type": "finishing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Stationery is organized, trash has been completely removed. The desk surface is wiped down. Final checks are underway.",
+        "state_id": "s7",
+        "metadata": {
+          "progress": 0.9
+        }
+      }
+    },
+    {
+      "transition_id": "t_7",
+      "start_state": {
+        "description": "Stationery is organized, trash has been completely removed. The desk surface is wiped down. Final checks are underway.",
+        "state_id": "s7",
+        "metadata": {
+          "progress": 0.9
+        }
+      },
+      "action": {
+        "description": "Final check and confirmation of completed organization.  The desk is finished and clean.",
+        "action_id": "a7",
+        "action_type": "finishing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Organized desk: papers filed, cables bundled, books on shelf/in box, stationery in holder, trash removed, clean surface. All items have been arranged and nothing out of place. The task is completed.",
+        "state_id": "s8",
+        "metadata": {
+          "progress": 1.0
+        }
+      }
+    }
+  ],
+  "initial_state": {
+    "description": "Messy desk: papers scattered, cables tangled, books piled, stationery mixed, trash visible, storage boxes on the side are empty.",
+    "state_id": "s0",
+    "metadata": {
+      "progress": 0.0
+    }
+  },
+  "goal_states": [
+    {
+      "description": "Organized desk: papers filed, cables bundled, books on shelf/in box, stationery in holder, trash removed, clean surface. All items have been arranged and nothing out of place. The task is completed.",
+      "state_id": "s8",
+      "metadata": {
+        "progress": 1.0
+      }
+    }
+  ],
+  "final_states": [
+    {
+      "description": "Organized desk: papers filed, cables bundled, books on shelf/in box, stationery in holder, trash removed, clean surface. All items have been arranged and nothing out of place. The task is completed.",
+      "state_id": "s8",
+      "metadata": {
+        "progress": 1.0
+      }
+    }
+  ],
+  "goal_state": {
+    "description": "Organized desk: papers filed, cables bundled, books on shelf/in box, stationery in holder, trash removed, clean surface. All items have been arranged and nothing out of place. The task is completed.",
+    "state_id": "s8",
+    "metadata": {
+      "progress": 1.0
+    }
+  }
+}

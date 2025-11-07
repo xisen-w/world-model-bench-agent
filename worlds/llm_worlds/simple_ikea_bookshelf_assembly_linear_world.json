@@ -1,0 +1,373 @@
+{
+  "name": "simple_ikea_bookshelf_assembly_linear",
+  "description": "Linear world for simple_ikea_bookshelf_assembly",
+  "states": [
+    {
+      "description": "Unassembled bookshelf parts laid out: 4 panels (2 sides, top, bottom), 8 dowels, 8 screws, 1 screwdriver, assembly instruction sheet open to step 1.",
+      "state_id": "s0",
+      "metadata": {
+        "progress": 0.0
+      }
+    },
+    {
+      "description": "Side panel 1 oriented, dowels ready. Instructions viewed: Step 1: Insert dowels into side panels.",
+      "state_id": "s1",
+      "metadata": {
+        "progress": 0.1
+      }
+    },
+    {
+      "description": "Side panel 1 with 4 dowels inserted. Instructions viewed: Step 2: Attach top panel to side panel 1 with dowels.",
+      "state_id": "s2",
+      "metadata": {
+        "progress": 0.3
+      }
+    },
+    {
+      "description": "Top panel partially connected to side panel 1 with dowels, attempting to align. Instructions viewed: Step 3: Attach side panel 2 and bottom panel to assembled top and side panel 1, using dowels.",
+      "state_id": "s3",
+      "metadata": {
+        "progress": 0.4
+      }
+    },
+    {
+      "description": "Partially assembled frame: Top, side panel 1, and side panel 2 with the bottom panel ready to be joined using dowels.  Instructions: Step 3",
+      "state_id": "s4",
+      "metadata": {
+        "progress": 0.5
+      }
+    },
+    {
+      "description": "Bookcase frame (top, 2 sides, and bottom panels) assembled with dowels, slight instability, instructions viewed: Step 4: Secure panels with screws.",
+      "state_id": "s5",
+      "metadata": {
+        "progress": 0.6
+      }
+    },
+    {
+      "description": "Partially assembled bookshelf frame, screws being inserted into the corners. Instructions viewed: Step 4: Secure panels with screws.  A slight wobble exists, indicating the need for careful alignment.",
+      "state_id": "s6",
+      "metadata": {
+        "progress": 0.7
+      }
+    },
+    {
+      "description": "Bookcase frame assembled, all screws in place, standing upright, with only minor instability. Instructions viewed: Step 5: check stability and tighten screws as needed.",
+      "state_id": "s7",
+      "metadata": {
+        "progress": 0.8
+      }
+    },
+    {
+      "description": "Bookcase nearly complete, screws tightened, structure is stable. Minor imperfections like misaligned panels are present, but functional. Instructions: checking final steps and cleaning up.",
+      "state_id": "s8",
+      "metadata": {
+        "progress": 0.9
+      }
+    },
+    {
+      "description": "Completed bookshelf standing upright, all panels connected, stable structure, all dowels and screws properly installed. Assembly area cleared. Instruction sheet discarded.",
+      "state_id": "s9",
+      "metadata": {
+        "progress": 1.0
+      }
+    }
+  ],
+  "actions": [
+    {
+      "description": "Examine instructions, select side panel 1 and dowels, begin inserting dowels into pre-drilled holes.",
+      "action_id": "a0",
+      "action_type": "preparation",
+      "metadata": {}
+    },
+    {
+      "description": "Insert 4 dowels into side panel 1.",
+      "action_id": "a1",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Align and attach the top panel to side panel 1, matching dowel positions.",
+      "action_id": "a2",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Attach side panel 2 and the bottom panel to the assembly using dowels, ensuring alignment.",
+      "action_id": "a3",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Finalize connecting panels with dowels, forming the frame. Inspect frame for squareness and stability.",
+      "action_id": "a4",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Using screwdriver, insert screws to reinforce the corners and joints of the frame.",
+      "action_id": "a5",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Carefully insert and tighten all screws, ensuring the structure is sound and stable.",
+      "action_id": "a6",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Inspect the bookshelf for stability and make minor adjustments. Tighten any loose screws. Check for alignment. ",
+      "action_id": "a7",
+      "action_type": "finishing",
+      "metadata": {}
+    },
+    {
+      "description": "Confirm all steps completed, clean up any remaining debris, and discard the instruction sheet.",
+      "action_id": "a8",
+      "action_type": "finishing",
+      "metadata": {}
+    }
+  ],
+  "transitions": [
+    {
+      "transition_id": "t_0",
+      "start_state": {
+        "description": "Unassembled bookshelf parts laid out: 4 panels (2 sides, top, bottom), 8 dowels, 8 screws, 1 screwdriver, assembly instruction sheet open to step 1.",
+        "state_id": "s0",
+        "metadata": {
+          "progress": 0.0
+        }
+      },
+      "action": {
+        "description": "Examine instructions, select side panel 1 and dowels, begin inserting dowels into pre-drilled holes.",
+        "action_id": "a0",
+        "action_type": "preparation",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Side panel 1 oriented, dowels ready. Instructions viewed: Step 1: Insert dowels into side panels.",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.1
+        }
+      }
+    },
+    {
+      "transition_id": "t_1",
+      "start_state": {
+        "description": "Side panel 1 oriented, dowels ready. Instructions viewed: Step 1: Insert dowels into side panels.",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.1
+        }
+      },
+      "action": {
+        "description": "Insert 4 dowels into side panel 1.",
+        "action_id": "a1",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Side panel 1 with 4 dowels inserted. Instructions viewed: Step 2: Attach top panel to side panel 1 with dowels.",
+        "state_id": "s2",
+        "metadata": {
+          "progress": 0.3
+        }
+      }
+    },
+    {
+      "transition_id": "t_2",
+      "start_state": {
+        "description": "Side panel 1 with 4 dowels inserted. Instructions viewed: Step 2: Attach top panel to side panel 1 with dowels.",
+        "state_id": "s2",
+        "metadata": {
+          "progress": 0.3
+        }
+      },
+      "action": {
+        "description": "Align and attach the top panel to side panel 1, matching dowel positions.",
+        "action_id": "a2",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Top panel partially connected to side panel 1 with dowels, attempting to align. Instructions viewed: Step 3: Attach side panel 2 and bottom panel to assembled top and side panel 1, using dowels.",
+        "state_id": "s3",
+        "metadata": {
+          "progress": 0.4
+        }
+      }
+    },
+    {
+      "transition_id": "t_3",
+      "start_state": {
+        "description": "Top panel partially connected to side panel 1 with dowels, attempting to align. Instructions viewed: Step 3: Attach side panel 2 and bottom panel to assembled top and side panel 1, using dowels.",
+        "state_id": "s3",
+        "metadata": {
+          "progress": 0.4
+        }
+      },
+      "action": {
+        "description": "Attach side panel 2 and the bottom panel to the assembly using dowels, ensuring alignment.",
+        "action_id": "a3",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Partially assembled frame: Top, side panel 1, and side panel 2 with the bottom panel ready to be joined using dowels.  Instructions: Step 3",
+        "state_id": "s4",
+        "metadata": {
+          "progress": 0.5
+        }
+      }
+    },
+    {
+      "transition_id": "t_4",
+      "start_state": {
+        "description": "Partially assembled frame: Top, side panel 1, and side panel 2 with the bottom panel ready to be joined using dowels.  Instructions: Step 3",
+        "state_id": "s4",
+        "metadata": {
+          "progress": 0.5
+        }
+      },
+      "action": {
+        "description": "Finalize connecting panels with dowels, forming the frame. Inspect frame for squareness and stability.",
+        "action_id": "a4",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Bookcase frame (top, 2 sides, and bottom panels) assembled with dowels, slight instability, instructions viewed: Step 4: Secure panels with screws.",
+        "state_id": "s5",
+        "metadata": {
+          "progress": 0.6
+        }
+      }
+    },
+    {
+      "transition_id": "t_5",
+      "start_state": {
+        "description": "Bookcase frame (top, 2 sides, and bottom panels) assembled with dowels, slight instability, instructions viewed: Step 4: Secure panels with screws.",
+        "state_id": "s5",
+        "metadata": {
+          "progress": 0.6
+        }
+      },
+      "action": {
+        "description": "Using screwdriver, insert screws to reinforce the corners and joints of the frame.",
+        "action_id": "a5",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Partially assembled bookshelf frame, screws being inserted into the corners. Instructions viewed: Step 4: Secure panels with screws.  A slight wobble exists, indicating the need for careful alignment.",
+        "state_id": "s6",
+        "metadata": {
+          "progress": 0.7
+        }
+      }
+    },
+    {
+      "transition_id": "t_6",
+      "start_state": {
+        "description": "Partially assembled bookshelf frame, screws being inserted into the corners. Instructions viewed: Step 4: Secure panels with screws.  A slight wobble exists, indicating the need for careful alignment.",
+        "state_id": "s6",
+        "metadata": {
+          "progress": 0.7
+        }
+      },
+      "action": {
+        "description": "Carefully insert and tighten all screws, ensuring the structure is sound and stable.",
+        "action_id": "a6",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Bookcase frame assembled, all screws in place, standing upright, with only minor instability. Instructions viewed: Step 5: check stability and tighten screws as needed.",
+        "state_id": "s7",
+        "metadata": {
+          "progress": 0.8
+        }
+      }
+    },
+    {
+      "transition_id": "t_7",
+      "start_state": {
+        "description": "Bookcase frame assembled, all screws in place, standing upright, with only minor instability. Instructions viewed: Step 5: check stability and tighten screws as needed.",
+        "state_id": "s7",
+        "metadata": {
+          "progress": 0.8
+        }
+      },
+      "action": {
+        "description": "Inspect the bookshelf for stability and make minor adjustments. Tighten any loose screws. Check for alignment. ",
+        "action_id": "a7",
+        "action_type": "finishing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Bookcase nearly complete, screws tightened, structure is stable. Minor imperfections like misaligned panels are present, but functional. Instructions: checking final steps and cleaning up.",
+        "state_id": "s8",
+        "metadata": {
+          "progress": 0.9
+        }
+      }
+    },
+    {
+      "transition_id": "t_8",
+      "start_state": {
+        "description": "Bookcase nearly complete, screws tightened, structure is stable. Minor imperfections like misaligned panels are present, but functional. Instructions: checking final steps and cleaning up.",
+        "state_id": "s8",
+        "metadata": {
+          "progress": 0.9
+        }
+      },
+      "action": {
+        "description": "Confirm all steps completed, clean up any remaining debris, and discard the instruction sheet.",
+        "action_id": "a8",
+        "action_type": "finishing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Completed bookshelf standing upright, all panels connected, stable structure, all dowels and screws properly installed. Assembly area cleared. Instruction sheet discarded.",
+        "state_id": "s9",
+        "metadata": {
+          "progress": 1.0
+        }
+      }
+    }
+  ],
+  "initial_state": {
+    "description": "Unassembled bookshelf parts laid out: 4 panels (2 sides, top, bottom), 8 dowels, 8 screws, 1 screwdriver, assembly instruction sheet open to step 1.",
+    "state_id": "s0",
+    "metadata": {
+      "progress": 0.0
+    }
+  },
+  "goal_states": [
+    {
+      "description": "Completed bookshelf standing upright, all panels connected, stable structure, all dowels and screws properly installed. Assembly area cleared. Instruction sheet discarded.",
+      "state_id": "s9",
+      "metadata": {
+        "progress": 1.0
+      }
+    }
+  ],
+  "final_states": [
+    {
+      "description": "Completed bookshelf standing upright, all panels connected, stable structure, all dowels and screws properly installed. Assembly area cleared. Instruction sheet discarded.",
+      "state_id": "s9",
+      "metadata": {
+        "progress": 1.0
+      }
+    }
+  ],
+  "goal_state": {
+    "description": "Completed bookshelf standing upright, all panels connected, stable structure, all dowels and screws properly installed. Assembly area cleared. Instruction sheet discarded.",
+    "state_id": "s9",
+    "metadata": {
+      "progress": 1.0
+    }
+  }
+}

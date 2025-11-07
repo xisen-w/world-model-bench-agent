@@ -1,0 +1,337 @@
+{
+  "name": "gift_box_wrapping_linear",
+  "description": "Linear world for gift_box_wrapping",
+  "states": [
+    {
+      "description": "Unwrapped gift box on the table. Wrapping paper roll, scissors, tape dispenser, and ribbon are also on the table.",
+      "state_id": "s0",
+      "metadata": {
+        "progress": 0.0
+      }
+    },
+    {
+      "description": "Gift box is placed on the wrapping paper, and paper is cut to be significantly larger than the box, paper size seems wrong.",
+      "state_id": "s1",
+      "metadata": {
+        "progress": 0.1
+      }
+    },
+    {
+      "description": "Wrapping paper is trimmed, now appropriately sized to cover the box with an overlap.",
+      "state_id": "s2",
+      "metadata": {
+        "progress": 0.2
+      }
+    },
+    {
+      "description": "Gift box centered on the wrapping paper. One side of the paper is folded over the box, and taped down, paper edges are still slightly uneven.",
+      "state_id": "s3",
+      "metadata": {
+        "progress": 0.4
+      }
+    },
+    {
+      "description": "The other side of the paper is folded over the box. A small tear appears in the paper during folding.",
+      "state_id": "s4",
+      "metadata": {
+        "progress": 0.5
+      }
+    },
+    {
+      "description": "The tear is covered with a small patch of matching wrapping paper, secured with tape. The second side is taped down, edges appear neat.",
+      "state_id": "s5",
+      "metadata": {
+        "progress": 0.6
+      }
+    },
+    {
+      "description": "The ends of the wrapping paper are folded neatly around the box, creating a sealed package with some tape at the ends to secure.",
+      "state_id": "s6",
+      "metadata": {
+        "progress": 0.7
+      }
+    },
+    {
+      "description": "Ribbon is wrapped around the box and tied into a neat bow.  Tape is used to secure the ribbon ends on the bottom.",
+      "state_id": "s7",
+      "metadata": {
+        "progress": 0.9
+      }
+    },
+    {
+      "description": "Beautifully wrapped gift box with smooth, neat paper, no visible gaps, and a decorative ribbon bow on top. The edges are crisp and clean.",
+      "state_id": "s8",
+      "metadata": {
+        "progress": 1.0
+      }
+    }
+  ],
+  "actions": [
+    {
+      "description": "Place the gift box on the wrapping paper and assess the required paper size.",
+      "action_id": "a0",
+      "action_type": "preparation",
+      "metadata": {}
+    },
+    {
+      "description": "Cut the wrapping paper with scissors, initially resulting in oversized paper (error).",
+      "action_id": "a1",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Trim the wrapping paper, making it the correct size.",
+      "action_id": "a2",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Fold one side of the paper over the box and secure it with tape.",
+      "action_id": "a3",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Fold the other side of the paper over the box, paper tears slightly.",
+      "action_id": "a4",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Apply a patch of wrapping paper over the tear and reinforce with tape. Then secure the second side with tape.",
+      "action_id": "a5",
+      "action_type": "repair",
+      "metadata": {}
+    },
+    {
+      "description": "Fold and tape the ends of the wrapping paper to the box.",
+      "action_id": "a6",
+      "action_type": "finishing",
+      "metadata": {}
+    },
+    {
+      "description": "Wrap ribbon around the box and tie a bow. Secure ribbon ends with tape on the bottom.",
+      "action_id": "a7",
+      "action_type": "finishing",
+      "metadata": {}
+    }
+  ],
+  "transitions": [
+    {
+      "transition_id": "t_0",
+      "start_state": {
+        "description": "Unwrapped gift box on the table. Wrapping paper roll, scissors, tape dispenser, and ribbon are also on the table.",
+        "state_id": "s0",
+        "metadata": {
+          "progress": 0.0
+        }
+      },
+      "action": {
+        "description": "Place the gift box on the wrapping paper and assess the required paper size.",
+        "action_id": "a0",
+        "action_type": "preparation",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Gift box is placed on the wrapping paper, and paper is cut to be significantly larger than the box, paper size seems wrong.",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.1
+        }
+      }
+    },
+    {
+      "transition_id": "t_1",
+      "start_state": {
+        "description": "Gift box is placed on the wrapping paper, and paper is cut to be significantly larger than the box, paper size seems wrong.",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.1
+        }
+      },
+      "action": {
+        "description": "Cut the wrapping paper with scissors, initially resulting in oversized paper (error).",
+        "action_id": "a1",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Wrapping paper is trimmed, now appropriately sized to cover the box with an overlap.",
+        "state_id": "s2",
+        "metadata": {
+          "progress": 0.2
+        }
+      }
+    },
+    {
+      "transition_id": "t_2",
+      "start_state": {
+        "description": "Wrapping paper is trimmed, now appropriately sized to cover the box with an overlap.",
+        "state_id": "s2",
+        "metadata": {
+          "progress": 0.2
+        }
+      },
+      "action": {
+        "description": "Trim the wrapping paper, making it the correct size.",
+        "action_id": "a2",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Gift box centered on the wrapping paper. One side of the paper is folded over the box, and taped down, paper edges are still slightly uneven.",
+        "state_id": "s3",
+        "metadata": {
+          "progress": 0.4
+        }
+      }
+    },
+    {
+      "transition_id": "t_3",
+      "start_state": {
+        "description": "Gift box centered on the wrapping paper. One side of the paper is folded over the box, and taped down, paper edges are still slightly uneven.",
+        "state_id": "s3",
+        "metadata": {
+          "progress": 0.4
+        }
+      },
+      "action": {
+        "description": "Fold one side of the paper over the box and secure it with tape.",
+        "action_id": "a3",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "The other side of the paper is folded over the box. A small tear appears in the paper during folding.",
+        "state_id": "s4",
+        "metadata": {
+          "progress": 0.5
+        }
+      }
+    },
+    {
+      "transition_id": "t_4",
+      "start_state": {
+        "description": "The other side of the paper is folded over the box. A small tear appears in the paper during folding.",
+        "state_id": "s4",
+        "metadata": {
+          "progress": 0.5
+        }
+      },
+      "action": {
+        "description": "Fold the other side of the paper over the box, paper tears slightly.",
+        "action_id": "a4",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "The tear is covered with a small patch of matching wrapping paper, secured with tape. The second side is taped down, edges appear neat.",
+        "state_id": "s5",
+        "metadata": {
+          "progress": 0.6
+        }
+      }
+    },
+    {
+      "transition_id": "t_5",
+      "start_state": {
+        "description": "The tear is covered with a small patch of matching wrapping paper, secured with tape. The second side is taped down, edges appear neat.",
+        "state_id": "s5",
+        "metadata": {
+          "progress": 0.6
+        }
+      },
+      "action": {
+        "description": "Apply a patch of wrapping paper over the tear and reinforce with tape. Then secure the second side with tape.",
+        "action_id": "a5",
+        "action_type": "repair",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "The ends of the wrapping paper are folded neatly around the box, creating a sealed package with some tape at the ends to secure.",
+        "state_id": "s6",
+        "metadata": {
+          "progress": 0.7
+        }
+      }
+    },
+    {
+      "transition_id": "t_6",
+      "start_state": {
+        "description": "The ends of the wrapping paper are folded neatly around the box, creating a sealed package with some tape at the ends to secure.",
+        "state_id": "s6",
+        "metadata": {
+          "progress": 0.7
+        }
+      },
+      "action": {
+        "description": "Fold and tape the ends of the wrapping paper to the box.",
+        "action_id": "a6",
+        "action_type": "finishing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Ribbon is wrapped around the box and tied into a neat bow.  Tape is used to secure the ribbon ends on the bottom.",
+        "state_id": "s7",
+        "metadata": {
+          "progress": 0.9
+        }
+      }
+    },
+    {
+      "transition_id": "t_7",
+      "start_state": {
+        "description": "Ribbon is wrapped around the box and tied into a neat bow.  Tape is used to secure the ribbon ends on the bottom.",
+        "state_id": "s7",
+        "metadata": {
+          "progress": 0.9
+        }
+      },
+      "action": {
+        "description": "Wrap ribbon around the box and tie a bow. Secure ribbon ends with tape on the bottom.",
+        "action_id": "a7",
+        "action_type": "finishing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Beautifully wrapped gift box with smooth, neat paper, no visible gaps, and a decorative ribbon bow on top. The edges are crisp and clean.",
+        "state_id": "s8",
+        "metadata": {
+          "progress": 1.0
+        }
+      }
+    }
+  ],
+  "initial_state": {
+    "description": "Unwrapped gift box on the table. Wrapping paper roll, scissors, tape dispenser, and ribbon are also on the table.",
+    "state_id": "s0",
+    "metadata": {
+      "progress": 0.0
+    }
+  },
+  "goal_states": [
+    {
+      "description": "Beautifully wrapped gift box with smooth, neat paper, no visible gaps, and a decorative ribbon bow on top. The edges are crisp and clean.",
+      "state_id": "s8",
+      "metadata": {
+        "progress": 1.0
+      }
+    }
+  ],
+  "final_states": [
+    {
+      "description": "Beautifully wrapped gift box with smooth, neat paper, no visible gaps, and a decorative ribbon bow on top. The edges are crisp and clean.",
+      "state_id": "s8",
+      "metadata": {
+        "progress": 1.0
+      }
+    }
+  ],
+  "goal_state": {
+    "description": "Beautifully wrapped gift box with smooth, neat paper, no visible gaps, and a decorative ribbon bow on top. The edges are crisp and clean.",
+    "state_id": "s8",
+    "metadata": {
+      "progress": 1.0
+    }
+  }
+}

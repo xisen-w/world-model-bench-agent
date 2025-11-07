@@ -1,0 +1,301 @@
+{
+  "name": "starting_to_drive_linear",
+  "description": "Linear world for starting_to_drive",
+  "states": [
+    {
+      "description": "Driver sitting in parked car from first-person perspective, both hands resting on lap not touching steering wheel, seatbelt hanging loose and unbuckled on left side with no strap across chest, dashboard completely DARK with all indicator lights OFF and instruments unlit, parking brake lever in UP engaged position clearly visible between seats, key in OFF position in ignition, windshield showing stationary parking lot view with parked cars visible, steering wheel untouched and centered in lower view, gear indicator showing P for Park.",
+      "state_id": "s0",
+      "metadata": {
+        "progress": 0.0
+      }
+    },
+    {
+      "description": "Driver from first-person perspective, right hand reaching up to adjust rearview mirror, left hand still resting on lap, seatbelt hanging loose, dashboard still dark, parking brake lever up, engine off, stationary parking lot view.",
+      "state_id": "s1",
+      "metadata": {
+        "progress": 0.1
+      }
+    },
+    {
+      "description": "Driver in parked car, both hands resting on lap, seatbelt hanging loose and unbuckled, dashboard still completely DARK with all indicator lights OFF, parking brake lever in UP engaged position, engine still off with key in OFF position, windshield still showing stationary parking lot view, steering wheel untouched and centered, gear indicator P.",
+      "state_id": "s2",
+      "metadata": {
+        "progress": 0.2
+      }
+    },
+    {
+      "description": "Driver from first-person view, both hands returning to rest on lap, seatbelt now BUCKLED with strap clearly visible as diagonal line across chest from left shoulder to right hip with metal buckle secured on right side, dashboard still completely DARK with no lights illuminated, parking brake lever still in UP engaged position, engine still off with key in OFF position, windshield still showing stationary parking lot view, steering wheel untouched.",
+      "state_id": "s3",
+      "metadata": {
+        "progress": 0.3
+      }
+    },
+    {
+      "description": "Driver in parked car from first-person view, right hand now on ignition key/button, left hand resting on lap, seatbelt buckled across chest, dashboard now BRIGHTLY LIT with multiple colored indicator lights glowing (red check engine light, yellow battery warning, green ready indicator, blue high beam indicator), speedometer illuminated showing 0 mph, gear indicator display lit showing P, parking brake lever still in UP position, engine now running (audible idle), windshield still showing parking lot view.",
+      "state_id": "s4",
+      "metadata": {
+        "progress": 0.45
+      }
+    },
+    {
+      "description": "Driver in parked car, right hand now released from ignition, left hand resting on lap, seatbelt buckled, dashboard illuminated with various indicator lights ON, speedometer 0 mph, gear indicator P, parking brake lever still UP, engine running, windshield view of parking lot.",
+      "state_id": "s5",
+      "metadata": {
+        "progress": 0.6
+      }
+    },
+    {
+      "description": "Driver in parked car from first-person perspective, right hand moving to gear shift, left hand on steering wheel, seatbelt buckled, dashboard illuminated, speedometer 0 mph, gear indicator now showing D, parking brake lever still in UP position, engine running, windshield view of parking lot, hands on wheel ready for action.",
+      "state_id": "s6",
+      "metadata": {
+        "progress": 0.8
+      }
+    },
+    {
+      "description": "Driver in car, left hand gripping steering wheel at 9 and 3 o'clock positions, right hand released from gear shift and now on steering wheel, seatbelt buckled, dashboard illuminated, speedometer reading 15 mph, gear indicator D, parking brake lever is in DOWN position, engine running, windshield view now shows moving road view, car is moving safely on the road.",
+      "state_id": "s7",
+      "metadata": {
+        "progress": 1.0
+      }
+    }
+  ],
+  "actions": [
+    {
+      "description": "Driver reaches up with right hand to adjust rearview mirror, moves it slightly, releases hand, then returns right hand to lap.",
+      "action_id": "a0",
+      "action_type": "preparation",
+      "metadata": {}
+    },
+    {
+      "description": "Driver grasps seatbelt buckle with left hand from left side of seat, pulls seatbelt strap diagonally across chest from left shoulder toward right hip, guides metal buckle with right hand into receiver on right side of seat, pushes buckle in with audible click, releases both hands - seatbelt strap now secured and clearly visible as diagonal black strap across torso.",
+      "action_id": "a1",
+      "action_type": "preparation",
+      "metadata": {}
+    },
+    {
+      "description": "Driver grasps seatbelt buckle with left hand from left side of seat, pulls seatbelt strap diagonally across chest from left shoulder toward right hip, guides metal buckle with right hand into receiver on right side of seat, pushes buckle in with audible click, releases both hands - seatbelt strap now secured and clearly visible as diagonal black strap across torso.",
+      "action_id": "a2",
+      "action_type": "preparation",
+      "metadata": {}
+    },
+    {
+      "description": "Driver's right hand moves to and turns ignition key, engine makes starting sound, dashboard lights turn ON, multiple colored indicators now glowing.",
+      "action_id": "a3",
+      "action_type": "startup",
+      "metadata": {}
+    },
+    {
+      "description": "Driver releases ignition key, right hand returns to lap, dashboard lights remain ON.",
+      "action_id": "a4",
+      "action_type": "startup",
+      "metadata": {}
+    },
+    {
+      "description": "Driver's right hand moves to and shifts gear shift to D (Drive) position.",
+      "action_id": "a5",
+      "action_type": "preparation",
+      "metadata": {}
+    },
+    {
+      "description": "Driver's right foot depresses accelerator, left hand grips steering wheel at 9 and 3 o'clock, right hand moves from gear shift to steering wheel, and then right foot releases parking brake (audible click) and car begins to move forward.",
+      "action_id": "a6",
+      "action_type": "driving",
+      "metadata": {}
+    }
+  ],
+  "transitions": [
+    {
+      "transition_id": "t_0",
+      "start_state": {
+        "description": "Driver sitting in parked car from first-person perspective, both hands resting on lap not touching steering wheel, seatbelt hanging loose and unbuckled on left side with no strap across chest, dashboard completely DARK with all indicator lights OFF and instruments unlit, parking brake lever in UP engaged position clearly visible between seats, key in OFF position in ignition, windshield showing stationary parking lot view with parked cars visible, steering wheel untouched and centered in lower view, gear indicator showing P for Park.",
+        "state_id": "s0",
+        "metadata": {
+          "progress": 0.0
+        }
+      },
+      "action": {
+        "description": "Driver reaches up with right hand to adjust rearview mirror, moves it slightly, releases hand, then returns right hand to lap.",
+        "action_id": "a0",
+        "action_type": "preparation",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Driver from first-person perspective, right hand reaching up to adjust rearview mirror, left hand still resting on lap, seatbelt hanging loose, dashboard still dark, parking brake lever up, engine off, stationary parking lot view.",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.1
+        }
+      }
+    },
+    {
+      "transition_id": "t_1",
+      "start_state": {
+        "description": "Driver from first-person perspective, right hand reaching up to adjust rearview mirror, left hand still resting on lap, seatbelt hanging loose, dashboard still dark, parking brake lever up, engine off, stationary parking lot view.",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.1
+        }
+      },
+      "action": {
+        "description": "Driver grasps seatbelt buckle with left hand from left side of seat, pulls seatbelt strap diagonally across chest from left shoulder toward right hip, guides metal buckle with right hand into receiver on right side of seat, pushes buckle in with audible click, releases both hands - seatbelt strap now secured and clearly visible as diagonal black strap across torso.",
+        "action_id": "a1",
+        "action_type": "preparation",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Driver in parked car, both hands resting on lap, seatbelt hanging loose and unbuckled, dashboard still completely DARK with all indicator lights OFF, parking brake lever in UP engaged position, engine still off with key in OFF position, windshield still showing stationary parking lot view, steering wheel untouched and centered, gear indicator P.",
+        "state_id": "s2",
+        "metadata": {
+          "progress": 0.2
+        }
+      }
+    },
+    {
+      "transition_id": "t_2",
+      "start_state": {
+        "description": "Driver in parked car, both hands resting on lap, seatbelt hanging loose and unbuckled, dashboard still completely DARK with all indicator lights OFF, parking brake lever in UP engaged position, engine still off with key in OFF position, windshield still showing stationary parking lot view, steering wheel untouched and centered, gear indicator P.",
+        "state_id": "s2",
+        "metadata": {
+          "progress": 0.2
+        }
+      },
+      "action": {
+        "description": "Driver grasps seatbelt buckle with left hand from left side of seat, pulls seatbelt strap diagonally across chest from left shoulder toward right hip, guides metal buckle with right hand into receiver on right side of seat, pushes buckle in with audible click, releases both hands - seatbelt strap now secured and clearly visible as diagonal black strap across torso.",
+        "action_id": "a2",
+        "action_type": "preparation",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Driver from first-person view, both hands returning to rest on lap, seatbelt now BUCKLED with strap clearly visible as diagonal line across chest from left shoulder to right hip with metal buckle secured on right side, dashboard still completely DARK with no lights illuminated, parking brake lever still in UP engaged position, engine still off with key in OFF position, windshield still showing stationary parking lot view, steering wheel untouched.",
+        "state_id": "s3",
+        "metadata": {
+          "progress": 0.3
+        }
+      }
+    },
+    {
+      "transition_id": "t_3",
+      "start_state": {
+        "description": "Driver from first-person view, both hands returning to rest on lap, seatbelt now BUCKLED with strap clearly visible as diagonal line across chest from left shoulder to right hip with metal buckle secured on right side, dashboard still completely DARK with no lights illuminated, parking brake lever still in UP engaged position, engine still off with key in OFF position, windshield still showing stationary parking lot view, steering wheel untouched.",
+        "state_id": "s3",
+        "metadata": {
+          "progress": 0.3
+        }
+      },
+      "action": {
+        "description": "Driver's right hand moves to and turns ignition key, engine makes starting sound, dashboard lights turn ON, multiple colored indicators now glowing.",
+        "action_id": "a3",
+        "action_type": "startup",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Driver in parked car from first-person view, right hand now on ignition key/button, left hand resting on lap, seatbelt buckled across chest, dashboard now BRIGHTLY LIT with multiple colored indicator lights glowing (red check engine light, yellow battery warning, green ready indicator, blue high beam indicator), speedometer illuminated showing 0 mph, gear indicator display lit showing P, parking brake lever still in UP position, engine now running (audible idle), windshield still showing parking lot view.",
+        "state_id": "s4",
+        "metadata": {
+          "progress": 0.45
+        }
+      }
+    },
+    {
+      "transition_id": "t_4",
+      "start_state": {
+        "description": "Driver in parked car from first-person view, right hand now on ignition key/button, left hand resting on lap, seatbelt buckled across chest, dashboard now BRIGHTLY LIT with multiple colored indicator lights glowing (red check engine light, yellow battery warning, green ready indicator, blue high beam indicator), speedometer illuminated showing 0 mph, gear indicator display lit showing P, parking brake lever still in UP position, engine now running (audible idle), windshield still showing parking lot view.",
+        "state_id": "s4",
+        "metadata": {
+          "progress": 0.45
+        }
+      },
+      "action": {
+        "description": "Driver releases ignition key, right hand returns to lap, dashboard lights remain ON.",
+        "action_id": "a4",
+        "action_type": "startup",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Driver in parked car, right hand now released from ignition, left hand resting on lap, seatbelt buckled, dashboard illuminated with various indicator lights ON, speedometer 0 mph, gear indicator P, parking brake lever still UP, engine running, windshield view of parking lot.",
+        "state_id": "s5",
+        "metadata": {
+          "progress": 0.6
+        }
+      }
+    },
+    {
+      "transition_id": "t_5",
+      "start_state": {
+        "description": "Driver in parked car, right hand now released from ignition, left hand resting on lap, seatbelt buckled, dashboard illuminated with various indicator lights ON, speedometer 0 mph, gear indicator P, parking brake lever still UP, engine running, windshield view of parking lot.",
+        "state_id": "s5",
+        "metadata": {
+          "progress": 0.6
+        }
+      },
+      "action": {
+        "description": "Driver's right hand moves to and shifts gear shift to D (Drive) position.",
+        "action_id": "a5",
+        "action_type": "preparation",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Driver in parked car from first-person perspective, right hand moving to gear shift, left hand on steering wheel, seatbelt buckled, dashboard illuminated, speedometer 0 mph, gear indicator now showing D, parking brake lever still in UP position, engine running, windshield view of parking lot, hands on wheel ready for action.",
+        "state_id": "s6",
+        "metadata": {
+          "progress": 0.8
+        }
+      }
+    },
+    {
+      "transition_id": "t_6",
+      "start_state": {
+        "description": "Driver in parked car from first-person perspective, right hand moving to gear shift, left hand on steering wheel, seatbelt buckled, dashboard illuminated, speedometer 0 mph, gear indicator now showing D, parking brake lever still in UP position, engine running, windshield view of parking lot, hands on wheel ready for action.",
+        "state_id": "s6",
+        "metadata": {
+          "progress": 0.8
+        }
+      },
+      "action": {
+        "description": "Driver's right foot depresses accelerator, left hand grips steering wheel at 9 and 3 o'clock, right hand moves from gear shift to steering wheel, and then right foot releases parking brake (audible click) and car begins to move forward.",
+        "action_id": "a6",
+        "action_type": "driving",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Driver in car, left hand gripping steering wheel at 9 and 3 o'clock positions, right hand released from gear shift and now on steering wheel, seatbelt buckled, dashboard illuminated, speedometer reading 15 mph, gear indicator D, parking brake lever is in DOWN position, engine running, windshield view now shows moving road view, car is moving safely on the road.",
+        "state_id": "s7",
+        "metadata": {
+          "progress": 1.0
+        }
+      }
+    }
+  ],
+  "initial_state": {
+    "description": "Driver sitting in parked car from first-person perspective, both hands resting on lap not touching steering wheel, seatbelt hanging loose and unbuckled on left side with no strap across chest, dashboard completely DARK with all indicator lights OFF and instruments unlit, parking brake lever in UP engaged position clearly visible between seats, key in OFF position in ignition, windshield showing stationary parking lot view with parked cars visible, steering wheel untouched and centered in lower view, gear indicator showing P for Park.",
+    "state_id": "s0",
+    "metadata": {
+      "progress": 0.0
+    }
+  },
+  "goal_states": [
+    {
+      "description": "Driver in car, left hand gripping steering wheel at 9 and 3 o'clock positions, right hand released from gear shift and now on steering wheel, seatbelt buckled, dashboard illuminated, speedometer reading 15 mph, gear indicator D, parking brake lever is in DOWN position, engine running, windshield view now shows moving road view, car is moving safely on the road.",
+      "state_id": "s7",
+      "metadata": {
+        "progress": 1.0
+      }
+    }
+  ],
+  "final_states": [
+    {
+      "description": "Driver in car, left hand gripping steering wheel at 9 and 3 o'clock positions, right hand released from gear shift and now on steering wheel, seatbelt buckled, dashboard illuminated, speedometer reading 15 mph, gear indicator D, parking brake lever is in DOWN position, engine running, windshield view now shows moving road view, car is moving safely on the road.",
+      "state_id": "s7",
+      "metadata": {
+        "progress": 1.0
+      }
+    }
+  ],
+  "goal_state": {
+    "description": "Driver in car, left hand gripping steering wheel at 9 and 3 o'clock positions, right hand released from gear shift and now on steering wheel, seatbelt buckled, dashboard illuminated, speedometer reading 15 mph, gear indicator D, parking brake lever is in DOWN position, engine running, windshield view now shows moving road view, car is moving safely on the road.",
+    "state_id": "s7",
+    "metadata": {
+      "progress": 1.0
+    }
+  }
+}

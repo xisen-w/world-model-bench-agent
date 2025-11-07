@@ -45,7 +45,15 @@ class VideoWorld:
     generation_metadata: Dict = field(default_factory=dict)
 
     def save(self, filepath: str):
-        """Save to JSON file."""
+        """Save to JSON file. If path doesn't include directory, saves to worlds/video_worlds/."""
+        from pathlib import Path
+        filepath_obj = Path(filepath)
+
+        # If just a filename, save to worlds/video_worlds/
+        if filepath_obj.parent == Path('.'):
+            filepath_obj = Path('worlds/video_worlds') / filepath_obj
+            filepath_obj.parent.mkdir(parents=True, exist_ok=True)
+
         data = {
             "name": self.name,
             "image_world_source": self.image_world_source,
@@ -53,7 +61,7 @@ class VideoWorld:
             "states": [asdict(s) for s in self.states],
             "transitions": [asdict(t) for t in self.transitions]
         }
-        with open(filepath, 'w') as f:
+        with open(filepath_obj, 'w') as f:
             json.dump(data, f, indent=2)
 
     @staticmethod

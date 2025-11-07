@@ -54,7 +54,15 @@ class ImageWorld:
     generation_metadata: Dict = field(default_factory=dict)
 
     def save(self, filepath: str):
-        """Save to JSON file."""
+        """Save to JSON file. If path doesn't include directory, saves to worlds/image_worlds/."""
+        from pathlib import Path
+        filepath_obj = Path(filepath)
+
+        # If just a filename, save to worlds/image_worlds/
+        if filepath_obj.parent == Path('.'):
+            filepath_obj = Path('worlds/image_worlds') / filepath_obj
+            filepath_obj.parent.mkdir(parents=True, exist_ok=True)
+
         data = {
             "name": self.name,
             "text_world_source": self.text_world_source,
@@ -62,7 +70,7 @@ class ImageWorld:
             "states": [asdict(s) for s in self.states],
             "transitions": [asdict(t) for t in self.transitions]
         }
-        with open(filepath, 'w') as f:
+        with open(filepath_obj, 'w') as f:
             json.dump(data, f, indent=2)
 
     @staticmethod
@@ -93,7 +101,9 @@ class ImageWorldGenerator:
         veo_client,
         camera_perspective: str = "first_person_ego",
         aspect_ratio: str = "16:9",
-        output_dir: str = "generated_images"
+        output_dir: str = "generated_images",
+        use_advanced_generation: bool = False,
+        llm_client = None
     ):
         """
         Initialize image world generator.
@@ -103,12 +113,16 @@ class ImageWorldGenerator:
             camera_perspective: Camera view (first_person_ego, third_person, overhead)
             aspect_ratio: Image aspect ratio
             output_dir: Directory to save generated images
+            use_advanced_generation: If True, uses the advanced 5-step VLM/LLM pipeline for variations
+            llm_client: LLM client for advanced generation (if None, uses veo_client)
         """
         self.veo = veo_client
         self.camera_perspective = camera_perspective
         self.aspect_ratio = aspect_ratio
         self.output_dir = Path(output_dir)
         self.output_dir.mkdir(exist_ok=True, parents=True)
+        self.use_advanced_generation = use_advanced_generation
+        self.llm_client = llm_client or veo_client
 
     def generate_image_world(
         self,
@@ -127,7 +141,9 @@ class ImageWorldGenerator:
         Returns:
             ImageWorld with generated images
         """
-        world_name = world_name or f"{text_world.name}_images"
+        # Add timestamp to world name to prevent overwriting
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        world_name = world_name or f"{text_world.name}_images_{timestamp}"
 
         # Create output directory for this world
         world_dir = self.output_dir / world_name
@@ -350,7 +366,8 @@ class ImageWorldGenerator:
         world_dir: Path,
         index: int,
         parent_state_id: Optional[str] = None,
-        parent_action_id: Optional[str] = None
+        parent_action_id: Optional[str] = None,
+        previous_driving_elements: Optional[Dict] = None
     ) -> ImageState:
         """
         Generate image for a single state.
@@ -363,13 +380,11 @@ class ImageWorldGenerator:
             index: Index for filename
             parent_state_id: ID of parent state
             parent_action_id: ID of action from parent
+            previous_driving_elements: Deprecated, kept for compatibility
 
         Returns:
             ImageState with generated image
         """
-        # Build prompt
-        prompt = self._build_state_prompt(state, action)
-
         # Generate filename
         state_id = state.state_id or f"s{index}"
         filename = f"{state_id}_{index:03d}.png"
@@ -377,35 +392,59 @@ class ImageWorldGenerator:
 
         # Generate image
         if previous_image is None:
-            # Initial state - generate from scratch
+            # Initial state - generate from scratch (both simple and advanced use same method)
+            prompt = self._build_state_prompt(state, action)
             print(f"    Prompt: {prompt[:80]}...")
             image = self.veo.generate_image_from_prompt(
                 prompt=prompt,
                 aspect_ratio=self.aspect_ratio,
                 save_path=str(filepath)
             )
-        else:
-            # Subsequent state - use variation for consistency
-            from PIL import Image
-            base_image = Image.open(previous_image)
-            print(f"    Variation prompt: {prompt[:80]}...")
-            image = self.veo.generate_image_variation(
-                prompt=prompt,
-                base_image=base_image,
-                aspect_ratio=self.aspect_ratio
-            )
-            image.save(str(filepath))
+            generation_prompt = prompt
+            advanced_metadata = {}
 
-        # Create ImageState
+        else:
+            # Subsequent state - use variation
+            if self.use_advanced_generation:
+                # Use advanced 5-step pipeline
+                print(f"    Using ADVANCED generation pipeline...")
+                image, advanced_metadata = self.generate_varied_image(
+                    original_image_path=previous_image,
+                    action_description=action.description,
+                    output_path=str(filepath),
+                    llm_client=self.llm_client,
+                    use_simple_variation=False
+                )
+                generation_prompt = advanced_metadata.get("generation_prompt", "")
+            else:
+                # Use simple variation
+                from PIL import Image
+                prompt = self._build_state_prompt(state, action)
+                base_image = Image.open(previous_image)
+                print(f"    Variation prompt: {prompt[:80]}...")
+                image = self.veo.generate_image_variation(
+                    prompt=prompt,
+                    base_image=base_image,
+                    aspect_ratio=self.aspect_ratio
+                )
+                image.save(str(filepath))
+                generation_prompt = prompt
+                advanced_metadata = {}
+
+        # Create ImageState with advanced metadata if available
+        metadata = state.metadata.copy()
+        if advanced_metadata:
+            metadata['advanced_generation'] = advanced_metadata
+
         return ImageState(
             state_id=state_id,
             text_description=state.description,
             image_path=str(filepath),
-            generation_prompt=prompt,
+            generation_prompt=generation_prompt,
             parent_state_id=parent_state_id,
             parent_action_id=parent_action_id,
             reference_image=previous_image,
-            metadata=state.metadata.copy()
+            metadata=metadata
         )
 
     def _build_state_prompt(
@@ -425,13 +464,13 @@ class ImageWorldGenerator:
         """
         # Camera perspective prefix
         perspective_map = {
-            "first_person_ego": "First-person ego-centric view at eye level (1.6m height)",
+            "first_person_ego": "Single-person first-person egocentric view at eye level (1.6m height), showing what one person sees from their own eyes",
             "third_person": "Third-person view from behind and slightly above",
             "overhead": "Overhead bird's-eye view looking down"
         }
         perspective_prefix = perspective_map.get(
             self.camera_perspective,
-            "First-person ego-centric view"
+            "Single-person first-person egocentric view"
         )
 
         # Build prompt
@@ -481,6 +520,287 @@ class ImageWorldGenerator:
             world_dir=world_dir,
             index=len(list(world_dir.glob("*.png")))  # Use number of existing images
         )
+
+
+    # ========================================================================
+    # General Varied Image Generation
+    # ========================================================================
+
+    def describe_image_comprehensive(
+        self,
+        image_path: str,
+        llm_client=None
+    ) -> str:
+        """
+        Generate comprehensive text description from image using VLM.
+
+        Args:
+            image_path: Path to the image to describe
+            llm_client: LLM client with vision capabilities (if None, uses self.veo)
+
+        Returns:
+            Comprehensive text description of the image
+        """
+        from google.genai import types
+
+        prompt = """Please describe this image in great detail. Include:
+- The entire setup and scene composition
+- The camera view/perspective (egocentric, third-person, overhead, etc.)
+- All objects present and their positions relative to each other
+- Spatial relationships between objects
+- Lighting conditions and atmosphere
+- Colors, textures, and visual details
+- Any relevant task implications or context you can infer from the scene
+- The overall mood or setting
+
+Be as thorough and precise as possible."""
+
+        # Use Gemini's vision model to describe the image
+        client = llm_client or self.veo
+
+        # Use Gemini API with proper format (inline image data)
+        try:
+            # Read the image file bytes
+            with open(image_path, 'rb') as f:
+                image_bytes = f.read()
+
+            # Create request with image and text
+            response = client.client.models.generate_content(
+                model="gemini-2.5-flash",  # Vision-capable multimodal model
+                contents=[
+                    types.Part.from_bytes(
+                        data=image_bytes,
+                        mime_type='image/png',
+                    ),
+                    prompt  # Text prompt
+                ]
+            )
+            description = response.text
+        except Exception as e:
+            raise RuntimeError(f"Failed to describe image: {e}")
+
+        return description
+
+    def generate_variation_prompt(
+        self,
+        initial_description: str,
+        action_description: str,
+        llm_client=None
+    ) -> str:
+        """
+        Generate a varied prompt based on initial state and action.
+
+        Args:
+            initial_description: Comprehensive description of initial image
+            action_description: Description of the action/change to apply
+            llm_client: LLM client for text generation
+
+        Returns:
+            Description of the new state after action
+        """
+        prompt = f"""Given the initial state description:
+
+{initial_description}
+
+Generate a detailed description for a new image where the only change is:
+{action_description}
+
+Requirements:
+- Keep everything else IDENTICAL (camera angle, scene setup, lighting, background, unchanged objects)
+- Focus SPECIFICALLY on what changes due to this action
+- Maintain the same perspective and framing
+- Be precise about the new positions, states, or appearances of affected objects
+- Keep the same level of detail as the initial description
+
+New state description:"""
+
+        # Use Gemini API for text generation
+        client = llm_client or self.veo
+
+        try:
+            response = client.client.models.generate_content(
+                model="gemini-2.5-flash",
+                contents=[prompt],
+            )
+            varied_description = response.text
+        except Exception as e:
+            raise RuntimeError(f"Failed to generate variation prompt: {e}")
+
+        return varied_description
+
+    def infer_scene_and_create_prompt(
+        self,
+        initial_description: str,
+        final_description: str,
+        action_description: str,
+        llm_client=None
+    ) -> str:
+        """
+        Use LLM to infer scene context and create comprehensive generation prompt.
+
+        Args:
+            initial_description: Description of initial state
+            final_description: Description of final state
+            action_description: Description of action performed
+            llm_client: LLM client for inference
+
+        Returns:
+            Comprehensive image generation prompt
+        """
+        analysis_prompt = f"""Based on the following information:
+
+INITIAL STATE:
+{initial_description}
+
+ACTION PERFORMED:
+{action_description}
+
+FINAL STATE:
+{final_description}
+
+Task: Create a comprehensive image generation prompt that will produce the final state image while maintaining maximum visual consistency with the initial image.
+
+Your prompt should:
+1. Specify the EXACT camera position and angle (must remain identical)
+2. List all elements that MUST STAY THE SAME
+3. Clearly identify ONLY the elements that change
+4. Emphasize making the changes dramatic and visible
+5. Request photorealistic rendering with consistency
+
+Image generation prompt:"""
+
+        # Use Gemini API for text generation
+        client = llm_client or self.veo
+
+        try:
+            response = client.client.models.generate_content(
+                model="gemini-2.5-flash",
+                contents=[analysis_prompt],
+            )
+            generation_prompt = response.text
+        except Exception as e:
+            raise RuntimeError(f"Failed to create generation prompt: {e}")
+
+        return generation_prompt
+
+    def generate_varied_image(
+        self,
+        original_image_path: str,
+        action_description: str,
+        output_path: Optional[str] = None,
+        llm_client=None,
+        use_simple_variation: bool = False
+    ) -> Tuple[object, Dict[str, str]]:
+        """
+        Generate a varied image from an original image based on an action.
+
+        This implements the full pipeline:
+        1. Load original image
+        2. Generate comprehensive description of original (VLM)
+        3. Generate variation prompt (LLM)
+        4. Infer scene and create generation prompt (LLM)
+        5. Generate varied image using image variation API
+
+        Args:
+            original_image_path: Path to the original image
+            action_description: Description of the action/change to apply
+            output_path: Path to save the generated image (optional)
+            llm_client: LLM client with vision and text capabilities
+            use_simple_variation: If True, skip LLM steps and use simple prompt
+
+        Returns:
+            Tuple of (generated_image, metadata_dict)
+            where metadata_dict contains intermediate descriptions and prompts
+        """
+        from PIL import Image
+
+        print(f"\n{'='*70}")
+        print(f"VARIED IMAGE GENERATION PIPELINE")
+        print(f"{'='*70}")
+
+        # Step 1: Load original image
+        print(f"\n[1/5] Loading original image...")
+        original_image = Image.open(original_image_path)
+        print(f"      Loaded: {original_image_path}")
+        print(f"      Size: {original_image.size}")
+
+        metadata = {
+            "original_image_path": original_image_path,
+            "action_description": action_description
+        }
+
+        if use_simple_variation:
+            # Simple variation: just use action description directly
+            print(f"\n[SIMPLE MODE] Using direct action-based variation")
+            generation_prompt = f"Same scene and camera angle. Only change: {action_description}. Make the change clearly visible while keeping everything else identical."
+            metadata["generation_prompt"] = generation_prompt
+
+        else:
+            # Full pipeline with LLM reasoning
+            # Step 2: Generate comprehensive description
+            print(f"\n[2/5] Generating comprehensive description of original image...")
+            initial_description = self.describe_image_comprehensive(
+                original_image_path,
+                llm_client=llm_client
+            )
+            print(f"      Description length: {len(initial_description)} chars")
+            print(f"      Preview: {initial_description[:150]}...")
+            metadata["initial_description"] = initial_description
+
+            # Step 3: Generate variation prompt
+            print(f"\n[3/5] Generating variation description...")
+            final_description = self.generate_variation_prompt(
+                initial_description,
+                action_description,
+                llm_client=llm_client
+            )
+            print(f"      Variation length: {len(final_description)} chars")
+            print(f"      Preview: {final_description[:150]}...")
+            metadata["final_description"] = final_description
+
+            # Step 4: Infer scene and create generation prompt
+            print(f"\n[4/5] Inferring scene and creating generation prompt...")
+            generation_prompt = self.infer_scene_and_create_prompt(
+                initial_description,
+                final_description,
+                action_description,
+                llm_client=llm_client
+            )
+            print(f"      Prompt length: {len(generation_prompt)} chars")
+            print(f"      Preview: {generation_prompt[:150]}...")
+            metadata["generation_prompt"] = generation_prompt
+
+        # Step 5: Generate varied image
+        print(f"\n[5/5] Generating varied image...")
+        print(f"      Using base image: {original_image_path}")
+        print(f"      Generation prompt: {generation_prompt[:100]}...")
+
+        varied_image = self.veo.generate_image_variation(
+            prompt=generation_prompt,
+            base_image=original_image,
+            aspect_ratio=self.aspect_ratio
+        )
+
+        # Save if output path provided
+        if output_path:
+            varied_image.save(output_path)
+            print(f"      Saved to: {output_path}")
+            metadata["output_path"] = output_path
+
+            # Save metadata as JSON file alongside the image
+            metadata_path = output_path.replace('.png', '_metadata.json')
+            import json
+            with open(metadata_path, 'w') as f:
+                json.dump(metadata, f, indent=2)
+            print(f"      Metadata saved to: {metadata_path}")
+        else:
+            print(f"      Image generated (not saved)")
+
+        print(f"\n{'='*70}")
+        print(f"VARIED IMAGE GENERATION COMPLETE")
+        print(f"{'='*70}\n")
+
+        return varied_image, metadata
 
 
 def load_text_world_and_generate_images(

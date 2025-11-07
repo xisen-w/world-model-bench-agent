@@ -1,0 +1,846 @@
+{
+  "name": "simple_ikea_bookshelf_assembly_branching",
+  "description": "Branching world with multiple paths and endings",
+  "states": [
+    {
+      "description": "Unassembled bookshelf parts laid out: 4 panels (2 sides, top, bottom), 8 dowels, 8 screws, 1 screwdriver, assembly instruction sheet open to step 1.",
+      "state_id": "s0",
+      "metadata": {
+        "progress": 0.0
+      }
+    },
+    {
+      "description": "Side panel 1 oriented, dowels ready. Instructions viewed: Step 1: Insert dowels into side panels.",
+      "state_id": "s1",
+      "metadata": {
+        "progress": 0.1
+      }
+    },
+    {
+      "description": "Side panel 1 with 4 dowels inserted. Instructions viewed: Step 2: Attach top panel to side panel 1 with dowels.",
+      "state_id": "s2",
+      "metadata": {
+        "progress": 0.3
+      }
+    },
+    {
+      "description": "Top panel partially connected to side panel 1 with dowels, attempting to align. Instructions viewed: Step 3: Attach side panel 2 and bottom panel to assembled top and side panel 1, using dowels.",
+      "state_id": "s3",
+      "metadata": {
+        "progress": 0.4
+      }
+    },
+    {
+      "description": "Partially assembled frame: Top, side panel 1, and side panel 2 with the bottom panel ready to be joined using dowels.  Instructions: Step 3",
+      "state_id": "s4",
+      "metadata": {
+        "progress": 0.5
+      }
+    },
+    {
+      "description": "Bookcase frame (top, 2 sides, and bottom panels) assembled with dowels, slight instability, instructions viewed: Step 4: Secure panels with screws.",
+      "state_id": "s5",
+      "metadata": {
+        "progress": 0.6
+      }
+    },
+    {
+      "description": "Partially assembled bookshelf frame, screws being inserted into the corners. Instructions viewed: Step 4: Secure panels with screws.  A slight wobble exists, indicating the need for careful alignment.",
+      "state_id": "s6",
+      "metadata": {
+        "progress": 0.7
+      }
+    },
+    {
+      "description": "Bookcase frame assembled, all screws in place, standing upright, with only minor instability. Instructions viewed: Step 5: check stability and tighten screws as needed.",
+      "state_id": "s7",
+      "metadata": {
+        "progress": 0.8
+      }
+    },
+    {
+      "description": "Bookcase nearly complete, screws tightened, structure is stable. Minor imperfections like misaligned panels are present, but functional. Instructions: checking final steps and cleaning up.",
+      "state_id": "s8",
+      "metadata": {
+        "progress": 0.9
+      }
+    },
+    {
+      "description": "Completed bookshelf standing upright, all panels connected, stable structure, all dowels and screws properly installed. Assembly area cleared. Instruction sheet discarded.",
+      "state_id": "s9",
+      "metadata": {
+        "progress": 1.0
+      }
+    },
+    {
+      "description": "Some dowels are inserted, but many are misaligned, angled, or not fully seated due to the simultaneous insertion attempt. The side panels are not yet connected to the other components. The assembly process is stalled.",
+      "state_id": "s1_alt_0",
+      "metadata": {
+        "progress": "0.2"
+      }
+    },
+    {
+      "description": "The bookshelf stands perfectly upright, all panels are flush and securely connected. All dowels and screws are properly installed and countersunk. The structure is stable and doesn't wobble. The assembly area is completely cleared, and the instruction sheet is neatly discarded.",
+      "state_id": "s_perfect",
+      "metadata": {
+        "quality": 1.0,
+        "outcome": "success",
+        "reason": "The user followed all instructions precisely, paying close attention to detail, resulting in a flawless final product."
+      }
+    },
+    {
+      "description": "The bookshelf is irreparably damaged. A critical structural panel is cracked or broken. Several screws are stripped, and dowel holes are damaged. The structure is unstable and cannot be safely used. The assembly area is a mess with scattered parts and potentially damaged tools and instruction sheet.",
+      "state_id": "f_critical_error",
+      "metadata": {
+        "quality": 0.0,
+        "outcome": "failure",
+        "reason": "The user made a critical error, such as using excessive force, or incorrectly identifying panel orientation, leading to significant damage that renders the bookshelf unusable."
+      }
+    },
+    {
+      "description": "The bookshelf is assembled and stands upright with minimal wobble. Most panels are aligned correctly, with minor imperfections noticeable upon close inspection. All dowels and screws are installed, although a few screws might be slightly over-tightened or not perfectly flush. The assembly area is mostly cleared, with a few stray screws and the instruction sheet nearby.",
+      "state_id": "s_good",
+      "metadata": {
+        "quality": 0.8,
+        "outcome": "success",
+        "reason": "The user generally followed instructions but may have made a few minor mistakes or had some difficulty with alignment, resulting in a good, functional bookshelf."
+      }
+    },
+    {
+      "description": "The bookshelf is assembled and functional, but has noticeable issues. Some panels are slightly misaligned, and there is a noticeable wobble. Some screws are missing, or partially installed. The structure is somewhat stable, though not perfectly rigid. The assembly area is partially cleared, with tools and the instruction sheet still present.",
+      "state_id": "s_acceptable",
+      "metadata": {
+        "quality": 0.6,
+        "outcome": "success",
+        "reason": "The user encountered several challenges during assembly, possibly due to a lack of experience or minor misinterpretations of the instructions. The bookshelf is usable, but its stability and appearance are compromised."
+      }
+    }
+  ],
+  "actions": [
+    {
+      "description": "Examine instructions, select side panel 1 and dowels, begin inserting dowels into pre-drilled holes.",
+      "action_id": "a0",
+      "action_type": "preparation",
+      "metadata": {}
+    },
+    {
+      "description": "Insert 4 dowels into side panel 1.",
+      "action_id": "a1",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Align and attach the top panel to side panel 1, matching dowel positions.",
+      "action_id": "a2",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Attach side panel 2 and the bottom panel to the assembly using dowels, ensuring alignment.",
+      "action_id": "a3",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Finalize connecting panels with dowels, forming the frame. Inspect frame for squareness and stability.",
+      "action_id": "a4",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Using screwdriver, insert screws to reinforce the corners and joints of the frame.",
+      "action_id": "a5",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Carefully insert and tighten all screws, ensuring the structure is sound and stable.",
+      "action_id": "a6",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Inspect the bookshelf for stability and make minor adjustments. Tighten any loose screws. Check for alignment. ",
+      "action_id": "a7",
+      "action_type": "finishing",
+      "metadata": {}
+    },
+    {
+      "description": "Confirm all steps completed, clean up any remaining debris, and discard the instruction sheet.",
+      "action_id": "a8",
+      "action_type": "finishing",
+      "metadata": {}
+    },
+    {
+      "description": "Attempt to insert all dowels for both side panels at once, instead of doing one panel at a time.",
+      "action_id": null,
+      "action_type": "risky",
+      "metadata": {
+        "deviation_type": "risky",
+        "risk_level": "medium",
+        "likely_outcome": "partial_success"
+      }
+    },
+    {
+      "description": "Realize simultaneous insertion is failing and remove the dowels to start again by inserting them one side panel at a time.",
+      "action_id": "None_1",
+      "action_type": null,
+      "metadata": {}
+    },
+    {
+      "description": "Attempt to attach the other side panel without inserting the dowels first.",
+      "action_id": null,
+      "action_type": "shortcut",
+      "metadata": {
+        "deviation_type": "shortcut",
+        "risk_level": "medium",
+        "likely_outcome": "failure"
+      }
+    },
+    {
+      "description": "Forcefully tighten the screws to join the side panels.",
+      "action_id": "None_1",
+      "action_type": null,
+      "metadata": {}
+    },
+    {
+      "description": "Force the side panel 2 onto the dowels without precise alignment, hoping the bottom panel will help square the frame. Don't worry about perfect flushness for now.",
+      "action_id": null,
+      "action_type": "risky",
+      "metadata": {
+        "deviation_type": "risky",
+        "risk_level": "medium",
+        "likely_outcome": "partial_success"
+      }
+    },
+    {
+      "description": "Quickly attach side panel 2 and the bottom panel, roughly aligning them, and defer detailed alignment and tightening until later steps.",
+      "action_id": null,
+      "action_type": "shortcut",
+      "metadata": {
+        "deviation_type": "shortcut",
+        "risk_level": "medium",
+        "likely_outcome": "partial_success"
+      }
+    },
+    {
+      "description": "Attempt to fully tighten the existing dowel joints by hand, without using screws yet, in hopes it will stabilize the frame enough to skip the screw step.",
+      "action_id": null,
+      "action_type": "risky",
+      "metadata": {
+        "deviation_type": "risky",
+        "risk_level": "medium",
+        "likely_outcome": "partial_success"
+      }
+    },
+    {
+      "description": "Attempt to stand the bookshelf up and see if the weight of the frame and attached panels will stabilize it enough, skipping the screwing step for now.",
+      "action_id": null,
+      "action_type": "shortcut",
+      "metadata": {
+        "deviation_type": "shortcut",
+        "risk_level": "medium",
+        "likely_outcome": "partial_success"
+      }
+    },
+    {
+      "description": "Assume the bookshelf is perfect and immediately declare completion without checking the final steps or cleaning up. Pack away tools and debris immediately.",
+      "action_id": null,
+      "action_type": "risky",
+      "metadata": {
+        "deviation_type": "risky",
+        "risk_level": "medium",
+        "likely_outcome": "partial_success"
+      }
+    },
+    {
+      "description": "Skip the final cleanup and immediately move the bookshelf into its intended location.",
+      "action_id": null,
+      "action_type": "shortcut",
+      "metadata": {
+        "deviation_type": "shortcut",
+        "risk_level": "low",
+        "likely_outcome": "partial_success"
+      }
+    }
+  ],
+  "transitions": [
+    {
+      "transition_id": "t_0",
+      "start_state": {
+        "description": "Unassembled bookshelf parts laid out: 4 panels (2 sides, top, bottom), 8 dowels, 8 screws, 1 screwdriver, assembly instruction sheet open to step 1.",
+        "state_id": "s0",
+        "metadata": {
+          "progress": 0.0
+        }
+      },
+      "action": {
+        "description": "Examine instructions, select side panel 1 and dowels, begin inserting dowels into pre-drilled holes.",
+        "action_id": "a0",
+        "action_type": "preparation",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Side panel 1 oriented, dowels ready. Instructions viewed: Step 1: Insert dowels into side panels.",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.1
+        }
+      }
+    },
+    {
+      "transition_id": "t_1",
+      "start_state": {
+        "description": "Side panel 1 oriented, dowels ready. Instructions viewed: Step 1: Insert dowels into side panels.",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.1
+        }
+      },
+      "action": {
+        "description": "Insert 4 dowels into side panel 1.",
+        "action_id": "a1",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Side panel 1 with 4 dowels inserted. Instructions viewed: Step 2: Attach top panel to side panel 1 with dowels.",
+        "state_id": "s2",
+        "metadata": {
+          "progress": 0.3
+        }
+      }
+    },
+    {
+      "transition_id": "t_2",
+      "start_state": {
+        "description": "Side panel 1 with 4 dowels inserted. Instructions viewed: Step 2: Attach top panel to side panel 1 with dowels.",
+        "state_id": "s2",
+        "metadata": {
+          "progress": 0.3
+        }
+      },
+      "action": {
+        "description": "Align and attach the top panel to side panel 1, matching dowel positions.",
+        "action_id": "a2",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Top panel partially connected to side panel 1 with dowels, attempting to align. Instructions viewed: Step 3: Attach side panel 2 and bottom panel to assembled top and side panel 1, using dowels.",
+        "state_id": "s3",
+        "metadata": {
+          "progress": 0.4
+        }
+      }
+    },
+    {
+      "transition_id": "t_3",
+      "start_state": {
+        "description": "Top panel partially connected to side panel 1 with dowels, attempting to align. Instructions viewed: Step 3: Attach side panel 2 and bottom panel to assembled top and side panel 1, using dowels.",
+        "state_id": "s3",
+        "metadata": {
+          "progress": 0.4
+        }
+      },
+      "action": {
+        "description": "Attach side panel 2 and the bottom panel to the assembly using dowels, ensuring alignment.",
+        "action_id": "a3",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Partially assembled frame: Top, side panel 1, and side panel 2 with the bottom panel ready to be joined using dowels.  Instructions: Step 3",
+        "state_id": "s4",
+        "metadata": {
+          "progress": 0.5
+        }
+      }
+    },
+    {
+      "transition_id": "t_4",
+      "start_state": {
+        "description": "Partially assembled frame: Top, side panel 1, and side panel 2 with the bottom panel ready to be joined using dowels.  Instructions: Step 3",
+        "state_id": "s4",
+        "metadata": {
+          "progress": 0.5
+        }
+      },
+      "action": {
+        "description": "Finalize connecting panels with dowels, forming the frame. Inspect frame for squareness and stability.",
+        "action_id": "a4",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Bookcase frame (top, 2 sides, and bottom panels) assembled with dowels, slight instability, instructions viewed: Step 4: Secure panels with screws.",
+        "state_id": "s5",
+        "metadata": {
+          "progress": 0.6
+        }
+      }
+    },
+    {
+      "transition_id": "t_5",
+      "start_state": {
+        "description": "Bookcase frame (top, 2 sides, and bottom panels) assembled with dowels, slight instability, instructions viewed: Step 4: Secure panels with screws.",
+        "state_id": "s5",
+        "metadata": {
+          "progress": 0.6
+        }
+      },
+      "action": {
+        "description": "Using screwdriver, insert screws to reinforce the corners and joints of the frame.",
+        "action_id": "a5",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Partially assembled bookshelf frame, screws being inserted into the corners. Instructions viewed: Step 4: Secure panels with screws.  A slight wobble exists, indicating the need for careful alignment.",
+        "state_id": "s6",
+        "metadata": {
+          "progress": 0.7
+        }
+      }
+    },
+    {
+      "transition_id": "t_6",
+      "start_state": {
+        "description": "Partially assembled bookshelf frame, screws being inserted into the corners. Instructions viewed: Step 4: Secure panels with screws.  A slight wobble exists, indicating the need for careful alignment.",
+        "state_id": "s6",
+        "metadata": {
+          "progress": 0.7
+        }
+      },
+      "action": {
+        "description": "Carefully insert and tighten all screws, ensuring the structure is sound and stable.",
+        "action_id": "a6",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Bookcase frame assembled, all screws in place, standing upright, with only minor instability. Instructions viewed: Step 5: check stability and tighten screws as needed.",
+        "state_id": "s7",
+        "metadata": {
+          "progress": 0.8
+        }
+      }
+    },
+    {
+      "transition_id": "t_7",
+      "start_state": {
+        "description": "Bookcase frame assembled, all screws in place, standing upright, with only minor instability. Instructions viewed: Step 5: check stability and tighten screws as needed.",
+        "state_id": "s7",
+        "metadata": {
+          "progress": 0.8
+        }
+      },
+      "action": {
+        "description": "Inspect the bookshelf for stability and make minor adjustments. Tighten any loose screws. Check for alignment. ",
+        "action_id": "a7",
+        "action_type": "finishing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Bookcase nearly complete, screws tightened, structure is stable. Minor imperfections like misaligned panels are present, but functional. Instructions: checking final steps and cleaning up.",
+        "state_id": "s8",
+        "metadata": {
+          "progress": 0.9
+        }
+      }
+    },
+    {
+      "transition_id": "t_8",
+      "start_state": {
+        "description": "Bookcase nearly complete, screws tightened, structure is stable. Minor imperfections like misaligned panels are present, but functional. Instructions: checking final steps and cleaning up.",
+        "state_id": "s8",
+        "metadata": {
+          "progress": 0.9
+        }
+      },
+      "action": {
+        "description": "Confirm all steps completed, clean up any remaining debris, and discard the instruction sheet.",
+        "action_id": "a8",
+        "action_type": "finishing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Completed bookshelf standing upright, all panels connected, stable structure, all dowels and screws properly installed. Assembly area cleared. Instruction sheet discarded.",
+        "state_id": "s9",
+        "metadata": {
+          "progress": 1.0
+        }
+      }
+    },
+    {
+      "transition_id": "t_9",
+      "start_state": {
+        "description": "Side panel 1 oriented, dowels ready. Instructions viewed: Step 1: Insert dowels into side panels.",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.1
+        }
+      },
+      "action": {
+        "description": "Attempt to insert all dowels for both side panels at once, instead of doing one panel at a time.",
+        "action_id": null,
+        "action_type": "risky",
+        "metadata": {
+          "deviation_type": "risky",
+          "risk_level": "medium",
+          "likely_outcome": "partial_success"
+        }
+      },
+      "end_state": {
+        "description": "Some dowels are inserted, but many are misaligned, angled, or not fully seated due to the simultaneous insertion attempt. The side panels are not yet connected to the other components. The assembly process is stalled.",
+        "state_id": "s1_alt_0",
+        "metadata": {
+          "progress": "0.2"
+        }
+      }
+    },
+    {
+      "transition_id": "t_10",
+      "start_state": {
+        "description": "Some dowels are inserted, but many are misaligned, angled, or not fully seated due to the simultaneous insertion attempt. The side panels are not yet connected to the other components. The assembly process is stalled.",
+        "state_id": "s1_alt_0",
+        "metadata": {
+          "progress": "0.2"
+        }
+      },
+      "action": {
+        "description": "Realize simultaneous insertion is failing and remove the dowels to start again by inserting them one side panel at a time.",
+        "action_id": "None_1",
+        "action_type": null,
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "The bookshelf stands perfectly upright, all panels are flush and securely connected. All dowels and screws are properly installed and countersunk. The structure is stable and doesn't wobble. The assembly area is completely cleared, and the instruction sheet is neatly discarded.",
+        "state_id": "s_perfect",
+        "metadata": {
+          "quality": 1.0,
+          "outcome": "success",
+          "reason": "The user followed all instructions precisely, paying close attention to detail, resulting in a flawless final product."
+        }
+      }
+    },
+    {
+      "transition_id": "t_11",
+      "start_state": {
+        "description": "Side panel 1 oriented, dowels ready. Instructions viewed: Step 1: Insert dowels into side panels.",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.1
+        }
+      },
+      "action": {
+        "description": "Attempt to attach the other side panel without inserting the dowels first.",
+        "action_id": null,
+        "action_type": "shortcut",
+        "metadata": {
+          "deviation_type": "shortcut",
+          "risk_level": "medium",
+          "likely_outcome": "failure"
+        }
+      },
+      "end_state": {
+        "description": "The second side panel is aligned with the first, but the lack of dowels makes the connection unstable. The panels are slightly misaligned and wobble.",
+        "state_id": "s1_alt_0",
+        "metadata": {
+          "progress": "0.3"
+        }
+      }
+    },
+    {
+      "transition_id": "t_12",
+      "start_state": {
+        "description": "The second side panel is aligned with the first, but the lack of dowels makes the connection unstable. The panels are slightly misaligned and wobble.",
+        "state_id": "s1_alt_0",
+        "metadata": {
+          "progress": "0.3"
+        }
+      },
+      "action": {
+        "description": "Forcefully tighten the screws to join the side panels.",
+        "action_id": "None_1",
+        "action_type": null,
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "The bookshelf is irreparably damaged. A critical structural panel is cracked or broken. Several screws are stripped, and dowel holes are damaged. The structure is unstable and cannot be safely used. The assembly area is a mess with scattered parts and potentially damaged tools and instruction sheet.",
+        "state_id": "f_critical_error",
+        "metadata": {
+          "quality": 0.0,
+          "outcome": "failure",
+          "reason": "The user made a critical error, such as using excessive force, or incorrectly identifying panel orientation, leading to significant damage that renders the bookshelf unusable."
+        }
+      }
+    },
+    {
+      "transition_id": "t_13",
+      "start_state": {
+        "description": "Top panel partially connected to side panel 1 with dowels, attempting to align. Instructions viewed: Step 3: Attach side panel 2 and bottom panel to assembled top and side panel 1, using dowels.",
+        "state_id": "s3",
+        "metadata": {
+          "progress": 0.4
+        }
+      },
+      "action": {
+        "description": "Force the side panel 2 onto the dowels without precise alignment, hoping the bottom panel will help square the frame. Don't worry about perfect flushness for now.",
+        "action_id": null,
+        "action_type": "risky",
+        "metadata": {
+          "deviation_type": "risky",
+          "risk_level": "medium",
+          "likely_outcome": "partial_success"
+        }
+      },
+      "end_state": {
+        "description": "The bookshelf is assembled and stands upright with minimal wobble. Most panels are aligned correctly, with minor imperfections noticeable upon close inspection. All dowels and screws are installed, although a few screws might be slightly over-tightened or not perfectly flush. The assembly area is mostly cleared, with a few stray screws and the instruction sheet nearby.",
+        "state_id": "s_good",
+        "metadata": {
+          "quality": 0.8,
+          "outcome": "success",
+          "reason": "The user generally followed instructions but may have made a few minor mistakes or had some difficulty with alignment, resulting in a good, functional bookshelf."
+        }
+      }
+    },
+    {
+      "transition_id": "t_14",
+      "start_state": {
+        "description": "Top panel partially connected to side panel 1 with dowels, attempting to align. Instructions viewed: Step 3: Attach side panel 2 and bottom panel to assembled top and side panel 1, using dowels.",
+        "state_id": "s3",
+        "metadata": {
+          "progress": 0.4
+        }
+      },
+      "action": {
+        "description": "Quickly attach side panel 2 and the bottom panel, roughly aligning them, and defer detailed alignment and tightening until later steps.",
+        "action_id": null,
+        "action_type": "shortcut",
+        "metadata": {
+          "deviation_type": "shortcut",
+          "risk_level": "medium",
+          "likely_outcome": "partial_success"
+        }
+      },
+      "end_state": {
+        "description": "The bookshelf is irreparably damaged. A critical structural panel is cracked or broken. Several screws are stripped, and dowel holes are damaged. The structure is unstable and cannot be safely used. The assembly area is a mess with scattered parts and potentially damaged tools and instruction sheet.",
+        "state_id": "f_critical_error",
+        "metadata": {
+          "quality": 0.0,
+          "outcome": "failure",
+          "reason": "The user made a critical error, such as using excessive force, or incorrectly identifying panel orientation, leading to significant damage that renders the bookshelf unusable."
+        }
+      }
+    },
+    {
+      "transition_id": "t_15",
+      "start_state": {
+        "description": "Bookcase frame (top, 2 sides, and bottom panels) assembled with dowels, slight instability, instructions viewed: Step 4: Secure panels with screws.",
+        "state_id": "s5",
+        "metadata": {
+          "progress": 0.6
+        }
+      },
+      "action": {
+        "description": "Attempt to fully tighten the existing dowel joints by hand, without using screws yet, in hopes it will stabilize the frame enough to skip the screw step.",
+        "action_id": null,
+        "action_type": "risky",
+        "metadata": {
+          "deviation_type": "risky",
+          "risk_level": "medium",
+          "likely_outcome": "partial_success"
+        }
+      },
+      "end_state": {
+        "description": "The bookshelf is assembled and functional, but has noticeable issues. Some panels are slightly misaligned, and there is a noticeable wobble. Some screws are missing, or partially installed. The structure is somewhat stable, though not perfectly rigid. The assembly area is partially cleared, with tools and the instruction sheet still present.",
+        "state_id": "s_acceptable",
+        "metadata": {
+          "quality": 0.6,
+          "outcome": "success",
+          "reason": "The user encountered several challenges during assembly, possibly due to a lack of experience or minor misinterpretations of the instructions. The bookshelf is usable, but its stability and appearance are compromised."
+        }
+      }
+    },
+    {
+      "transition_id": "t_16",
+      "start_state": {
+        "description": "Bookcase frame (top, 2 sides, and bottom panels) assembled with dowels, slight instability, instructions viewed: Step 4: Secure panels with screws.",
+        "state_id": "s5",
+        "metadata": {
+          "progress": 0.6
+        }
+      },
+      "action": {
+        "description": "Attempt to stand the bookshelf up and see if the weight of the frame and attached panels will stabilize it enough, skipping the screwing step for now.",
+        "action_id": null,
+        "action_type": "shortcut",
+        "metadata": {
+          "deviation_type": "shortcut",
+          "risk_level": "medium",
+          "likely_outcome": "partial_success"
+        }
+      },
+      "end_state": {
+        "description": "The bookshelf is irreparably damaged. A critical structural panel is cracked or broken. Several screws are stripped, and dowel holes are damaged. The structure is unstable and cannot be safely used. The assembly area is a mess with scattered parts and potentially damaged tools and instruction sheet.",
+        "state_id": "f_critical_error",
+        "metadata": {
+          "quality": 0.0,
+          "outcome": "failure",
+          "reason": "The user made a critical error, such as using excessive force, or incorrectly identifying panel orientation, leading to significant damage that renders the bookshelf unusable."
+        }
+      }
+    },
+    {
+      "transition_id": "t_17",
+      "start_state": {
+        "description": "Bookcase nearly complete, screws tightened, structure is stable. Minor imperfections like misaligned panels are present, but functional. Instructions: checking final steps and cleaning up.",
+        "state_id": "s8",
+        "metadata": {
+          "progress": 0.9
+        }
+      },
+      "action": {
+        "description": "Assume the bookshelf is perfect and immediately declare completion without checking the final steps or cleaning up. Pack away tools and debris immediately.",
+        "action_id": null,
+        "action_type": "risky",
+        "metadata": {
+          "deviation_type": "risky",
+          "risk_level": "medium",
+          "likely_outcome": "partial_success"
+        }
+      },
+      "end_state": {
+        "description": "The bookshelf stands perfectly upright, all panels are flush and securely connected. All dowels and screws are properly installed and countersunk. The structure is stable and doesn't wobble. The assembly area is completely cleared, and the instruction sheet is neatly discarded.",
+        "state_id": "s_perfect",
+        "metadata": {
+          "quality": 1.0,
+          "outcome": "success",
+          "reason": "The user followed all instructions precisely, paying close attention to detail, resulting in a flawless final product."
+        }
+      }
+    },
+    {
+      "transition_id": "t_18",
+      "start_state": {
+        "description": "Bookcase nearly complete, screws tightened, structure is stable. Minor imperfections like misaligned panels are present, but functional. Instructions: checking final steps and cleaning up.",
+        "state_id": "s8",
+        "metadata": {
+          "progress": 0.9
+        }
+      },
+      "action": {
+        "description": "Skip the final cleanup and immediately move the bookshelf into its intended location.",
+        "action_id": null,
+        "action_type": "shortcut",
+        "metadata": {
+          "deviation_type": "shortcut",
+          "risk_level": "low",
+          "likely_outcome": "partial_success"
+        }
+      },
+      "end_state": {
+        "description": "The bookshelf is irreparably damaged. A critical structural panel is cracked or broken. Several screws are stripped, and dowel holes are damaged. The structure is unstable and cannot be safely used. The assembly area is a mess with scattered parts and potentially damaged tools and instruction sheet.",
+        "state_id": "f_critical_error",
+        "metadata": {
+          "quality": 0.0,
+          "outcome": "failure",
+          "reason": "The user made a critical error, such as using excessive force, or incorrectly identifying panel orientation, leading to significant damage that renders the bookshelf unusable."
+        }
+      }
+    }
+  ],
+  "initial_state": {
+    "description": "Unassembled bookshelf parts laid out: 4 panels (2 sides, top, bottom), 8 dowels, 8 screws, 1 screwdriver, assembly instruction sheet open to step 1.",
+    "state_id": "s0",
+    "metadata": {
+      "progress": 0.0
+    }
+  },
+  "goal_states": [
+    {
+      "description": "The bookshelf stands perfectly upright, all panels are flush and securely connected. All dowels and screws are properly installed and countersunk. The structure is stable and doesn't wobble. The assembly area is completely cleared, and the instruction sheet is neatly discarded.",
+      "state_id": "s_perfect",
+      "metadata": {
+        "quality": 1.0,
+        "outcome": "success",
+        "reason": "The user followed all instructions precisely, paying close attention to detail, resulting in a flawless final product."
+      }
+    },
+    {
+      "description": "The bookshelf is assembled and stands upright with minimal wobble. Most panels are aligned correctly, with minor imperfections noticeable upon close inspection. All dowels and screws are installed, although a few screws might be slightly over-tightened or not perfectly flush. The assembly area is mostly cleared, with a few stray screws and the instruction sheet nearby.",
+      "state_id": "s_good",
+      "metadata": {
+        "quality": 0.8,
+        "outcome": "success",
+        "reason": "The user generally followed instructions but may have made a few minor mistakes or had some difficulty with alignment, resulting in a good, functional bookshelf."
+      }
+    },
+    {
+      "description": "The bookshelf is assembled and functional, but has noticeable issues. Some panels are slightly misaligned, and there is a noticeable wobble. Some screws are missing, or partially installed. The structure is somewhat stable, though not perfectly rigid. The assembly area is partially cleared, with tools and the instruction sheet still present.",
+      "state_id": "s_acceptable",
+      "metadata": {
+        "quality": 0.6,
+        "outcome": "success",
+        "reason": "The user encountered several challenges during assembly, possibly due to a lack of experience or minor misinterpretations of the instructions. The bookshelf is usable, but its stability and appearance are compromised."
+      }
+    }
+  ],
+  "final_states": [
+    {
+      "description": "The bookshelf stands perfectly upright, all panels are flush and securely connected. All dowels and screws are properly installed and countersunk. The structure is stable and doesn't wobble. The assembly area is completely cleared, and the instruction sheet is neatly discarded.",
+      "state_id": "s_perfect",
+      "metadata": {
+        "quality": 1.0,
+        "outcome": "success",
+        "reason": "The user followed all instructions precisely, paying close attention to detail, resulting in a flawless final product."
+      }
+    },
+    {
+      "description": "The bookshelf is assembled and stands upright with minimal wobble. Most panels are aligned correctly, with minor imperfections noticeable upon close inspection. All dowels and screws are installed, although a few screws might be slightly over-tightened or not perfectly flush. The assembly area is mostly cleared, with a few stray screws and the instruction sheet nearby.",
+      "state_id": "s_good",
+      "metadata": {
+        "quality": 0.8,
+        "outcome": "success",
+        "reason": "The user generally followed instructions but may have made a few minor mistakes or had some difficulty with alignment, resulting in a good, functional bookshelf."
+      }
+    },
+    {
+      "description": "The bookshelf is assembled and functional, but has noticeable issues. Some panels are slightly misaligned, and there is a noticeable wobble. Some screws are missing, or partially installed. The structure is somewhat stable, though not perfectly rigid. The assembly area is partially cleared, with tools and the instruction sheet still present.",
+      "state_id": "s_acceptable",
+      "metadata": {
+        "quality": 0.6,
+        "outcome": "success",
+        "reason": "The user encountered several challenges during assembly, possibly due to a lack of experience or minor misinterpretations of the instructions. The bookshelf is usable, but its stability and appearance are compromised."
+      }
+    },
+    {
+      "description": "The user stopped assembling the bookshelf halfway through. Several panels are loosely connected, and the structure is unstable and incomplete. Tools and unassembled parts are scattered around the assembly area. The instruction sheet lies open, seemingly abandoned.",
+      "state_id": "f_gave_up",
+      "metadata": {
+        "quality": 0.1,
+        "outcome": "failure",
+        "reason": "The user became frustrated with the assembly process, possibly due to difficult-to-understand instructions or difficulties with the provided tools, and gave up before completing the task."
+      }
+    },
+    {
+      "description": "The bookshelf is irreparably damaged. A critical structural panel is cracked or broken. Several screws are stripped, and dowel holes are damaged. The structure is unstable and cannot be safely used. The assembly area is a mess with scattered parts and potentially damaged tools and instruction sheet.",
+      "state_id": "f_critical_error",
+      "metadata": {
+        "quality": 0.0,
+        "outcome": "failure",
+        "reason": "The user made a critical error, such as using excessive force, or incorrectly identifying panel orientation, leading to significant damage that renders the bookshelf unusable."
+      }
+    }
+  ],
+  "goal_state": {
+    "description": "The bookshelf stands perfectly upright, all panels are flush and securely connected. All dowels and screws are properly installed and countersunk. The structure is stable and doesn't wobble. The assembly area is completely cleared, and the instruction sheet is neatly discarded.",
+    "state_id": "s_perfect",
+    "metadata": {
+      "quality": 1.0,
+      "outcome": "success",
+      "reason": "The user followed all instructions precisely, paying close attention to detail, resulting in a flawless final product."
+    }
+  }
+}

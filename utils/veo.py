@@ -27,6 +27,7 @@ from .unified_interface import (
 
 DEFAULT_IMAGE_MODEL_ID = "gemini-2.5-flash-image"
 DEFAULT_VEO_MODEL_ID = "veo-3.1-fast-generate-preview"
+DEFAULT_LLM_MODEL_ID = "gemini-2.5-flash"
 
 
 class VeoVideoGenerator(VideoGenerator):

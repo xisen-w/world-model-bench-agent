@@ -1,0 +1,846 @@
+{
+  "name": "home_cooking_scrambled_eggs_branching",
+  "description": "Branching world with multiple paths and endings",
+  "states": [
+    {
+      "description": "Clean kitchen. Wok on counter. Eggs, scallions, salt, oil on counter. Stove off. Progress: 0.0",
+      "state_id": "s0",
+      "metadata": {
+        "progress": 0.0
+      }
+    },
+    {
+      "description": "Wok on burner. Oil in wok. Stove on medium heat. Progress: 0.1",
+      "state_id": "s1",
+      "metadata": {
+        "progress": 0.1
+      }
+    },
+    {
+      "description": "Oil shimmering in wok, almost ready. Progress: 0.2",
+      "state_id": "s2",
+      "metadata": {
+        "progress": 0.2
+      }
+    },
+    {
+      "description": "Eggs cracked into a bowl. Scallions chopped. Salt ready. Progress: 0.3",
+      "state_id": "s3",
+      "metadata": {
+        "progress": 0.3
+      }
+    },
+    {
+      "description": "Egg mixture poured into the hot wok, starting to set. Progress: 0.4",
+      "state_id": "s4",
+      "metadata": {
+        "progress": 0.4
+      }
+    },
+    {
+      "description": "Gently stirring the eggs with a spatula, cooking begins. Progress: 0.5",
+      "state_id": "s5",
+      "metadata": {
+        "progress": 0.5
+      }
+    },
+    {
+      "description": "Eggs are mostly cooked, still slightly moist. Scallions are added. Progress: 0.7",
+      "state_id": "s6",
+      "metadata": {
+        "progress": 0.7
+      }
+    },
+    {
+      "description": "Eggs are almost fully cooked, fluffy and golden. Progress: 0.8",
+      "state_id": "s7",
+      "metadata": {
+        "progress": 0.8
+      }
+    },
+    {
+      "description": "Scrambled eggs removed from heat, seasoned to taste. Progress: 0.9",
+      "state_id": "s8",
+      "metadata": {
+        "progress": 0.9
+      }
+    },
+    {
+      "description": "Perfectly cooked scrambled eggs with scallions served on a plate, golden and fluffy. Progress: 1.0",
+      "state_id": "s9",
+      "metadata": {
+        "progress": 1.0
+      }
+    },
+    {
+      "description": "Eggs are in the wok with oil that is not yet fully heated. Progress: 0.3",
+      "state_id": "s1_alt_0",
+      "metadata": {
+        "progress": "0.3"
+      }
+    },
+    {
+      "description": "The scrambled eggs are a perfect golden yellow, light and fluffy, with visible flecks of green scallions. They are moist and creamy, not dry, and served attractively on a white plate. The taste is excellent and the texture is ideal.",
+      "state_id": "s_perfect",
+      "metadata": {
+        "quality": 1.0,
+        "outcome": "success",
+        "reason": "Correctly followed all instructions, utilizing proper technique and timing, resulting in perfectly cooked eggs."
+      }
+    },
+    {
+      "description": "The eggs are burnt and blackened, the pan is severely damaged. The entire meal is unusable due to the critical error during the cooking process. The kitchen is a mess.",
+      "state_id": "f_critical_error",
+      "metadata": {
+        "quality": 0.0,
+        "outcome": "failure",
+        "reason": "A catastrophic error occurred, such as setting the heat too high and burning the eggs beyond salvage."
+      }
+    },
+    {
+      "description": "The scrambled eggs are mostly golden, slightly overcooked in a few spots but still moist. There are scallions throughout. They are served on a plate and are edible and enjoyable, though not perfect.",
+      "state_id": "s_good",
+      "metadata": {
+        "quality": 0.8,
+        "outcome": "success",
+        "reason": "Followed instructions, but cooking time was slightly off, resulting in minor imperfections in texture."
+      }
+    },
+    {
+      "description": "The scrambled eggs are a pale yellow, slightly dry, with a few pieces of scallion visible. They are served on a plate and are edible, but not particularly appealing. The taste is bland and the texture is a little tough.",
+      "state_id": "s_acceptable",
+      "metadata": {
+        "quality": 0.6,
+        "outcome": "success",
+        "reason": "Made some errors during cooking, such as over-stirring or cooking at too low a heat, which affected the final texture and taste."
+      }
+    }
+  ],
+  "actions": [
+    {
+      "description": "Place wok on burner and pour oil into it. Turn stove on to medium heat.",
+      "action_id": "a0",
+      "action_type": "preparation",
+      "metadata": {}
+    },
+    {
+      "description": "Wait for oil to heat up until it shimmers (about 1 minute).",
+      "action_id": "a1",
+      "action_type": "preparation",
+      "metadata": {}
+    },
+    {
+      "description": "Crack eggs into a bowl, chop scallions, and prepare salt.",
+      "action_id": "a2",
+      "action_type": "preparation",
+      "metadata": {}
+    },
+    {
+      "description": "Pour the egg mixture into the hot wok.",
+      "action_id": "a3",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Gently stir the eggs with a spatula as they begin to cook.",
+      "action_id": "a4",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Continue stirring, ensuring eggs cook evenly. Add chopped scallions. ",
+      "action_id": "a5",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Continue cooking until eggs are set but still slightly moist and fluffy.",
+      "action_id": "a6",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Remove the wok from the heat.",
+      "action_id": "a7",
+      "action_type": "finishing",
+      "metadata": {}
+    },
+    {
+      "description": "Season eggs with salt and serve on a plate.",
+      "action_id": "a8",
+      "action_type": "finishing",
+      "metadata": {}
+    },
+    {
+      "description": "Crack the eggs into the wok now, before the oil is fully heated.",
+      "action_id": null,
+      "action_type": "risky",
+      "metadata": {
+        "deviation_type": "risky",
+        "risk_level": "medium",
+        "likely_outcome": "partial_success"
+      }
+    },
+    {
+      "description": "Stir the eggs constantly while they cook to prevent sticking and ensure even cooking, then add chopped scallions near the end.",
+      "action_id": "None_1",
+      "action_type": null,
+      "metadata": {}
+    },
+    {
+      "description": "Crack the eggs into the wok now, hoping the oil will heat up enough while the eggs cook. ",
+      "action_id": null,
+      "action_type": "shortcut",
+      "metadata": {
+        "deviation_type": "shortcut",
+        "risk_level": "medium",
+        "likely_outcome": "partial_success"
+      }
+    },
+    {
+      "description": "Leave the eggs in the wok on medium heat without stirring or checking on them.",
+      "action_id": "None_1",
+      "action_type": null,
+      "metadata": {}
+    },
+    {
+      "description": "Add the scallions and salt directly to the egg mixture in the bowl, and then pour it all into the wok.",
+      "action_id": null,
+      "action_type": "risky",
+      "metadata": {
+        "deviation_type": "risky",
+        "risk_level": "medium",
+        "likely_outcome": "partial_success"
+      }
+    },
+    {
+      "description": "Add the scallions and salt directly to the egg mixture in the bowl, mix, and then pour into the wok.  ",
+      "action_id": null,
+      "action_type": "shortcut",
+      "metadata": {
+        "deviation_type": "shortcut",
+        "risk_level": "low",
+        "likely_outcome": "partial_success"
+      }
+    },
+    {
+      "description": "Increase heat to high and stir vigorously, hoping to cook the eggs faster.",
+      "action_id": null,
+      "action_type": "risky",
+      "metadata": {
+        "deviation_type": "risky",
+        "risk_level": "high",
+        "likely_outcome": "failure"
+      }
+    },
+    {
+      "description": "Stop stirring and let the eggs sit for a moment to cook the bottom layer before stirring again. Skip adding scallions.",
+      "action_id": null,
+      "action_type": "shortcut",
+      "metadata": {
+        "deviation_type": "shortcut",
+        "risk_level": "medium",
+        "likely_outcome": "partial_success"
+      }
+    },
+    {
+      "description": "Season eggs with a large amount of salt and pepper and eat directly from the pan, skipping the serving step.",
+      "action_id": null,
+      "action_type": "risky",
+      "metadata": {
+        "deviation_type": "risky",
+        "risk_level": "medium",
+        "likely_outcome": "partial_success"
+      }
+    },
+    {
+      "description": "Serve the unseasoned scrambled eggs directly from the pan onto a plate.",
+      "action_id": null,
+      "action_type": "shortcut",
+      "metadata": {
+        "deviation_type": "shortcut",
+        "risk_level": "medium",
+        "likely_outcome": "partial_success"
+      }
+    }
+  ],
+  "transitions": [
+    {
+      "transition_id": "t_0",
+      "start_state": {
+        "description": "Clean kitchen. Wok on counter. Eggs, scallions, salt, oil on counter. Stove off. Progress: 0.0",
+        "state_id": "s0",
+        "metadata": {
+          "progress": 0.0
+        }
+      },
+      "action": {
+        "description": "Place wok on burner and pour oil into it. Turn stove on to medium heat.",
+        "action_id": "a0",
+        "action_type": "preparation",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Wok on burner. Oil in wok. Stove on medium heat. Progress: 0.1",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.1
+        }
+      }
+    },
+    {
+      "transition_id": "t_1",
+      "start_state": {
+        "description": "Wok on burner. Oil in wok. Stove on medium heat. Progress: 0.1",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.1
+        }
+      },
+      "action": {
+        "description": "Wait for oil to heat up until it shimmers (about 1 minute).",
+        "action_id": "a1",
+        "action_type": "preparation",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Oil shimmering in wok, almost ready. Progress: 0.2",
+        "state_id": "s2",
+        "metadata": {
+          "progress": 0.2
+        }
+      }
+    },
+    {
+      "transition_id": "t_2",
+      "start_state": {
+        "description": "Oil shimmering in wok, almost ready. Progress: 0.2",
+        "state_id": "s2",
+        "metadata": {
+          "progress": 0.2
+        }
+      },
+      "action": {
+        "description": "Crack eggs into a bowl, chop scallions, and prepare salt.",
+        "action_id": "a2",
+        "action_type": "preparation",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Eggs cracked into a bowl. Scallions chopped. Salt ready. Progress: 0.3",
+        "state_id": "s3",
+        "metadata": {
+          "progress": 0.3
+        }
+      }
+    },
+    {
+      "transition_id": "t_3",
+      "start_state": {
+        "description": "Eggs cracked into a bowl. Scallions chopped. Salt ready. Progress: 0.3",
+        "state_id": "s3",
+        "metadata": {
+          "progress": 0.3
+        }
+      },
+      "action": {
+        "description": "Pour the egg mixture into the hot wok.",
+        "action_id": "a3",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Egg mixture poured into the hot wok, starting to set. Progress: 0.4",
+        "state_id": "s4",
+        "metadata": {
+          "progress": 0.4
+        }
+      }
+    },
+    {
+      "transition_id": "t_4",
+      "start_state": {
+        "description": "Egg mixture poured into the hot wok, starting to set. Progress: 0.4",
+        "state_id": "s4",
+        "metadata": {
+          "progress": 0.4
+        }
+      },
+      "action": {
+        "description": "Gently stir the eggs with a spatula as they begin to cook.",
+        "action_id": "a4",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Gently stirring the eggs with a spatula, cooking begins. Progress: 0.5",
+        "state_id": "s5",
+        "metadata": {
+          "progress": 0.5
+        }
+      }
+    },
+    {
+      "transition_id": "t_5",
+      "start_state": {
+        "description": "Gently stirring the eggs with a spatula, cooking begins. Progress: 0.5",
+        "state_id": "s5",
+        "metadata": {
+          "progress": 0.5
+        }
+      },
+      "action": {
+        "description": "Continue stirring, ensuring eggs cook evenly. Add chopped scallions. ",
+        "action_id": "a5",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Eggs are mostly cooked, still slightly moist. Scallions are added. Progress: 0.7",
+        "state_id": "s6",
+        "metadata": {
+          "progress": 0.7
+        }
+      }
+    },
+    {
+      "transition_id": "t_6",
+      "start_state": {
+        "description": "Eggs are mostly cooked, still slightly moist. Scallions are added. Progress: 0.7",
+        "state_id": "s6",
+        "metadata": {
+          "progress": 0.7
+        }
+      },
+      "action": {
+        "description": "Continue cooking until eggs are set but still slightly moist and fluffy.",
+        "action_id": "a6",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Eggs are almost fully cooked, fluffy and golden. Progress: 0.8",
+        "state_id": "s7",
+        "metadata": {
+          "progress": 0.8
+        }
+      }
+    },
+    {
+      "transition_id": "t_7",
+      "start_state": {
+        "description": "Eggs are almost fully cooked, fluffy and golden. Progress: 0.8",
+        "state_id": "s7",
+        "metadata": {
+          "progress": 0.8
+        }
+      },
+      "action": {
+        "description": "Remove the wok from the heat.",
+        "action_id": "a7",
+        "action_type": "finishing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Scrambled eggs removed from heat, seasoned to taste. Progress: 0.9",
+        "state_id": "s8",
+        "metadata": {
+          "progress": 0.9
+        }
+      }
+    },
+    {
+      "transition_id": "t_8",
+      "start_state": {
+        "description": "Scrambled eggs removed from heat, seasoned to taste. Progress: 0.9",
+        "state_id": "s8",
+        "metadata": {
+          "progress": 0.9
+        }
+      },
+      "action": {
+        "description": "Season eggs with salt and serve on a plate.",
+        "action_id": "a8",
+        "action_type": "finishing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Perfectly cooked scrambled eggs with scallions served on a plate, golden and fluffy. Progress: 1.0",
+        "state_id": "s9",
+        "metadata": {
+          "progress": 1.0
+        }
+      }
+    },
+    {
+      "transition_id": "t_9",
+      "start_state": {
+        "description": "Wok on burner. Oil in wok. Stove on medium heat. Progress: 0.1",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.1
+        }
+      },
+      "action": {
+        "description": "Crack the eggs into the wok now, before the oil is fully heated.",
+        "action_id": null,
+        "action_type": "risky",
+        "metadata": {
+          "deviation_type": "risky",
+          "risk_level": "medium",
+          "likely_outcome": "partial_success"
+        }
+      },
+      "end_state": {
+        "description": "Eggs are in the wok with oil that is not yet fully heated. Progress: 0.3",
+        "state_id": "s1_alt_0",
+        "metadata": {
+          "progress": "0.3"
+        }
+      }
+    },
+    {
+      "transition_id": "t_10",
+      "start_state": {
+        "description": "Eggs are in the wok with oil that is not yet fully heated. Progress: 0.3",
+        "state_id": "s1_alt_0",
+        "metadata": {
+          "progress": "0.3"
+        }
+      },
+      "action": {
+        "description": "Stir the eggs constantly while they cook to prevent sticking and ensure even cooking, then add chopped scallions near the end.",
+        "action_id": "None_1",
+        "action_type": null,
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "The scrambled eggs are a perfect golden yellow, light and fluffy, with visible flecks of green scallions. They are moist and creamy, not dry, and served attractively on a white plate. The taste is excellent and the texture is ideal.",
+        "state_id": "s_perfect",
+        "metadata": {
+          "quality": 1.0,
+          "outcome": "success",
+          "reason": "Correctly followed all instructions, utilizing proper technique and timing, resulting in perfectly cooked eggs."
+        }
+      }
+    },
+    {
+      "transition_id": "t_11",
+      "start_state": {
+        "description": "Wok on burner. Oil in wok. Stove on medium heat. Progress: 0.1",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.1
+        }
+      },
+      "action": {
+        "description": "Crack the eggs into the wok now, hoping the oil will heat up enough while the eggs cook. ",
+        "action_id": null,
+        "action_type": "shortcut",
+        "metadata": {
+          "deviation_type": "shortcut",
+          "risk_level": "medium",
+          "likely_outcome": "partial_success"
+        }
+      },
+      "end_state": {
+        "description": "Eggs are in the wok with oil that is not yet fully heated. The stove is on medium heat and the eggs are starting to slightly cook, but the pan is still cool enough to stick.",
+        "state_id": "s1_alt_0",
+        "metadata": {
+          "progress": "0.3"
+        }
+      }
+    },
+    {
+      "transition_id": "t_12",
+      "start_state": {
+        "description": "Eggs are in the wok with oil that is not yet fully heated. The stove is on medium heat and the eggs are starting to slightly cook, but the pan is still cool enough to stick.",
+        "state_id": "s1_alt_0",
+        "metadata": {
+          "progress": "0.3"
+        }
+      },
+      "action": {
+        "description": "Leave the eggs in the wok on medium heat without stirring or checking on them.",
+        "action_id": "None_1",
+        "action_type": null,
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "The eggs are burnt and blackened, the pan is severely damaged. The entire meal is unusable due to the critical error during the cooking process. The kitchen is a mess.",
+        "state_id": "f_critical_error",
+        "metadata": {
+          "quality": 0.0,
+          "outcome": "failure",
+          "reason": "A catastrophic error occurred, such as setting the heat too high and burning the eggs beyond salvage."
+        }
+      }
+    },
+    {
+      "transition_id": "t_13",
+      "start_state": {
+        "description": "Eggs cracked into a bowl. Scallions chopped. Salt ready. Progress: 0.3",
+        "state_id": "s3",
+        "metadata": {
+          "progress": 0.3
+        }
+      },
+      "action": {
+        "description": "Add the scallions and salt directly to the egg mixture in the bowl, and then pour it all into the wok.",
+        "action_id": null,
+        "action_type": "risky",
+        "metadata": {
+          "deviation_type": "risky",
+          "risk_level": "medium",
+          "likely_outcome": "partial_success"
+        }
+      },
+      "end_state": {
+        "description": "The scrambled eggs are mostly golden, slightly overcooked in a few spots but still moist. There are scallions throughout. They are served on a plate and are edible and enjoyable, though not perfect.",
+        "state_id": "s_good",
+        "metadata": {
+          "quality": 0.8,
+          "outcome": "success",
+          "reason": "Followed instructions, but cooking time was slightly off, resulting in minor imperfections in texture."
+        }
+      }
+    },
+    {
+      "transition_id": "t_14",
+      "start_state": {
+        "description": "Eggs cracked into a bowl. Scallions chopped. Salt ready. Progress: 0.3",
+        "state_id": "s3",
+        "metadata": {
+          "progress": 0.3
+        }
+      },
+      "action": {
+        "description": "Add the scallions and salt directly to the egg mixture in the bowl, mix, and then pour into the wok.  ",
+        "action_id": null,
+        "action_type": "shortcut",
+        "metadata": {
+          "deviation_type": "shortcut",
+          "risk_level": "low",
+          "likely_outcome": "partial_success"
+        }
+      },
+      "end_state": {
+        "description": "The eggs are burnt and blackened, the pan is severely damaged. The entire meal is unusable due to the critical error during the cooking process. The kitchen is a mess.",
+        "state_id": "f_critical_error",
+        "metadata": {
+          "quality": 0.0,
+          "outcome": "failure",
+          "reason": "A catastrophic error occurred, such as setting the heat too high and burning the eggs beyond salvage."
+        }
+      }
+    },
+    {
+      "transition_id": "t_15",
+      "start_state": {
+        "description": "Gently stirring the eggs with a spatula, cooking begins. Progress: 0.5",
+        "state_id": "s5",
+        "metadata": {
+          "progress": 0.5
+        }
+      },
+      "action": {
+        "description": "Increase heat to high and stir vigorously, hoping to cook the eggs faster.",
+        "action_id": null,
+        "action_type": "risky",
+        "metadata": {
+          "deviation_type": "risky",
+          "risk_level": "high",
+          "likely_outcome": "failure"
+        }
+      },
+      "end_state": {
+        "description": "The scrambled eggs are a pale yellow, slightly dry, with a few pieces of scallion visible. They are served on a plate and are edible, but not particularly appealing. The taste is bland and the texture is a little tough.",
+        "state_id": "s_acceptable",
+        "metadata": {
+          "quality": 0.6,
+          "outcome": "success",
+          "reason": "Made some errors during cooking, such as over-stirring or cooking at too low a heat, which affected the final texture and taste."
+        }
+      }
+    },
+    {
+      "transition_id": "t_16",
+      "start_state": {
+        "description": "Gently stirring the eggs with a spatula, cooking begins. Progress: 0.5",
+        "state_id": "s5",
+        "metadata": {
+          "progress": 0.5
+        }
+      },
+      "action": {
+        "description": "Stop stirring and let the eggs sit for a moment to cook the bottom layer before stirring again. Skip adding scallions.",
+        "action_id": null,
+        "action_type": "shortcut",
+        "metadata": {
+          "deviation_type": "shortcut",
+          "risk_level": "medium",
+          "likely_outcome": "partial_success"
+        }
+      },
+      "end_state": {
+        "description": "The eggs are burnt and blackened, the pan is severely damaged. The entire meal is unusable due to the critical error during the cooking process. The kitchen is a mess.",
+        "state_id": "f_critical_error",
+        "metadata": {
+          "quality": 0.0,
+          "outcome": "failure",
+          "reason": "A catastrophic error occurred, such as setting the heat too high and burning the eggs beyond salvage."
+        }
+      }
+    },
+    {
+      "transition_id": "t_17",
+      "start_state": {
+        "description": "Scrambled eggs removed from heat, seasoned to taste. Progress: 0.9",
+        "state_id": "s8",
+        "metadata": {
+          "progress": 0.9
+        }
+      },
+      "action": {
+        "description": "Season eggs with a large amount of salt and pepper and eat directly from the pan, skipping the serving step.",
+        "action_id": null,
+        "action_type": "risky",
+        "metadata": {
+          "deviation_type": "risky",
+          "risk_level": "medium",
+          "likely_outcome": "partial_success"
+        }
+      },
+      "end_state": {
+        "description": "The scrambled eggs are a perfect golden yellow, light and fluffy, with visible flecks of green scallions. They are moist and creamy, not dry, and served attractively on a white plate. The taste is excellent and the texture is ideal.",
+        "state_id": "s_perfect",
+        "metadata": {
+          "quality": 1.0,
+          "outcome": "success",
+          "reason": "Correctly followed all instructions, utilizing proper technique and timing, resulting in perfectly cooked eggs."
+        }
+      }
+    },
+    {
+      "transition_id": "t_18",
+      "start_state": {
+        "description": "Scrambled eggs removed from heat, seasoned to taste. Progress: 0.9",
+        "state_id": "s8",
+        "metadata": {
+          "progress": 0.9
+        }
+      },
+      "action": {
+        "description": "Serve the unseasoned scrambled eggs directly from the pan onto a plate.",
+        "action_id": null,
+        "action_type": "shortcut",
+        "metadata": {
+          "deviation_type": "shortcut",
+          "risk_level": "medium",
+          "likely_outcome": "partial_success"
+        }
+      },
+      "end_state": {
+        "description": "The eggs are burnt and blackened, the pan is severely damaged. The entire meal is unusable due to the critical error during the cooking process. The kitchen is a mess.",
+        "state_id": "f_critical_error",
+        "metadata": {
+          "quality": 0.0,
+          "outcome": "failure",
+          "reason": "A catastrophic error occurred, such as setting the heat too high and burning the eggs beyond salvage."
+        }
+      }
+    }
+  ],
+  "initial_state": {
+    "description": "Clean kitchen. Wok on counter. Eggs, scallions, salt, oil on counter. Stove off. Progress: 0.0",
+    "state_id": "s0",
+    "metadata": {
+      "progress": 0.0
+    }
+  },
+  "goal_states": [
+    {
+      "description": "The scrambled eggs are a perfect golden yellow, light and fluffy, with visible flecks of green scallions. They are moist and creamy, not dry, and served attractively on a white plate. The taste is excellent and the texture is ideal.",
+      "state_id": "s_perfect",
+      "metadata": {
+        "quality": 1.0,
+        "outcome": "success",
+        "reason": "Correctly followed all instructions, utilizing proper technique and timing, resulting in perfectly cooked eggs."
+      }
+    },
+    {
+      "description": "The scrambled eggs are mostly golden, slightly overcooked in a few spots but still moist. There are scallions throughout. They are served on a plate and are edible and enjoyable, though not perfect.",
+      "state_id": "s_good",
+      "metadata": {
+        "quality": 0.8,
+        "outcome": "success",
+        "reason": "Followed instructions, but cooking time was slightly off, resulting in minor imperfections in texture."
+      }
+    },
+    {
+      "description": "The scrambled eggs are a pale yellow, slightly dry, with a few pieces of scallion visible. They are served on a plate and are edible, but not particularly appealing. The taste is bland and the texture is a little tough.",
+      "state_id": "s_acceptable",
+      "metadata": {
+        "quality": 0.6,
+        "outcome": "success",
+        "reason": "Made some errors during cooking, such as over-stirring or cooking at too low a heat, which affected the final texture and taste."
+      }
+    }
+  ],
+  "final_states": [
+    {
+      "description": "The scrambled eggs are a perfect golden yellow, light and fluffy, with visible flecks of green scallions. They are moist and creamy, not dry, and served attractively on a white plate. The taste is excellent and the texture is ideal.",
+      "state_id": "s_perfect",
+      "metadata": {
+        "quality": 1.0,
+        "outcome": "success",
+        "reason": "Correctly followed all instructions, utilizing proper technique and timing, resulting in perfectly cooked eggs."
+      }
+    },
+    {
+      "description": "The scrambled eggs are mostly golden, slightly overcooked in a few spots but still moist. There are scallions throughout. They are served on a plate and are edible and enjoyable, though not perfect.",
+      "state_id": "s_good",
+      "metadata": {
+        "quality": 0.8,
+        "outcome": "success",
+        "reason": "Followed instructions, but cooking time was slightly off, resulting in minor imperfections in texture."
+      }
+    },
+    {
+      "description": "The scrambled eggs are a pale yellow, slightly dry, with a few pieces of scallion visible. They are served on a plate and are edible, but not particularly appealing. The taste is bland and the texture is a little tough.",
+      "state_id": "s_acceptable",
+      "metadata": {
+        "quality": 0.6,
+        "outcome": "success",
+        "reason": "Made some errors during cooking, such as over-stirring or cooking at too low a heat, which affected the final texture and taste."
+      }
+    },
+    {
+      "description": "The cook gave up halfway through the process, the eggs are still raw and uncooked in the pan. The ingredients are in disarray, and there are no edible eggs.",
+      "state_id": "f_gave_up",
+      "metadata": {
+        "quality": 0.0,
+        "outcome": "failure",
+        "reason": "The cook lost interest or got frustrated, abandoning the cooking process before completion."
+      }
+    },
+    {
+      "description": "The eggs are burnt and blackened, the pan is severely damaged. The entire meal is unusable due to the critical error during the cooking process. The kitchen is a mess.",
+      "state_id": "f_critical_error",
+      "metadata": {
+        "quality": 0.0,
+        "outcome": "failure",
+        "reason": "A catastrophic error occurred, such as setting the heat too high and burning the eggs beyond salvage."
+      }
+    }
+  ],
+  "goal_state": {
+    "description": "The scrambled eggs are a perfect golden yellow, light and fluffy, with visible flecks of green scallions. They are moist and creamy, not dry, and served attractively on a white plate. The taste is excellent and the texture is ideal.",
+    "state_id": "s_perfect",
+    "metadata": {
+      "quality": 1.0,
+      "outcome": "success",
+      "reason": "Correctly followed all instructions, utilizing proper technique and timing, resulting in perfectly cooked eggs."
+    }
+  }
+}

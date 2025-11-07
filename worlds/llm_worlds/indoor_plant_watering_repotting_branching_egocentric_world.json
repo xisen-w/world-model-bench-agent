@@ -1,0 +1,1024 @@
+{
+  "name": "indoor_plant_watering_repotting_branching_egocentric",
+  "description": "Egocentric branching world for indoor plant watering and repotting with first-person continuous narrative",
+  "states": [
+    {
+      "description": "You're standing at a table looking down at a small potted plant. The leaves are drooping and slightly wilted - they need help. You reach out and touch the soil - it's completely dry and crumbly. The moisture meter beside the pot confirms it: critically low. Looking around, you see everything you need: a full watering can within arm's reach, a larger empty pot waiting on your right, a bag of fresh potting soil, and a hand trowel.",
+      "state_id": "s0",
+      "metadata": {
+        "progress": 0.0,
+        "perspective": "egocentric",
+        "camera_height": "eye_level"
+      }
+    },
+    {
+      "description": "You've just finished watering. Water drips from the drainage holes into the saucer below - good drainage. You watch as the soil darkens with moisture, absorbing the water. The leaves already look slightly more perky. You check the moisture meter again - it's climbing into the healthy range. The plant is responding well, but you know it needs more room to grow.",
+      "state_id": "s1",
+      "metadata": {
+        "progress": 0.1,
+        "perspective": "egocentric"
+      }
+    },
+    {
+      "description": "You gently tip the pot and slide the plant out. The root ball comes free in your hands. You turn it slowly, examining the roots from all angles. Some roots look healthy and white, but you notice many are circling around themselves - root bound. A few damaged brown roots catch your eye. You brush away the old, depleted soil with your fingers, letting it fall onto the work surface.",
+      "state_id": "s2",
+      "metadata": {
+        "progress": 0.3,
+        "perspective": "egocentric"
+      }
+    },
+    {
+      "description": "You pick up the clean scissors and carefully snip away the damaged brown roots. Now you gently tease apart the tangled, root-bound sections with your fingers, feeling them separate. The healthy white roots are now free to spread. You brush off the last bits of old soil. The plant is ready. Behind you, you've set aside the old pot and discarded soil.",
+      "state_id": "s3",
+      "metadata": {
+        "progress": 0.4,
+        "perspective": "egocentric"
+      }
+    },
+    {
+      "description": "You reach for the larger pot and check the drainage hole at the bottom - clear and open. You pick up the trowel and scoop fresh potting soil from the bag, adding a generous layer to the bottom of the pot. You press it down gently with your palm, creating a stable base. The plant sits beside you, waiting to be positioned.",
+      "state_id": "s4",
+      "metadata": {
+        "progress": 0.5,
+        "perspective": "egocentric"
+      }
+    },
+    {
+      "description": "You lift the plant carefully with both hands and lower it into the center of the new pot. You adjust it slightly, making sure it's centered and the root ball sits at the right height - just below the rim. Now you scoop more fresh soil around the sides, watching it fill the gaps around the roots. You use your fingers to gently compact the soil as you work your way around.",
+      "state_id": "s5",
+      "metadata": {
+        "progress": 0.6,
+        "perspective": "egocentric"
+      }
+    },
+    {
+      "description": "You add the final scoops of soil, filling the pot to the proper level. You press down gently all around the plant, compacting the soil just enough to support the plant but keep it breathable. You check the height - perfect. The top of the root ball is at the right level, leaving about an inch of space at the top for watering. The soil feels slightly moist and rich in your hands.",
+      "state_id": "s6",
+      "metadata": {
+        "progress": 0.7,
+        "perspective": "egocentric"
+      }
+    },
+    {
+      "description": "You pick up the watering can and pour slowly around the base of the plant, watching the water soak in. You continue until you see water beginning to drain from the bottom holes - perfect saturation. You set down the can and lift the saucer, pouring out the excess water. The plant stands upright in its new home, supported by the fresh soil. You notice the leaves already look more vibrant and lifted.",
+      "state_id": "s7",
+      "metadata": {
+        "progress": 0.8,
+        "perspective": "egocentric"
+      }
+    },
+    {
+      "description": "You step back and look at your work. The plant sits healthy and upright in its new, larger home. The fresh moist soil is perfectly compacted, not too tight, not too loose. You touch a leaf gently - it's firm and perky, no longer wilted. The drainage is working well, and the plant is perfectly positioned. You've successfully given it room to grow.",
+      "state_id": "s8",
+      "metadata": {
+        "progress": 1.0,
+        "perspective": "egocentric"
+      }
+    },
+    {
+      "description": "You've added fresh soil around the edges of the current pot without fully removing the plant. You used a chopstick to loosen some surface roots, but the plant is still cramped in the same container. The new soil sits compacted on top of the old. The leaves show only minimal improvement - they're slightly less wilted, but the root-bound problem persists underneath. You realize this wasn't enough.",
+      "state_id": "s1_alt_0",
+      "metadata": {
+        "progress": 0.3,
+        "perspective": "egocentric",
+        "path_type": "risky_shortcut"
+      }
+    },
+    {
+      "description": "You've now committed to doing it right. The plant is out of the pot, roots exposed in your hands. You carefully inspect them, turning the root ball. You've trimmed away the dead, brown circling roots with sharp pruning shears - clean cuts. The remaining healthy roots now have space to breathe and grow. The plant is ready for a proper new home.",
+      "state_id": "s1_alt_1",
+      "metadata": {
+        "progress": 0.6,
+        "perspective": "egocentric",
+        "path_type": "recovery"
+      }
+    },
+    {
+      "description": "You quickly dumped the plant into the new pot without much care. Looking down, you see it's off-center, leaning slightly to one side. The soil is scattered haphazardly around the roots - some gaps remain unfilled, other areas are too loosely packed. There's soil spilled on the rim and work surface. Some roots might be bent or stressed. It's functional, but messy and imperfect.",
+      "state_id": "s4_alt_0",
+      "metadata": {
+        "progress": 0.5,
+        "perspective": "egocentric",
+        "path_type": "risky"
+      }
+    },
+    {
+      "description": "You step back and take in the sight before you. This is perfection. The plant stands proudly in its new pot, centered with absolute precision. The leaves are vibrant green and perky, reaching upward with visible energy. You kneel down to inspect: the soil is evenly moist throughout, perfectly compacted - you can press it gently and it springs back just right. The drainage holes show healthy water flow with no pooling in the saucer. Every root was handled with care during the transition - no damage, no stress. The plant isn't just surviving; it's thriving. This is exactly what plant care should look like.",
+      "state_id": "s_perfect",
+      "metadata": {
+        "quality": 1.0,
+        "outcome": "success",
+        "perspective": "egocentric",
+        "reason": "The entire repotting process was executed flawlessly, resulting in a perfectly healthy and thriving plant."
+      }
+    },
+    {
+      "description": "You look at the finished work. The plant is in its new, larger pot and looking healthy - the leaves have good color and are mostly perky. The soil is moist and most excess water has drained away. As you lean in closer, you notice it's positioned slightly off-center, maybe an inch to the left. There's a small amount of soil scattered around the pot rim. You touch a few leaves - they feel good, though perhaps not as vibrant as they could be. A few small roots might have been slightly bent during the transfer. It's a success, definitely better than before, but not quite perfect.",
+      "state_id": "s_good",
+      "metadata": {
+        "quality": 0.8,
+        "outcome": "success",
+        "perspective": "egocentric",
+        "reason": "The repotting was successful, but minor imperfections in technique and minor root disturbance prevent a perfect outcome."
+      }
+    },
+    {
+      "description": "The plant has survived the repotting and is in its new home - that's the important part. But looking at it now, you see several issues. The plant leans noticeably to one side. The soil feels a bit too compacted when you press it - maybe you packed it too hard. There's still water sitting in the drainage tray that hasn't evaporated. The leaves look somewhat dull and show mild stress signals - a slight droop despite the watering. You can see soil spilled around the base. Some of the root ball was clearly disturbed more than ideal. It'll probably be okay, but it's not the quality you were hoping for.",
+      "state_id": "s_acceptable",
+      "metadata": {
+        "quality": 0.6,
+        "outcome": "success",
+        "perspective": "egocentric",
+        "reason": "The plant survived the process, and is in a new pot, but technique flaws caused some stress and less-than-ideal growing conditions."
+      }
+    },
+    {
+      "description": "You stare down at the disaster in front of you. The plant's main stem is snapped - broken cleanly in two, sap oozing from the break. When you tried to force it out of the old pot, the root ball tore apart in your hands. Soil is everywhere - a pile on the table, scattered on the floor. Even the new pot has a crack in it from being knocked over in the chaos. The plant's leaves are wilting rapidly, darkening. You hold the broken pieces, but there's nothing you can do. This plant is beyond saving. The entire operation failed catastrophically.",
+      "state_id": "f_critical_error",
+      "metadata": {
+        "quality": 0.0,
+        "outcome": "failure",
+        "perspective": "egocentric",
+        "reason": "A critical error during the repotting process resulted in irreversible damage to the plant."
+      }
+    },
+    {
+      "description": "The scene in front of you is chaotic and incomplete. The old pot lies on its side, cracked. The plant is partially removed, half the root ball still stuck in the broken pot, the other half exposed to air. Roots are drying out where they're exposed. Soil is spilled everywhere - on the table, the floor, your hands. The new pot sits empty beside you, mocking your abandoned effort. You started the process but couldn't finish. The plant is left in the worst possible state: vulnerable, stressed, and in limbo between its old home and the new one it never reached.",
+      "state_id": "f_gave_up",
+      "metadata": {
+        "quality": 0.1,
+        "outcome": "failure",
+        "perspective": "egocentric",
+        "reason": "The repotting process was incomplete and the plant is left in a vulnerable state."
+      }
+    }
+  ],
+  "actions": [
+    {
+      "description": "Pick up the watering can and slowly pour water over the soil, moving in a circular pattern to ensure even coverage. Keep pouring until you see water draining from the bottom holes into the saucer. Set down the can and check the moisture meter - watch it move into the healthy range.",
+      "action_id": "a0",
+      "action_type": "processing",
+      "metadata": {
+        "perspective": "egocentric",
+        "hand_action": true
+      }
+    },
+    {
+      "description": "Place one hand on top of the soil with your fingers gently around the base of the plant. With your other hand, tip the pot and gently squeeze the sides. Slide the plant out carefully, supporting the root ball. Turn it in your hands to examine the roots from all sides, looking for any damage or root-bound areas.",
+      "action_id": "a1",
+      "action_type": "preparation",
+      "metadata": {
+        "perspective": "egocentric",
+        "hand_action": true,
+        "both_hands": true
+      }
+    },
+    {
+      "description": "Pick up the clean scissors and identify any brown, mushy, or damaged roots. Snip them off cleanly. Now use your fingers to gently tease apart any roots that are circling around each other, feeling them separate and straighten. Brush away the old soil from the roots, letting it fall away.",
+      "action_id": "a2",
+      "action_type": "processing",
+      "metadata": {
+        "perspective": "egocentric",
+        "hand_action": true,
+        "tool_use": true
+      }
+    },
+    {
+      "description": "Take the larger pot and flip it over briefly to check that the drainage hole is clear. Set it upright. Grab the trowel and scoop fresh potting soil from the bag, adding a 1-2 inch layer to the bottom of the pot. Press it down gently with your palm to create a stable base for the plant.",
+      "action_id": "a3",
+      "action_type": "preparation",
+      "metadata": {
+        "perspective": "egocentric",
+        "hand_action": true,
+        "tool_use": true
+      }
+    },
+    {
+      "description": "Lift the prepared plant with both hands, supporting the root ball from below. Lower it into the center of the new pot, adjusting its position until it's centered and the top of the root ball sits slightly below the rim. Begin scooping fresh soil around the sides with the trowel, filling gaps around the roots. Use your fingers to gently press and compact the soil as you go around.",
+      "action_id": "a4",
+      "action_type": "processing",
+      "metadata": {
+        "perspective": "egocentric",
+        "hand_action": true,
+        "both_hands": true,
+        "tool_use": true
+      }
+    },
+    {
+      "description": "Continue adding fresh soil around the plant, working your way up. Fill to about an inch below the pot rim, leaving space for watering. Press down gently all around with your palms, compacting the soil enough to support the plant. Check that the soil level is even and the plant stands upright.",
+      "action_id": "a5",
+      "action_type": "processing",
+      "metadata": {
+        "perspective": "egocentric",
+        "hand_action": true
+      }
+    },
+    {
+      "description": "Pick up the watering can and pour water slowly over the new soil, starting near the stem and working outward in circles. Keep pouring until water begins draining from the bottom holes. Set down the can, lift the pot to pour excess water from the saucer underneath. Make sure drainage is working properly.",
+      "action_id": "a6",
+      "action_type": "finishing",
+      "metadata": {
+        "perspective": "egocentric",
+        "hand_action": true
+      }
+    },
+    {
+      "description": "Step back and observe the plant from all angles. Check that it's standing upright and centered. Touch the soil - it should be moist but not waterlogged. Look at the leaves - they should appear more perky and healthy than before. Confirm the plant has successfully transitioned to its new home and has room to grow.",
+      "action_id": "a7",
+      "action_type": "finishing",
+      "metadata": {
+        "perspective": "egocentric",
+        "observation": true
+      }
+    },
+    {
+      "description": "Instead of removing the plant, try to work around it. Grab a chopstick and carefully poke it into the soil along the edges, trying to loosen the root-bound areas without taking the plant out. Sprinkle some fresh soil on top and around the edges where you can reach. Press it down gently, hoping this half-measure will be enough to help the plant without the full repotting effort.",
+      "action_id": "risky_1",
+      "action_type": "risky",
+      "metadata": {
+        "deviation_type": "risky",
+        "risk_level": "medium",
+        "likely_outcome": "partial_success",
+        "perspective": "egocentric"
+      }
+    },
+    {
+      "description": "You realize you need to do this properly. Take a deep breath. Now carefully remove the plant from the pot - tip it, squeeze the sides, and slide it out fully. Hold the root ball in your hands and inspect it closely. Get out the pruning shears and methodically trim away all the dead, circling roots you can see. Make clean cuts. Tease apart the healthy roots gently but thoroughly.",
+      "action_id": "recovery_1",
+      "action_type": "recovery",
+      "metadata": {
+        "deviation_type": "recovery",
+        "perspective": "egocentric",
+        "hand_action": true,
+        "tool_use": true
+      }
+    },
+    {
+      "description": "Now that the roots are properly prepared, grab the new appropriately-sized pot. Add your base layer of fresh soil. Center the plant carefully in the middle, checking from all angles. Fill around the roots with fresh soil, compacting gently as you go. Water thoroughly, watching it drain completely. Take your time and do it right.",
+      "action_id": "recovery_2",
+      "action_type": "recovery",
+      "metadata": {
+        "deviation_type": "recovery",
+        "perspective": "egocentric",
+        "comprehensive": true
+      }
+    },
+    {
+      "description": "You look at the work ahead and decide to cut corners. Instead of the full repotting process, just sprinkle a small amount of fresh soil on top of the existing soil in the current pot. Smooth it around the base of the plant. Tell yourself you'll do the proper repotting later. For now, just maintain the regular watering schedule and hope the plant manages.",
+      "action_id": "shortcut_1",
+      "action_type": "shortcut",
+      "metadata": {
+        "deviation_type": "shortcut",
+        "risk_level": "low",
+        "likely_outcome": "partial_success",
+        "perspective": "egocentric"
+      }
+    },
+    {
+      "description": "You're in a hurry. Instead of carefully positioning the plant, just quickly drop it into the new pot - wherever it lands. Grab handfuls of soil and dump them around the roots without much attention to centering or proper compaction. Fill the gaps haphazardly. Don't worry about making it neat. Just get the soil in and hope the plant settles correctly on its own.",
+      "action_id": "risky_2",
+      "action_type": "risky",
+      "metadata": {
+        "deviation_type": "risky",
+        "risk_level": "high",
+        "likely_outcome": "failure",
+        "perspective": "egocentric"
+      }
+    },
+    {
+      "description": "Even though the placement isn't ideal and the soil is messy, go ahead and water the plant thoroughly. Pour slowly, watching the water work its way through the loose soil and drain out the bottom. The watering might help settle some of the soil gaps and compact things a bit naturally. Pour out any excess water from the saucer.",
+      "action_id": "recovery_3",
+      "action_type": "recovery",
+      "metadata": {
+        "deviation_type": "recovery",
+        "perspective": "egocentric",
+        "hand_action": true
+      }
+    },
+    {
+      "description": "Instead of carefully adding soil in stages and compacting as you go, just dump the remaining soil from the bag directly into the pot around the plant. Don't bother with careful compaction or checking soil levels. Just fill the gaps quickly and roughly. Try to get the soil to the right height without much finesse.",
+      "action_id": "shortcut_2",
+      "action_type": "shortcut",
+      "metadata": {
+        "deviation_type": "shortcut",
+        "risk_level": "medium",
+        "likely_outcome": "partial_success",
+        "perspective": "egocentric"
+      }
+    },
+    {
+      "description": "You assume everything is perfect without really checking. Don't bother with the careful observation. Instead, immediately grab the pot and carry it over to the window where direct sunlight streams in. Set it right in the bright sun, thinking this will make the plant grow faster. Walk away to your next task without verifying the plant's condition.",
+      "action_id": "risky_3",
+      "action_type": "risky",
+      "metadata": {
+        "deviation_type": "risky",
+        "risk_level": "high",
+        "likely_outcome": "failure",
+        "perspective": "egocentric"
+      }
+    },
+    {
+      "description": "Give the plant a quick once-over glance. Looks fine from here - it's upright, there's soil, you watered it. That's probably good enough. Don't bother checking the soil moisture closely or examining the leaves. Don't verify the drainage. Just assume it worked out and move on to whatever's next on your to-do list.",
+      "action_id": "shortcut_3",
+      "action_type": "shortcut",
+      "metadata": {
+        "deviation_type": "shortcut",
+        "risk_level": "medium",
+        "likely_outcome": "partial_success",
+        "perspective": "egocentric"
+      }
+    },
+    {
+      "description": "You've tried the shortcut approach and it didn't really work. Now, in frustration or confusion, you decide to just water the plant again on schedule. Pour water over the inadequately repotted plant, giving it a thorough soaking as if that will somehow fix the underlying root-bound problem. The water runs through and drains out, but you're not addressing the real issue.",
+      "action_id": "non_action_1",
+      "action_type": "non_action",
+      "metadata": {
+        "deviation_type": "non_action",
+        "perspective": "egocentric",
+        "ineffective": true
+      }
+    }
+  ],
+  "transitions": [
+    {
+      "transition_id": "t_0",
+      "start_state": {
+        "description": "You're standing at a table looking down at a small potted plant. The leaves are drooping and slightly wilted - they need help. You reach out and touch the soil - it's completely dry and crumbly. The moisture meter beside the pot confirms it: critically low. Looking around, you see everything you need: a full watering can within arm's reach, a larger empty pot waiting on your right, a bag of fresh potting soil, and a hand trowel.",
+        "state_id": "s0",
+        "metadata": {
+          "progress": 0.0,
+          "perspective": "egocentric",
+          "camera_height": "eye_level"
+        }
+      },
+      "action": {
+        "description": "Pick up the watering can and slowly pour water over the soil, moving in a circular pattern to ensure even coverage. Keep pouring until you see water draining from the bottom holes into the saucer. Set down the can and check the moisture meter - watch it move into the healthy range.",
+        "action_id": "a0",
+        "action_type": "processing",
+        "metadata": {
+          "perspective": "egocentric",
+          "hand_action": true
+        }
+      },
+      "end_state": {
+        "description": "You've just finished watering. Water drips from the drainage holes into the saucer below - good drainage. You watch as the soil darkens with moisture, absorbing the water. The leaves already look slightly more perky. You check the moisture meter again - it's climbing into the healthy range. The plant is responding well, but you know it needs more room to grow.",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.1,
+          "perspective": "egocentric"
+        }
+      }
+    },
+    {
+      "transition_id": "t_1",
+      "start_state": {
+        "description": "You've just finished watering. Water drips from the drainage holes into the saucer below - good drainage. You watch as the soil darkens with moisture, absorbing the water. The leaves already look slightly more perky. You check the moisture meter again - it's climbing into the healthy range. The plant is responding well, but you know it needs more room to grow.",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.1,
+          "perspective": "egocentric"
+        }
+      },
+      "action": {
+        "description": "Place one hand on top of the soil with your fingers gently around the base of the plant. With your other hand, tip the pot and gently squeeze the sides. Slide the plant out carefully, supporting the root ball. Turn it in your hands to examine the roots from all sides, looking for any damage or root-bound areas.",
+        "action_id": "a1",
+        "action_type": "preparation",
+        "metadata": {
+          "perspective": "egocentric",
+          "hand_action": true,
+          "both_hands": true
+        }
+      },
+      "end_state": {
+        "description": "You gently tip the pot and slide the plant out. The root ball comes free in your hands. You turn it slowly, examining the roots from all angles. Some roots look healthy and white, but you notice many are circling around themselves - root bound. A few damaged brown roots catch your eye. You brush away the old, depleted soil with your fingers, letting it fall onto the work surface.",
+        "state_id": "s2",
+        "metadata": {
+          "progress": 0.3,
+          "perspective": "egocentric"
+        }
+      }
+    },
+    {
+      "transition_id": "t_2",
+      "start_state": {
+        "description": "You gently tip the pot and slide the plant out. The root ball comes free in your hands. You turn it slowly, examining the roots from all angles. Some roots look healthy and white, but you notice many are circling around themselves - root bound. A few damaged brown roots catch your eye. You brush away the old, depleted soil with your fingers, letting it fall onto the work surface.",
+        "state_id": "s2",
+        "metadata": {
+          "progress": 0.3,
+          "perspective": "egocentric"
+        }
+      },
+      "action": {
+        "description": "Pick up the clean scissors and identify any brown, mushy, or damaged roots. Snip them off cleanly. Now use your fingers to gently tease apart any roots that are circling around each other, feeling them separate and straighten. Brush away the old soil from the roots, letting it fall away.",
+        "action_id": "a2",
+        "action_type": "processing",
+        "metadata": {
+          "perspective": "egocentric",
+          "hand_action": true,
+          "tool_use": true
+        }
+      },
+      "end_state": {
+        "description": "You pick up the clean scissors and carefully snip away the damaged brown roots. Now you gently tease apart the tangled, root-bound sections with your fingers, feeling them separate. The healthy white roots are now free to spread. You brush off the last bits of old soil. The plant is ready. Behind you, you've set aside the old pot and discarded soil.",
+        "state_id": "s3",
+        "metadata": {
+          "progress": 0.4,
+          "perspective": "egocentric"
+        }
+      }
+    },
+    {
+      "transition_id": "t_3",
+      "start_state": {
+        "description": "You pick up the clean scissors and carefully snip away the damaged brown roots. Now you gently tease apart the tangled, root-bound sections with your fingers, feeling them separate. The healthy white roots are now free to spread. You brush off the last bits of old soil. The plant is ready. Behind you, you've set aside the old pot and discarded soil.",
+        "state_id": "s3",
+        "metadata": {
+          "progress": 0.4,
+          "perspective": "egocentric"
+        }
+      },
+      "action": {
+        "description": "Take the larger pot and flip it over briefly to check that the drainage hole is clear. Set it upright. Grab the trowel and scoop fresh potting soil from the bag, adding a 1-2 inch layer to the bottom of the pot. Press it down gently with your palm to create a stable base for the plant.",
+        "action_id": "a3",
+        "action_type": "preparation",
+        "metadata": {
+          "perspective": "egocentric",
+          "hand_action": true,
+          "tool_use": true
+        }
+      },
+      "end_state": {
+        "description": "You reach for the larger pot and check the drainage hole at the bottom - clear and open. You pick up the trowel and scoop fresh potting soil from the bag, adding a generous layer to the bottom of the pot. You press it down gently with your palm, creating a stable base. The plant sits beside you, waiting to be positioned.",
+        "state_id": "s4",
+        "metadata": {
+          "progress": 0.5,
+          "perspective": "egocentric"
+        }
+      }
+    },
+    {
+      "transition_id": "t_4",
+      "start_state": {
+        "description": "You reach for the larger pot and check the drainage hole at the bottom - clear and open. You pick up the trowel and scoop fresh potting soil from the bag, adding a generous layer to the bottom of the pot. You press it down gently with your palm, creating a stable base. The plant sits beside you, waiting to be positioned.",
+        "state_id": "s4",
+        "metadata": {
+          "progress": 0.5,
+          "perspective": "egocentric"
+        }
+      },
+      "action": {
+        "description": "Lift the prepared plant with both hands, supporting the root ball from below. Lower it into the center of the new pot, adjusting its position until it's centered and the top of the root ball sits slightly below the rim. Begin scooping fresh soil around the sides with the trowel, filling gaps around the roots. Use your fingers to gently press and compact the soil as you go around.",
+        "action_id": "a4",
+        "action_type": "processing",
+        "metadata": {
+          "perspective": "egocentric",
+          "hand_action": true,
+          "both_hands": true,
+          "tool_use": true
+        }
+      },
+      "end_state": {
+        "description": "You lift the plant carefully with both hands and lower it into the center of the new pot. You adjust it slightly, making sure it's centered and the root ball sits at the right height - just below the rim. Now you scoop more fresh soil around the sides, watching it fill the gaps around the roots. You use your fingers to gently compact the soil as you work your way around.",
+        "state_id": "s5",
+        "metadata": {
+          "progress": 0.6,
+          "perspective": "egocentric"
+        }
+      }
+    },
+    {
+      "transition_id": "t_5",
+      "start_state": {
+        "description": "You lift the plant carefully with both hands and lower it into the center of the new pot. You adjust it slightly, making sure it's centered and the root ball sits at the right height - just below the rim. Now you scoop more fresh soil around the sides, watching it fill the gaps around the roots. You use your fingers to gently compact the soil as you work your way around.",
+        "state_id": "s5",
+        "metadata": {
+          "progress": 0.6,
+          "perspective": "egocentric"
+        }
+      },
+      "action": {
+        "description": "Continue adding fresh soil around the plant, working your way up. Fill to about an inch below the pot rim, leaving space for watering. Press down gently all around with your palms, compacting the soil enough to support the plant. Check that the soil level is even and the plant stands upright.",
+        "action_id": "a5",
+        "action_type": "processing",
+        "metadata": {
+          "perspective": "egocentric",
+          "hand_action": true
+        }
+      },
+      "end_state": {
+        "description": "You add the final scoops of soil, filling the pot to the proper level. You press down gently all around the plant, compacting the soil just enough to support the plant but keep it breathable. You check the height - perfect. The top of the root ball is at the right level, leaving about an inch of space at the top for watering. The soil feels slightly moist and rich in your hands.",
+        "state_id": "s6",
+        "metadata": {
+          "progress": 0.7,
+          "perspective": "egocentric"
+        }
+      }
+    },
+    {
+      "transition_id": "t_6",
+      "start_state": {
+        "description": "You add the final scoops of soil, filling the pot to the proper level. You press down gently all around the plant, compacting the soil just enough to support the plant but keep it breathable. You check the height - perfect. The top of the root ball is at the right level, leaving about an inch of space at the top for watering. The soil feels slightly moist and rich in your hands.",
+        "state_id": "s6",
+        "metadata": {
+          "progress": 0.7,
+          "perspective": "egocentric"
+        }
+      },
+      "action": {
+        "description": "Pick up the watering can and pour water slowly over the new soil, starting near the stem and working outward in circles. Keep pouring until water begins draining from the bottom holes. Set down the can, lift the pot to pour excess water from the saucer underneath. Make sure drainage is working properly.",
+        "action_id": "a6",
+        "action_type": "finishing",
+        "metadata": {
+          "perspective": "egocentric",
+          "hand_action": true
+        }
+      },
+      "end_state": {
+        "description": "You pick up the watering can and pour slowly around the base of the plant, watching the water soak in. You continue until you see water beginning to drain from the bottom holes - perfect saturation. You set down the can and lift the saucer, pouring out the excess water. The plant stands upright in its new home, supported by the fresh soil. You notice the leaves already look more vibrant and lifted.",
+        "state_id": "s7",
+        "metadata": {
+          "progress": 0.8,
+          "perspective": "egocentric"
+        }
+      }
+    },
+    {
+      "transition_id": "t_7",
+      "start_state": {
+        "description": "You pick up the watering can and pour slowly around the base of the plant, watching the water soak in. You continue until you see water beginning to drain from the bottom holes - perfect saturation. You set down the can and lift the saucer, pouring out the excess water. The plant stands upright in its new home, supported by the fresh soil. You notice the leaves already look more vibrant and lifted.",
+        "state_id": "s7",
+        "metadata": {
+          "progress": 0.8,
+          "perspective": "egocentric"
+        }
+      },
+      "action": {
+        "description": "Step back and observe the plant from all angles. Check that it's standing upright and centered. Touch the soil - it should be moist but not waterlogged. Look at the leaves - they should appear more perky and healthy than before. Confirm the plant has successfully transitioned to its new home and has room to grow.",
+        "action_id": "a7",
+        "action_type": "finishing",
+        "metadata": {
+          "perspective": "egocentric",
+          "observation": true
+        }
+      },
+      "end_state": {
+        "description": "You step back and look at your work. The plant sits healthy and upright in its new, larger home. The fresh moist soil is perfectly compacted, not too tight, not too loose. You touch a leaf gently - it's firm and perky, no longer wilted. The drainage is working well, and the plant is perfectly positioned. You've successfully given it room to grow.",
+        "state_id": "s8",
+        "metadata": {
+          "progress": 1.0,
+          "perspective": "egocentric"
+        }
+      }
+    },
+    {
+      "transition_id": "t_8_risky",
+      "start_state": {
+        "description": "You've just finished watering. Water drips from the drainage holes into the saucer below - good drainage. You watch as the soil darkens with moisture, absorbing the water. The leaves already look slightly more perky. You check the moisture meter again - it's climbing into the healthy range. The plant is responding well, but you know it needs more room to grow.",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.1,
+          "perspective": "egocentric"
+        }
+      },
+      "action": {
+        "description": "Instead of removing the plant, try to work around it. Grab a chopstick and carefully poke it into the soil along the edges, trying to loosen the root-bound areas without taking the plant out. Sprinkle some fresh soil on top and around the edges where you can reach. Press it down gently, hoping this half-measure will be enough to help the plant without the full repotting effort.",
+        "action_id": "risky_1",
+        "action_type": "risky",
+        "metadata": {
+          "deviation_type": "risky",
+          "risk_level": "medium",
+          "likely_outcome": "partial_success",
+          "perspective": "egocentric"
+        }
+      },
+      "end_state": {
+        "description": "You've added fresh soil around the edges of the current pot without fully removing the plant. You used a chopstick to loosen some surface roots, but the plant is still cramped in the same container. The new soil sits compacted on top of the old. The leaves show only minimal improvement - they're slightly less wilted, but the root-bound problem persists underneath. You realize this wasn't enough.",
+        "state_id": "s1_alt_0",
+        "metadata": {
+          "progress": 0.3,
+          "perspective": "egocentric",
+          "path_type": "risky_shortcut"
+        }
+      }
+    },
+    {
+      "transition_id": "t_9_recovery",
+      "start_state": {
+        "description": "You've added fresh soil around the edges of the current pot without fully removing the plant. You used a chopstick to loosen some surface roots, but the plant is still cramped in the same container. The new soil sits compacted on top of the old. The leaves show only minimal improvement - they're slightly less wilted, but the root-bound problem persists underneath. You realize this wasn't enough.",
+        "state_id": "s1_alt_0",
+        "metadata": {
+          "progress": 0.3,
+          "perspective": "egocentric",
+          "path_type": "risky_shortcut"
+        }
+      },
+      "action": {
+        "description": "You realize you need to do this properly. Take a deep breath. Now carefully remove the plant from the pot - tip it, squeeze the sides, and slide it out fully. Hold the root ball in your hands and inspect it closely. Get out the pruning shears and methodically trim away all the dead, circling roots you can see. Make clean cuts. Tease apart the healthy roots gently but thoroughly.",
+        "action_id": "recovery_1",
+        "action_type": "recovery",
+        "metadata": {
+          "deviation_type": "recovery",
+          "perspective": "egocentric",
+          "hand_action": true,
+          "tool_use": true
+        }
+      },
+      "end_state": {
+        "description": "You've now committed to doing it right. The plant is out of the pot, roots exposed in your hands. You carefully inspect them, turning the root ball. You've trimmed away the dead, brown circling roots with sharp pruning shears - clean cuts. The remaining healthy roots now have space to breathe and grow. The plant is ready for a proper new home.",
+        "state_id": "s1_alt_1",
+        "metadata": {
+          "progress": 0.6,
+          "perspective": "egocentric",
+          "path_type": "recovery"
+        }
+      }
+    },
+    {
+      "transition_id": "t_10_recovery_perfect",
+      "start_state": {
+        "description": "You've now committed to doing it right. The plant is out of the pot, roots exposed in your hands. You carefully inspect them, turning the root ball. You've trimmed away the dead, brown circling roots with sharp pruning shears - clean cuts. The remaining healthy roots now have space to breathe and grow. The plant is ready for a proper new home.",
+        "state_id": "s1_alt_1",
+        "metadata": {
+          "progress": 0.6,
+          "perspective": "egocentric",
+          "path_type": "recovery"
+        }
+      },
+      "action": {
+        "description": "Now that the roots are properly prepared, grab the new appropriately-sized pot. Add your base layer of fresh soil. Center the plant carefully in the middle, checking from all angles. Fill around the roots with fresh soil, compacting gently as you go. Water thoroughly, watching it drain completely. Take your time and do it right.",
+        "action_id": "recovery_2",
+        "action_type": "recovery",
+        "metadata": {
+          "deviation_type": "recovery",
+          "perspective": "egocentric",
+          "comprehensive": true
+        }
+      },
+      "end_state": {
+        "description": "You step back and take in the sight before you. This is perfection. The plant stands proudly in its new pot, centered with absolute precision. The leaves are vibrant green and perky, reaching upward with visible energy. You kneel down to inspect: the soil is evenly moist throughout, perfectly compacted - you can press it gently and it springs back just right. The drainage holes show healthy water flow with no pooling in the saucer. Every root was handled with care during the transition - no damage, no stress. The plant isn't just surviving; it's thriving. This is exactly what plant care should look like.",
+        "state_id": "s_perfect",
+        "metadata": {
+          "quality": 1.0,
+          "outcome": "success",
+          "perspective": "egocentric",
+          "reason": "The entire repotting process was executed flawlessly, resulting in a perfectly healthy and thriving plant."
+        }
+      }
+    },
+    {
+      "transition_id": "t_11_shortcut",
+      "start_state": {
+        "description": "You've just finished watering. Water drips from the drainage holes into the saucer below - good drainage. You watch as the soil darkens with moisture, absorbing the water. The leaves already look slightly more perky. You check the moisture meter again - it's climbing into the healthy range. The plant is responding well, but you know it needs more room to grow.",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.1,
+          "perspective": "egocentric"
+        }
+      },
+      "action": {
+        "description": "You look at the work ahead and decide to cut corners. Instead of the full repotting process, just sprinkle a small amount of fresh soil on top of the existing soil in the current pot. Smooth it around the base of the plant. Tell yourself you'll do the proper repotting later. For now, just maintain the regular watering schedule and hope the plant manages.",
+        "action_id": "shortcut_1",
+        "action_type": "shortcut",
+        "metadata": {
+          "deviation_type": "shortcut",
+          "risk_level": "low",
+          "likely_outcome": "partial_success",
+          "perspective": "egocentric"
+        }
+      },
+      "end_state": {
+        "description": "You've added fresh soil around the edges of the current pot without fully removing the plant. You used a chopstick to loosen some surface roots, but the plant is still cramped in the same container. The new soil sits compacted on top of the old. The leaves show only minimal improvement - they're slightly less wilted, but the root-bound problem persists underneath. You realize this wasn't enough.",
+        "state_id": "s1_alt_0",
+        "metadata": {
+          "progress": 0.3,
+          "perspective": "egocentric",
+          "path_type": "risky_shortcut"
+        }
+      }
+    },
+    {
+      "transition_id": "t_12_failure",
+      "start_state": {
+        "description": "You've added fresh soil around the edges of the current pot without fully removing the plant. You used a chopstick to loosen some surface roots, but the plant is still cramped in the same container. The new soil sits compacted on top of the old. The leaves show only minimal improvement - they're slightly less wilted, but the root-bound problem persists underneath. You realize this wasn't enough.",
+        "state_id": "s1_alt_0",
+        "metadata": {
+          "progress": 0.3,
+          "perspective": "egocentric",
+          "path_type": "risky_shortcut"
+        }
+      },
+      "action": {
+        "description": "You've tried the shortcut approach and it didn't really work. Now, in frustration or confusion, you decide to just water the plant again on schedule. Pour water over the inadequately repotted plant, giving it a thorough soaking as if that will somehow fix the underlying root-bound problem. The water runs through and drains out, but you're not addressing the real issue.",
+        "action_id": "non_action_1",
+        "action_type": "non_action",
+        "metadata": {
+          "deviation_type": "non_action",
+          "perspective": "egocentric",
+          "ineffective": true
+        }
+      },
+      "end_state": {
+        "description": "You stare down at the disaster in front of you. The plant's main stem is snapped - broken cleanly in two, sap oozing from the break. When you tried to force it out of the old pot, the root ball tore apart in your hands. Soil is everywhere - a pile on the table, scattered on the floor. Even the new pot has a crack in it from being knocked over in the chaos. The plant's leaves are wilting rapidly, darkening. You hold the broken pieces, but there's nothing you can do. This plant is beyond saving. The entire operation failed catastrophically.",
+        "state_id": "f_critical_error",
+        "metadata": {
+          "quality": 0.0,
+          "outcome": "failure",
+          "perspective": "egocentric",
+          "reason": "A critical error during the repotting process resulted in irreversible damage to the plant."
+        }
+      }
+    },
+    {
+      "transition_id": "t_13_risky_hasty",
+      "start_state": {
+        "description": "You reach for the larger pot and check the drainage hole at the bottom - clear and open. You pick up the trowel and scoop fresh potting soil from the bag, adding a generous layer to the bottom of the pot. You press it down gently with your palm, creating a stable base. The plant sits beside you, waiting to be positioned.",
+        "state_id": "s4",
+        "metadata": {
+          "progress": 0.5,
+          "perspective": "egocentric"
+        }
+      },
+      "action": {
+        "description": "You're in a hurry. Instead of carefully positioning the plant, just quickly drop it into the new pot - wherever it lands. Grab handfuls of soil and dump them around the roots without much attention to centering or proper compaction. Fill the gaps haphazardly. Don't worry about making it neat. Just get the soil in and hope the plant settles correctly on its own.",
+        "action_id": "risky_2",
+        "action_type": "risky",
+        "metadata": {
+          "deviation_type": "risky",
+          "risk_level": "high",
+          "likely_outcome": "failure",
+          "perspective": "egocentric"
+        }
+      },
+      "end_state": {
+        "description": "You quickly dumped the plant into the new pot without much care. Looking down, you see it's off-center, leaning slightly to one side. The soil is scattered haphazardly around the roots - some gaps remain unfilled, other areas are too loosely packed. There's soil spilled on the rim and work surface. Some roots might be bent or stressed. It's functional, but messy and imperfect.",
+        "state_id": "s4_alt_0",
+        "metadata": {
+          "progress": 0.5,
+          "perspective": "egocentric",
+          "path_type": "risky"
+        }
+      }
+    },
+    {
+      "transition_id": "t_14_recovery_water",
+      "start_state": {
+        "description": "You quickly dumped the plant into the new pot without much care. Looking down, you see it's off-center, leaning slightly to one side. The soil is scattered haphazardly around the roots - some gaps remain unfilled, other areas are too loosely packed. There's soil spilled on the rim and work surface. Some roots might be bent or stressed. It's functional, but messy and imperfect.",
+        "state_id": "s4_alt_0",
+        "metadata": {
+          "progress": 0.5,
+          "perspective": "egocentric",
+          "path_type": "risky"
+        }
+      },
+      "action": {
+        "description": "Even though the placement isn't ideal and the soil is messy, go ahead and water the plant thoroughly. Pour slowly, watching the water work its way through the loose soil and drain out the bottom. The watering might help settle some of the soil gaps and compact things a bit naturally. Pour out any excess water from the saucer.",
+        "action_id": "recovery_3",
+        "action_type": "recovery",
+        "metadata": {
+          "deviation_type": "recovery",
+          "perspective": "egocentric",
+          "hand_action": true
+        }
+      },
+      "end_state": {
+        "description": "You look at the finished work. The plant is in its new, larger pot and looking healthy - the leaves have good color and are mostly perky. The soil is moist and most excess water has drained away. As you lean in closer, you notice it's positioned slightly off-center, maybe an inch to the left. There's a small amount of soil scattered around the pot rim. You touch a few leaves - they feel good, though perhaps not as vibrant as they could be. A few small roots might have been slightly bent during the transfer. It's a success, definitely better than before, but not quite perfect.",
+        "state_id": "s_good",
+        "metadata": {
+          "quality": 0.8,
+          "outcome": "success",
+          "perspective": "egocentric",
+          "reason": "The repotting was successful, but minor imperfections in technique and minor root disturbance prevent a perfect outcome."
+        }
+      }
+    },
+    {
+      "transition_id": "t_15_shortcut_dump",
+      "start_state": {
+        "description": "You reach for the larger pot and check the drainage hole at the bottom - clear and open. You pick up the trowel and scoop fresh potting soil from the bag, adding a generous layer to the bottom of the pot. You press it down gently with your palm, creating a stable base. The plant sits beside you, waiting to be positioned.",
+        "state_id": "s4",
+        "metadata": {
+          "progress": 0.5,
+          "perspective": "egocentric"
+        }
+      },
+      "action": {
+        "description": "Instead of carefully adding soil in stages and compacting as you go, just dump the remaining soil from the bag directly into the pot around the plant. Don't bother with careful compaction or checking soil levels. Just fill the gaps quickly and roughly. Try to get the soil to the right height without much finesse.",
+        "action_id": "shortcut_2",
+        "action_type": "shortcut",
+        "metadata": {
+          "deviation_type": "shortcut",
+          "risk_level": "medium",
+          "likely_outcome": "partial_success",
+          "perspective": "egocentric"
+        }
+      },
+      "end_state": {
+        "description": "You stare down at the disaster in front of you. The plant's main stem is snapped - broken cleanly in two, sap oozing from the break. When you tried to force it out of the old pot, the root ball tore apart in your hands. Soil is everywhere - a pile on the table, scattered on the floor. Even the new pot has a crack in it from being knocked over in the chaos. The plant's leaves are wilting rapidly, darkening. You hold the broken pieces, but there's nothing you can do. This plant is beyond saving. The entire operation failed catastrophically.",
+        "state_id": "f_critical_error",
+        "metadata": {
+          "quality": 0.0,
+          "outcome": "failure",
+          "perspective": "egocentric",
+          "reason": "A critical error during the repotting process resulted in irreversible damage to the plant."
+        }
+      }
+    },
+    {
+      "transition_id": "t_16_risky_sunlight",
+      "start_state": {
+        "description": "You pick up the watering can and pour slowly around the base of the plant, watching the water soak in. You continue until you see water beginning to drain from the bottom holes - perfect saturation. You set down the can and lift the saucer, pouring out the excess water. The plant stands upright in its new home, supported by the fresh soil. You notice the leaves already look more vibrant and lifted.",
+        "state_id": "s7",
+        "metadata": {
+          "progress": 0.8,
+          "perspective": "egocentric"
+        }
+      },
+      "action": {
+        "description": "You assume everything is perfect without really checking. Don't bother with the careful observation. Instead, immediately grab the pot and carry it over to the window where direct sunlight streams in. Set it right in the bright sun, thinking this will make the plant grow faster. Walk away to your next task without verifying the plant's condition.",
+        "action_id": "risky_3",
+        "action_type": "risky",
+        "metadata": {
+          "deviation_type": "risky",
+          "risk_level": "high",
+          "likely_outcome": "failure",
+          "perspective": "egocentric"
+        }
+      },
+      "end_state": {
+        "description": "The plant has survived the repotting and is in its new home - that's the important part. But looking at it now, you see several issues. The plant leans noticeably to one side. The soil feels a bit too compacted when you press it - maybe you packed it too hard. There's still water sitting in the drainage tray that hasn't evaporated. The leaves look somewhat dull and show mild stress signals - a slight droop despite the watering. You can see soil spilled around the base. Some of the root ball was clearly disturbed more than ideal. It'll probably be okay, but it's not the quality you were hoping for.",
+        "state_id": "s_acceptable",
+        "metadata": {
+          "quality": 0.6,
+          "outcome": "success",
+          "perspective": "egocentric",
+          "reason": "The plant survived the process, and is in a new pot, but technique flaws caused some stress and less-than-ideal growing conditions."
+        }
+      }
+    },
+    {
+      "transition_id": "t_17_shortcut_glance",
+      "start_state": {
+        "description": "You pick up the watering can and pour slowly around the base of the plant, watching the water soak in. You continue until you see water beginning to drain from the bottom holes - perfect saturation. You set down the can and lift the saucer, pouring out the excess water. The plant stands upright in its new home, supported by the fresh soil. You notice the leaves already look more vibrant and lifted.",
+        "state_id": "s7",
+        "metadata": {
+          "progress": 0.8,
+          "perspective": "egocentric"
+        }
+      },
+      "action": {
+        "description": "Give the plant a quick once-over glance. Looks fine from here - it's upright, there's soil, you watered it. That's probably good enough. Don't bother checking the soil moisture closely or examining the leaves. Don't verify the drainage. Just assume it worked out and move on to whatever's next on your to-do list.",
+        "action_id": "shortcut_3",
+        "action_type": "shortcut",
+        "metadata": {
+          "deviation_type": "shortcut",
+          "risk_level": "medium",
+          "likely_outcome": "partial_success",
+          "perspective": "egocentric"
+        }
+      },
+      "end_state": {
+        "description": "You stare down at the disaster in front of you. The plant's main stem is snapped - broken cleanly in two, sap oozing from the break. When you tried to force it out of the old pot, the root ball tore apart in your hands. Soil is everywhere - a pile on the table, scattered on the floor. Even the new pot has a crack in it from being knocked over in the chaos. The plant's leaves are wilting rapidly, darkening. You hold the broken pieces, but there's nothing you can do. This plant is beyond saving. The entire operation failed catastrophically.",
+        "state_id": "f_critical_error",
+        "metadata": {
+          "quality": 0.0,
+          "outcome": "failure",
+          "perspective": "egocentric",
+          "reason": "A critical error during the repotting process resulted in irreversible damage to the plant."
+        }
+      }
+    },
+    {
+      "transition_id": "t_18_perfect",
+      "start_state": {
+        "description": "You pick up the watering can and pour slowly around the base of the plant, watching the water soak in. You continue until you see water beginning to drain from the bottom holes - perfect saturation. You set down the can and lift the saucer, pouring out the excess water. The plant stands upright in its new home, supported by the fresh soil. You notice the leaves already look more vibrant and lifted.",
+        "state_id": "s7",
+        "metadata": {
+          "progress": 0.8,
+          "perspective": "egocentric"
+        }
+      },
+      "action": {
+        "description": "Step back and observe the plant from all angles. Check that it's standing upright and centered. Touch the soil - it should be moist but not waterlogged. Look at the leaves - they should appear more perky and healthy than before. Confirm the plant has successfully transitioned to its new home and has room to grow.",
+        "action_id": "a7",
+        "action_type": "finishing",
+        "metadata": {
+          "perspective": "egocentric",
+          "observation": true
+        }
+      },
+      "end_state": {
+        "description": "You step back and take in the sight before you. This is perfection. The plant stands proudly in its new pot, centered with absolute precision. The leaves are vibrant green and perky, reaching upward with visible energy. You kneel down to inspect: the soil is evenly moist throughout, perfectly compacted - you can press it gently and it springs back just right. The drainage holes show healthy water flow with no pooling in the saucer. Every root was handled with care during the transition - no damage, no stress. The plant isn't just surviving; it's thriving. This is exactly what plant care should look like.",
+        "state_id": "s_perfect",
+        "metadata": {
+          "quality": 1.0,
+          "outcome": "success",
+          "perspective": "egocentric",
+          "reason": "The entire repotting process was executed flawlessly, resulting in a perfectly healthy and thriving plant."
+        }
+      }
+    }
+  ],
+  "initial_state": {
+    "description": "You're standing at a table looking down at a small potted plant. The leaves are drooping and slightly wilted - they need help. You reach out and touch the soil - it's completely dry and crumbly. The moisture meter beside the pot confirms it: critically low. Looking around, you see everything you need: a full watering can within arm's reach, a larger empty pot waiting on your right, a bag of fresh potting soil, and a hand trowel.",
+    "state_id": "s0",
+    "metadata": {
+      "progress": 0.0,
+      "perspective": "egocentric",
+      "camera_height": "eye_level"
+    }
+  },
+  "goal_states": [
+    {
+      "description": "You step back and take in the sight before you. This is perfection. The plant stands proudly in its new pot, centered with absolute precision. The leaves are vibrant green and perky, reaching upward with visible energy. You kneel down to inspect: the soil is evenly moist throughout, perfectly compacted - you can press it gently and it springs back just right. The drainage holes show healthy water flow with no pooling in the saucer. Every root was handled with care during the transition - no damage, no stress. The plant isn't just surviving; it's thriving. This is exactly what plant care should look like.",
+      "state_id": "s_perfect",
+      "metadata": {
+        "quality": 1.0,
+        "outcome": "success",
+        "perspective": "egocentric",
+        "reason": "The entire repotting process was executed flawlessly, resulting in a perfectly healthy and thriving plant."
+      }
+    },
+    {
+      "description": "You look at the finished work. The plant is in its new, larger pot and looking healthy - the leaves have good color and are mostly perky. The soil is moist and most excess water has drained away. As you lean in closer, you notice it's positioned slightly off-center, maybe an inch to the left. There's a small amount of soil scattered around the pot rim. You touch a few leaves - they feel good, though perhaps not as vibrant as they could be. A few small roots might have been slightly bent during the transfer. It's a success, definitely better than before, but not quite perfect.",
+      "state_id": "s_good",
+      "metadata": {
+        "quality": 0.8,
+        "outcome": "success",
+        "perspective": "egocentric",
+        "reason": "The repotting was successful, but minor imperfections in technique and minor root disturbance prevent a perfect outcome."
+      }
+    },
+    {
+      "description": "The plant has survived the repotting and is in its new home - that's the important part. But looking at it now, you see several issues. The plant leans noticeably to one side. The soil feels a bit too compacted when you press it - maybe you packed it too hard. There's still water sitting in the drainage tray that hasn't evaporated. The leaves look somewhat dull and show mild stress signals - a slight droop despite the watering. You can see soil spilled around the base. Some of the root ball was clearly disturbed more than ideal. It'll probably be okay, but it's not the quality you were hoping for.",
+      "state_id": "s_acceptable",
+      "metadata": {
+        "quality": 0.6,
+        "outcome": "success",
+        "perspective": "egocentric",
+        "reason": "The plant survived the process, and is in a new pot, but technique flaws caused some stress and less-than-ideal growing conditions."
+      }
+    }
+  ],
+  "final_states": [
+    {
+      "description": "You step back and take in the sight before you. This is perfection. The plant stands proudly in its new pot, centered with absolute precision. The leaves are vibrant green and perky, reaching upward with visible energy. You kneel down to inspect: the soil is evenly moist throughout, perfectly compacted - you can press it gently and it springs back just right. The drainage holes show healthy water flow with no pooling in the saucer. Every root was handled with care during the transition - no damage, no stress. The plant isn't just surviving; it's thriving. This is exactly what plant care should look like.",
+      "state_id": "s_perfect",
+      "metadata": {
+        "quality": 1.0,
+        "outcome": "success",
+        "perspective": "egocentric",
+        "reason": "The entire repotting process was executed flawlessly, resulting in a perfectly healthy and thriving plant."
+      }
+    },
+    {
+      "description": "You look at the finished work. The plant is in its new, larger pot and looking healthy - the leaves have good color and are mostly perky. The soil is moist and most excess water has drained away. As you lean in closer, you notice it's positioned slightly off-center, maybe an inch to the left. There's a small amount of soil scattered around the pot rim. You touch a few leaves - they feel good, though perhaps not as vibrant as they could be. A few small roots might have been slightly bent during the transfer. It's a success, definitely better than before, but not quite perfect.",
+      "state_id": "s_good",
+      "metadata": {
+        "quality": 0.8,
+        "outcome": "success",
+        "perspective": "egocentric",
+        "reason": "The repotting was successful, but minor imperfections in technique and minor root disturbance prevent a perfect outcome."
+      }
+    },
+    {
+      "description": "The plant has survived the repotting and is in its new home - that's the important part. But looking at it now, you see several issues. The plant leans noticeably to one side. The soil feels a bit too compacted when you press it - maybe you packed it too hard. There's still water sitting in the drainage tray that hasn't evaporated. The leaves look somewhat dull and show mild stress signals - a slight droop despite the watering. You can see soil spilled around the base. Some of the root ball was clearly disturbed more than ideal. It'll probably be okay, but it's not the quality you were hoping for.",
+      "state_id": "s_acceptable",
+      "metadata": {
+        "quality": 0.6,
+        "outcome": "success",
+        "perspective": "egocentric",
+        "reason": "The plant survived the process, and is in a new pot, but technique flaws caused some stress and less-than-ideal growing conditions."
+      }
+    },
+    {
+      "description": "The scene in front of you is chaotic and incomplete. The old pot lies on its side, cracked. The plant is partially removed, half the root ball still stuck in the broken pot, the other half exposed to air. Roots are drying out where they're exposed. Soil is spilled everywhere - on the table, the floor, your hands. The new pot sits empty beside you, mocking your abandoned effort. You started the process but couldn't finish. The plant is left in the worst possible state: vulnerable, stressed, and in limbo between its old home and the new one it never reached.",
+      "state_id": "f_gave_up",
+      "metadata": {
+        "quality": 0.1,
+        "outcome": "failure",
+        "perspective": "egocentric",
+        "reason": "The repotting process was incomplete and the plant is left in a vulnerable state."
+      }
+    },
+    {
+      "description": "You stare down at the disaster in front of you. The plant's main stem is snapped - broken cleanly in two, sap oozing from the break. When you tried to force it out of the old pot, the root ball tore apart in your hands. Soil is everywhere - a pile on the table, scattered on the floor. Even the new pot has a crack in it from being knocked over in the chaos. The plant's leaves are wilting rapidly, darkening. You hold the broken pieces, but there's nothing you can do. This plant is beyond saving. The entire operation failed catastrophically.",
+      "state_id": "f_critical_error",
+      "metadata": {
+        "quality": 0.0,
+        "outcome": "failure",
+        "perspective": "egocentric",
+        "reason": "A critical error during the repotting process resulted in irreversible damage to the plant."
+      }
+    }
+  ],
+  "goal_state": {
+    "description": "You step back and take in the sight before you. This is perfection. The plant stands proudly in its new pot, centered with absolute precision. The leaves are vibrant green and perky, reaching upward with visible energy. You kneel down to inspect: the soil is evenly moist throughout, perfectly compacted - you can press it gently and it springs back just right. The drainage holes show healthy water flow with no pooling in the saucer. Every root was handled with care during the transition - no damage, no stress. The plant isn't just surviving; it's thriving. This is exactly what plant care should look like.",
+    "state_id": "s_perfect",
+    "metadata": {
+      "quality": 1.0,
+      "outcome": "success",
+      "perspective": "egocentric",
+      "reason": "The entire repotting process was executed flawlessly, resulting in a perfectly healthy and thriving plant."
+    }
+  }
+}

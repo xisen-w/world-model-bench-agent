@@ -1,0 +1,337 @@
+{
+  "name": "pour_over_coffee_brewing_linear",
+  "description": "Linear world for pour_over_coffee_brewing",
+  "states": [
+    {
+      "description": "Coffee station with whole beans, grinder, pour-over dripper, filter in dripper, kettle with hot water (93\u00b0C), scale, and empty cup. Beans are whole.",
+      "state_id": "s0",
+      "metadata": {
+        "progress": 0.0
+      }
+    },
+    {
+      "description": "Whole beans measured (20g) and ready. Grinder set to medium-coarse. Filter is wet and seated in the dripper, placed on the scale.",
+      "state_id": "s1",
+      "metadata": {
+        "progress": 0.1
+      }
+    },
+    {
+      "description": "Measured beans ground to medium-coarse and in the dripper. Scale reads 20g of grounds.",
+      "state_id": "s2",
+      "metadata": {
+        "progress": 0.3
+      }
+    },
+    {
+      "description": "Ground coffee is blooming with 40g of hot water (93\u00b0C). Blooming for 30 seconds.",
+      "state_id": "s3",
+      "metadata": {
+        "progress": 0.4
+      }
+    },
+    {
+      "description": "Water pouring onto grounds. Flow rate is medium. Observing extraction.",
+      "state_id": "s4",
+      "metadata": {
+        "progress": 0.5
+      }
+    },
+    {
+      "description": "Water pouring onto grounds. Flow rate slightly slowed. Coffee extraction is progressing well, observing the flow rate of the water.",
+      "state_id": "s5",
+      "metadata": {
+        "progress": 0.6
+      }
+    },
+    {
+      "description": "Coffee brewing is nearly complete. Water level nearly reached. Extraction looks good, no bitter or sour notes detected.",
+      "state_id": "s6",
+      "metadata": {
+        "progress": 0.7
+      }
+    },
+    {
+      "description": "All water has dripped through the grounds. Dripper removed from the cup.",
+      "state_id": "s7",
+      "metadata": {
+        "progress": 0.8
+      }
+    },
+    {
+      "description": "Freshly brewed pour-over coffee in the cup, aromatic and well-extracted. Grounds remain in the filter.",
+      "state_id": "s8",
+      "metadata": {
+        "progress": 1.0
+      }
+    }
+  ],
+  "actions": [
+    {
+      "description": "Measure 20g of whole beans.",
+      "action_id": "a0",
+      "action_type": "preparation",
+      "metadata": {}
+    },
+    {
+      "description": "Grind the measured beans to a medium-coarse consistency.",
+      "action_id": "a1",
+      "action_type": "preparation",
+      "metadata": {}
+    },
+    {
+      "description": "Bloom the grounds with 40g of hot water (93\u00b0C) for 30 seconds.",
+      "action_id": "a2",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Begin pouring hot water slowly in a circular motion, maintaining a medium flow rate.",
+      "action_id": "a3",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Observe extraction and adjust the flow rate to maintain a consistent drip rate (slightly slowed).",
+      "action_id": "a4",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Continue pouring until the desired amount of coffee has been extracted, and most of the water has dripped through.",
+      "action_id": "a5",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Remove the dripper from the cup.",
+      "action_id": "a6",
+      "action_type": "finishing",
+      "metadata": {}
+    },
+    {
+      "description": "Discard the used grounds and enjoy the coffee.",
+      "action_id": "a7",
+      "action_type": "finishing",
+      "metadata": {}
+    }
+  ],
+  "transitions": [
+    {
+      "transition_id": "t_0",
+      "start_state": {
+        "description": "Coffee station with whole beans, grinder, pour-over dripper, filter in dripper, kettle with hot water (93\u00b0C), scale, and empty cup. Beans are whole.",
+        "state_id": "s0",
+        "metadata": {
+          "progress": 0.0
+        }
+      },
+      "action": {
+        "description": "Measure 20g of whole beans.",
+        "action_id": "a0",
+        "action_type": "preparation",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Whole beans measured (20g) and ready. Grinder set to medium-coarse. Filter is wet and seated in the dripper, placed on the scale.",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.1
+        }
+      }
+    },
+    {
+      "transition_id": "t_1",
+      "start_state": {
+        "description": "Whole beans measured (20g) and ready. Grinder set to medium-coarse. Filter is wet and seated in the dripper, placed on the scale.",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.1
+        }
+      },
+      "action": {
+        "description": "Grind the measured beans to a medium-coarse consistency.",
+        "action_id": "a1",
+        "action_type": "preparation",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Measured beans ground to medium-coarse and in the dripper. Scale reads 20g of grounds.",
+        "state_id": "s2",
+        "metadata": {
+          "progress": 0.3
+        }
+      }
+    },
+    {
+      "transition_id": "t_2",
+      "start_state": {
+        "description": "Measured beans ground to medium-coarse and in the dripper. Scale reads 20g of grounds.",
+        "state_id": "s2",
+        "metadata": {
+          "progress": 0.3
+        }
+      },
+      "action": {
+        "description": "Bloom the grounds with 40g of hot water (93\u00b0C) for 30 seconds.",
+        "action_id": "a2",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Ground coffee is blooming with 40g of hot water (93\u00b0C). Blooming for 30 seconds.",
+        "state_id": "s3",
+        "metadata": {
+          "progress": 0.4
+        }
+      }
+    },
+    {
+      "transition_id": "t_3",
+      "start_state": {
+        "description": "Ground coffee is blooming with 40g of hot water (93\u00b0C). Blooming for 30 seconds.",
+        "state_id": "s3",
+        "metadata": {
+          "progress": 0.4
+        }
+      },
+      "action": {
+        "description": "Begin pouring hot water slowly in a circular motion, maintaining a medium flow rate.",
+        "action_id": "a3",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Water pouring onto grounds. Flow rate is medium. Observing extraction.",
+        "state_id": "s4",
+        "metadata": {
+          "progress": 0.5
+        }
+      }
+    },
+    {
+      "transition_id": "t_4",
+      "start_state": {
+        "description": "Water pouring onto grounds. Flow rate is medium. Observing extraction.",
+        "state_id": "s4",
+        "metadata": {
+          "progress": 0.5
+        }
+      },
+      "action": {
+        "description": "Observe extraction and adjust the flow rate to maintain a consistent drip rate (slightly slowed).",
+        "action_id": "a4",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Water pouring onto grounds. Flow rate slightly slowed. Coffee extraction is progressing well, observing the flow rate of the water.",
+        "state_id": "s5",
+        "metadata": {
+          "progress": 0.6
+        }
+      }
+    },
+    {
+      "transition_id": "t_5",
+      "start_state": {
+        "description": "Water pouring onto grounds. Flow rate slightly slowed. Coffee extraction is progressing well, observing the flow rate of the water.",
+        "state_id": "s5",
+        "metadata": {
+          "progress": 0.6
+        }
+      },
+      "action": {
+        "description": "Continue pouring until the desired amount of coffee has been extracted, and most of the water has dripped through.",
+        "action_id": "a5",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Coffee brewing is nearly complete. Water level nearly reached. Extraction looks good, no bitter or sour notes detected.",
+        "state_id": "s6",
+        "metadata": {
+          "progress": 0.7
+        }
+      }
+    },
+    {
+      "transition_id": "t_6",
+      "start_state": {
+        "description": "Coffee brewing is nearly complete. Water level nearly reached. Extraction looks good, no bitter or sour notes detected.",
+        "state_id": "s6",
+        "metadata": {
+          "progress": 0.7
+        }
+      },
+      "action": {
+        "description": "Remove the dripper from the cup.",
+        "action_id": "a6",
+        "action_type": "finishing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "All water has dripped through the grounds. Dripper removed from the cup.",
+        "state_id": "s7",
+        "metadata": {
+          "progress": 0.8
+        }
+      }
+    },
+    {
+      "transition_id": "t_7",
+      "start_state": {
+        "description": "All water has dripped through the grounds. Dripper removed from the cup.",
+        "state_id": "s7",
+        "metadata": {
+          "progress": 0.8
+        }
+      },
+      "action": {
+        "description": "Discard the used grounds and enjoy the coffee.",
+        "action_id": "a7",
+        "action_type": "finishing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Freshly brewed pour-over coffee in the cup, aromatic and well-extracted. Grounds remain in the filter.",
+        "state_id": "s8",
+        "metadata": {
+          "progress": 1.0
+        }
+      }
+    }
+  ],
+  "initial_state": {
+    "description": "Coffee station with whole beans, grinder, pour-over dripper, filter in dripper, kettle with hot water (93\u00b0C), scale, and empty cup. Beans are whole.",
+    "state_id": "s0",
+    "metadata": {
+      "progress": 0.0
+    }
+  },
+  "goal_states": [
+    {
+      "description": "Freshly brewed pour-over coffee in the cup, aromatic and well-extracted. Grounds remain in the filter.",
+      "state_id": "s8",
+      "metadata": {
+        "progress": 1.0
+      }
+    }
+  ],
+  "final_states": [
+    {
+      "description": "Freshly brewed pour-over coffee in the cup, aromatic and well-extracted. Grounds remain in the filter.",
+      "state_id": "s8",
+      "metadata": {
+        "progress": 1.0
+      }
+    }
+  ],
+  "goal_state": {
+    "description": "Freshly brewed pour-over coffee in the cup, aromatic and well-extracted. Grounds remain in the filter.",
+    "state_id": "s8",
+    "metadata": {
+      "progress": 1.0
+    }
+  }
+}

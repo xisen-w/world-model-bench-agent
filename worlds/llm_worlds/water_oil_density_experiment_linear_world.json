@@ -1,0 +1,301 @@
+{
+  "name": "water_oil_density_experiment_linear",
+  "description": "Linear world for water_oil_density_experiment",
+  "states": [
+    {
+      "description": "Clear container, measuring cup with water, small bottle of cooking oil, food coloring drops, and spoon are on the table. The container is empty.",
+      "state_id": "s0",
+      "metadata": {
+        "progress": 0.0
+      }
+    },
+    {
+      "description": "The measuring cup contains water. The container is ready.",
+      "state_id": "s1",
+      "metadata": {
+        "progress": 0.1
+      }
+    },
+    {
+      "description": "Water is in the container. Food coloring is being added to the water.",
+      "state_id": "s2",
+      "metadata": {
+        "progress": 0.3
+      }
+    },
+    {
+      "description": "Colored water is in the container, food coloring has been added. The oil bottle is in hand.",
+      "state_id": "s3",
+      "metadata": {
+        "progress": 0.4
+      }
+    },
+    {
+      "description": "Colored water and oil are in the container. Clear oil layer is forming above the colored water layer.",
+      "state_id": "s4",
+      "metadata": {
+        "progress": 0.7
+      }
+    },
+    {
+      "description": "The spoon is used to gently stir the contents of the container.",
+      "state_id": "s5",
+      "metadata": {
+        "progress": 0.5
+      }
+    },
+    {
+      "description": "The spoon is out of the container and there is a mixture of water and oil in the container, but they have not separated completely.",
+      "state_id": "s6",
+      "metadata": {
+        "progress": 0.6
+      }
+    },
+    {
+      "description": "The container holds distinct layers of colored water (bottom) and oil (top), with a clear separation visible. Observations recorded.",
+      "state_id": "s7",
+      "metadata": {
+        "progress": 1.0
+      }
+    }
+  ],
+  "actions": [
+    {
+      "description": "Pour water from the measuring cup into the clear container.",
+      "action_id": "a0",
+      "action_type": "preparation",
+      "metadata": {}
+    },
+    {
+      "description": "Add a few drops of food coloring to the water in the container.",
+      "action_id": "a1",
+      "action_type": "preparation",
+      "metadata": {}
+    },
+    {
+      "description": "Pour cooking oil slowly from the bottle into the container, above the colored water.",
+      "action_id": "a2",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Observe the layers forming - oil on top, water below",
+      "action_id": "a3",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Gently stir the contents with the spoon to mix the water and oil. ",
+      "action_id": "a4",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Remove the spoon and observe the separation. Wait to see the layers form.",
+      "action_id": "a5",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Allow the layers to fully separate, recording observations and finishing the experiment.",
+      "action_id": "a6",
+      "action_type": "finishing",
+      "metadata": {}
+    }
+  ],
+  "transitions": [
+    {
+      "transition_id": "t_0",
+      "start_state": {
+        "description": "Clear container, measuring cup with water, small bottle of cooking oil, food coloring drops, and spoon are on the table. The container is empty.",
+        "state_id": "s0",
+        "metadata": {
+          "progress": 0.0
+        }
+      },
+      "action": {
+        "description": "Pour water from the measuring cup into the clear container.",
+        "action_id": "a0",
+        "action_type": "preparation",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "The measuring cup contains water. The container is ready.",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.1
+        }
+      }
+    },
+    {
+      "transition_id": "t_1",
+      "start_state": {
+        "description": "The measuring cup contains water. The container is ready.",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.1
+        }
+      },
+      "action": {
+        "description": "Add a few drops of food coloring to the water in the container.",
+        "action_id": "a1",
+        "action_type": "preparation",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Water is in the container. Food coloring is being added to the water.",
+        "state_id": "s2",
+        "metadata": {
+          "progress": 0.3
+        }
+      }
+    },
+    {
+      "transition_id": "t_2",
+      "start_state": {
+        "description": "Water is in the container. Food coloring is being added to the water.",
+        "state_id": "s2",
+        "metadata": {
+          "progress": 0.3
+        }
+      },
+      "action": {
+        "description": "Pour cooking oil slowly from the bottle into the container, above the colored water.",
+        "action_id": "a2",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Colored water is in the container, food coloring has been added. The oil bottle is in hand.",
+        "state_id": "s3",
+        "metadata": {
+          "progress": 0.4
+        }
+      }
+    },
+    {
+      "transition_id": "t_3",
+      "start_state": {
+        "description": "Colored water is in the container, food coloring has been added. The oil bottle is in hand.",
+        "state_id": "s3",
+        "metadata": {
+          "progress": 0.4
+        }
+      },
+      "action": {
+        "description": "Observe the layers forming - oil on top, water below",
+        "action_id": "a3",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Colored water and oil are in the container. Clear oil layer is forming above the colored water layer.",
+        "state_id": "s4",
+        "metadata": {
+          "progress": 0.7
+        }
+      }
+    },
+    {
+      "transition_id": "t_4",
+      "start_state": {
+        "description": "Colored water and oil are in the container. Clear oil layer is forming above the colored water layer.",
+        "state_id": "s4",
+        "metadata": {
+          "progress": 0.7
+        }
+      },
+      "action": {
+        "description": "Gently stir the contents with the spoon to mix the water and oil. ",
+        "action_id": "a4",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "The spoon is used to gently stir the contents of the container.",
+        "state_id": "s5",
+        "metadata": {
+          "progress": 0.5
+        }
+      }
+    },
+    {
+      "transition_id": "t_5",
+      "start_state": {
+        "description": "The spoon is used to gently stir the contents of the container.",
+        "state_id": "s5",
+        "metadata": {
+          "progress": 0.5
+        }
+      },
+      "action": {
+        "description": "Remove the spoon and observe the separation. Wait to see the layers form.",
+        "action_id": "a5",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "The spoon is out of the container and there is a mixture of water and oil in the container, but they have not separated completely.",
+        "state_id": "s6",
+        "metadata": {
+          "progress": 0.6
+        }
+      }
+    },
+    {
+      "transition_id": "t_6",
+      "start_state": {
+        "description": "The spoon is out of the container and there is a mixture of water and oil in the container, but they have not separated completely.",
+        "state_id": "s6",
+        "metadata": {
+          "progress": 0.6
+        }
+      },
+      "action": {
+        "description": "Allow the layers to fully separate, recording observations and finishing the experiment.",
+        "action_id": "a6",
+        "action_type": "finishing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "The container holds distinct layers of colored water (bottom) and oil (top), with a clear separation visible. Observations recorded.",
+        "state_id": "s7",
+        "metadata": {
+          "progress": 1.0
+        }
+      }
+    }
+  ],
+  "initial_state": {
+    "description": "Clear container, measuring cup with water, small bottle of cooking oil, food coloring drops, and spoon are on the table. The container is empty.",
+    "state_id": "s0",
+    "metadata": {
+      "progress": 0.0
+    }
+  },
+  "goal_states": [
+    {
+      "description": "The container holds distinct layers of colored water (bottom) and oil (top), with a clear separation visible. Observations recorded.",
+      "state_id": "s7",
+      "metadata": {
+        "progress": 1.0
+      }
+    }
+  ],
+  "final_states": [
+    {
+      "description": "The container holds distinct layers of colored water (bottom) and oil (top), with a clear separation visible. Observations recorded.",
+      "state_id": "s7",
+      "metadata": {
+        "progress": 1.0
+      }
+    }
+  ],
+  "goal_state": {
+    "description": "The container holds distinct layers of colored water (bottom) and oil (top), with a clear separation visible. Observations recorded.",
+    "state_id": "s7",
+    "metadata": {
+      "progress": 1.0
+    }
+  }
+}

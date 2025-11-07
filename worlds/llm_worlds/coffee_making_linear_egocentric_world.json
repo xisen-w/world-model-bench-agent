@@ -1,0 +1,349 @@
+{
+  "name": "coffee_making_linear_egocentric",
+  "description": "Egocentric linear_egocentric world for coffee_making",
+  "states": [
+    {
+      "description": "You're standing in your kitchen, looking down at the empty coffee cup in front of you on the counter. Beside it, you see the French press, filled with ground coffee. A kettle of hot water sits ready. You reach out, your right hand hovering over the cup, ready to start the process. The air is still, but you anticipate the rich aroma soon to come. The stainless steel French press gleams under the light.",
+      "state_id": "s0",
+      "metadata": {
+        "progress": 0.0,
+        "camera_perspective": "first_person_ego",
+        "camera_height": "1.6m (eye level)",
+        "hands_visible": true,
+        "main_focus": "Empty coffee cup"
+      }
+    },
+    {
+      "description": "You lean over the French press. Your right hand carefully holds the kettle, steam rising and blurring the view slightly. You're pouring the hot water slowly over the grounds, watching the water cascade and saturate the coffee. The rich, earthy smell begins to escape the press, promising a perfect brew. You feel the heat radiating from the kettle.",
+      "state_id": "s1",
+      "metadata": {
+        "progress": 0.14,
+        "camera_perspective": "first_person_ego",
+        "camera_height": "1.6m (eye level)",
+        "hands_visible": true,
+        "main_focus": "Pouring hot water"
+      }
+    },
+    {
+      "description": "You set the kettle down, now observing the coffee grounds blooming as they absorb the hot water. The surface of the water becomes darker and richer in color. Your left hand reaches for the French press lid. Tiny bubbles rise from the grounds. The scent intensifies. A timer sits nearby, counting down the steep time.",
+      "state_id": "s2",
+      "metadata": {
+        "progress": 0.28,
+        "camera_perspective": "first_person_ego",
+        "camera_height": "1.6m (eye level)",
+        "hands_visible": true,
+        "main_focus": "Coffee grounds blooming"
+      }
+    },
+    {
+      "description": "The timer beeps and you remove the lid from the french press. Your right hand gently holds the lid, now separate, as you slowly insert the filter. You ease the filter down, applying gentle and even pressure. You watch the water separate from the grounds. A dark, aromatic liquid forms. The kitchen is now filled with the inviting scent of coffee.",
+      "state_id": "s3",
+      "metadata": {
+        "progress": 0.42,
+        "camera_perspective": "first_person_ego",
+        "camera_height": "1.6m (eye level)",
+        "hands_visible": true,
+        "main_focus": "Pressing the filter"
+      }
+    },
+    {
+      "description": "You lift the French press and slowly pour the coffee into the empty cup. The dark, rich liquid streams into the pristine white porcelain, creating a beautiful contrast. The air is thick with the inviting aroma. You watch the cup fill up, the steam rising and swirling. Your hands carefully control the flow. ",
+      "state_id": "s4",
+      "metadata": {
+        "progress": 0.7,
+        "camera_perspective": "first_person_ego",
+        "camera_height": "1.6m (eye level)",
+        "hands_visible": true,
+        "main_focus": "Pouring coffee"
+      }
+    },
+    {
+      "description": "You're holding the full coffee cup, the rich brown liquid steaming gently. The enticing aroma fills your senses. The first sip is about to happen, creating anticipatory pleasure. Your gaze is downward, focused on the cup as you prepare to take that first delightful taste. You feel the warmth of the cup against your fingers.",
+      "state_id": "s5",
+      "metadata": {
+        "progress": 1.0,
+        "camera_perspective": "first_person_ego",
+        "camera_height": "1.6m (eye level)",
+        "hands_visible": true,
+        "main_focus": "Full cup of coffee"
+      }
+    }
+  ],
+  "actions": [
+    {
+      "description": "You pick up the kettle with your right hand, steadying it over the French press, and begin pouring the hot water slowly onto the coffee grounds. You continue pouring until the grounds are fully saturated, watching the water change color.",
+      "action_id": "a0",
+      "action_type": "processing",
+      "metadata": {
+        "hand_action": true,
+        "tool_use": "kettle",
+        "both_hands": false
+      }
+    },
+    {
+      "description": "You set the kettle down and reach for the lid with your left hand. You place the lid on the French press and start the timer, observing the process of steeping. ",
+      "action_id": "a1",
+      "action_type": "processing",
+      "metadata": {
+        "hand_action": true,
+        "tool_use": "lid",
+        "both_hands": false
+      }
+    },
+    {
+      "description": "You remove the lid with your right hand. You insert the filter of the French press using your right hand. You slowly press the filter down, applying consistent pressure, watching the coffee separate.",
+      "action_id": "a2",
+      "action_type": "processing",
+      "metadata": {
+        "hand_action": true,
+        "tool_use": "filter",
+        "both_hands": false
+      }
+    },
+    {
+      "description": "With your right hand, you lift the French press, then tilt it to pour the coffee from the French press into the empty cup, controlling the flow. The stream of coffee fills the cup.",
+      "action_id": "a3",
+      "action_type": "processing",
+      "metadata": {
+        "hand_action": true,
+        "tool_use": "French Press",
+        "both_hands": false
+      }
+    },
+    {
+      "description": "You carefully lift the full cup of coffee with your hands, bringing it up to eye level, ready to take that first satisfying sip.",
+      "action_id": "a4",
+      "action_type": "processing",
+      "metadata": {
+        "hand_action": true,
+        "tool_use": "cup",
+        "both_hands": false
+      }
+    }
+  ],
+  "transitions": [
+    {
+      "transition_id": "t_0",
+      "start_state": {
+        "description": "You're standing in your kitchen, looking down at the empty coffee cup in front of you on the counter. Beside it, you see the French press, filled with ground coffee. A kettle of hot water sits ready. You reach out, your right hand hovering over the cup, ready to start the process. The air is still, but you anticipate the rich aroma soon to come. The stainless steel French press gleams under the light.",
+        "state_id": "s0",
+        "metadata": {
+          "progress": 0.0,
+          "camera_perspective": "first_person_ego",
+          "camera_height": "1.6m (eye level)",
+          "hands_visible": true,
+          "main_focus": "Empty coffee cup"
+        }
+      },
+      "action": {
+        "description": "You pick up the kettle with your right hand, steadying it over the French press, and begin pouring the hot water slowly onto the coffee grounds. You continue pouring until the grounds are fully saturated, watching the water change color.",
+        "action_id": "a0",
+        "action_type": "processing",
+        "metadata": {
+          "hand_action": true,
+          "tool_use": "kettle",
+          "both_hands": false
+        }
+      },
+      "end_state": {
+        "description": "You lean over the French press. Your right hand carefully holds the kettle, steam rising and blurring the view slightly. You're pouring the hot water slowly over the grounds, watching the water cascade and saturate the coffee. The rich, earthy smell begins to escape the press, promising a perfect brew. You feel the heat radiating from the kettle.",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.14,
+          "camera_perspective": "first_person_ego",
+          "camera_height": "1.6m (eye level)",
+          "hands_visible": true,
+          "main_focus": "Pouring hot water"
+        }
+      }
+    },
+    {
+      "transition_id": "t_1",
+      "start_state": {
+        "description": "You lean over the French press. Your right hand carefully holds the kettle, steam rising and blurring the view slightly. You're pouring the hot water slowly over the grounds, watching the water cascade and saturate the coffee. The rich, earthy smell begins to escape the press, promising a perfect brew. You feel the heat radiating from the kettle.",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.14,
+          "camera_perspective": "first_person_ego",
+          "camera_height": "1.6m (eye level)",
+          "hands_visible": true,
+          "main_focus": "Pouring hot water"
+        }
+      },
+      "action": {
+        "description": "You set the kettle down and reach for the lid with your left hand. You place the lid on the French press and start the timer, observing the process of steeping. ",
+        "action_id": "a1",
+        "action_type": "processing",
+        "metadata": {
+          "hand_action": true,
+          "tool_use": "lid",
+          "both_hands": false
+        }
+      },
+      "end_state": {
+        "description": "You set the kettle down, now observing the coffee grounds blooming as they absorb the hot water. The surface of the water becomes darker and richer in color. Your left hand reaches for the French press lid. Tiny bubbles rise from the grounds. The scent intensifies. A timer sits nearby, counting down the steep time.",
+        "state_id": "s2",
+        "metadata": {
+          "progress": 0.28,
+          "camera_perspective": "first_person_ego",
+          "camera_height": "1.6m (eye level)",
+          "hands_visible": true,
+          "main_focus": "Coffee grounds blooming"
+        }
+      }
+    },
+    {
+      "transition_id": "t_2",
+      "start_state": {
+        "description": "You set the kettle down, now observing the coffee grounds blooming as they absorb the hot water. The surface of the water becomes darker and richer in color. Your left hand reaches for the French press lid. Tiny bubbles rise from the grounds. The scent intensifies. A timer sits nearby, counting down the steep time.",
+        "state_id": "s2",
+        "metadata": {
+          "progress": 0.28,
+          "camera_perspective": "first_person_ego",
+          "camera_height": "1.6m (eye level)",
+          "hands_visible": true,
+          "main_focus": "Coffee grounds blooming"
+        }
+      },
+      "action": {
+        "description": "You remove the lid with your right hand. You insert the filter of the French press using your right hand. You slowly press the filter down, applying consistent pressure, watching the coffee separate.",
+        "action_id": "a2",
+        "action_type": "processing",
+        "metadata": {
+          "hand_action": true,
+          "tool_use": "filter",
+          "both_hands": false
+        }
+      },
+      "end_state": {
+        "description": "The timer beeps and you remove the lid from the french press. Your right hand gently holds the lid, now separate, as you slowly insert the filter. You ease the filter down, applying gentle and even pressure. You watch the water separate from the grounds. A dark, aromatic liquid forms. The kitchen is now filled with the inviting scent of coffee.",
+        "state_id": "s3",
+        "metadata": {
+          "progress": 0.42,
+          "camera_perspective": "first_person_ego",
+          "camera_height": "1.6m (eye level)",
+          "hands_visible": true,
+          "main_focus": "Pressing the filter"
+        }
+      }
+    },
+    {
+      "transition_id": "t_3",
+      "start_state": {
+        "description": "The timer beeps and you remove the lid from the french press. Your right hand gently holds the lid, now separate, as you slowly insert the filter. You ease the filter down, applying gentle and even pressure. You watch the water separate from the grounds. A dark, aromatic liquid forms. The kitchen is now filled with the inviting scent of coffee.",
+        "state_id": "s3",
+        "metadata": {
+          "progress": 0.42,
+          "camera_perspective": "first_person_ego",
+          "camera_height": "1.6m (eye level)",
+          "hands_visible": true,
+          "main_focus": "Pressing the filter"
+        }
+      },
+      "action": {
+        "description": "With your right hand, you lift the French press, then tilt it to pour the coffee from the French press into the empty cup, controlling the flow. The stream of coffee fills the cup.",
+        "action_id": "a3",
+        "action_type": "processing",
+        "metadata": {
+          "hand_action": true,
+          "tool_use": "French Press",
+          "both_hands": false
+        }
+      },
+      "end_state": {
+        "description": "You lift the French press and slowly pour the coffee into the empty cup. The dark, rich liquid streams into the pristine white porcelain, creating a beautiful contrast. The air is thick with the inviting aroma. You watch the cup fill up, the steam rising and swirling. Your hands carefully control the flow. ",
+        "state_id": "s4",
+        "metadata": {
+          "progress": 0.7,
+          "camera_perspective": "first_person_ego",
+          "camera_height": "1.6m (eye level)",
+          "hands_visible": true,
+          "main_focus": "Pouring coffee"
+        }
+      }
+    },
+    {
+      "transition_id": "t_4",
+      "start_state": {
+        "description": "You lift the French press and slowly pour the coffee into the empty cup. The dark, rich liquid streams into the pristine white porcelain, creating a beautiful contrast. The air is thick with the inviting aroma. You watch the cup fill up, the steam rising and swirling. Your hands carefully control the flow. ",
+        "state_id": "s4",
+        "metadata": {
+          "progress": 0.7,
+          "camera_perspective": "first_person_ego",
+          "camera_height": "1.6m (eye level)",
+          "hands_visible": true,
+          "main_focus": "Pouring coffee"
+        }
+      },
+      "action": {
+        "description": "You carefully lift the full cup of coffee with your hands, bringing it up to eye level, ready to take that first satisfying sip.",
+        "action_id": "a4",
+        "action_type": "processing",
+        "metadata": {
+          "hand_action": true,
+          "tool_use": "cup",
+          "both_hands": false
+        }
+      },
+      "end_state": {
+        "description": "You're holding the full coffee cup, the rich brown liquid steaming gently. The enticing aroma fills your senses. The first sip is about to happen, creating anticipatory pleasure. Your gaze is downward, focused on the cup as you prepare to take that first delightful taste. You feel the warmth of the cup against your fingers.",
+        "state_id": "s5",
+        "metadata": {
+          "progress": 1.0,
+          "camera_perspective": "first_person_ego",
+          "camera_height": "1.6m (eye level)",
+          "hands_visible": true,
+          "main_focus": "Full cup of coffee"
+        }
+      }
+    }
+  ],
+  "initial_state": {
+    "description": "You're standing in your kitchen, looking down at the empty coffee cup in front of you on the counter. Beside it, you see the French press, filled with ground coffee. A kettle of hot water sits ready. You reach out, your right hand hovering over the cup, ready to start the process. The air is still, but you anticipate the rich aroma soon to come. The stainless steel French press gleams under the light.",
+    "state_id": "s0",
+    "metadata": {
+      "progress": 0.0,
+      "camera_perspective": "first_person_ego",
+      "camera_height": "1.6m (eye level)",
+      "hands_visible": true,
+      "main_focus": "Empty coffee cup"
+    }
+  },
+  "goal_states": [
+    {
+      "description": "You're holding the full coffee cup, the rich brown liquid steaming gently. The enticing aroma fills your senses. The first sip is about to happen, creating anticipatory pleasure. Your gaze is downward, focused on the cup as you prepare to take that first delightful taste. You feel the warmth of the cup against your fingers.",
+      "state_id": "s5",
+      "metadata": {
+        "progress": 1.0,
+        "camera_perspective": "first_person_ego",
+        "camera_height": "1.6m (eye level)",
+        "hands_visible": true,
+        "main_focus": "Full cup of coffee"
+      }
+    }
+  ],
+  "final_states": [
+    {
+      "description": "You're holding the full coffee cup, the rich brown liquid steaming gently. The enticing aroma fills your senses. The first sip is about to happen, creating anticipatory pleasure. Your gaze is downward, focused on the cup as you prepare to take that first delightful taste. You feel the warmth of the cup against your fingers.",
+      "state_id": "s5",
+      "metadata": {
+        "progress": 1.0,
+        "camera_perspective": "first_person_ego",
+        "camera_height": "1.6m (eye level)",
+        "hands_visible": true,
+        "main_focus": "Full cup of coffee"
+      }
+    }
+  ],
+  "goal_state": {
+    "description": "You're holding the full coffee cup, the rich brown liquid steaming gently. The enticing aroma fills your senses. The first sip is about to happen, creating anticipatory pleasure. Your gaze is downward, focused on the cup as you prepare to take that first delightful taste. You feel the warmth of the cup against your fingers.",
+    "state_id": "s5",
+    "metadata": {
+      "progress": 1.0,
+      "camera_perspective": "first_person_ego",
+      "camera_height": "1.6m (eye level)",
+      "hands_visible": true,
+      "main_focus": "Full cup of coffee"
+    }
+  }
+}

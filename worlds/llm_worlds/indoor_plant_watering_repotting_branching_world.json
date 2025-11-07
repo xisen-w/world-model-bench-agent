@@ -1,0 +1,804 @@
+{
+  "name": "indoor_plant_watering_repotting_branching",
+  "description": "Branching world with multiple paths and endings",
+  "states": [
+    {
+      "description": "Small potted plant with dry, slightly wilted leaves. Soil is dry to the touch. Moisture meter reads low. Watering can with water is full. Larger pot, fresh potting soil bag, and hand trowel are nearby.",
+      "state_id": "s0",
+      "metadata": {
+        "progress": 0.0
+      }
+    },
+    {
+      "description": "Plant watered, some water drained from the bottom of the pot, leaves showing slight improvement. Soil is slightly moist. Moisture meter reads closer to the ideal range.",
+      "state_id": "s1",
+      "metadata": {
+        "progress": 0.1
+      }
+    },
+    {
+      "description": "Plant removed from old pot, roots examined. Some roots appear healthy, some are root bound, and a few damaged roots are visible. Old soil removed.",
+      "state_id": "s2",
+      "metadata": {
+        "progress": 0.3
+      }
+    },
+    {
+      "description": "Damaged roots are trimmed with clean scissors. Root bound roots are gently teased apart. Healthy roots remain, ready for the new pot. The old pot and soil are discarded.",
+      "state_id": "s3",
+      "metadata": {
+        "progress": 0.4
+      }
+    },
+    {
+      "description": "Larger pot has a layer of fresh potting soil at the bottom, creating a base for the plant. The drainage hole is clear. Plant is ready to be positioned.",
+      "state_id": "s4",
+      "metadata": {
+        "progress": 0.5
+      }
+    },
+    {
+      "description": "Plant positioned in the new pot, centered, and soil is added around the root ball, filling the pot. Soil is being gently compacted.",
+      "state_id": "s5",
+      "metadata": {
+        "progress": 0.6
+      }
+    },
+    {
+      "description": "Pot filled with soil, soil gently compacted. The top of the root ball is at the correct level, leaving space for watering. Soil is moist.",
+      "state_id": "s6",
+      "metadata": {
+        "progress": 0.7
+      }
+    },
+    {
+      "description": "Plant watered until water drains from the bottom of the pot. Excess water has been drained, and the plant is upright and supported by the new soil. Leaves appear improved.",
+      "state_id": "s7",
+      "metadata": {
+        "progress": 0.8
+      }
+    },
+    {
+      "description": "Healthy plant in new larger pot with fresh moist soil, proper drainage, plant positioned correctly. Excess water drained, leaves look perky.",
+      "state_id": "s8",
+      "metadata": {
+        "progress": 1.0
+      }
+    },
+    {
+      "description": "Fresh soil added around the root ball, roots slightly loosened. Soil is now more compacted around the new soil. The plant's leaves show a minimal improvement, but the plant is still in the same pot, rootbound.",
+      "state_id": "s1_alt_0",
+      "metadata": {
+        "progress": "0.3"
+      }
+    },
+    {
+      "description": "Plant is removed from the old pot. Roots have been inspected, with dead and circling roots trimmed. The remaining roots appear healthy and are now ready for a new pot.",
+      "state_id": "s1_alt_1",
+      "metadata": {
+        "progress": "0.6"
+      }
+    },
+    {
+      "description": "The plant is thriving in its new, appropriately sized pot. The fresh soil is evenly moist but not waterlogged, and excess water has drained completely. The plant's leaves are perky and vibrant green, showing no signs of stress. The plant is centered perfectly in the pot, and the soil level is ideal. The repotting process was seamless, with no root damage. The plant looks healthier and happier than before.",
+      "state_id": "s_perfect",
+      "metadata": {
+        "quality": 1.0,
+        "outcome": "success",
+        "reason": "The entire repotting process was executed flawlessly, resulting in a perfectly healthy and thriving plant."
+      }
+    },
+    {
+      "description": "During the repotting, the plant's main stem was accidentally snapped. The root ball was also severely damaged when attempting to remove the plant from the old pot. The plant is clearly beyond saving. The new pot is damaged, and all the soil is in a pile.",
+      "state_id": "f_critical_error",
+      "metadata": {
+        "quality": 0.0,
+        "outcome": "failure",
+        "reason": "A critical error during the repotting process resulted in irreversible damage to the plant."
+      }
+    },
+    {
+      "description": "The plant is in the new pot, surrounded by fresh soil. It's off-center, and the soil isn't compacted. Some roots are likely disturbed. There's soil spillage around the pot's rim.",
+      "state_id": "s4_alt_0",
+      "metadata": {
+        "progress": "0.5"
+      }
+    },
+    {
+      "description": "The plant is in a new, slightly larger pot. The soil is moist, and most of the excess water has drained. The leaves look healthy, though perhaps not as vibrant as they could be. The plant is positioned relatively well, but might be slightly off-center. There's a minimal amount of soil spillage around the pot. A few small roots might have been slightly disturbed during the repotting.",
+      "state_id": "s_good",
+      "metadata": {
+        "quality": 0.8,
+        "outcome": "success",
+        "reason": "The repotting was successful, but minor imperfections in technique and minor root disturbance prevent a perfect outcome."
+      }
+    },
+    {
+      "description": "The plant is in a new, appropriately sized pot, but the soil is a bit compacted. The soil is moist, but some water remains in the drainage tray. The leaves look a bit dull, and there are some signs of mild stress. The plant leans slightly to one side. Some of the root ball was likely disturbed when repotting. There is some minor soil spillage.",
+      "state_id": "s_acceptable",
+      "metadata": {
+        "quality": 0.6,
+        "outcome": "success",
+        "reason": "The plant survived the process, and is in a new pot, but technique flaws caused some stress and less-than-ideal growing conditions."
+      }
+    }
+  ],
+  "actions": [
+    {
+      "description": "Water the plant until water drains from the bottom of the pot, ensuring even soil moisture. Check the soil with the moisture meter.",
+      "action_id": "a0",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Carefully remove the plant from its current pot. Examine the roots for any damage or root-bound conditions.",
+      "action_id": "a1",
+      "action_type": "preparation",
+      "metadata": {}
+    },
+    {
+      "description": "Trim any damaged roots with clean scissors. Gently tease apart any root-bound roots, promoting healthy growth. Remove old soil from the roots.",
+      "action_id": "a2",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Add a layer of fresh potting soil to the bottom of the new, larger pot. Ensure the drainage hole is clear.",
+      "action_id": "a3",
+      "action_type": "preparation",
+      "metadata": {}
+    },
+    {
+      "description": "Position the plant in the center of the new pot, ensuring the top of the root ball is slightly below the rim. Add soil around the roots, filling the pot, gently compacting it.",
+      "action_id": "a4",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Continue adding fresh soil, filling the pot and ensuring it is compacted. Stop when the soil level reaches the correct height.",
+      "action_id": "a5",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Water the newly potted plant thoroughly until water drains from the drainage holes. Remove excess water from the saucer.",
+      "action_id": "a6",
+      "action_type": "finishing",
+      "metadata": {}
+    },
+    {
+      "description": "Observe the plant. Ensure the plant is upright and the soil is moist but not waterlogged. Confirm the plant is now healthy in its new pot. ",
+      "action_id": "a7",
+      "action_type": "finishing",
+      "metadata": {}
+    },
+    {
+      "description": "Attempt to repot the plant in the current pot, adding fresh soil around the existing root ball without removing the plant. Try to loosen the roots with a chopstick, being careful not to damage them.",
+      "action_id": null,
+      "action_type": "risky",
+      "metadata": {
+        "deviation_type": "risky",
+        "risk_level": "medium",
+        "likely_outcome": "partial_success"
+      }
+    },
+    {
+      "description": "Carefully remove the plant from the pot, inspecting the roots. Trim any dead or circling roots with a clean, sharp knife or pruning shears.",
+      "action_id": "None_1",
+      "action_type": null,
+      "metadata": {}
+    },
+    {
+      "description": "Repot the plant in a new, appropriately sized pot with fresh soil, ensuring the plant is centered and at the correct soil level. Water thoroughly until water drains from the bottom.",
+      "action_id": "None_2",
+      "action_type": null,
+      "metadata": {}
+    },
+    {
+      "description": "Skip repotting for now; add a small amount of fresh potting soil to the top of the existing soil and continue with the original watering schedule.",
+      "action_id": null,
+      "action_type": "shortcut",
+      "metadata": {
+        "deviation_type": "shortcut",
+        "risk_level": "low",
+        "likely_outcome": "partial_success"
+      }
+    },
+    {
+      "description": "Water the plant again as scheduled, attempting to give it a good soaking.",
+      "action_id": "None_1",
+      "action_type": null,
+      "metadata": {}
+    },
+    {
+      "description": "Quickly dump the plant into the new pot, adding soil haphazardly around the roots without centering or gently compacting, hoping the plant settles correctly.",
+      "action_id": null,
+      "action_type": "risky",
+      "metadata": {
+        "deviation_type": "risky",
+        "risk_level": "high",
+        "likely_outcome": "failure"
+      }
+    },
+    {
+      "description": "Water the plant thoroughly, allowing the water to drain through the drainage hole.",
+      "action_id": "None_1",
+      "action_type": null,
+      "metadata": {}
+    },
+    {
+      "description": "Quickly dump the remaining potting soil into the pot around the plant, without much compaction. Just try to fill the gaps.",
+      "action_id": null,
+      "action_type": "shortcut",
+      "metadata": {
+        "deviation_type": "shortcut",
+        "risk_level": "medium",
+        "likely_outcome": "partial_success"
+      }
+    },
+    {
+      "description": "Assume the plant is completely healthy and requires no further observation. Immediately place the plant in direct sunlight to encourage faster growth.",
+      "action_id": null,
+      "action_type": "risky",
+      "metadata": {
+        "deviation_type": "risky",
+        "risk_level": "high",
+        "likely_outcome": "failure"
+      }
+    },
+    {
+      "description": "Quickly glance at the plant and assume everything is fine. Proceed to the next task.",
+      "action_id": null,
+      "action_type": "shortcut",
+      "metadata": {
+        "deviation_type": "shortcut",
+        "risk_level": "medium",
+        "likely_outcome": "partial_success"
+      }
+    }
+  ],
+  "transitions": [
+    {
+      "transition_id": "t_0",
+      "start_state": {
+        "description": "Small potted plant with dry, slightly wilted leaves. Soil is dry to the touch. Moisture meter reads low. Watering can with water is full. Larger pot, fresh potting soil bag, and hand trowel are nearby.",
+        "state_id": "s0",
+        "metadata": {
+          "progress": 0.0
+        }
+      },
+      "action": {
+        "description": "Water the plant until water drains from the bottom of the pot, ensuring even soil moisture. Check the soil with the moisture meter.",
+        "action_id": "a0",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Plant watered, some water drained from the bottom of the pot, leaves showing slight improvement. Soil is slightly moist. Moisture meter reads closer to the ideal range.",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.1
+        }
+      }
+    },
+    {
+      "transition_id": "t_1",
+      "start_state": {
+        "description": "Plant watered, some water drained from the bottom of the pot, leaves showing slight improvement. Soil is slightly moist. Moisture meter reads closer to the ideal range.",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.1
+        }
+      },
+      "action": {
+        "description": "Carefully remove the plant from its current pot. Examine the roots for any damage or root-bound conditions.",
+        "action_id": "a1",
+        "action_type": "preparation",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Plant removed from old pot, roots examined. Some roots appear healthy, some are root bound, and a few damaged roots are visible. Old soil removed.",
+        "state_id": "s2",
+        "metadata": {
+          "progress": 0.3
+        }
+      }
+    },
+    {
+      "transition_id": "t_2",
+      "start_state": {
+        "description": "Plant removed from old pot, roots examined. Some roots appear healthy, some are root bound, and a few damaged roots are visible. Old soil removed.",
+        "state_id": "s2",
+        "metadata": {
+          "progress": 0.3
+        }
+      },
+      "action": {
+        "description": "Trim any damaged roots with clean scissors. Gently tease apart any root-bound roots, promoting healthy growth. Remove old soil from the roots.",
+        "action_id": "a2",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Damaged roots are trimmed with clean scissors. Root bound roots are gently teased apart. Healthy roots remain, ready for the new pot. The old pot and soil are discarded.",
+        "state_id": "s3",
+        "metadata": {
+          "progress": 0.4
+        }
+      }
+    },
+    {
+      "transition_id": "t_3",
+      "start_state": {
+        "description": "Damaged roots are trimmed with clean scissors. Root bound roots are gently teased apart. Healthy roots remain, ready for the new pot. The old pot and soil are discarded.",
+        "state_id": "s3",
+        "metadata": {
+          "progress": 0.4
+        }
+      },
+      "action": {
+        "description": "Add a layer of fresh potting soil to the bottom of the new, larger pot. Ensure the drainage hole is clear.",
+        "action_id": "a3",
+        "action_type": "preparation",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Larger pot has a layer of fresh potting soil at the bottom, creating a base for the plant. The drainage hole is clear. Plant is ready to be positioned.",
+        "state_id": "s4",
+        "metadata": {
+          "progress": 0.5
+        }
+      }
+    },
+    {
+      "transition_id": "t_4",
+      "start_state": {
+        "description": "Larger pot has a layer of fresh potting soil at the bottom, creating a base for the plant. The drainage hole is clear. Plant is ready to be positioned.",
+        "state_id": "s4",
+        "metadata": {
+          "progress": 0.5
+        }
+      },
+      "action": {
+        "description": "Position the plant in the center of the new pot, ensuring the top of the root ball is slightly below the rim. Add soil around the roots, filling the pot, gently compacting it.",
+        "action_id": "a4",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Plant positioned in the new pot, centered, and soil is added around the root ball, filling the pot. Soil is being gently compacted.",
+        "state_id": "s5",
+        "metadata": {
+          "progress": 0.6
+        }
+      }
+    },
+    {
+      "transition_id": "t_5",
+      "start_state": {
+        "description": "Plant positioned in the new pot, centered, and soil is added around the root ball, filling the pot. Soil is being gently compacted.",
+        "state_id": "s5",
+        "metadata": {
+          "progress": 0.6
+        }
+      },
+      "action": {
+        "description": "Continue adding fresh soil, filling the pot and ensuring it is compacted. Stop when the soil level reaches the correct height.",
+        "action_id": "a5",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Pot filled with soil, soil gently compacted. The top of the root ball is at the correct level, leaving space for watering. Soil is moist.",
+        "state_id": "s6",
+        "metadata": {
+          "progress": 0.7
+        }
+      }
+    },
+    {
+      "transition_id": "t_6",
+      "start_state": {
+        "description": "Pot filled with soil, soil gently compacted. The top of the root ball is at the correct level, leaving space for watering. Soil is moist.",
+        "state_id": "s6",
+        "metadata": {
+          "progress": 0.7
+        }
+      },
+      "action": {
+        "description": "Water the newly potted plant thoroughly until water drains from the drainage holes. Remove excess water from the saucer.",
+        "action_id": "a6",
+        "action_type": "finishing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Plant watered until water drains from the bottom of the pot. Excess water has been drained, and the plant is upright and supported by the new soil. Leaves appear improved.",
+        "state_id": "s7",
+        "metadata": {
+          "progress": 0.8
+        }
+      }
+    },
+    {
+      "transition_id": "t_7",
+      "start_state": {
+        "description": "Plant watered until water drains from the bottom of the pot. Excess water has been drained, and the plant is upright and supported by the new soil. Leaves appear improved.",
+        "state_id": "s7",
+        "metadata": {
+          "progress": 0.8
+        }
+      },
+      "action": {
+        "description": "Observe the plant. Ensure the plant is upright and the soil is moist but not waterlogged. Confirm the plant is now healthy in its new pot. ",
+        "action_id": "a7",
+        "action_type": "finishing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Healthy plant in new larger pot with fresh moist soil, proper drainage, plant positioned correctly. Excess water drained, leaves look perky.",
+        "state_id": "s8",
+        "metadata": {
+          "progress": 1.0
+        }
+      }
+    },
+    {
+      "transition_id": "t_8",
+      "start_state": {
+        "description": "Plant watered, some water drained from the bottom of the pot, leaves showing slight improvement. Soil is slightly moist. Moisture meter reads closer to the ideal range.",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.1
+        }
+      },
+      "action": {
+        "description": "Attempt to repot the plant in the current pot, adding fresh soil around the existing root ball without removing the plant. Try to loosen the roots with a chopstick, being careful not to damage them.",
+        "action_id": null,
+        "action_type": "risky",
+        "metadata": {
+          "deviation_type": "risky",
+          "risk_level": "medium",
+          "likely_outcome": "partial_success"
+        }
+      },
+      "end_state": {
+        "description": "Fresh soil added around the root ball, roots slightly loosened. Soil is now more compacted around the new soil. The plant's leaves show a minimal improvement, but the plant is still in the same pot, rootbound.",
+        "state_id": "s1_alt_0",
+        "metadata": {
+          "progress": "0.3"
+        }
+      }
+    },
+    {
+      "transition_id": "t_9",
+      "start_state": {
+        "description": "Fresh soil added around the root ball, roots slightly loosened. Soil is now more compacted around the new soil. The plant's leaves show a minimal improvement, but the plant is still in the same pot, rootbound.",
+        "state_id": "s1_alt_0",
+        "metadata": {
+          "progress": "0.3"
+        }
+      },
+      "action": {
+        "description": "Carefully remove the plant from the pot, inspecting the roots. Trim any dead or circling roots with a clean, sharp knife or pruning shears.",
+        "action_id": "None_1",
+        "action_type": null,
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Plant is removed from the old pot. Roots have been inspected, with dead and circling roots trimmed. The remaining roots appear healthy and are now ready for a new pot.",
+        "state_id": "s1_alt_1",
+        "metadata": {
+          "progress": "0.6"
+        }
+      }
+    },
+    {
+      "transition_id": "t_10",
+      "start_state": {
+        "description": "Plant is removed from the old pot. Roots have been inspected, with dead and circling roots trimmed. The remaining roots appear healthy and are now ready for a new pot.",
+        "state_id": "s1_alt_1",
+        "metadata": {
+          "progress": "0.6"
+        }
+      },
+      "action": {
+        "description": "Repot the plant in a new, appropriately sized pot with fresh soil, ensuring the plant is centered and at the correct soil level. Water thoroughly until water drains from the bottom.",
+        "action_id": "None_2",
+        "action_type": null,
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "The plant is thriving in its new, appropriately sized pot. The fresh soil is evenly moist but not waterlogged, and excess water has drained completely. The plant's leaves are perky and vibrant green, showing no signs of stress. The plant is centered perfectly in the pot, and the soil level is ideal. The repotting process was seamless, with no root damage. The plant looks healthier and happier than before.",
+        "state_id": "s_perfect",
+        "metadata": {
+          "quality": 1.0,
+          "outcome": "success",
+          "reason": "The entire repotting process was executed flawlessly, resulting in a perfectly healthy and thriving plant."
+        }
+      }
+    },
+    {
+      "transition_id": "t_11",
+      "start_state": {
+        "description": "Plant watered, some water drained from the bottom of the pot, leaves showing slight improvement. Soil is slightly moist. Moisture meter reads closer to the ideal range.",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.1
+        }
+      },
+      "action": {
+        "description": "Skip repotting for now; add a small amount of fresh potting soil to the top of the existing soil and continue with the original watering schedule.",
+        "action_id": null,
+        "action_type": "shortcut",
+        "metadata": {
+          "deviation_type": "shortcut",
+          "risk_level": "low",
+          "likely_outcome": "partial_success"
+        }
+      },
+      "end_state": {
+        "description": "The plant's root system is still somewhat rootbound, but with the added soil, the plant seems stable and continues to improve slightly. Watering continues as before.",
+        "state_id": "s1_alt_0",
+        "metadata": {
+          "progress": "0.2"
+        }
+      }
+    },
+    {
+      "transition_id": "t_12",
+      "start_state": {
+        "description": "The plant's root system is still somewhat rootbound, but with the added soil, the plant seems stable and continues to improve slightly. Watering continues as before.",
+        "state_id": "s1_alt_0",
+        "metadata": {
+          "progress": "0.2"
+        }
+      },
+      "action": {
+        "description": "Water the plant again as scheduled, attempting to give it a good soaking.",
+        "action_id": "None_1",
+        "action_type": null,
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "During the repotting, the plant's main stem was accidentally snapped. The root ball was also severely damaged when attempting to remove the plant from the old pot. The plant is clearly beyond saving. The new pot is damaged, and all the soil is in a pile.",
+        "state_id": "f_critical_error",
+        "metadata": {
+          "quality": 0.0,
+          "outcome": "failure",
+          "reason": "A critical error during the repotting process resulted in irreversible damage to the plant."
+        }
+      }
+    },
+    {
+      "transition_id": "t_13",
+      "start_state": {
+        "description": "Larger pot has a layer of fresh potting soil at the bottom, creating a base for the plant. The drainage hole is clear. Plant is ready to be positioned.",
+        "state_id": "s4",
+        "metadata": {
+          "progress": 0.5
+        }
+      },
+      "action": {
+        "description": "Quickly dump the plant into the new pot, adding soil haphazardly around the roots without centering or gently compacting, hoping the plant settles correctly.",
+        "action_id": null,
+        "action_type": "risky",
+        "metadata": {
+          "deviation_type": "risky",
+          "risk_level": "high",
+          "likely_outcome": "failure"
+        }
+      },
+      "end_state": {
+        "description": "The plant is in the new pot, surrounded by fresh soil. It's off-center, and the soil isn't compacted. Some roots are likely disturbed. There's soil spillage around the pot's rim.",
+        "state_id": "s4_alt_0",
+        "metadata": {
+          "progress": "0.5"
+        }
+      }
+    },
+    {
+      "transition_id": "t_14",
+      "start_state": {
+        "description": "The plant is in the new pot, surrounded by fresh soil. It's off-center, and the soil isn't compacted. Some roots are likely disturbed. There's soil spillage around the pot's rim.",
+        "state_id": "s4_alt_0",
+        "metadata": {
+          "progress": "0.5"
+        }
+      },
+      "action": {
+        "description": "Water the plant thoroughly, allowing the water to drain through the drainage hole.",
+        "action_id": "None_1",
+        "action_type": null,
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "The plant is in a new, slightly larger pot. The soil is moist, and most of the excess water has drained. The leaves look healthy, though perhaps not as vibrant as they could be. The plant is positioned relatively well, but might be slightly off-center. There's a minimal amount of soil spillage around the pot. A few small roots might have been slightly disturbed during the repotting.",
+        "state_id": "s_good",
+        "metadata": {
+          "quality": 0.8,
+          "outcome": "success",
+          "reason": "The repotting was successful, but minor imperfections in technique and minor root disturbance prevent a perfect outcome."
+        }
+      }
+    },
+    {
+      "transition_id": "t_15",
+      "start_state": {
+        "description": "Larger pot has a layer of fresh potting soil at the bottom, creating a base for the plant. The drainage hole is clear. Plant is ready to be positioned.",
+        "state_id": "s4",
+        "metadata": {
+          "progress": 0.5
+        }
+      },
+      "action": {
+        "description": "Quickly dump the remaining potting soil into the pot around the plant, without much compaction. Just try to fill the gaps.",
+        "action_id": null,
+        "action_type": "shortcut",
+        "metadata": {
+          "deviation_type": "shortcut",
+          "risk_level": "medium",
+          "likely_outcome": "partial_success"
+        }
+      },
+      "end_state": {
+        "description": "During the repotting, the plant's main stem was accidentally snapped. The root ball was also severely damaged when attempting to remove the plant from the old pot. The plant is clearly beyond saving. The new pot is damaged, and all the soil is in a pile.",
+        "state_id": "f_critical_error",
+        "metadata": {
+          "quality": 0.0,
+          "outcome": "failure",
+          "reason": "A critical error during the repotting process resulted in irreversible damage to the plant."
+        }
+      }
+    },
+    {
+      "transition_id": "t_16",
+      "start_state": {
+        "description": "Plant watered until water drains from the bottom of the pot. Excess water has been drained, and the plant is upright and supported by the new soil. Leaves appear improved.",
+        "state_id": "s7",
+        "metadata": {
+          "progress": 0.8
+        }
+      },
+      "action": {
+        "description": "Assume the plant is completely healthy and requires no further observation. Immediately place the plant in direct sunlight to encourage faster growth.",
+        "action_id": null,
+        "action_type": "risky",
+        "metadata": {
+          "deviation_type": "risky",
+          "risk_level": "high",
+          "likely_outcome": "failure"
+        }
+      },
+      "end_state": {
+        "description": "The plant is in a new, appropriately sized pot, but the soil is a bit compacted. The soil is moist, but some water remains in the drainage tray. The leaves look a bit dull, and there are some signs of mild stress. The plant leans slightly to one side. Some of the root ball was likely disturbed when repotting. There is some minor soil spillage.",
+        "state_id": "s_acceptable",
+        "metadata": {
+          "quality": 0.6,
+          "outcome": "success",
+          "reason": "The plant survived the process, and is in a new pot, but technique flaws caused some stress and less-than-ideal growing conditions."
+        }
+      }
+    },
+    {
+      "transition_id": "t_17",
+      "start_state": {
+        "description": "Plant watered until water drains from the bottom of the pot. Excess water has been drained, and the plant is upright and supported by the new soil. Leaves appear improved.",
+        "state_id": "s7",
+        "metadata": {
+          "progress": 0.8
+        }
+      },
+      "action": {
+        "description": "Quickly glance at the plant and assume everything is fine. Proceed to the next task.",
+        "action_id": null,
+        "action_type": "shortcut",
+        "metadata": {
+          "deviation_type": "shortcut",
+          "risk_level": "medium",
+          "likely_outcome": "partial_success"
+        }
+      },
+      "end_state": {
+        "description": "During the repotting, the plant's main stem was accidentally snapped. The root ball was also severely damaged when attempting to remove the plant from the old pot. The plant is clearly beyond saving. The new pot is damaged, and all the soil is in a pile.",
+        "state_id": "f_critical_error",
+        "metadata": {
+          "quality": 0.0,
+          "outcome": "failure",
+          "reason": "A critical error during the repotting process resulted in irreversible damage to the plant."
+        }
+      }
+    }
+  ],
+  "initial_state": {
+    "description": "Small potted plant with dry, slightly wilted leaves. Soil is dry to the touch. Moisture meter reads low. Watering can with water is full. Larger pot, fresh potting soil bag, and hand trowel are nearby.",
+    "state_id": "s0",
+    "metadata": {
+      "progress": 0.0
+    }
+  },
+  "goal_states": [
+    {
+      "description": "The plant is thriving in its new, appropriately sized pot. The fresh soil is evenly moist but not waterlogged, and excess water has drained completely. The plant's leaves are perky and vibrant green, showing no signs of stress. The plant is centered perfectly in the pot, and the soil level is ideal. The repotting process was seamless, with no root damage. The plant looks healthier and happier than before.",
+      "state_id": "s_perfect",
+      "metadata": {
+        "quality": 1.0,
+        "outcome": "success",
+        "reason": "The entire repotting process was executed flawlessly, resulting in a perfectly healthy and thriving plant."
+      }
+    },
+    {
+      "description": "The plant is in a new, slightly larger pot. The soil is moist, and most of the excess water has drained. The leaves look healthy, though perhaps not as vibrant as they could be. The plant is positioned relatively well, but might be slightly off-center. There's a minimal amount of soil spillage around the pot. A few small roots might have been slightly disturbed during the repotting.",
+      "state_id": "s_good",
+      "metadata": {
+        "quality": 0.8,
+        "outcome": "success",
+        "reason": "The repotting was successful, but minor imperfections in technique and minor root disturbance prevent a perfect outcome."
+      }
+    },
+    {
+      "description": "The plant is in a new, appropriately sized pot, but the soil is a bit compacted. The soil is moist, but some water remains in the drainage tray. The leaves look a bit dull, and there are some signs of mild stress. The plant leans slightly to one side. Some of the root ball was likely disturbed when repotting. There is some minor soil spillage.",
+      "state_id": "s_acceptable",
+      "metadata": {
+        "quality": 0.6,
+        "outcome": "success",
+        "reason": "The plant survived the process, and is in a new pot, but technique flaws caused some stress and less-than-ideal growing conditions."
+      }
+    }
+  ],
+  "final_states": [
+    {
+      "description": "The plant is thriving in its new, appropriately sized pot. The fresh soil is evenly moist but not waterlogged, and excess water has drained completely. The plant's leaves are perky and vibrant green, showing no signs of stress. The plant is centered perfectly in the pot, and the soil level is ideal. The repotting process was seamless, with no root damage. The plant looks healthier and happier than before.",
+      "state_id": "s_perfect",
+      "metadata": {
+        "quality": 1.0,
+        "outcome": "success",
+        "reason": "The entire repotting process was executed flawlessly, resulting in a perfectly healthy and thriving plant."
+      }
+    },
+    {
+      "description": "The plant is in a new, slightly larger pot. The soil is moist, and most of the excess water has drained. The leaves look healthy, though perhaps not as vibrant as they could be. The plant is positioned relatively well, but might be slightly off-center. There's a minimal amount of soil spillage around the pot. A few small roots might have been slightly disturbed during the repotting.",
+      "state_id": "s_good",
+      "metadata": {
+        "quality": 0.8,
+        "outcome": "success",
+        "reason": "The repotting was successful, but minor imperfections in technique and minor root disturbance prevent a perfect outcome."
+      }
+    },
+    {
+      "description": "The plant is in a new, appropriately sized pot, but the soil is a bit compacted. The soil is moist, but some water remains in the drainage tray. The leaves look a bit dull, and there are some signs of mild stress. The plant leans slightly to one side. Some of the root ball was likely disturbed when repotting. There is some minor soil spillage.",
+      "state_id": "s_acceptable",
+      "metadata": {
+        "quality": 0.6,
+        "outcome": "success",
+        "reason": "The plant survived the process, and is in a new pot, but technique flaws caused some stress and less-than-ideal growing conditions."
+      }
+    },
+    {
+      "description": "The repotting process was started, but not finished. The old pot was broken, the plant partially removed, and then the task was abandoned. The plant is left in a state of distress with some roots exposed. Soil is spilled everywhere.",
+      "state_id": "f_gave_up",
+      "metadata": {
+        "quality": 0.1,
+        "outcome": "failure",
+        "reason": "The repotting process was incomplete and the plant is left in a vulnerable state."
+      }
+    },
+    {
+      "description": "During the repotting, the plant's main stem was accidentally snapped. The root ball was also severely damaged when attempting to remove the plant from the old pot. The plant is clearly beyond saving. The new pot is damaged, and all the soil is in a pile.",
+      "state_id": "f_critical_error",
+      "metadata": {
+        "quality": 0.0,
+        "outcome": "failure",
+        "reason": "A critical error during the repotting process resulted in irreversible damage to the plant."
+      }
+    }
+  ],
+  "goal_state": {
+    "description": "The plant is thriving in its new, appropriately sized pot. The fresh soil is evenly moist but not waterlogged, and excess water has drained completely. The plant's leaves are perky and vibrant green, showing no signs of stress. The plant is centered perfectly in the pot, and the soil level is ideal. The repotting process was seamless, with no root damage. The plant looks healthier and happier than before.",
+    "state_id": "s_perfect",
+    "metadata": {
+      "quality": 1.0,
+      "outcome": "success",
+      "reason": "The entire repotting process was executed flawlessly, resulting in a perfectly healthy and thriving plant."
+    }
+  }
+}

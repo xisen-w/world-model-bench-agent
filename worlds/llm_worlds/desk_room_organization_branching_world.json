@@ -1,0 +1,850 @@
+{
+  "name": "desk_room_organization_branching",
+  "description": "Branching world with multiple paths and endings",
+  "states": [
+    {
+      "description": "Messy desk: papers scattered, cables tangled, books piled, stationery mixed, trash visible, storage boxes on the side are empty.",
+      "state_id": "s0",
+      "metadata": {
+        "progress": 0.0
+      }
+    },
+    {
+      "description": "Papers are being sorted into categories: important, to-file, to-discard. Some are stacked neatly. Trash bag is nearby.",
+      "state_id": "s1",
+      "metadata": {
+        "progress": 0.2
+      }
+    },
+    {
+      "description": "Most papers are sorted, some filed in a drawer/folder. Trash is starting to fill up. Cables are still tangled.",
+      "state_id": "s2",
+      "metadata": {
+        "progress": 0.35
+      }
+    },
+    {
+      "description": "Papers are filed, trash is mostly disposed of. Now beginning to address the cables. Cables are being untangled and assessed for re-routing.",
+      "state_id": "s3",
+      "metadata": {
+        "progress": 0.45
+      }
+    },
+    {
+      "description": "Cables are mostly untangled and starting to be bundled with cable ties or clips. A new piece of paper with an important note has appeared on the desk. This is an interruption.",
+      "state_id": "s4",
+      "metadata": {
+        "progress": 0.55
+      }
+    },
+    {
+      "description": "The new paper has been addressed (read, noted, filed). Cables are bundled and neatly arranged. Books are being selected for the shelf or storage box.",
+      "state_id": "s5",
+      "metadata": {
+        "progress": 0.65
+      }
+    },
+    {
+      "description": "Books are placed on the shelf or in the storage box. Stationery is being organized, some in pencil holders, some in drawers. The desk surface is mostly clear.",
+      "state_id": "s6",
+      "metadata": {
+        "progress": 0.75
+      }
+    },
+    {
+      "description": "Stationery is organized, trash has been completely removed. The desk surface is wiped down. Final checks are underway.",
+      "state_id": "s7",
+      "metadata": {
+        "progress": 0.9
+      }
+    },
+    {
+      "description": "Organized desk: papers filed, cables bundled, books on shelf/in box, stationery in holder, trash removed, clean surface. All items have been arranged and nothing out of place. The task is completed.",
+      "state_id": "s8",
+      "metadata": {
+        "progress": 1.0
+      }
+    },
+    {
+      "description": "The 'to-file' pile is significantly reduced, and some papers are now filed. The trash bag contains more paper scraps. The desk surface is slightly clearer.",
+      "state_id": "s1_alt_0",
+      "metadata": {
+        "progress": "0.3"
+      }
+    },
+    {
+      "description": "The desk surface gleams. Papers are meticulously filed in color-coded folders, cables are neatly bundled with Velcro straps, books are arranged alphabetically on the shelf, stationery is perfectly organized in a stylish holder, and the trash is completely removed. The desk looks professionally organized, with every item precisely where it should be. The task is flawlessly executed.",
+      "state_id": "s_perfect",
+      "metadata": {
+        "quality": 1.0,
+        "outcome": "success",
+        "reason": "All steps were completed accurately and efficiently, with attention to detail and a commitment to perfection."
+      }
+    },
+    {
+      "description": "The user started organizing the desk but gave up halfway through. Some papers might be filed, and a few cables might be bundled, but the majority of items remain unorganized and the desk is still cluttered. The user expressed frustration and abandoned the task before completion.",
+      "state_id": "f_gave_up",
+      "metadata": {
+        "quality": 0.2,
+        "outcome": "failure",
+        "reason": "The user lost motivation or became overwhelmed before completing the task. No meaningful progress was made towards the final goal."
+      }
+    },
+    {
+      "description": "The desk is organized. Papers are filed, cables are bundled, books are on the shelf, stationery is in its holder, and the trash is gone. There might be a slight imperfection, like a slightly crooked cable bundle or a few stray eraser shavings, but overall the desk is tidy and functional. The surface is clean, and everything is in its designated place.",
+      "state_id": "s_good",
+      "metadata": {
+        "quality": 0.8,
+        "outcome": "success",
+        "reason": "The majority of the steps were completed successfully, with only minor imperfections in the final arrangement."
+      }
+    },
+    {
+      "description": "The desk is mostly organized. Papers are filed, the majority of cables are bundled, most books are on the shelf (some might be stacked), the stationery holder contains most items, and the trash is removed. The surface is relatively clean, but there might be some minor clutter remaining, or a few items not perfectly placed. The desk is functional and tidier than before.",
+      "state_id": "s_acceptable",
+      "metadata": {
+        "quality": 0.6,
+        "outcome": "success",
+        "reason": "The primary goals of the organization were achieved, but some steps were completed less thoroughly or with minor shortcuts."
+      }
+    }
+  ],
+  "actions": [
+    {
+      "description": "Begin sorting papers into piles: to-file, to-discard, important.",
+      "action_id": "a0",
+      "action_type": "preparation",
+      "metadata": {}
+    },
+    {
+      "description": "File the 'to-file' papers and dispose of the trash.",
+      "action_id": "a1",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Begin untangling and assessing cables, considering how to bundle them.",
+      "action_id": "a2",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Bundle the cables and address a new piece of paper that appeared on the desk.",
+      "action_id": "a3",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Process the new paper and continue bundling cables. Start addressing the books to put them away.",
+      "action_id": "a4",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Place the books on the shelf or in storage boxes, and organize the stationery.",
+      "action_id": "a5",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Complete stationery organization and wipe down desk surface. Removing any remaining trash",
+      "action_id": "a6",
+      "action_type": "finishing",
+      "metadata": {}
+    },
+    {
+      "description": "Final check and confirmation of completed organization.  The desk is finished and clean.",
+      "action_id": "a7",
+      "action_type": "finishing",
+      "metadata": {}
+    },
+    {
+      "description": "Quickly scan the 'to-file' papers and toss any that look unimportant directly into the trash bag, then file the remaining ones.",
+      "action_id": null,
+      "action_type": "risky",
+      "metadata": {
+        "deviation_type": "risky",
+        "risk_level": "medium",
+        "likely_outcome": "partial_success"
+      }
+    },
+    {
+      "description": "Bundle cables with Velcro straps, arrange books alphabetically on the shelf, and organize stationery in a stylish holder, then wipe the desk surface.",
+      "action_id": "None_1",
+      "action_type": null,
+      "metadata": {}
+    },
+    {
+      "description": "Quickly glance through the 'to-file' papers and decide if any seem unimportant enough to discard directly, then file the remaining papers and temporarily leave the trash bag full.",
+      "action_id": null,
+      "action_type": "shortcut",
+      "metadata": {
+        "deviation_type": "shortcut",
+        "risk_level": "low",
+        "likely_outcome": "partial_success"
+      }
+    },
+    {
+      "description": "Quickly shove all the tangled cables into a box or drawer, aiming to get them out of sight for now. Avoids proper assessment or bundling.",
+      "action_id": null,
+      "action_type": "risky",
+      "metadata": {
+        "deviation_type": "risky",
+        "risk_level": "medium",
+        "likely_outcome": "partial_success"
+      }
+    },
+    {
+      "description": "Quickly stuff the trash into a nearby drawer to get it out of the way and continue with cable organization.",
+      "action_id": null,
+      "action_type": "shortcut",
+      "metadata": {
+        "deviation_type": "shortcut",
+        "risk_level": "medium",
+        "likely_outcome": "partial_success"
+      }
+    },
+    {
+      "description": "Ignore the new paper for now and aggressively focus on bundling the remaining cables, aiming to finish before dealing with the interruption. This involves rushing the bundling and potentially overlooking important cable connections or placements.",
+      "action_id": null,
+      "action_type": "risky",
+      "metadata": {
+        "deviation_type": "risky",
+        "risk_level": "medium",
+        "likely_outcome": "partial_success"
+      }
+    },
+    {
+      "description": "Quickly glance at the note and decide to address it later, immediately returning to bundling the cables and delaying addressing the note.",
+      "action_id": null,
+      "action_type": "shortcut",
+      "metadata": {
+        "deviation_type": "shortcut",
+        "risk_level": "low",
+        "likely_outcome": "partial_success"
+      }
+    },
+    {
+      "description": "Quickly shove the selected books onto the shelf or into the storage box without careful alignment or consideration of weight distribution. Then, move on to a different task.",
+      "action_id": null,
+      "action_type": "risky",
+      "metadata": {
+        "deviation_type": "risky",
+        "risk_level": "medium",
+        "likely_outcome": "partial_success"
+      }
+    },
+    {
+      "description": "Quickly scan the remaining books, place the majority directly into storage boxes without fully reviewing, and immediately tidy the stationery. ",
+      "action_id": null,
+      "action_type": "shortcut",
+      "metadata": {
+        "deviation_type": "shortcut",
+        "risk_level": "medium",
+        "likely_outcome": "partial_success"
+      }
+    },
+    {
+      "description": "Declare the desk organization complete and finalized without a thorough final check, assuming everything is perfect. Quickly gather materials and leave the workspace.",
+      "action_id": null,
+      "action_type": "risky",
+      "metadata": {
+        "deviation_type": "risky",
+        "risk_level": "medium",
+        "likely_outcome": "partial_success"
+      }
+    },
+    {
+      "description": "Quickly glance at the desk and declare it finished without a thorough final check.",
+      "action_id": null,
+      "action_type": "shortcut",
+      "metadata": {
+        "deviation_type": "shortcut",
+        "risk_level": "low",
+        "likely_outcome": "partial_success"
+      }
+    }
+  ],
+  "transitions": [
+    {
+      "transition_id": "t_0",
+      "start_state": {
+        "description": "Messy desk: papers scattered, cables tangled, books piled, stationery mixed, trash visible, storage boxes on the side are empty.",
+        "state_id": "s0",
+        "metadata": {
+          "progress": 0.0
+        }
+      },
+      "action": {
+        "description": "Begin sorting papers into piles: to-file, to-discard, important.",
+        "action_id": "a0",
+        "action_type": "preparation",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Papers are being sorted into categories: important, to-file, to-discard. Some are stacked neatly. Trash bag is nearby.",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.2
+        }
+      }
+    },
+    {
+      "transition_id": "t_1",
+      "start_state": {
+        "description": "Papers are being sorted into categories: important, to-file, to-discard. Some are stacked neatly. Trash bag is nearby.",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.2
+        }
+      },
+      "action": {
+        "description": "File the 'to-file' papers and dispose of the trash.",
+        "action_id": "a1",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Most papers are sorted, some filed in a drawer/folder. Trash is starting to fill up. Cables are still tangled.",
+        "state_id": "s2",
+        "metadata": {
+          "progress": 0.35
+        }
+      }
+    },
+    {
+      "transition_id": "t_2",
+      "start_state": {
+        "description": "Most papers are sorted, some filed in a drawer/folder. Trash is starting to fill up. Cables are still tangled.",
+        "state_id": "s2",
+        "metadata": {
+          "progress": 0.35
+        }
+      },
+      "action": {
+        "description": "Begin untangling and assessing cables, considering how to bundle them.",
+        "action_id": "a2",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Papers are filed, trash is mostly disposed of. Now beginning to address the cables. Cables are being untangled and assessed for re-routing.",
+        "state_id": "s3",
+        "metadata": {
+          "progress": 0.45
+        }
+      }
+    },
+    {
+      "transition_id": "t_3",
+      "start_state": {
+        "description": "Papers are filed, trash is mostly disposed of. Now beginning to address the cables. Cables are being untangled and assessed for re-routing.",
+        "state_id": "s3",
+        "metadata": {
+          "progress": 0.45
+        }
+      },
+      "action": {
+        "description": "Bundle the cables and address a new piece of paper that appeared on the desk.",
+        "action_id": "a3",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Cables are mostly untangled and starting to be bundled with cable ties or clips. A new piece of paper with an important note has appeared on the desk. This is an interruption.",
+        "state_id": "s4",
+        "metadata": {
+          "progress": 0.55
+        }
+      }
+    },
+    {
+      "transition_id": "t_4",
+      "start_state": {
+        "description": "Cables are mostly untangled and starting to be bundled with cable ties or clips. A new piece of paper with an important note has appeared on the desk. This is an interruption.",
+        "state_id": "s4",
+        "metadata": {
+          "progress": 0.55
+        }
+      },
+      "action": {
+        "description": "Process the new paper and continue bundling cables. Start addressing the books to put them away.",
+        "action_id": "a4",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "The new paper has been addressed (read, noted, filed). Cables are bundled and neatly arranged. Books are being selected for the shelf or storage box.",
+        "state_id": "s5",
+        "metadata": {
+          "progress": 0.65
+        }
+      }
+    },
+    {
+      "transition_id": "t_5",
+      "start_state": {
+        "description": "The new paper has been addressed (read, noted, filed). Cables are bundled and neatly arranged. Books are being selected for the shelf or storage box.",
+        "state_id": "s5",
+        "metadata": {
+          "progress": 0.65
+        }
+      },
+      "action": {
+        "description": "Place the books on the shelf or in storage boxes, and organize the stationery.",
+        "action_id": "a5",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Books are placed on the shelf or in the storage box. Stationery is being organized, some in pencil holders, some in drawers. The desk surface is mostly clear.",
+        "state_id": "s6",
+        "metadata": {
+          "progress": 0.75
+        }
+      }
+    },
+    {
+      "transition_id": "t_6",
+      "start_state": {
+        "description": "Books are placed on the shelf or in the storage box. Stationery is being organized, some in pencil holders, some in drawers. The desk surface is mostly clear.",
+        "state_id": "s6",
+        "metadata": {
+          "progress": 0.75
+        }
+      },
+      "action": {
+        "description": "Complete stationery organization and wipe down desk surface. Removing any remaining trash",
+        "action_id": "a6",
+        "action_type": "finishing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Stationery is organized, trash has been completely removed. The desk surface is wiped down. Final checks are underway.",
+        "state_id": "s7",
+        "metadata": {
+          "progress": 0.9
+        }
+      }
+    },
+    {
+      "transition_id": "t_7",
+      "start_state": {
+        "description": "Stationery is organized, trash has been completely removed. The desk surface is wiped down. Final checks are underway.",
+        "state_id": "s7",
+        "metadata": {
+          "progress": 0.9
+        }
+      },
+      "action": {
+        "description": "Final check and confirmation of completed organization.  The desk is finished and clean.",
+        "action_id": "a7",
+        "action_type": "finishing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Organized desk: papers filed, cables bundled, books on shelf/in box, stationery in holder, trash removed, clean surface. All items have been arranged and nothing out of place. The task is completed.",
+        "state_id": "s8",
+        "metadata": {
+          "progress": 1.0
+        }
+      }
+    },
+    {
+      "transition_id": "t_8",
+      "start_state": {
+        "description": "Papers are being sorted into categories: important, to-file, to-discard. Some are stacked neatly. Trash bag is nearby.",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.2
+        }
+      },
+      "action": {
+        "description": "Quickly scan the 'to-file' papers and toss any that look unimportant directly into the trash bag, then file the remaining ones.",
+        "action_id": null,
+        "action_type": "risky",
+        "metadata": {
+          "deviation_type": "risky",
+          "risk_level": "medium",
+          "likely_outcome": "partial_success"
+        }
+      },
+      "end_state": {
+        "description": "The 'to-file' pile is significantly reduced, and some papers are now filed. The trash bag contains more paper scraps. The desk surface is slightly clearer.",
+        "state_id": "s1_alt_0",
+        "metadata": {
+          "progress": "0.3"
+        }
+      }
+    },
+    {
+      "transition_id": "t_9",
+      "start_state": {
+        "description": "The 'to-file' pile is significantly reduced, and some papers are now filed. The trash bag contains more paper scraps. The desk surface is slightly clearer.",
+        "state_id": "s1_alt_0",
+        "metadata": {
+          "progress": "0.3"
+        }
+      },
+      "action": {
+        "description": "Bundle cables with Velcro straps, arrange books alphabetically on the shelf, and organize stationery in a stylish holder, then wipe the desk surface.",
+        "action_id": "None_1",
+        "action_type": null,
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "The desk surface gleams. Papers are meticulously filed in color-coded folders, cables are neatly bundled with Velcro straps, books are arranged alphabetically on the shelf, stationery is perfectly organized in a stylish holder, and the trash is completely removed. The desk looks professionally organized, with every item precisely where it should be. The task is flawlessly executed.",
+        "state_id": "s_perfect",
+        "metadata": {
+          "quality": 1.0,
+          "outcome": "success",
+          "reason": "All steps were completed accurately and efficiently, with attention to detail and a commitment to perfection."
+        }
+      }
+    },
+    {
+      "transition_id": "t_10",
+      "start_state": {
+        "description": "Papers are being sorted into categories: important, to-file, to-discard. Some are stacked neatly. Trash bag is nearby.",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.2
+        }
+      },
+      "action": {
+        "description": "Quickly glance through the 'to-file' papers and decide if any seem unimportant enough to discard directly, then file the remaining papers and temporarily leave the trash bag full.",
+        "action_id": null,
+        "action_type": "shortcut",
+        "metadata": {
+          "deviation_type": "shortcut",
+          "risk_level": "low",
+          "likely_outcome": "partial_success"
+        }
+      },
+      "end_state": {
+        "description": "The user started organizing the desk but gave up halfway through. Some papers might be filed, and a few cables might be bundled, but the majority of items remain unorganized and the desk is still cluttered. The user expressed frustration and abandoned the task before completion.",
+        "state_id": "f_gave_up",
+        "metadata": {
+          "quality": 0.2,
+          "outcome": "failure",
+          "reason": "The user lost motivation or became overwhelmed before completing the task. No meaningful progress was made towards the final goal."
+        }
+      }
+    },
+    {
+      "transition_id": "t_11",
+      "start_state": {
+        "description": "Most papers are sorted, some filed in a drawer/folder. Trash is starting to fill up. Cables are still tangled.",
+        "state_id": "s2",
+        "metadata": {
+          "progress": 0.35
+        }
+      },
+      "action": {
+        "description": "Quickly shove all the tangled cables into a box or drawer, aiming to get them out of sight for now. Avoids proper assessment or bundling.",
+        "action_id": null,
+        "action_type": "risky",
+        "metadata": {
+          "deviation_type": "risky",
+          "risk_level": "medium",
+          "likely_outcome": "partial_success"
+        }
+      },
+      "end_state": {
+        "description": "The desk is organized. Papers are filed, cables are bundled, books are on the shelf, stationery is in its holder, and the trash is gone. There might be a slight imperfection, like a slightly crooked cable bundle or a few stray eraser shavings, but overall the desk is tidy and functional. The surface is clean, and everything is in its designated place.",
+        "state_id": "s_good",
+        "metadata": {
+          "quality": 0.8,
+          "outcome": "success",
+          "reason": "The majority of the steps were completed successfully, with only minor imperfections in the final arrangement."
+        }
+      }
+    },
+    {
+      "transition_id": "t_12",
+      "start_state": {
+        "description": "Most papers are sorted, some filed in a drawer/folder. Trash is starting to fill up. Cables are still tangled.",
+        "state_id": "s2",
+        "metadata": {
+          "progress": 0.35
+        }
+      },
+      "action": {
+        "description": "Quickly stuff the trash into a nearby drawer to get it out of the way and continue with cable organization.",
+        "action_id": null,
+        "action_type": "shortcut",
+        "metadata": {
+          "deviation_type": "shortcut",
+          "risk_level": "medium",
+          "likely_outcome": "partial_success"
+        }
+      },
+      "end_state": {
+        "description": "The user started organizing the desk but gave up halfway through. Some papers might be filed, and a few cables might be bundled, but the majority of items remain unorganized and the desk is still cluttered. The user expressed frustration and abandoned the task before completion.",
+        "state_id": "f_gave_up",
+        "metadata": {
+          "quality": 0.2,
+          "outcome": "failure",
+          "reason": "The user lost motivation or became overwhelmed before completing the task. No meaningful progress was made towards the final goal."
+        }
+      }
+    },
+    {
+      "transition_id": "t_13",
+      "start_state": {
+        "description": "Cables are mostly untangled and starting to be bundled with cable ties or clips. A new piece of paper with an important note has appeared on the desk. This is an interruption.",
+        "state_id": "s4",
+        "metadata": {
+          "progress": 0.55
+        }
+      },
+      "action": {
+        "description": "Ignore the new paper for now and aggressively focus on bundling the remaining cables, aiming to finish before dealing with the interruption. This involves rushing the bundling and potentially overlooking important cable connections or placements.",
+        "action_id": null,
+        "action_type": "risky",
+        "metadata": {
+          "deviation_type": "risky",
+          "risk_level": "medium",
+          "likely_outcome": "partial_success"
+        }
+      },
+      "end_state": {
+        "description": "The desk is mostly organized. Papers are filed, the majority of cables are bundled, most books are on the shelf (some might be stacked), the stationery holder contains most items, and the trash is removed. The surface is relatively clean, but there might be some minor clutter remaining, or a few items not perfectly placed. The desk is functional and tidier than before.",
+        "state_id": "s_acceptable",
+        "metadata": {
+          "quality": 0.6,
+          "outcome": "success",
+          "reason": "The primary goals of the organization were achieved, but some steps were completed less thoroughly or with minor shortcuts."
+        }
+      }
+    },
+    {
+      "transition_id": "t_14",
+      "start_state": {
+        "description": "Cables are mostly untangled and starting to be bundled with cable ties or clips. A new piece of paper with an important note has appeared on the desk. This is an interruption.",
+        "state_id": "s4",
+        "metadata": {
+          "progress": 0.55
+        }
+      },
+      "action": {
+        "description": "Quickly glance at the note and decide to address it later, immediately returning to bundling the cables and delaying addressing the note.",
+        "action_id": null,
+        "action_type": "shortcut",
+        "metadata": {
+          "deviation_type": "shortcut",
+          "risk_level": "low",
+          "likely_outcome": "partial_success"
+        }
+      },
+      "end_state": {
+        "description": "The user started organizing the desk but gave up halfway through. Some papers might be filed, and a few cables might be bundled, but the majority of items remain unorganized and the desk is still cluttered. The user expressed frustration and abandoned the task before completion.",
+        "state_id": "f_gave_up",
+        "metadata": {
+          "quality": 0.2,
+          "outcome": "failure",
+          "reason": "The user lost motivation or became overwhelmed before completing the task. No meaningful progress was made towards the final goal."
+        }
+      }
+    },
+    {
+      "transition_id": "t_15",
+      "start_state": {
+        "description": "The new paper has been addressed (read, noted, filed). Cables are bundled and neatly arranged. Books are being selected for the shelf or storage box.",
+        "state_id": "s5",
+        "metadata": {
+          "progress": 0.65
+        }
+      },
+      "action": {
+        "description": "Quickly shove the selected books onto the shelf or into the storage box without careful alignment or consideration of weight distribution. Then, move on to a different task.",
+        "action_id": null,
+        "action_type": "risky",
+        "metadata": {
+          "deviation_type": "risky",
+          "risk_level": "medium",
+          "likely_outcome": "partial_success"
+        }
+      },
+      "end_state": {
+        "description": "The desk surface gleams. Papers are meticulously filed in color-coded folders, cables are neatly bundled with Velcro straps, books are arranged alphabetically on the shelf, stationery is perfectly organized in a stylish holder, and the trash is completely removed. The desk looks professionally organized, with every item precisely where it should be. The task is flawlessly executed.",
+        "state_id": "s_perfect",
+        "metadata": {
+          "quality": 1.0,
+          "outcome": "success",
+          "reason": "All steps were completed accurately and efficiently, with attention to detail and a commitment to perfection."
+        }
+      }
+    },
+    {
+      "transition_id": "t_16",
+      "start_state": {
+        "description": "The new paper has been addressed (read, noted, filed). Cables are bundled and neatly arranged. Books are being selected for the shelf or storage box.",
+        "state_id": "s5",
+        "metadata": {
+          "progress": 0.65
+        }
+      },
+      "action": {
+        "description": "Quickly scan the remaining books, place the majority directly into storage boxes without fully reviewing, and immediately tidy the stationery. ",
+        "action_id": null,
+        "action_type": "shortcut",
+        "metadata": {
+          "deviation_type": "shortcut",
+          "risk_level": "medium",
+          "likely_outcome": "partial_success"
+        }
+      },
+      "end_state": {
+        "description": "The user started organizing the desk but gave up halfway through. Some papers might be filed, and a few cables might be bundled, but the majority of items remain unorganized and the desk is still cluttered. The user expressed frustration and abandoned the task before completion.",
+        "state_id": "f_gave_up",
+        "metadata": {
+          "quality": 0.2,
+          "outcome": "failure",
+          "reason": "The user lost motivation or became overwhelmed before completing the task. No meaningful progress was made towards the final goal."
+        }
+      }
+    },
+    {
+      "transition_id": "t_17",
+      "start_state": {
+        "description": "Stationery is organized, trash has been completely removed. The desk surface is wiped down. Final checks are underway.",
+        "state_id": "s7",
+        "metadata": {
+          "progress": 0.9
+        }
+      },
+      "action": {
+        "description": "Declare the desk organization complete and finalized without a thorough final check, assuming everything is perfect. Quickly gather materials and leave the workspace.",
+        "action_id": null,
+        "action_type": "risky",
+        "metadata": {
+          "deviation_type": "risky",
+          "risk_level": "medium",
+          "likely_outcome": "partial_success"
+        }
+      },
+      "end_state": {
+        "description": "The desk is organized. Papers are filed, cables are bundled, books are on the shelf, stationery is in its holder, and the trash is gone. There might be a slight imperfection, like a slightly crooked cable bundle or a few stray eraser shavings, but overall the desk is tidy and functional. The surface is clean, and everything is in its designated place.",
+        "state_id": "s_good",
+        "metadata": {
+          "quality": 0.8,
+          "outcome": "success",
+          "reason": "The majority of the steps were completed successfully, with only minor imperfections in the final arrangement."
+        }
+      }
+    },
+    {
+      "transition_id": "t_18",
+      "start_state": {
+        "description": "Stationery is organized, trash has been completely removed. The desk surface is wiped down. Final checks are underway.",
+        "state_id": "s7",
+        "metadata": {
+          "progress": 0.9
+        }
+      },
+      "action": {
+        "description": "Quickly glance at the desk and declare it finished without a thorough final check.",
+        "action_id": null,
+        "action_type": "shortcut",
+        "metadata": {
+          "deviation_type": "shortcut",
+          "risk_level": "low",
+          "likely_outcome": "partial_success"
+        }
+      },
+      "end_state": {
+        "description": "The user started organizing the desk but gave up halfway through. Some papers might be filed, and a few cables might be bundled, but the majority of items remain unorganized and the desk is still cluttered. The user expressed frustration and abandoned the task before completion.",
+        "state_id": "f_gave_up",
+        "metadata": {
+          "quality": 0.2,
+          "outcome": "failure",
+          "reason": "The user lost motivation or became overwhelmed before completing the task. No meaningful progress was made towards the final goal."
+        }
+      }
+    }
+  ],
+  "initial_state": {
+    "description": "Messy desk: papers scattered, cables tangled, books piled, stationery mixed, trash visible, storage boxes on the side are empty.",
+    "state_id": "s0",
+    "metadata": {
+      "progress": 0.0
+    }
+  },
+  "goal_states": [
+    {
+      "description": "The desk surface gleams. Papers are meticulously filed in color-coded folders, cables are neatly bundled with Velcro straps, books are arranged alphabetically on the shelf, stationery is perfectly organized in a stylish holder, and the trash is completely removed. The desk looks professionally organized, with every item precisely where it should be. The task is flawlessly executed.",
+      "state_id": "s_perfect",
+      "metadata": {
+        "quality": 1.0,
+        "outcome": "success",
+        "reason": "All steps were completed accurately and efficiently, with attention to detail and a commitment to perfection."
+      }
+    },
+    {
+      "description": "The desk is organized. Papers are filed, cables are bundled, books are on the shelf, stationery is in its holder, and the trash is gone. There might be a slight imperfection, like a slightly crooked cable bundle or a few stray eraser shavings, but overall the desk is tidy and functional. The surface is clean, and everything is in its designated place.",
+      "state_id": "s_good",
+      "metadata": {
+        "quality": 0.8,
+        "outcome": "success",
+        "reason": "The majority of the steps were completed successfully, with only minor imperfections in the final arrangement."
+      }
+    },
+    {
+      "description": "The desk is mostly organized. Papers are filed, the majority of cables are bundled, most books are on the shelf (some might be stacked), the stationery holder contains most items, and the trash is removed. The surface is relatively clean, but there might be some minor clutter remaining, or a few items not perfectly placed. The desk is functional and tidier than before.",
+      "state_id": "s_acceptable",
+      "metadata": {
+        "quality": 0.6,
+        "outcome": "success",
+        "reason": "The primary goals of the organization were achieved, but some steps were completed less thoroughly or with minor shortcuts."
+      }
+    }
+  ],
+  "final_states": [
+    {
+      "description": "The desk surface gleams. Papers are meticulously filed in color-coded folders, cables are neatly bundled with Velcro straps, books are arranged alphabetically on the shelf, stationery is perfectly organized in a stylish holder, and the trash is completely removed. The desk looks professionally organized, with every item precisely where it should be. The task is flawlessly executed.",
+      "state_id": "s_perfect",
+      "metadata": {
+        "quality": 1.0,
+        "outcome": "success",
+        "reason": "All steps were completed accurately and efficiently, with attention to detail and a commitment to perfection."
+      }
+    },
+    {
+      "description": "The desk is organized. Papers are filed, cables are bundled, books are on the shelf, stationery is in its holder, and the trash is gone. There might be a slight imperfection, like a slightly crooked cable bundle or a few stray eraser shavings, but overall the desk is tidy and functional. The surface is clean, and everything is in its designated place.",
+      "state_id": "s_good",
+      "metadata": {
+        "quality": 0.8,
+        "outcome": "success",
+        "reason": "The majority of the steps were completed successfully, with only minor imperfections in the final arrangement."
+      }
+    },
+    {
+      "description": "The desk is mostly organized. Papers are filed, the majority of cables are bundled, most books are on the shelf (some might be stacked), the stationery holder contains most items, and the trash is removed. The surface is relatively clean, but there might be some minor clutter remaining, or a few items not perfectly placed. The desk is functional and tidier than before.",
+      "state_id": "s_acceptable",
+      "metadata": {
+        "quality": 0.6,
+        "outcome": "success",
+        "reason": "The primary goals of the organization were achieved, but some steps were completed less thoroughly or with minor shortcuts."
+      }
+    },
+    {
+      "description": "The user started organizing the desk but gave up halfway through. Some papers might be filed, and a few cables might be bundled, but the majority of items remain unorganized and the desk is still cluttered. The user expressed frustration and abandoned the task before completion.",
+      "state_id": "f_gave_up",
+      "metadata": {
+        "quality": 0.2,
+        "outcome": "failure",
+        "reason": "The user lost motivation or became overwhelmed before completing the task. No meaningful progress was made towards the final goal."
+      }
+    }
+  ],
+  "goal_state": {
+    "description": "The desk surface gleams. Papers are meticulously filed in color-coded folders, cables are neatly bundled with Velcro straps, books are arranged alphabetically on the shelf, stationery is perfectly organized in a stylish holder, and the trash is completely removed. The desk looks professionally organized, with every item precisely where it should be. The task is flawlessly executed.",
+    "state_id": "s_perfect",
+    "metadata": {
+      "quality": 1.0,
+      "outcome": "success",
+      "reason": "All steps were completed accurately and efficiently, with attention to detail and a commitment to perfection."
+    }
+  }
+}

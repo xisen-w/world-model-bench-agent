@@ -1,0 +1,849 @@
+{
+  "name": "waste_recycling_sorting_branching",
+  "description": "Branching world with multiple paths and endings",
+  "states": [
+    {
+      "description": "Mixed waste pile containing: plastic bottles, paper, cardboard, metal cans, food-stained paper, and a plastic-coated cardboard container. Four bins labeled: Paper, Plastic, Metal, Contaminated/Trash.",
+      "state_id": "s0",
+      "metadata": {
+        "progress": 0.0
+      }
+    },
+    {
+      "description": "Plastic bottles and metal cans separated. Paper and the plastic-coated cardboard container remain in the mixed waste pile. Food-stained paper is also still in the pile.",
+      "state_id": "s1",
+      "metadata": {
+        "progress": 0.2
+      }
+    },
+    {
+      "description": "Plastic bottles in Plastic bin. Metal cans in Metal bin. Remaining in the mixed waste pile: Paper and plastic-coated cardboard container, plus food-stained paper. A paper item is mistakenly placed in the Metal bin.",
+      "state_id": "s2",
+      "metadata": {
+        "progress": 0.3
+      }
+    },
+    {
+      "description": "Plastic bottles in Plastic bin. Metal cans in Metal bin. Paper correctly separated into Paper bin. The plastic-coated cardboard container is now recognized as 'Contaminated'. Food-stained paper sorted as contaminated. The paper item, mistakenly in the Metal bin, is being corrected.",
+      "state_id": "s3",
+      "metadata": {
+        "progress": 0.6
+      }
+    },
+    {
+      "description": "Plastic bottles in Plastic bin. Metal cans in Metal bin. Paper correctly sorted in Paper bin. Plastic-coated cardboard container and food-stained paper in Contaminated/Trash bin. The paper item, removed from the Metal bin, is ready to be re-sorted.",
+      "state_id": "s4",
+      "metadata": {
+        "progress": 0.7
+      }
+    },
+    {
+      "description": "Plastic bottles in Plastic bin. Metal cans in Metal bin. Paper correctly sorted in Paper bin. Plastic-coated cardboard container and food-stained paper in Contaminated/Trash bin. The misclassified paper is in the Paper bin.",
+      "state_id": "s5",
+      "metadata": {
+        "progress": 0.8
+      }
+    },
+    {
+      "description": "Plastic bottles in Plastic bin. Metal cans in Metal bin. Paper in Paper bin. Plastic-coated cardboard container and food-stained paper in Contaminated/Trash bin. All items correctly sorted. Final inspection in progress.",
+      "state_id": "s6",
+      "metadata": {
+        "progress": 0.9
+      }
+    },
+    {
+      "description": "Plastic bottles in Plastic bin. Metal cans in Metal bin. Paper in Paper bin. Plastic-coated cardboard container and food-stained paper in Contaminated/Trash bin. All items correctly sorted and no contamination. Task completed.",
+      "state_id": "s7",
+      "metadata": {
+        "progress": 1.0
+      }
+    },
+    {
+      "description": "The Paper bin now contains paper, plastic-coated cardboard, and food-stained paper. The Plastic bin still contains plastic bottles, and the Metal bin still contains metal cans. The contamination risk is present, but it's now concentrated.",
+      "state_id": "s1_alt_0",
+      "metadata": {
+        "progress": "0.3"
+      }
+    },
+    {
+      "description": "The Paper bin contains only paper. The Plastic bin still has plastic bottles, the Metal bin has metal cans, and the Contaminated/Trash bin has the plastic-coated cardboard and food-stained paper. There is no cross-contamination.",
+      "state_id": "s1_alt_1",
+      "metadata": {
+        "progress": "0.7"
+      }
+    },
+    {
+      "description": "All items are perfectly sorted into their correct bins: plastic bottles in the Plastic bin, metal cans in the Metal bin, paper in the Paper bin, and the plastic-coated cardboard container and food-stained paper in the Contaminated/Trash bin. There is no cross-contamination between bins. All items are clean and undamaged. The task is completed successfully.",
+      "state_id": "s_perfect",
+      "metadata": {
+        "quality": 1.0,
+        "outcome": "success",
+        "reason": "All steps were executed correctly, with precise identification and separation of materials, resulting in a pristine and perfectly sorted outcome."
+      }
+    },
+    {
+      "description": "During the process, the agent mishandled a piece of equipment, such as a sharp object or a powered sorting machine, causing damage to itself or the sorting station. As a result, the agent is unable to continue the task. Some bins were partially filled, but the integrity of the process is compromised. The sorting is left incomplete and potentially unsafe.",
+      "state_id": "f_critical_error",
+      "metadata": {
+        "quality": 0.0,
+        "outcome": "failure",
+        "reason": "A critical error in execution led to equipment failure, rendering the sorting process impossible to complete and creating a hazardous situation."
+      }
+    },
+    {
+      "description": "The Plastic bin contains plastic bottles, the Metal bin contains metal cans, and the 'contaminated' waste stream contains plastic-coated cardboard, presumed food-stained paper, and misplaced paper. Minimal other contamination is assumed.",
+      "state_id": "s2_alt_0",
+      "metadata": {
+        "progress": "0.7"
+      }
+    },
+    {
+      "description": "Most items are correctly sorted. A few metal cans accidentally ended up in the Plastic bin, but were quickly identified and moved to the correct bin. The plastic-coated cardboard and food-stained paper are correctly placed in the Contaminated/Trash bin. Minimal contamination is present, which is quickly addressed.",
+      "state_id": "s_good",
+      "metadata": {
+        "quality": 0.8,
+        "outcome": "success",
+        "reason": "The vast majority of items were sorted correctly. A minor oversight was quickly corrected, minimizing contamination and resulting in a high-quality sort."
+      }
+    },
+    {
+      "description": "The majority of items are correctly sorted. Some paper items are found in the plastic bin, and some plastic bottles are found in the paper bin. The Contaminated/Trash bin contains the correct items. There is a noticeable amount of cross-contamination across a couple bins but it is still salvageable.",
+      "state_id": "s_acceptable",
+      "metadata": {
+        "quality": 0.6,
+        "outcome": "success",
+        "reason": "Although there are some errors in sorting and some cross-contamination, a usable separation of materials was achieved. The core objective of identifying the correct waste streams was met, allowing for some level of recycling."
+      }
+    },
+    {
+      "description": "The agent, rushing the task, reaches into the Metal bin without proper eye protection. A sharp piece of metal cuts the agent's hand. The agent drops the piece of paper in shock.",
+      "state_id": "s4_alt_0",
+      "metadata": {
+        "progress": "0.7"
+      }
+    }
+  ],
+  "actions": [
+    {
+      "description": "Separate plastic bottles and metal cans from the mixed waste pile.",
+      "action_id": "a0",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Place plastic bottles into Plastic bin and metal cans into Metal bin. Begin sorting the remaining paper, cardboard and food stained items.",
+      "action_id": "a1",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Identify and begin the correct handling of the plastic-coated cardboard container by classifying it as contaminated. Also classify food stained paper as contaminated and move paper to paper bin.",
+      "action_id": "a2",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Move the misclassified paper item from the Metal bin into the Paper bin and the food stained items and plastic coated cardboard to Contaminated/Trash bin.",
+      "action_id": "a3",
+      "action_type": "correction",
+      "metadata": {}
+    },
+    {
+      "description": "Re-sort the paper item, now in the Paper bin.",
+      "action_id": "a4",
+      "action_type": "correction",
+      "metadata": {}
+    },
+    {
+      "description": "Perform final check, ensuring all items are correctly sorted and there is no contamination.",
+      "action_id": "a5",
+      "action_type": "finishing",
+      "metadata": {}
+    },
+    {
+      "description": "Confirm all items are sorted and free of contamination.",
+      "action_id": "a6",
+      "action_type": "finishing",
+      "metadata": {}
+    },
+    {
+      "description": "Assuming all remaining paper and cardboard are recyclable, quickly dump the entire mixed waste pile into the paper recycling bin, hoping the food-stained paper won't cause too many issues.",
+      "action_id": null,
+      "action_type": "risky",
+      "metadata": {
+        "deviation_type": "risky",
+        "risk_level": "medium",
+        "likely_outcome": "partial_success"
+      }
+    },
+    {
+      "description": "Inspect the Paper bin, and remove the plastic-coated cardboard and food-stained paper. Place the plastic-coated cardboard and the food-stained paper in the Contaminated/Trash bin.",
+      "action_id": "None_1",
+      "action_type": null,
+      "metadata": {}
+    },
+    {
+      "description": "Inspect all bins one last time to ensure that all items are in the correct bin (Plastic bin has only plastic bottles, Metal bin has only metal cans, Paper bin has only paper, and the Contaminated/Trash bin has the plastic-coated cardboard and food-stained paper).",
+      "action_id": "None_2",
+      "action_type": null,
+      "metadata": {}
+    },
+    {
+      "description": "Quickly discard the mixed waste pile (paper, cardboard, and food-stained items) into the compost bin, assuming some contamination is acceptable. This saves time on detailed sorting.",
+      "action_id": null,
+      "action_type": "shortcut",
+      "metadata": {
+        "deviation_type": "shortcut",
+        "risk_level": "medium",
+        "likely_outcome": "partial_success"
+      }
+    },
+    {
+      "description": "While grasping the cardboard, the agent accidentally cuts their hand on a hidden sharp piece of metal protruding from the bin wall.",
+      "action_id": "None_1",
+      "action_type": null,
+      "metadata": {}
+    },
+    {
+      "description": "Ignoring the mis-placed paper, quickly process the mixed waste pile by assuming any remaining paper is food-stained and directly sends the plastic-coated cardboard and presumed food-stained paper to the 'contaminated' waste stream, along with the mis-placed paper from the metal bin.",
+      "action_id": null,
+      "action_type": "risky",
+      "metadata": {
+        "deviation_type": "risky",
+        "risk_level": "medium",
+        "likely_outcome": "partial_success"
+      }
+    },
+    {
+      "description": "Metal cans mistakenly placed in the Plastic bin are quickly identified and moved to the Metal bin. Any remaining minor contamination (e.g., a few food particles) is addressed through standard cleaning protocols.",
+      "action_id": "None_1",
+      "action_type": null,
+      "metadata": {}
+    },
+    {
+      "description": "Quickly glance at the contents of the Metal bin and, seeing only a single paper item, assume it's an isolated mistake and move it directly to the Paper bin without thorough inspection of the bin's contents. Continue with the contaminated waste sorting.",
+      "action_id": null,
+      "action_type": "shortcut",
+      "metadata": {
+        "deviation_type": "shortcut",
+        "risk_level": "low",
+        "likely_outcome": "partial_success"
+      }
+    },
+    {
+      "description": "Place the paper item in the Contaminated/Trash bin, hoping the contamination is minimal.",
+      "action_id": null,
+      "action_type": "risky",
+      "metadata": {
+        "deviation_type": "risky",
+        "risk_level": "medium",
+        "likely_outcome": "partial_success"
+      }
+    },
+    {
+      "description": "Quickly glance at the paper item and assume it's correctly sorted, leaving it in the Metal bin without re-sorting. ",
+      "action_id": null,
+      "action_type": "shortcut",
+      "metadata": {
+        "deviation_type": "shortcut",
+        "risk_level": "medium",
+        "likely_outcome": "partial_success"
+      }
+    },
+    {
+      "description": "Quickly glance at the bins, declare the sorting complete without a thorough inspection, and send everything to the next stage.",
+      "action_id": null,
+      "action_type": "risky",
+      "metadata": {
+        "deviation_type": "risky",
+        "risk_level": "medium",
+        "likely_outcome": "partial_success"
+      }
+    },
+    {
+      "description": "Quickly glance at the bins, assuming the sorting is perfect based on the initial placement, and immediately proceed to the next stage.",
+      "action_id": null,
+      "action_type": "shortcut",
+      "metadata": {
+        "deviation_type": "shortcut",
+        "risk_level": "medium",
+        "likely_outcome": "partial_success"
+      }
+    }
+  ],
+  "transitions": [
+    {
+      "transition_id": "t_0",
+      "start_state": {
+        "description": "Mixed waste pile containing: plastic bottles, paper, cardboard, metal cans, food-stained paper, and a plastic-coated cardboard container. Four bins labeled: Paper, Plastic, Metal, Contaminated/Trash.",
+        "state_id": "s0",
+        "metadata": {
+          "progress": 0.0
+        }
+      },
+      "action": {
+        "description": "Separate plastic bottles and metal cans from the mixed waste pile.",
+        "action_id": "a0",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Plastic bottles and metal cans separated. Paper and the plastic-coated cardboard container remain in the mixed waste pile. Food-stained paper is also still in the pile.",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.2
+        }
+      }
+    },
+    {
+      "transition_id": "t_1",
+      "start_state": {
+        "description": "Plastic bottles and metal cans separated. Paper and the plastic-coated cardboard container remain in the mixed waste pile. Food-stained paper is also still in the pile.",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.2
+        }
+      },
+      "action": {
+        "description": "Place plastic bottles into Plastic bin and metal cans into Metal bin. Begin sorting the remaining paper, cardboard and food stained items.",
+        "action_id": "a1",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Plastic bottles in Plastic bin. Metal cans in Metal bin. Remaining in the mixed waste pile: Paper and plastic-coated cardboard container, plus food-stained paper. A paper item is mistakenly placed in the Metal bin.",
+        "state_id": "s2",
+        "metadata": {
+          "progress": 0.3
+        }
+      }
+    },
+    {
+      "transition_id": "t_2",
+      "start_state": {
+        "description": "Plastic bottles in Plastic bin. Metal cans in Metal bin. Remaining in the mixed waste pile: Paper and plastic-coated cardboard container, plus food-stained paper. A paper item is mistakenly placed in the Metal bin.",
+        "state_id": "s2",
+        "metadata": {
+          "progress": 0.3
+        }
+      },
+      "action": {
+        "description": "Identify and begin the correct handling of the plastic-coated cardboard container by classifying it as contaminated. Also classify food stained paper as contaminated and move paper to paper bin.",
+        "action_id": "a2",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Plastic bottles in Plastic bin. Metal cans in Metal bin. Paper correctly separated into Paper bin. The plastic-coated cardboard container is now recognized as 'Contaminated'. Food-stained paper sorted as contaminated. The paper item, mistakenly in the Metal bin, is being corrected.",
+        "state_id": "s3",
+        "metadata": {
+          "progress": 0.6
+        }
+      }
+    },
+    {
+      "transition_id": "t_3",
+      "start_state": {
+        "description": "Plastic bottles in Plastic bin. Metal cans in Metal bin. Paper correctly separated into Paper bin. The plastic-coated cardboard container is now recognized as 'Contaminated'. Food-stained paper sorted as contaminated. The paper item, mistakenly in the Metal bin, is being corrected.",
+        "state_id": "s3",
+        "metadata": {
+          "progress": 0.6
+        }
+      },
+      "action": {
+        "description": "Move the misclassified paper item from the Metal bin into the Paper bin and the food stained items and plastic coated cardboard to Contaminated/Trash bin.",
+        "action_id": "a3",
+        "action_type": "correction",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Plastic bottles in Plastic bin. Metal cans in Metal bin. Paper correctly sorted in Paper bin. Plastic-coated cardboard container and food-stained paper in Contaminated/Trash bin. The paper item, removed from the Metal bin, is ready to be re-sorted.",
+        "state_id": "s4",
+        "metadata": {
+          "progress": 0.7
+        }
+      }
+    },
+    {
+      "transition_id": "t_4",
+      "start_state": {
+        "description": "Plastic bottles in Plastic bin. Metal cans in Metal bin. Paper correctly sorted in Paper bin. Plastic-coated cardboard container and food-stained paper in Contaminated/Trash bin. The paper item, removed from the Metal bin, is ready to be re-sorted.",
+        "state_id": "s4",
+        "metadata": {
+          "progress": 0.7
+        }
+      },
+      "action": {
+        "description": "Re-sort the paper item, now in the Paper bin.",
+        "action_id": "a4",
+        "action_type": "correction",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Plastic bottles in Plastic bin. Metal cans in Metal bin. Paper correctly sorted in Paper bin. Plastic-coated cardboard container and food-stained paper in Contaminated/Trash bin. The misclassified paper is in the Paper bin.",
+        "state_id": "s5",
+        "metadata": {
+          "progress": 0.8
+        }
+      }
+    },
+    {
+      "transition_id": "t_5",
+      "start_state": {
+        "description": "Plastic bottles in Plastic bin. Metal cans in Metal bin. Paper correctly sorted in Paper bin. Plastic-coated cardboard container and food-stained paper in Contaminated/Trash bin. The misclassified paper is in the Paper bin.",
+        "state_id": "s5",
+        "metadata": {
+          "progress": 0.8
+        }
+      },
+      "action": {
+        "description": "Perform final check, ensuring all items are correctly sorted and there is no contamination.",
+        "action_id": "a5",
+        "action_type": "finishing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Plastic bottles in Plastic bin. Metal cans in Metal bin. Paper in Paper bin. Plastic-coated cardboard container and food-stained paper in Contaminated/Trash bin. All items correctly sorted. Final inspection in progress.",
+        "state_id": "s6",
+        "metadata": {
+          "progress": 0.9
+        }
+      }
+    },
+    {
+      "transition_id": "t_6",
+      "start_state": {
+        "description": "Plastic bottles in Plastic bin. Metal cans in Metal bin. Paper in Paper bin. Plastic-coated cardboard container and food-stained paper in Contaminated/Trash bin. All items correctly sorted. Final inspection in progress.",
+        "state_id": "s6",
+        "metadata": {
+          "progress": 0.9
+        }
+      },
+      "action": {
+        "description": "Confirm all items are sorted and free of contamination.",
+        "action_id": "a6",
+        "action_type": "finishing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Plastic bottles in Plastic bin. Metal cans in Metal bin. Paper in Paper bin. Plastic-coated cardboard container and food-stained paper in Contaminated/Trash bin. All items correctly sorted and no contamination. Task completed.",
+        "state_id": "s7",
+        "metadata": {
+          "progress": 1.0
+        }
+      }
+    },
+    {
+      "transition_id": "t_7",
+      "start_state": {
+        "description": "Plastic bottles and metal cans separated. Paper and the plastic-coated cardboard container remain in the mixed waste pile. Food-stained paper is also still in the pile.",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.2
+        }
+      },
+      "action": {
+        "description": "Assuming all remaining paper and cardboard are recyclable, quickly dump the entire mixed waste pile into the paper recycling bin, hoping the food-stained paper won't cause too many issues.",
+        "action_id": null,
+        "action_type": "risky",
+        "metadata": {
+          "deviation_type": "risky",
+          "risk_level": "medium",
+          "likely_outcome": "partial_success"
+        }
+      },
+      "end_state": {
+        "description": "The Paper bin now contains paper, plastic-coated cardboard, and food-stained paper. The Plastic bin still contains plastic bottles, and the Metal bin still contains metal cans. The contamination risk is present, but it's now concentrated.",
+        "state_id": "s1_alt_0",
+        "metadata": {
+          "progress": "0.3"
+        }
+      }
+    },
+    {
+      "transition_id": "t_8",
+      "start_state": {
+        "description": "The Paper bin now contains paper, plastic-coated cardboard, and food-stained paper. The Plastic bin still contains plastic bottles, and the Metal bin still contains metal cans. The contamination risk is present, but it's now concentrated.",
+        "state_id": "s1_alt_0",
+        "metadata": {
+          "progress": "0.3"
+        }
+      },
+      "action": {
+        "description": "Inspect the Paper bin, and remove the plastic-coated cardboard and food-stained paper. Place the plastic-coated cardboard and the food-stained paper in the Contaminated/Trash bin.",
+        "action_id": "None_1",
+        "action_type": null,
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "The Paper bin contains only paper. The Plastic bin still has plastic bottles, the Metal bin has metal cans, and the Contaminated/Trash bin has the plastic-coated cardboard and food-stained paper. There is no cross-contamination.",
+        "state_id": "s1_alt_1",
+        "metadata": {
+          "progress": "0.7"
+        }
+      }
+    },
+    {
+      "transition_id": "t_9",
+      "start_state": {
+        "description": "The Paper bin contains only paper. The Plastic bin still has plastic bottles, the Metal bin has metal cans, and the Contaminated/Trash bin has the plastic-coated cardboard and food-stained paper. There is no cross-contamination.",
+        "state_id": "s1_alt_1",
+        "metadata": {
+          "progress": "0.7"
+        }
+      },
+      "action": {
+        "description": "Inspect all bins one last time to ensure that all items are in the correct bin (Plastic bin has only plastic bottles, Metal bin has only metal cans, Paper bin has only paper, and the Contaminated/Trash bin has the plastic-coated cardboard and food-stained paper).",
+        "action_id": "None_2",
+        "action_type": null,
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "All items are perfectly sorted into their correct bins: plastic bottles in the Plastic bin, metal cans in the Metal bin, paper in the Paper bin, and the plastic-coated cardboard container and food-stained paper in the Contaminated/Trash bin. There is no cross-contamination between bins. All items are clean and undamaged. The task is completed successfully.",
+        "state_id": "s_perfect",
+        "metadata": {
+          "quality": 1.0,
+          "outcome": "success",
+          "reason": "All steps were executed correctly, with precise identification and separation of materials, resulting in a pristine and perfectly sorted outcome."
+        }
+      }
+    },
+    {
+      "transition_id": "t_10",
+      "start_state": {
+        "description": "Plastic bottles and metal cans separated. Paper and the plastic-coated cardboard container remain in the mixed waste pile. Food-stained paper is also still in the pile.",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.2
+        }
+      },
+      "action": {
+        "description": "Quickly discard the mixed waste pile (paper, cardboard, and food-stained items) into the compost bin, assuming some contamination is acceptable. This saves time on detailed sorting.",
+        "action_id": null,
+        "action_type": "shortcut",
+        "metadata": {
+          "deviation_type": "shortcut",
+          "risk_level": "medium",
+          "likely_outcome": "partial_success"
+        }
+      },
+      "end_state": {
+        "description": "The mixed waste pile is emptied into the compost bin. The agent reaches for a remaining piece of cardboard protruding from the bin.",
+        "state_id": "s1_alt_0",
+        "metadata": {
+          "progress": "0.5"
+        }
+      }
+    },
+    {
+      "transition_id": "t_11",
+      "start_state": {
+        "description": "The mixed waste pile is emptied into the compost bin. The agent reaches for a remaining piece of cardboard protruding from the bin.",
+        "state_id": "s1_alt_0",
+        "metadata": {
+          "progress": "0.5"
+        }
+      },
+      "action": {
+        "description": "While grasping the cardboard, the agent accidentally cuts their hand on a hidden sharp piece of metal protruding from the bin wall.",
+        "action_id": "None_1",
+        "action_type": null,
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "During the process, the agent mishandled a piece of equipment, such as a sharp object or a powered sorting machine, causing damage to itself or the sorting station. As a result, the agent is unable to continue the task. Some bins were partially filled, but the integrity of the process is compromised. The sorting is left incomplete and potentially unsafe.",
+        "state_id": "f_critical_error",
+        "metadata": {
+          "quality": 0.0,
+          "outcome": "failure",
+          "reason": "A critical error in execution led to equipment failure, rendering the sorting process impossible to complete and creating a hazardous situation."
+        }
+      }
+    },
+    {
+      "transition_id": "t_12",
+      "start_state": {
+        "description": "Plastic bottles in Plastic bin. Metal cans in Metal bin. Remaining in the mixed waste pile: Paper and plastic-coated cardboard container, plus food-stained paper. A paper item is mistakenly placed in the Metal bin.",
+        "state_id": "s2",
+        "metadata": {
+          "progress": 0.3
+        }
+      },
+      "action": {
+        "description": "Ignoring the mis-placed paper, quickly process the mixed waste pile by assuming any remaining paper is food-stained and directly sends the plastic-coated cardboard and presumed food-stained paper to the 'contaminated' waste stream, along with the mis-placed paper from the metal bin.",
+        "action_id": null,
+        "action_type": "risky",
+        "metadata": {
+          "deviation_type": "risky",
+          "risk_level": "medium",
+          "likely_outcome": "partial_success"
+        }
+      },
+      "end_state": {
+        "description": "The Plastic bin contains plastic bottles, the Metal bin contains metal cans, and the 'contaminated' waste stream contains plastic-coated cardboard, presumed food-stained paper, and misplaced paper. Minimal other contamination is assumed.",
+        "state_id": "s2_alt_0",
+        "metadata": {
+          "progress": "0.7"
+        }
+      }
+    },
+    {
+      "transition_id": "t_13",
+      "start_state": {
+        "description": "The Plastic bin contains plastic bottles, the Metal bin contains metal cans, and the 'contaminated' waste stream contains plastic-coated cardboard, presumed food-stained paper, and misplaced paper. Minimal other contamination is assumed.",
+        "state_id": "s2_alt_0",
+        "metadata": {
+          "progress": "0.7"
+        }
+      },
+      "action": {
+        "description": "Metal cans mistakenly placed in the Plastic bin are quickly identified and moved to the Metal bin. Any remaining minor contamination (e.g., a few food particles) is addressed through standard cleaning protocols.",
+        "action_id": "None_1",
+        "action_type": null,
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Most items are correctly sorted. A few metal cans accidentally ended up in the Plastic bin, but were quickly identified and moved to the correct bin. The plastic-coated cardboard and food-stained paper are correctly placed in the Contaminated/Trash bin. Minimal contamination is present, which is quickly addressed.",
+        "state_id": "s_good",
+        "metadata": {
+          "quality": 0.8,
+          "outcome": "success",
+          "reason": "The vast majority of items were sorted correctly. A minor oversight was quickly corrected, minimizing contamination and resulting in a high-quality sort."
+        }
+      }
+    },
+    {
+      "transition_id": "t_14",
+      "start_state": {
+        "description": "Plastic bottles in Plastic bin. Metal cans in Metal bin. Remaining in the mixed waste pile: Paper and plastic-coated cardboard container, plus food-stained paper. A paper item is mistakenly placed in the Metal bin.",
+        "state_id": "s2",
+        "metadata": {
+          "progress": 0.3
+        }
+      },
+      "action": {
+        "description": "Quickly glance at the contents of the Metal bin and, seeing only a single paper item, assume it's an isolated mistake and move it directly to the Paper bin without thorough inspection of the bin's contents. Continue with the contaminated waste sorting.",
+        "action_id": null,
+        "action_type": "shortcut",
+        "metadata": {
+          "deviation_type": "shortcut",
+          "risk_level": "low",
+          "likely_outcome": "partial_success"
+        }
+      },
+      "end_state": {
+        "description": "The Paper bin now contains the misplaced paper item. The agent proceeds to the next stage of sorting the remaining mixed waste: Paper and plastic-coated cardboard container, plus food-stained paper.",
+        "state_id": "s2_alt_0",
+        "metadata": {
+          "progress": "0.2"
+        }
+      }
+    },
+    {
+      "transition_id": "t_15",
+      "start_state": {
+        "description": "Plastic bottles in Plastic bin. Metal cans in Metal bin. Paper correctly sorted in Paper bin. Plastic-coated cardboard container and food-stained paper in Contaminated/Trash bin. The paper item, removed from the Metal bin, is ready to be re-sorted.",
+        "state_id": "s4",
+        "metadata": {
+          "progress": 0.7
+        }
+      },
+      "action": {
+        "description": "Place the paper item in the Contaminated/Trash bin, hoping the contamination is minimal.",
+        "action_id": null,
+        "action_type": "risky",
+        "metadata": {
+          "deviation_type": "risky",
+          "risk_level": "medium",
+          "likely_outcome": "partial_success"
+        }
+      },
+      "end_state": {
+        "description": "The majority of items are correctly sorted. Some paper items are found in the plastic bin, and some plastic bottles are found in the paper bin. The Contaminated/Trash bin contains the correct items. There is a noticeable amount of cross-contamination across a couple bins but it is still salvageable.",
+        "state_id": "s_acceptable",
+        "metadata": {
+          "quality": 0.6,
+          "outcome": "success",
+          "reason": "Although there are some errors in sorting and some cross-contamination, a usable separation of materials was achieved. The core objective of identifying the correct waste streams was met, allowing for some level of recycling."
+        }
+      }
+    },
+    {
+      "transition_id": "t_16",
+      "start_state": {
+        "description": "Plastic bottles in Plastic bin. Metal cans in Metal bin. Paper correctly sorted in Paper bin. Plastic-coated cardboard container and food-stained paper in Contaminated/Trash bin. The paper item, removed from the Metal bin, is ready to be re-sorted.",
+        "state_id": "s4",
+        "metadata": {
+          "progress": 0.7
+        }
+      },
+      "action": {
+        "description": "Quickly glance at the paper item and assume it's correctly sorted, leaving it in the Metal bin without re-sorting. ",
+        "action_id": null,
+        "action_type": "shortcut",
+        "metadata": {
+          "deviation_type": "shortcut",
+          "risk_level": "medium",
+          "likely_outcome": "partial_success"
+        }
+      },
+      "end_state": {
+        "description": "The agent, rushing the task, reaches into the Metal bin without proper eye protection. A sharp piece of metal cuts the agent's hand. The agent drops the piece of paper in shock.",
+        "state_id": "s4_alt_0",
+        "metadata": {
+          "progress": "0.7"
+        }
+      }
+    },
+    {
+      "transition_id": "t_17",
+      "start_state": {
+        "description": "Plastic bottles in Plastic bin. Metal cans in Metal bin. Paper in Paper bin. Plastic-coated cardboard container and food-stained paper in Contaminated/Trash bin. All items correctly sorted. Final inspection in progress.",
+        "state_id": "s6",
+        "metadata": {
+          "progress": 0.9
+        }
+      },
+      "action": {
+        "description": "Quickly glance at the bins, declare the sorting complete without a thorough inspection, and send everything to the next stage.",
+        "action_id": null,
+        "action_type": "risky",
+        "metadata": {
+          "deviation_type": "risky",
+          "risk_level": "medium",
+          "likely_outcome": "partial_success"
+        }
+      },
+      "end_state": {
+        "description": "All items are perfectly sorted into their correct bins: plastic bottles in the Plastic bin, metal cans in the Metal bin, paper in the Paper bin, and the plastic-coated cardboard container and food-stained paper in the Contaminated/Trash bin. There is no cross-contamination between bins. All items are clean and undamaged. The task is completed successfully.",
+        "state_id": "s_perfect",
+        "metadata": {
+          "quality": 1.0,
+          "outcome": "success",
+          "reason": "All steps were executed correctly, with precise identification and separation of materials, resulting in a pristine and perfectly sorted outcome."
+        }
+      }
+    },
+    {
+      "transition_id": "t_18",
+      "start_state": {
+        "description": "Plastic bottles in Plastic bin. Metal cans in Metal bin. Paper in Paper bin. Plastic-coated cardboard container and food-stained paper in Contaminated/Trash bin. All items correctly sorted. Final inspection in progress.",
+        "state_id": "s6",
+        "metadata": {
+          "progress": 0.9
+        }
+      },
+      "action": {
+        "description": "Quickly glance at the bins, assuming the sorting is perfect based on the initial placement, and immediately proceed to the next stage.",
+        "action_id": null,
+        "action_type": "shortcut",
+        "metadata": {
+          "deviation_type": "shortcut",
+          "risk_level": "medium",
+          "likely_outcome": "partial_success"
+        }
+      },
+      "end_state": {
+        "description": "During the process, the agent mishandled a piece of equipment, such as a sharp object or a powered sorting machine, causing damage to itself or the sorting station. As a result, the agent is unable to continue the task. Some bins were partially filled, but the integrity of the process is compromised. The sorting is left incomplete and potentially unsafe.",
+        "state_id": "f_critical_error",
+        "metadata": {
+          "quality": 0.0,
+          "outcome": "failure",
+          "reason": "A critical error in execution led to equipment failure, rendering the sorting process impossible to complete and creating a hazardous situation."
+        }
+      }
+    }
+  ],
+  "initial_state": {
+    "description": "Mixed waste pile containing: plastic bottles, paper, cardboard, metal cans, food-stained paper, and a plastic-coated cardboard container. Four bins labeled: Paper, Plastic, Metal, Contaminated/Trash.",
+    "state_id": "s0",
+    "metadata": {
+      "progress": 0.0
+    }
+  },
+  "goal_states": [
+    {
+      "description": "All items are perfectly sorted into their correct bins: plastic bottles in the Plastic bin, metal cans in the Metal bin, paper in the Paper bin, and the plastic-coated cardboard container and food-stained paper in the Contaminated/Trash bin. There is no cross-contamination between bins. All items are clean and undamaged. The task is completed successfully.",
+      "state_id": "s_perfect",
+      "metadata": {
+        "quality": 1.0,
+        "outcome": "success",
+        "reason": "All steps were executed correctly, with precise identification and separation of materials, resulting in a pristine and perfectly sorted outcome."
+      }
+    },
+    {
+      "description": "Most items are correctly sorted. A few metal cans accidentally ended up in the Plastic bin, but were quickly identified and moved to the correct bin. The plastic-coated cardboard and food-stained paper are correctly placed in the Contaminated/Trash bin. Minimal contamination is present, which is quickly addressed.",
+      "state_id": "s_good",
+      "metadata": {
+        "quality": 0.8,
+        "outcome": "success",
+        "reason": "The vast majority of items were sorted correctly. A minor oversight was quickly corrected, minimizing contamination and resulting in a high-quality sort."
+      }
+    },
+    {
+      "description": "The majority of items are correctly sorted. Some paper items are found in the plastic bin, and some plastic bottles are found in the paper bin. The Contaminated/Trash bin contains the correct items. There is a noticeable amount of cross-contamination across a couple bins but it is still salvageable.",
+      "state_id": "s_acceptable",
+      "metadata": {
+        "quality": 0.6,
+        "outcome": "success",
+        "reason": "Although there are some errors in sorting and some cross-contamination, a usable separation of materials was achieved. The core objective of identifying the correct waste streams was met, allowing for some level of recycling."
+      }
+    }
+  ],
+  "final_states": [
+    {
+      "description": "All items are perfectly sorted into their correct bins: plastic bottles in the Plastic bin, metal cans in the Metal bin, paper in the Paper bin, and the plastic-coated cardboard container and food-stained paper in the Contaminated/Trash bin. There is no cross-contamination between bins. All items are clean and undamaged. The task is completed successfully.",
+      "state_id": "s_perfect",
+      "metadata": {
+        "quality": 1.0,
+        "outcome": "success",
+        "reason": "All steps were executed correctly, with precise identification and separation of materials, resulting in a pristine and perfectly sorted outcome."
+      }
+    },
+    {
+      "description": "Most items are correctly sorted. A few metal cans accidentally ended up in the Plastic bin, but were quickly identified and moved to the correct bin. The plastic-coated cardboard and food-stained paper are correctly placed in the Contaminated/Trash bin. Minimal contamination is present, which is quickly addressed.",
+      "state_id": "s_good",
+      "metadata": {
+        "quality": 0.8,
+        "outcome": "success",
+        "reason": "The vast majority of items were sorted correctly. A minor oversight was quickly corrected, minimizing contamination and resulting in a high-quality sort."
+      }
+    },
+    {
+      "description": "The majority of items are correctly sorted. Some paper items are found in the plastic bin, and some plastic bottles are found in the paper bin. The Contaminated/Trash bin contains the correct items. There is a noticeable amount of cross-contamination across a couple bins but it is still salvageable.",
+      "state_id": "s_acceptable",
+      "metadata": {
+        "quality": 0.6,
+        "outcome": "success",
+        "reason": "Although there are some errors in sorting and some cross-contamination, a usable separation of materials was achieved. The core objective of identifying the correct waste streams was met, allowing for some level of recycling."
+      }
+    },
+    {
+      "description": "After sorting a few items, the agent became discouraged by the complexity of the task and the potential for errors. The agent abandons the sorting process before completing it, leaving items scattered and unsorted. No bins are correctly categorized.",
+      "state_id": "f_gave_up",
+      "metadata": {
+        "quality": 0.1,
+        "outcome": "failure",
+        "reason": "The agent lacked the persistence and focus required to see the task through to completion, resulting in a completely failed outcome."
+      }
+    },
+    {
+      "description": "During the process, the agent mishandled a piece of equipment, such as a sharp object or a powered sorting machine, causing damage to itself or the sorting station. As a result, the agent is unable to continue the task. Some bins were partially filled, but the integrity of the process is compromised. The sorting is left incomplete and potentially unsafe.",
+      "state_id": "f_critical_error",
+      "metadata": {
+        "quality": 0.0,
+        "outcome": "failure",
+        "reason": "A critical error in execution led to equipment failure, rendering the sorting process impossible to complete and creating a hazardous situation."
+      }
+    }
+  ],
+  "goal_state": {
+    "description": "All items are perfectly sorted into their correct bins: plastic bottles in the Plastic bin, metal cans in the Metal bin, paper in the Paper bin, and the plastic-coated cardboard container and food-stained paper in the Contaminated/Trash bin. There is no cross-contamination between bins. All items are clean and undamaged. The task is completed successfully.",
+    "state_id": "s_perfect",
+    "metadata": {
+      "quality": 1.0,
+      "outcome": "success",
+      "reason": "All steps were executed correctly, with precise identification and separation of materials, resulting in a pristine and perfectly sorted outcome."
+    }
+  }
+}

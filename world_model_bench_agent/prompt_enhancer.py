@@ -559,3 +559,250 @@ def enhance_video_prompt(
         objects=objects,
         location=location
     )
+
+
+# ============================================================================
+# Driving-Specific Prompt Enhancement
+# ============================================================================
+
+class DrivingPromptEnhancer(PromptEnhancer):
+    """
+    Specialized prompt enhancer for driving scenarios.
+
+    Provides heavy, detailed guidance for:
+    - Strict egocentric camera anchoring
+    - Explicit visual inventories (MUST SHOW / MUST NOT SHOW)
+    - Dramatic visual changes for subtle actions
+    - Dashboard, seatbelt, and control indicators
+    """
+
+    # Comprehensive action → visual change mapping
+    DRIVING_ACTION_VISUALS = {
+        "adjust seat and mirrors": {
+            "hands": "Right hand on seat adjustment lever (visible under thigh), left hand on rearview mirror base",
+            "before": "Mirror shows back seat reflection at one angle",
+            "after": "Mirror shows back seat at different angle, seat position slightly changed",
+            "emphasis": "Hand contact with adjustment controls visible, mirror reflection changes",
+            "key_change": "Mirror reflection content shifts, hand actively touching mirror"
+        },
+
+        "fasten seatbelt": {
+            "hands": "Left hand pulling belt diagonally across chest, right hand holding buckle",
+            "before": "Seatbelt hanging loose on left side of seat, no strap across chest, empty space visible",
+            "after": "Seatbelt strap CLEARLY VISIBLE as diagonal line across chest from left shoulder to right hip, buckle secured",
+            "emphasis": "CRITICAL: Seatbelt transformation is DRAMATIC - completely absent across torso → prominent diagonal strap",
+            "key_change": "Diagonal black/gray strap now crosses driver's torso prominently"
+        },
+
+        "check surroundings": {
+            "hands": "Left hand touching rearview mirror, right hand may be on side mirror adjustment or steering wheel",
+            "before": "Mirrors at rest, driver looking straight ahead through windshield",
+            "after": "Hand actively adjusting mirror, mirror reflection content changes",
+            "emphasis": "Hand contact with mirrors, reflection shifts showing different angle of back seat/parking lot",
+            "key_change": "Hand visible touching mirror, background reflection in mirror shifts"
+        },
+
+        "start engine": {
+            "hands": "Right hand on ignition key/button (clearly visible contact), left hand resting on lap or wheel",
+            "before": "Dashboard COMPLETELY DARK with no indicator lights, all instruments unlit, black display",
+            "after": "Dashboard BRIGHTLY LIT with multiple colored indicators (red check engine, yellow battery, green ready light, blue high beam, etc.), instruments glowing",
+            "emphasis": "CRITICAL: Dashboard transformation is EXTREME - pitch black dashboard → glowing with multiple colored lights. Most dramatic visual change in sequence.",
+            "key_change": "Dashboard goes from completely dark to brightly illuminated with colored indicator lights"
+        },
+
+        "release parking brake": {
+            "hands": "Right hand gripping parking brake lever/button (visible grip, knuckles show pressure)",
+            "before": "Parking brake lever in UP position (raised between seats, clearly elevated)",
+            "after": "Parking brake lever in DOWN position (lowered/flush with console), brake warning light OFF on dashboard",
+            "emphasis": "Lever position change is clear vertical movement, hand action visible with pressure",
+            "key_change": "Parking brake lever moves from raised UP position to lowered DOWN position"
+        },
+
+        "check blind spots": {
+            "hands": "Right hand reaching toward side mirror OR visible partial shoulder/torso rotation",
+            "before": "Driver facing straight ahead, both shoulders parallel to windshield, mirrors at standard angle",
+            "after": "Hand touching side mirror OR slight shoulder rotation visible, mirror angle adjusted",
+            "emphasis": "Physical movement of driver visible - hand reaching right, or left shoulder rotating into frame",
+            "key_change": "Driver's body position shifts, hand reaches out, or torso rotates slightly"
+        },
+
+        "pull out and merge": {
+            "hands": "Both hands on steering wheel (visible grip at 10 and 2 o'clock or 9 and 3 o'clock), active driving position",
+            "before": "Windshield shows STATIONARY parking lot view (parked cars, fixed background), speedometer at 0, car at rest",
+            "after": "Windshield shows MOTION (road instead of parking lot, possible blur indicating movement), speedometer above 0 (15-25 mph visible)",
+            "emphasis": "CRITICAL: Environment through windshield transforms from static parking lot → moving road scene, hands now actively gripping wheel",
+            "key_change": "View through windshield changes from stationary parking lot to moving road/traffic"
+        }
+    }
+
+    def __init__(self, style: Optional[CinematicStyle] = None):
+        super().__init__(style)
+
+    def enhance_driving_action(
+        self,
+        action: str,
+        context: str = "car interior"
+    ) -> str:
+        """
+        Enhance a driving action with detailed egocentric POV and visual specifications.
+
+        Args:
+            action: Simple action like "Fasten seatbelt"
+            context: Scene context (usually car interior)
+
+        Returns:
+            Enhanced action with detailed visual guidance
+        """
+        action_lower = action.lower()
+
+        # Find matching action template
+        for key, visuals in self.DRIVING_ACTION_VISUALS.items():
+            if any(word in action_lower for word in key.split()):
+                return self._build_driving_action_description(action, visuals)
+
+        # Fallback to generic driving action
+        return self._build_generic_driving_action(action)
+
+    def _build_driving_action_description(self, action: str, visuals: Dict) -> str:
+        """Build detailed driving action description with visual guidance."""
+        return f"""**{action}**
+
+**Egocentric POV:**
+First-person view from driver's seat, looking through windshield.
+- Camera remains LOCKED at driver's eye level (1.6m), straight ahead
+- Steering wheel visible in lower-middle frame
+- Dashboard visible at bottom edge
+- Rearview mirror visible at top-center
+
+**Hand Positions:**
+{visuals['hands']}
+
+**Visual Transformation:**
+BEFORE: {visuals['before']}
+AFTER: {visuals['after']}
+
+**Key Visual Change:**
+{visuals['key_change']}
+
+**Emphasis:**
+{visuals['emphasis']}
+
+**Continuity:**
+- Camera angle MUST NOT change (locked driver POV)
+- Steering wheel position stays identical
+- Dashboard layout stays identical
+- Only the specified elements change"""
+
+    def _build_generic_driving_action(self, action: str) -> str:
+        """Generic driving action enhancement."""
+        return f"""**{action}**
+
+**Egocentric POV:**
+First-person view from driver's seat, camera locked at eye level.
+- Maintain fixed camera position and angle
+- Steering wheel centered in lower frame
+- Dashboard visible at bottom
+
+**Physical Motion:**
+Natural driving motion with hands visible when interacting with controls.
+Action performed from driver's perspective with appropriate hand movements.
+
+**Continuity:**
+- Camera position unchanged
+- Only elements directly affected by action change
+- Dashboard, steering wheel, and mirrors maintain consistent appearance"""
+
+    def build_driving_state_description(
+        self,
+        state_description: str,
+        visual_elements: Dict,
+        is_initial: bool = False
+    ) -> str:
+        """
+        Build detailed driving state description with visual inventory.
+
+        Args:
+            state_description: Basic state description
+            visual_elements: Dict containing dashboard_lights, seatbelt, hands, etc.
+            is_initial: Whether this is the initial state (fuller description)
+
+        Returns:
+            Enhanced state description with explicit visual specifications
+        """
+        if is_initial:
+            return self._build_initial_driving_state(state_description, visual_elements)
+        else:
+            return self._build_variation_driving_state(state_description, visual_elements)
+
+    def _build_initial_driving_state(self, state_description: str, visual_elements: Dict) -> str:
+        """Build initial driving state with full visual specification."""
+        return f"""# Initial Driving State - Egocentric POV
+
+**Scene:** Car interior, driver's perspective
+
+{state_description}
+
+**Fixed Camera Anchor (NEVER CHANGES):**
+- Position: Driver's seat, eye level (1.6m height)
+- Direction: Looking straight ahead through windshield
+- Framing: Steering wheel centered bottom-middle, dashboard bottom edge, rearview mirror top-center
+- Lens: 35mm equivalent, natural field of view
+- This camera position MUST remain identical across all subsequent images
+
+**Dashboard Status:**
+- Indicator lights: {visual_elements.get('dashboard_lights', 'ALL OFF (completely dark)')}
+- Speedometer: {visual_elements.get('speedometer', '0 mph')}
+- Gear indicator: {visual_elements.get('gear', 'P (Park)')}
+- Odometer display: {visual_elements.get('display_status', 'unlit/dark')}
+
+**Driver Elements:**
+- Hands: {visual_elements.get('hands', 'resting on lap, NOT touching steering wheel')}
+- Seatbelt: {visual_elements.get('seatbelt', 'UNBUCKLED, hanging loose on left side, no strap across chest')}
+- Body position: {visual_elements.get('body', 'seated upright, facing forward')}
+
+**Vehicle Controls:**
+- Steering wheel: {visual_elements.get('steering', 'untouched, straight ahead, centered in lower-middle frame')}
+- Parking brake: {visual_elements.get('parking_brake', 'lever in UP position (engaged), visible between seats')}
+- Ignition: {visual_elements.get('ignition', 'key in OFF position (or button unpressed)')}
+- Gear shift: {visual_elements.get('gear_shift', 'in Park position')}
+
+**Environment:**
+- Through windshield: {visual_elements.get('environment', 'stationary parking lot view, parked cars visible')}
+- Lighting: {visual_elements.get('lighting', 'natural daylight through windshield')}
+
+**Photorealistic rendering, clear focus on dashboard and driver elements.**"""
+
+    def _build_variation_driving_state(self, state_description: str, visual_elements: Dict) -> str:
+        """Build variation state emphasizing only what changed."""
+        return f"""# Driving State - Variation
+
+**Scene:** Car interior (same camera position as before)
+
+{state_description}
+
+**CRITICAL: Camera position LOCKED (DO NOT CHANGE):**
+- Same driver's seat POV, eye level, looking through windshield
+- Steering wheel in same position (centered bottom-middle)
+- Dashboard layout identical
+- Rearview mirror in same position (top-center)
+
+**Updated Elements (ONLY these changed):**
+
+Dashboard:
+- Lights: {visual_elements.get('dashboard_lights', 'unchanged')}
+- Speedometer: {visual_elements.get('speedometer', 'unchanged')}
+- Gear: {visual_elements.get('gear', 'unchanged')}
+
+Driver:
+- Hands: {visual_elements.get('hands', 'unchanged')}
+- Seatbelt: {visual_elements.get('seatbelt', 'unchanged')}
+
+Controls:
+- Parking brake: {visual_elements.get('parking_brake', 'unchanged')}
+- Ignition: {visual_elements.get('ignition', 'unchanged')}
+
+Environment:
+- View: {visual_elements.get('environment', 'unchanged')}
+
+**Everything else remains pixel-perfect identical to previous image.**
+**Make the changes DRAMATIC and OBVIOUS.**"""

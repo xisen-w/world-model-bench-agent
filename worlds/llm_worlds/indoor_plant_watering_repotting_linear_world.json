@@ -1,0 +1,337 @@
+{
+  "name": "indoor_plant_watering_repotting_linear",
+  "description": "Linear world for indoor_plant_watering_repotting",
+  "states": [
+    {
+      "description": "Small potted plant with dry, slightly wilted leaves. Soil is dry to the touch. Moisture meter reads low. Watering can with water is full. Larger pot, fresh potting soil bag, and hand trowel are nearby.",
+      "state_id": "s0",
+      "metadata": {
+        "progress": 0.0
+      }
+    },
+    {
+      "description": "Plant watered, some water drained from the bottom of the pot, leaves showing slight improvement. Soil is slightly moist. Moisture meter reads closer to the ideal range.",
+      "state_id": "s1",
+      "metadata": {
+        "progress": 0.1
+      }
+    },
+    {
+      "description": "Plant removed from old pot, roots examined. Some roots appear healthy, some are root bound, and a few damaged roots are visible. Old soil removed.",
+      "state_id": "s2",
+      "metadata": {
+        "progress": 0.3
+      }
+    },
+    {
+      "description": "Damaged roots are trimmed with clean scissors. Root bound roots are gently teased apart. Healthy roots remain, ready for the new pot. The old pot and soil are discarded.",
+      "state_id": "s3",
+      "metadata": {
+        "progress": 0.4
+      }
+    },
+    {
+      "description": "Larger pot has a layer of fresh potting soil at the bottom, creating a base for the plant. The drainage hole is clear. Plant is ready to be positioned.",
+      "state_id": "s4",
+      "metadata": {
+        "progress": 0.5
+      }
+    },
+    {
+      "description": "Plant positioned in the new pot, centered, and soil is added around the root ball, filling the pot. Soil is being gently compacted.",
+      "state_id": "s5",
+      "metadata": {
+        "progress": 0.6
+      }
+    },
+    {
+      "description": "Pot filled with soil, soil gently compacted. The top of the root ball is at the correct level, leaving space for watering. Soil is moist.",
+      "state_id": "s6",
+      "metadata": {
+        "progress": 0.7
+      }
+    },
+    {
+      "description": "Plant watered until water drains from the bottom of the pot. Excess water has been drained, and the plant is upright and supported by the new soil. Leaves appear improved.",
+      "state_id": "s7",
+      "metadata": {
+        "progress": 0.8
+      }
+    },
+    {
+      "description": "Healthy plant in new larger pot with fresh moist soil, proper drainage, plant positioned correctly. Excess water drained, leaves look perky.",
+      "state_id": "s8",
+      "metadata": {
+        "progress": 1.0
+      }
+    }
+  ],
+  "actions": [
+    {
+      "description": "Water the plant until water drains from the bottom of the pot, ensuring even soil moisture. Check the soil with the moisture meter.",
+      "action_id": "a0",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Carefully remove the plant from its current pot. Examine the roots for any damage or root-bound conditions.",
+      "action_id": "a1",
+      "action_type": "preparation",
+      "metadata": {}
+    },
+    {
+      "description": "Trim any damaged roots with clean scissors. Gently tease apart any root-bound roots, promoting healthy growth. Remove old soil from the roots.",
+      "action_id": "a2",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Add a layer of fresh potting soil to the bottom of the new, larger pot. Ensure the drainage hole is clear.",
+      "action_id": "a3",
+      "action_type": "preparation",
+      "metadata": {}
+    },
+    {
+      "description": "Position the plant in the center of the new pot, ensuring the top of the root ball is slightly below the rim. Add soil around the roots, filling the pot, gently compacting it.",
+      "action_id": "a4",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Continue adding fresh soil, filling the pot and ensuring it is compacted. Stop when the soil level reaches the correct height.",
+      "action_id": "a5",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Water the newly potted plant thoroughly until water drains from the drainage holes. Remove excess water from the saucer.",
+      "action_id": "a6",
+      "action_type": "finishing",
+      "metadata": {}
+    },
+    {
+      "description": "Observe the plant. Ensure the plant is upright and the soil is moist but not waterlogged. Confirm the plant is now healthy in its new pot. ",
+      "action_id": "a7",
+      "action_type": "finishing",
+      "metadata": {}
+    }
+  ],
+  "transitions": [
+    {
+      "transition_id": "t_0",
+      "start_state": {
+        "description": "Small potted plant with dry, slightly wilted leaves. Soil is dry to the touch. Moisture meter reads low. Watering can with water is full. Larger pot, fresh potting soil bag, and hand trowel are nearby.",
+        "state_id": "s0",
+        "metadata": {
+          "progress": 0.0
+        }
+      },
+      "action": {
+        "description": "Water the plant until water drains from the bottom of the pot, ensuring even soil moisture. Check the soil with the moisture meter.",
+        "action_id": "a0",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Plant watered, some water drained from the bottom of the pot, leaves showing slight improvement. Soil is slightly moist. Moisture meter reads closer to the ideal range.",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.1
+        }
+      }
+    },
+    {
+      "transition_id": "t_1",
+      "start_state": {
+        "description": "Plant watered, some water drained from the bottom of the pot, leaves showing slight improvement. Soil is slightly moist. Moisture meter reads closer to the ideal range.",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.1
+        }
+      },
+      "action": {
+        "description": "Carefully remove the plant from its current pot. Examine the roots for any damage or root-bound conditions.",
+        "action_id": "a1",
+        "action_type": "preparation",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Plant removed from old pot, roots examined. Some roots appear healthy, some are root bound, and a few damaged roots are visible. Old soil removed.",
+        "state_id": "s2",
+        "metadata": {
+          "progress": 0.3
+        }
+      }
+    },
+    {
+      "transition_id": "t_2",
+      "start_state": {
+        "description": "Plant removed from old pot, roots examined. Some roots appear healthy, some are root bound, and a few damaged roots are visible. Old soil removed.",
+        "state_id": "s2",
+        "metadata": {
+          "progress": 0.3
+        }
+      },
+      "action": {
+        "description": "Trim any damaged roots with clean scissors. Gently tease apart any root-bound roots, promoting healthy growth. Remove old soil from the roots.",
+        "action_id": "a2",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Damaged roots are trimmed with clean scissors. Root bound roots are gently teased apart. Healthy roots remain, ready for the new pot. The old pot and soil are discarded.",
+        "state_id": "s3",
+        "metadata": {
+          "progress": 0.4
+        }
+      }
+    },
+    {
+      "transition_id": "t_3",
+      "start_state": {
+        "description": "Damaged roots are trimmed with clean scissors. Root bound roots are gently teased apart. Healthy roots remain, ready for the new pot. The old pot and soil are discarded.",
+        "state_id": "s3",
+        "metadata": {
+          "progress": 0.4
+        }
+      },
+      "action": {
+        "description": "Add a layer of fresh potting soil to the bottom of the new, larger pot. Ensure the drainage hole is clear.",
+        "action_id": "a3",
+        "action_type": "preparation",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Larger pot has a layer of fresh potting soil at the bottom, creating a base for the plant. The drainage hole is clear. Plant is ready to be positioned.",
+        "state_id": "s4",
+        "metadata": {
+          "progress": 0.5
+        }
+      }
+    },
+    {
+      "transition_id": "t_4",
+      "start_state": {
+        "description": "Larger pot has a layer of fresh potting soil at the bottom, creating a base for the plant. The drainage hole is clear. Plant is ready to be positioned.",
+        "state_id": "s4",
+        "metadata": {
+          "progress": 0.5
+        }
+      },
+      "action": {
+        "description": "Position the plant in the center of the new pot, ensuring the top of the root ball is slightly below the rim. Add soil around the roots, filling the pot, gently compacting it.",
+        "action_id": "a4",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Plant positioned in the new pot, centered, and soil is added around the root ball, filling the pot. Soil is being gently compacted.",
+        "state_id": "s5",
+        "metadata": {
+          "progress": 0.6
+        }
+      }
+    },
+    {
+      "transition_id": "t_5",
+      "start_state": {
+        "description": "Plant positioned in the new pot, centered, and soil is added around the root ball, filling the pot. Soil is being gently compacted.",
+        "state_id": "s5",
+        "metadata": {
+          "progress": 0.6
+        }
+      },
+      "action": {
+        "description": "Continue adding fresh soil, filling the pot and ensuring it is compacted. Stop when the soil level reaches the correct height.",
+        "action_id": "a5",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Pot filled with soil, soil gently compacted. The top of the root ball is at the correct level, leaving space for watering. Soil is moist.",
+        "state_id": "s6",
+        "metadata": {
+          "progress": 0.7
+        }
+      }
+    },
+    {
+      "transition_id": "t_6",
+      "start_state": {
+        "description": "Pot filled with soil, soil gently compacted. The top of the root ball is at the correct level, leaving space for watering. Soil is moist.",
+        "state_id": "s6",
+        "metadata": {
+          "progress": 0.7
+        }
+      },
+      "action": {
+        "description": "Water the newly potted plant thoroughly until water drains from the drainage holes. Remove excess water from the saucer.",
+        "action_id": "a6",
+        "action_type": "finishing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Plant watered until water drains from the bottom of the pot. Excess water has been drained, and the plant is upright and supported by the new soil. Leaves appear improved.",
+        "state_id": "s7",
+        "metadata": {
+          "progress": 0.8
+        }
+      }
+    },
+    {
+      "transition_id": "t_7",
+      "start_state": {
+        "description": "Plant watered until water drains from the bottom of the pot. Excess water has been drained, and the plant is upright and supported by the new soil. Leaves appear improved.",
+        "state_id": "s7",
+        "metadata": {
+          "progress": 0.8
+        }
+      },
+      "action": {
+        "description": "Observe the plant. Ensure the plant is upright and the soil is moist but not waterlogged. Confirm the plant is now healthy in its new pot. ",
+        "action_id": "a7",
+        "action_type": "finishing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Healthy plant in new larger pot with fresh moist soil, proper drainage, plant positioned correctly. Excess water drained, leaves look perky.",
+        "state_id": "s8",
+        "metadata": {
+          "progress": 1.0
+        }
+      }
+    }
+  ],
+  "initial_state": {
+    "description": "Small potted plant with dry, slightly wilted leaves. Soil is dry to the touch. Moisture meter reads low. Watering can with water is full. Larger pot, fresh potting soil bag, and hand trowel are nearby.",
+    "state_id": "s0",
+    "metadata": {
+      "progress": 0.0
+    }
+  },
+  "goal_states": [
+    {
+      "description": "Healthy plant in new larger pot with fresh moist soil, proper drainage, plant positioned correctly. Excess water drained, leaves look perky.",
+      "state_id": "s8",
+      "metadata": {
+        "progress": 1.0
+      }
+    }
+  ],
+  "final_states": [
+    {
+      "description": "Healthy plant in new larger pot with fresh moist soil, proper drainage, plant positioned correctly. Excess water drained, leaves look perky.",
+      "state_id": "s8",
+      "metadata": {
+        "progress": 1.0
+      }
+    }
+  ],
+  "goal_state": {
+    "description": "Healthy plant in new larger pot with fresh moist soil, proper drainage, plant positioned correctly. Excess water drained, leaves look perky.",
+    "state_id": "s8",
+    "metadata": {
+      "progress": 1.0
+    }
+  }
+}

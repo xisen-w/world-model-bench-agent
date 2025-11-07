@@ -1,0 +1,335 @@
+{
+  "name": "IKEA_desk_assembly_multi_ending_images",
+  "text_world_source": "IKEA_desk_assembly_multi_ending",
+  "generation_metadata": {
+    "model": "gemini-2.5-flash-image",
+    "timestamp": "2025-10-29T14:46:54.517512",
+    "generation_strategy": "full_world",
+    "aspect_ratio": "16:9",
+    "camera_perspective": "first_person_ego"
+  },
+  "states": [
+    {
+      "state_id": "s0",
+      "text_description": "Unopened IKEA desk box with instruction manual on top",
+      "image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s0_000.png",
+      "generation_prompt": "First-person ego-centric view at eye level (1.6m height). Unopened IKEA desk box with instruction manual on top. Realistic style, clear lighting, detailed.",
+      "parent_state_id": null,
+      "parent_action_id": null,
+      "reference_image": null,
+      "metadata": {
+        "assembly_progress": 0.0
+      }
+    },
+    {
+      "state_id": "s1a",
+      "text_description": "Box opened, components laid out, instruction manual read carefully",
+      "image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s1a_001.png",
+      "generation_prompt": "Same camera angle and scene layout. HOWEVER, IMPORTANT VISIBLE CHANGE: Open box carefully and read instruction manual thoroughly. The new state: Box opened, components laid out, instruction manual read carefully. Make the change CLEARLY VISIBLE.",
+      "parent_state_id": "s0",
+      "parent_action_id": "a_read",
+      "reference_image": "generated_images/IKEA_desk_assembly_multi_ending_images/s0_000.png",
+      "metadata": {
+        "instructions_read": true,
+        "assembly_progress": 0.1
+      }
+    },
+    {
+      "state_id": "s1b",
+      "text_description": "Box torn open, components scattered, instruction manual tossed aside",
+      "image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s1b_002.png",
+      "generation_prompt": "Same camera angle and scene layout. HOWEVER, IMPORTANT VISIBLE CHANGE: Tear open box and toss instructions aside, attempt assembly by intuition. The new state: Box torn open, components scattered, instruction manual tossed aside. Make the change CLEARLY VISIBLE.",
+      "parent_state_id": "s0",
+      "parent_action_id": "a_skip",
+      "reference_image": "generated_images/IKEA_desk_assembly_multi_ending_images/s0_000.png",
+      "metadata": {
+        "instructions_read": false,
+        "assembly_progress": 0.1
+      }
+    },
+    {
+      "state_id": "s2a",
+      "text_description": "Following instructions step-by-step, all parts organized by number",
+      "image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s2a_003.png",
+      "generation_prompt": "Same camera angle and scene layout. HOWEVER, IMPORTANT VISIBLE CHANGE: Methodically follow each instruction step, double-checking each connection. The new state: Following instructions step-by-step, all parts organized by number. Make the change CLEARLY VISIBLE.",
+      "parent_state_id": "s1a",
+      "parent_action_id": "a_follow",
+      "reference_image": "generated_images/IKEA_desk_assembly_multi_ending_images/s1a_001.png",
+      "metadata": {
+        "following_instructions": true,
+        "assembly_progress": 0.3
+      }
+    },
+    {
+      "state_id": "s2b",
+      "text_description": "Attempting assembly by intuition, some confusion about which parts go where",
+      "image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s2b_004.png",
+      "generation_prompt": "Same camera angle and scene layout. HOWEVER, IMPORTANT VISIBLE CHANGE: Try to figure it out without instructions, guessing which parts connect. The new state: Attempting assembly by intuition, some confusion about which parts go where. Make the change CLEARLY VISIBLE.",
+      "parent_state_id": "s1b",
+      "parent_action_id": "a_wing",
+      "reference_image": "generated_images/IKEA_desk_assembly_multi_ending_images/s1b_002.png",
+      "metadata": {
+        "following_instructions": false,
+        "assembly_progress": 0.2
+      }
+    },
+    {
+      "state_id": "s3a",
+      "text_description": "Desk frame assembled correctly, checking alignment before final tightening",
+      "image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s3a_005.png",
+      "generation_prompt": "Same camera angle and scene layout. HOWEVER, IMPORTANT VISIBLE CHANGE: Take a breath, re-read instructions, continue methodically. The new state: Desk frame assembled correctly, checking alignment before final tightening. Make the change CLEARLY VISIBLE.",
+      "parent_state_id": "s2a",
+      "parent_action_id": "a_persist_good",
+      "reference_image": "generated_images/IKEA_desk_assembly_multi_ending_images/s2a_003.png",
+      "metadata": {
+        "assembly_quality": "high",
+        "assembly_progress": 0.7
+      }
+    },
+    {
+      "state_id": "s2c",
+      "text_description": "Frustrated and confused, considering giving up",
+      "image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s2c_006.png",
+      "generation_prompt": "Same camera angle and scene layout. HOWEVER, IMPORTANT VISIBLE CHANGE: Become frustrated with confusing parts, consider giving up. The new state: Frustrated and confused, considering giving up. Make the change CLEARLY VISIBLE.",
+      "parent_state_id": "s2b",
+      "parent_action_id": "a_frustrate",
+      "reference_image": "generated_images/IKEA_desk_assembly_multi_ending_images/s2b_004.png",
+      "metadata": {
+        "frustration_level": "high",
+        "assembly_progress": 0.15
+      }
+    },
+    {
+      "state_id": "s3c",
+      "text_description": "Desk frame assembled incorrectly, using wrong screws in some places",
+      "image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s3c_007.png",
+      "generation_prompt": "Same camera angle and scene layout. HOWEVER, IMPORTANT VISIBLE CHANGE: Use whatever screws fit, not checking part numbers. The new state: Desk frame assembled incorrectly, using wrong screws in some places. Make the change CLEARLY VISIBLE.",
+      "parent_state_id": "s2b",
+      "parent_action_id": "a_wrong_parts",
+      "reference_image": "generated_images/IKEA_desk_assembly_multi_ending_images/s2b_004.png",
+      "metadata": {
+        "assembly_quality": "low",
+        "assembly_progress": 0.5
+      }
+    },
+    {
+      "state_id": "s_perfect",
+      "text_description": "Perfect assembly: desk is stable, all screws tight, perfectly aligned, looks professional",
+      "image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s_perfect_008.png",
+      "generation_prompt": "Same camera angle and scene layout. HOWEVER, IMPORTANT VISIBLE CHANGE: Carefully tighten all screws, check stability, adjust alignment. The new state: Perfect assembly: desk is stable, all screws tight, perfectly aligned, looks professional. Make the change CLEARLY VISIBLE.",
+      "parent_state_id": "s3a",
+      "parent_action_id": "a_perfect_finish",
+      "reference_image": "generated_images/IKEA_desk_assembly_multi_ending_images/s3a_005.png",
+      "metadata": {
+        "assembly_complete": true,
+        "quality": 1.0,
+        "outcome": "success"
+      }
+    },
+    {
+      "state_id": "s_gave_up",
+      "text_description": "Gave up halfway: partially assembled desk on floor, tools scattered, person walking away defeated",
+      "image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s_gave_up_009.png",
+      "generation_prompt": "Same camera angle and scene layout. HOWEVER, IMPORTANT VISIBLE CHANGE: Throw hands up in frustration and walk away from half-assembled desk. The new state: Gave up halfway: partially assembled desk on floor, tools scattered, person walking away defeated. Make the change CLEARLY VISIBLE.",
+      "parent_state_id": "s2c",
+      "parent_action_id": "a_quit",
+      "reference_image": "generated_images/IKEA_desk_assembly_multi_ending_images/s2c_006.png",
+      "metadata": {
+        "assembly_complete": false,
+        "quality": 0.2,
+        "outcome": "failure"
+      }
+    },
+    {
+      "state_id": "s3b",
+      "text_description": "Desk frame assembled but some parts seem loose, continuing anyway",
+      "image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s3b_010.png",
+      "generation_prompt": "Same camera angle and scene layout. HOWEVER, IMPORTANT VISIBLE CHANGE: Rush to finish without checking, just want to be done. The new state: Desk frame assembled but some parts seem loose, continuing anyway. Make the change CLEARLY VISIBLE.",
+      "parent_state_id": "s2c",
+      "parent_action_id": "a_rush",
+      "reference_image": "generated_images/IKEA_desk_assembly_multi_ending_images/s2c_006.png",
+      "metadata": {
+        "assembly_quality": "medium",
+        "assembly_progress": 0.6
+      }
+    },
+    {
+      "state_id": "s_wrong_assembly",
+      "text_description": "Wrong assembly: followed wrong instructions, desk looks strange and parts don't fit properly",
+      "image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s_wrong_assembly_011.png",
+      "generation_prompt": "Same camera angle and scene layout. HOWEVER, IMPORTANT VISIBLE CHANGE: Rush to finish without checking, just want to be done. The new state: Wrong assembly: followed wrong instructions, desk looks strange and parts don't fit properly. Make the change CLEARLY VISIBLE.",
+      "parent_state_id": "s3c",
+      "parent_action_id": "a_rush",
+      "reference_image": "generated_images/IKEA_desk_assembly_multi_ending_images/s3c_007.png",
+      "metadata": {
+        "assembly_complete": false,
+        "quality": 0.3,
+        "outcome": "failure"
+      }
+    },
+    {
+      "state_id": "s_acceptable",
+      "text_description": "Acceptable assembly: desk works but wobbles slightly, some screws could be tighter",
+      "image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s_acceptable_012.png",
+      "generation_prompt": "Same camera angle and scene layout. HOWEVER, IMPORTANT VISIBLE CHANGE: Loosely tighten screws, desk wobbles but seems okay. The new state: Acceptable assembly: desk works but wobbles slightly, some screws could be tighter. Make the change CLEARLY VISIBLE.",
+      "parent_state_id": "s3c",
+      "parent_action_id": "a_sloppy_finish",
+      "reference_image": "generated_images/IKEA_desk_assembly_multi_ending_images/s3c_007.png",
+      "metadata": {
+        "assembly_complete": true,
+        "quality": 0.6,
+        "outcome": "success"
+      }
+    },
+    {
+      "state_id": "s_good",
+      "text_description": "Good assembly: desk is functional and stable, minor cosmetic imperfections",
+      "image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s_good_013.png",
+      "generation_prompt": "Same camera angle and scene layout. HOWEVER, IMPORTANT VISIBLE CHANGE: Quickly tighten main screws, skip detailed checks. The new state: Good assembly: desk is functional and stable, minor cosmetic imperfections. Make the change CLEARLY VISIBLE.",
+      "parent_state_id": "s3b",
+      "parent_action_id": "a_quick_finish",
+      "reference_image": "generated_images/IKEA_desk_assembly_multi_ending_images/s3b_010.png",
+      "metadata": {
+        "assembly_complete": true,
+        "quality": 0.8,
+        "outcome": "success"
+      }
+    },
+    {
+      "state_id": "s_collapsed",
+      "text_description": "Structural failure: desk collapsed when weight was placed on it, critical screws were missing",
+      "image_path": "generated_images/IKEA_desk_assembly_multi_ending_images/s_collapsed_014.png",
+      "generation_prompt": "Same camera angle and scene layout. HOWEVER, IMPORTANT VISIBLE CHANGE: Place heavy object on desk to test stability. The new state: Structural failure: desk collapsed when weight was placed on it, critical screws were missing. Make the change CLEARLY VISIBLE.",
+      "parent_state_id": "s_acceptable",
+      "parent_action_id": "a_test",
+      "reference_image": "generated_images/IKEA_desk_assembly_multi_ending_images/s_acceptable_012.png",
+      "metadata": {
+        "assembly_complete": false,
+        "quality": 0.1,
+        "outcome": "failure"
+      }
+    }
+  ],
+  "transitions": [
+    {
+      "start_state_id": "s0",
+      "action_id": "a_read",
+      "end_state_id": "s1a",
+      "action_description": "Open box carefully and read instruction manual thoroughly",
+      "video_path": null,
+      "metadata": {}
+    },
+    {
+      "start_state_id": "s0",
+      "action_id": "a_skip",
+      "end_state_id": "s1b",
+      "action_description": "Tear open box and toss instructions aside, attempt assembly by intuition",
+      "video_path": null,
+      "metadata": {}
+    },
+    {
+      "start_state_id": "s1a",
+      "action_id": "a_follow",
+      "end_state_id": "s2a",
+      "action_description": "Methodically follow each instruction step, double-checking each connection",
+      "video_path": null,
+      "metadata": {}
+    },
+    {
+      "start_state_id": "s1b",
+      "action_id": "a_wing",
+      "end_state_id": "s2b",
+      "action_description": "Try to figure it out without instructions, guessing which parts connect",
+      "video_path": null,
+      "metadata": {}
+    },
+    {
+      "start_state_id": "s2a",
+      "action_id": "a_persist_good",
+      "end_state_id": "s3a",
+      "action_description": "Take a breath, re-read instructions, continue methodically",
+      "video_path": null,
+      "metadata": {}
+    },
+    {
+      "start_state_id": "s2b",
+      "action_id": "a_frustrate",
+      "end_state_id": "s2c",
+      "action_description": "Become frustrated with confusing parts, consider giving up",
+      "video_path": null,
+      "metadata": {}
+    },
+    {
+      "start_state_id": "s2b",
+      "action_id": "a_wrong_parts",
+      "end_state_id": "s3c",
+      "action_description": "Use whatever screws fit, not checking part numbers",
+      "video_path": null,
+      "metadata": {}
+    },
+    {
+      "start_state_id": "s3a",
+      "action_id": "a_perfect_finish",
+      "end_state_id": "s_perfect",
+      "action_description": "Carefully tighten all screws, check stability, adjust alignment",
+      "video_path": null,
+      "metadata": {}
+    },
+    {
+      "start_state_id": "s2c",
+      "action_id": "a_quit",
+      "end_state_id": "s_gave_up",
+      "action_description": "Throw hands up in frustration and walk away from half-assembled desk",
+      "video_path": null,
+      "metadata": {}
+    },
+    {
+      "start_state_id": "s2c",
+      "action_id": "a_rush",
+      "end_state_id": "s3b",
+      "action_description": "Rush to finish without checking, just want to be done",
+      "video_path": null,
+      "metadata": {}
+    },
+    {
+      "start_state_id": "s3c",
+      "action_id": "a_rush",
+      "end_state_id": "s_wrong_assembly",
+      "action_description": "Rush to finish without checking, just want to be done",
+      "video_path": null,
+      "metadata": {}
+    },
+    {
+      "start_state_id": "s3c",
+      "action_id": "a_sloppy_finish",
+      "end_state_id": "s_acceptable",
+      "action_description": "Loosely tighten screws, desk wobbles but seems okay",
+      "video_path": null,
+      "metadata": {}
+    },
+    {
+      "start_state_id": "s3b",
+      "action_id": "a_quick_finish",
+      "end_state_id": "s_good",
+      "action_description": "Quickly tighten main screws, skip detailed checks",
+      "video_path": null,
+      "metadata": {}
+    },
+    {
+      "start_state_id": "s3b",
+      "action_id": "a_sloppy_finish",
+      "end_state_id": "s_acceptable",
+      "action_description": "Loosely tighten screws, desk wobbles but seems okay",
+      "video_path": null,
+      "metadata": {}
+    },
+    {
+      "start_state_id": "s_acceptable",
+      "action_id": "a_test",
+      "end_state_id": "s_collapsed",
+      "action_description": "Place heavy object on desk to test stability",
+      "video_path": null,
+      "metadata": {}
+    }
+  ]
+}

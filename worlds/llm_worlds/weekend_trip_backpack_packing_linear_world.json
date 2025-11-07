@@ -1,0 +1,337 @@
+{
+  "name": "weekend_trip_backpack_packing_linear",
+  "description": "Linear world for weekend_trip_backpack_packing",
+  "states": [
+    {
+      "description": "Empty backpack (40L). Checklist on table: clothes (2 sets), toiletries, chargers, documents, medicine, water bottle. Items scattered on bed.",
+      "state_id": "s0",
+      "metadata": {
+        "progress": 0.0
+      }
+    },
+    {
+      "description": "Clothes (1 set) neatly folded and placed at the bottom of the backpack. Remaining clothes, toiletries, chargers, documents, medicine, and water bottle on the bed.",
+      "state_id": "s1",
+      "metadata": {
+        "progress": 0.2
+      }
+    },
+    {
+      "description": "Toiletries placed in a ziplock bag (for potential liquid restrictions) and then added to the backpack, on top of clothes. Remaining items on bed.",
+      "state_id": "s2",
+      "metadata": {
+        "progress": 0.3
+      }
+    },
+    {
+      "description": "Chargers and documents placed in a separate compartment or pocket of the backpack, accessible from the outside. Medicine and water bottle on bed.",
+      "state_id": "s3",
+      "metadata": {
+        "progress": 0.5
+      }
+    },
+    {
+      "description": "Medicine placed in a side pocket of the backpack, along with any necessary instructions.",
+      "state_id": "s4",
+      "metadata": {
+        "progress": 0.6
+      }
+    },
+    {
+      "description": "Water bottle placed on top of clothes but easily accessible. Backpack is nearly full.",
+      "state_id": "s5",
+      "metadata": {
+        "progress": 0.7
+      }
+    },
+    {
+      "description": "Backpack is packed, checked for weight (slightly exceeding carry-on limit). Clothes are rearranged; bulky jacket on bed is swapped for a thinner one.",
+      "state_id": "s6",
+      "metadata": {
+        "progress": 0.8
+      }
+    },
+    {
+      "description": "Backpack is repacked; weight checked and now within carry-on limits. All items are inside, but there is still some space available.",
+      "state_id": "s7",
+      "metadata": {
+        "progress": 0.9
+      }
+    },
+    {
+      "description": "Backpack is packed efficiently, weight is well-distributed, easy-access items on top, and within airline carry-on limits. Checklist is complete.",
+      "state_id": "s8",
+      "metadata": {
+        "progress": 1.0
+      }
+    }
+  ],
+  "actions": [
+    {
+      "description": "Place one set of clothes at the bottom of the backpack.",
+      "action_id": "a0",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Place toiletries (in a ziplock bag) on top of the clothes.",
+      "action_id": "a1",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Place chargers and documents in an accessible compartment.",
+      "action_id": "a2",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Put the medicine into a side pocket.",
+      "action_id": "a3",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Place the water bottle on top of clothes for easy access.",
+      "action_id": "a4",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Check the weight of the backpack and repack. Swap bulky jacket for a thinner one",
+      "action_id": "a5",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Repack the backpack to ensure items are secure and accessible, also within weight limits. ",
+      "action_id": "a6",
+      "action_type": "processing",
+      "metadata": {}
+    },
+    {
+      "description": "Final check and finalize. Backpack is complete and ready for the trip.",
+      "action_id": "a7",
+      "action_type": "finishing",
+      "metadata": {}
+    }
+  ],
+  "transitions": [
+    {
+      "transition_id": "t_0",
+      "start_state": {
+        "description": "Empty backpack (40L). Checklist on table: clothes (2 sets), toiletries, chargers, documents, medicine, water bottle. Items scattered on bed.",
+        "state_id": "s0",
+        "metadata": {
+          "progress": 0.0
+        }
+      },
+      "action": {
+        "description": "Place one set of clothes at the bottom of the backpack.",
+        "action_id": "a0",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Clothes (1 set) neatly folded and placed at the bottom of the backpack. Remaining clothes, toiletries, chargers, documents, medicine, and water bottle on the bed.",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.2
+        }
+      }
+    },
+    {
+      "transition_id": "t_1",
+      "start_state": {
+        "description": "Clothes (1 set) neatly folded and placed at the bottom of the backpack. Remaining clothes, toiletries, chargers, documents, medicine, and water bottle on the bed.",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.2
+        }
+      },
+      "action": {
+        "description": "Place toiletries (in a ziplock bag) on top of the clothes.",
+        "action_id": "a1",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Toiletries placed in a ziplock bag (for potential liquid restrictions) and then added to the backpack, on top of clothes. Remaining items on bed.",
+        "state_id": "s2",
+        "metadata": {
+          "progress": 0.3
+        }
+      }
+    },
+    {
+      "transition_id": "t_2",
+      "start_state": {
+        "description": "Toiletries placed in a ziplock bag (for potential liquid restrictions) and then added to the backpack, on top of clothes. Remaining items on bed.",
+        "state_id": "s2",
+        "metadata": {
+          "progress": 0.3
+        }
+      },
+      "action": {
+        "description": "Place chargers and documents in an accessible compartment.",
+        "action_id": "a2",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Chargers and documents placed in a separate compartment or pocket of the backpack, accessible from the outside. Medicine and water bottle on bed.",
+        "state_id": "s3",
+        "metadata": {
+          "progress": 0.5
+        }
+      }
+    },
+    {
+      "transition_id": "t_3",
+      "start_state": {
+        "description": "Chargers and documents placed in a separate compartment or pocket of the backpack, accessible from the outside. Medicine and water bottle on bed.",
+        "state_id": "s3",
+        "metadata": {
+          "progress": 0.5
+        }
+      },
+      "action": {
+        "description": "Put the medicine into a side pocket.",
+        "action_id": "a3",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Medicine placed in a side pocket of the backpack, along with any necessary instructions.",
+        "state_id": "s4",
+        "metadata": {
+          "progress": 0.6
+        }
+      }
+    },
+    {
+      "transition_id": "t_4",
+      "start_state": {
+        "description": "Medicine placed in a side pocket of the backpack, along with any necessary instructions.",
+        "state_id": "s4",
+        "metadata": {
+          "progress": 0.6
+        }
+      },
+      "action": {
+        "description": "Place the water bottle on top of clothes for easy access.",
+        "action_id": "a4",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Water bottle placed on top of clothes but easily accessible. Backpack is nearly full.",
+        "state_id": "s5",
+        "metadata": {
+          "progress": 0.7
+        }
+      }
+    },
+    {
+      "transition_id": "t_5",
+      "start_state": {
+        "description": "Water bottle placed on top of clothes but easily accessible. Backpack is nearly full.",
+        "state_id": "s5",
+        "metadata": {
+          "progress": 0.7
+        }
+      },
+      "action": {
+        "description": "Check the weight of the backpack and repack. Swap bulky jacket for a thinner one",
+        "action_id": "a5",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Backpack is packed, checked for weight (slightly exceeding carry-on limit). Clothes are rearranged; bulky jacket on bed is swapped for a thinner one.",
+        "state_id": "s6",
+        "metadata": {
+          "progress": 0.8
+        }
+      }
+    },
+    {
+      "transition_id": "t_6",
+      "start_state": {
+        "description": "Backpack is packed, checked for weight (slightly exceeding carry-on limit). Clothes are rearranged; bulky jacket on bed is swapped for a thinner one.",
+        "state_id": "s6",
+        "metadata": {
+          "progress": 0.8
+        }
+      },
+      "action": {
+        "description": "Repack the backpack to ensure items are secure and accessible, also within weight limits. ",
+        "action_id": "a6",
+        "action_type": "processing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Backpack is repacked; weight checked and now within carry-on limits. All items are inside, but there is still some space available.",
+        "state_id": "s7",
+        "metadata": {
+          "progress": 0.9
+        }
+      }
+    },
+    {
+      "transition_id": "t_7",
+      "start_state": {
+        "description": "Backpack is repacked; weight checked and now within carry-on limits. All items are inside, but there is still some space available.",
+        "state_id": "s7",
+        "metadata": {
+          "progress": 0.9
+        }
+      },
+      "action": {
+        "description": "Final check and finalize. Backpack is complete and ready for the trip.",
+        "action_id": "a7",
+        "action_type": "finishing",
+        "metadata": {}
+      },
+      "end_state": {
+        "description": "Backpack is packed efficiently, weight is well-distributed, easy-access items on top, and within airline carry-on limits. Checklist is complete.",
+        "state_id": "s8",
+        "metadata": {
+          "progress": 1.0
+        }
+      }
+    }
+  ],
+  "initial_state": {
+    "description": "Empty backpack (40L). Checklist on table: clothes (2 sets), toiletries, chargers, documents, medicine, water bottle. Items scattered on bed.",
+    "state_id": "s0",
+    "metadata": {
+      "progress": 0.0
+    }
+  },
+  "goal_states": [
+    {
+      "description": "Backpack is packed efficiently, weight is well-distributed, easy-access items on top, and within airline carry-on limits. Checklist is complete.",
+      "state_id": "s8",
+      "metadata": {
+        "progress": 1.0
+      }
+    }
+  ],
+  "final_states": [
+    {
+      "description": "Backpack is packed efficiently, weight is well-distributed, easy-access items on top, and within airline carry-on limits. Checklist is complete.",
+      "state_id": "s8",
+      "metadata": {
+        "progress": 1.0
+      }
+    }
+  ],
+  "goal_state": {
+    "description": "Backpack is packed efficiently, weight is well-distributed, easy-access items on top, and within airline carry-on limits. Checklist is complete.",
+    "state_id": "s8",
+    "metadata": {
+      "progress": 1.0
+    }
+  }
+}
