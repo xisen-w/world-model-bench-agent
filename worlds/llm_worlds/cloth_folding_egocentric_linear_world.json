@@ -1,0 +1,461 @@
+{
+  "name": "cloth_folding_linear_egocentric",
+  "description": "Egocentric linear_egocentric world for cloth_folding",
+  "states": [
+    {
+      "description": "You're standing beside a low bed, overwhelmed by a chaotic mountain of freshly washed laundry. Your arms are bare to the elbows, and you can smell the clean cotton. A small, half-full laundry basket sits near your left knee. You're looking down at a jumbled mix of shirts, pants, and towels, desperately needing to be sorted. In the corner of the room, you see the open drawer of a dresser, ready to receive the folded garments.",
+      "state_id": "s0",
+      "metadata": {
+        "progress": 0.0,
+        "camera_perspective": "first_person_ego",
+        "camera_height": "1.6m (eye level)",
+        "hands_visible": true,
+        "main_focus": "The chaotic pile of laundry."
+      }
+    },
+    {
+      "description": "You lean over the bed, beginning to sort through the laundry. Your right hand reaches out to grab a t-shirt, its soft fabric cool against your fingertips. You lift the shirt, its vibrant color standing out against the whites and grays of the other clothes. You begin to separate the shirts, placing them in a pile to your left. Beside the pile, you can see a stack of folded towels waiting.",
+      "state_id": "s1",
+      "metadata": {
+        "progress": 0.14,
+        "camera_perspective": "first_person_ego",
+        "camera_height": "1.6m (eye level)",
+        "hands_visible": true,
+        "main_focus": "Sorting the laundry."
+      }
+    },
+    {
+      "description": "You're now holding a t-shirt, ready to fold it. Your left hand smooths out the fabric on the bed. You're focusing intently on making the fold precise. The scent of fresh laundry is strong as you position the shirt for a perfect fold. You notice the crisp line of a previously folded shirt near your elbow. A half-folded shirt is in your hands.",
+      "state_id": "s2",
+      "metadata": {
+        "progress": 0.28,
+        "camera_perspective": "first_person_ego",
+        "camera_height": "1.6m (eye level)",
+        "hands_visible": true,
+        "main_focus": "Folding the t-shirt."
+      }
+    },
+    {
+      "description": "You fold the shirt neatly in half. Your right hand smooths the folded edge to create a crisp, clean line. You look down, making sure it\u2019s symmetrical. The folded shirt in your hands is now a neat rectangle. The partially folded shirt from the previous frame is now a completed fold. The bed feels smooth beneath your hands as you complete the fold.",
+      "state_id": "s3",
+      "metadata": {
+        "progress": 0.42,
+        "camera_perspective": "first_person_ego",
+        "camera_height": "1.6m (eye level)",
+        "hands_visible": true,
+        "main_focus": "Completing the fold."
+      }
+    },
+    {
+      "description": "You pick up the folded shirt with both hands, ready to stack it. You look towards the growing stack of neatly folded shirts on your left. The folded shirts form a symmetrical stack. The clean, folded edge of the shirt in your hands faces outward. The drawer is still open, ready to receive the stack.",
+      "state_id": "s4",
+      "metadata": {
+        "progress": 0.56,
+        "camera_perspective": "first_person_ego",
+        "camera_height": "1.6m (eye level)",
+        "hands_visible": true,
+        "main_focus": "Stacking the folded shirt."
+      }
+    },
+    {
+      "description": "You place the folded shirt on top of the growing stack. The pile is starting to form. You check the alignment of the shirts. You carefully adjust the placement for symmetry. The fresh scent of laundry surrounds you as you make the final adjustments to the stack.",
+      "state_id": "s5",
+      "metadata": {
+        "progress": 0.7,
+        "camera_perspective": "first_person_ego",
+        "camera_height": "1.6m (eye level)",
+        "hands_visible": true,
+        "main_focus": "Adding to the shirt stack."
+      }
+    },
+    {
+      "description": "You're approaching the open drawer. Your right hand gently holds the stack of folded shirts. You're walking toward the dresser, a satisfying feeling of accomplishment building. The stacks of shirts in the drawer are organized and crisp. The light from the window illuminates the drawer's interior.",
+      "state_id": "s6",
+      "metadata": {
+        "progress": 0.84,
+        "camera_perspective": "first_person_ego",
+        "camera_height": "1.6m (eye level)",
+        "hands_visible": true,
+        "main_focus": "Moving toward the drawer."
+      }
+    },
+    {
+      "description": "You're sliding the final stack of perfectly folded shirts into the drawer. Your hands glide over the smooth top shirt as you align the pile. Every other stack on the shelf looks symmetrical and crisp. The laundry room is tidy. The satisfaction of a completed task washes over you.",
+      "state_id": "s7",
+      "metadata": {
+        "progress": 1.0,
+        "camera_perspective": "first_person_ego",
+        "camera_height": "1.6m (eye level)",
+        "hands_visible": true,
+        "main_focus": "Storing the folded shirts in the drawer."
+      }
+    }
+  ],
+  "actions": [
+    {
+      "description": "You reach out with your right hand and pick up a t-shirt from the pile. You separate the shirt from the other items.",
+      "action_id": "a0",
+      "action_type": "processing",
+      "metadata": {
+        "hand_action": true,
+        "tool_use": null,
+        "both_hands": false
+      }
+    },
+    {
+      "description": "You use your left hand to smooth the shirt on the bed. Then, you begin the fold, aligning the edges with your right hand.",
+      "action_id": "a1",
+      "action_type": "processing",
+      "metadata": {
+        "hand_action": true,
+        "tool_use": null,
+        "both_hands": true
+      }
+    },
+    {
+      "description": "You bring the left side over the right, aligning the sleeves and bottom hem of the shirt and pressing the fold down. You ensure a straight line is created on the fold with your right hand.",
+      "action_id": "a2",
+      "action_type": "processing",
+      "metadata": {
+        "hand_action": true,
+        "tool_use": null,
+        "both_hands": true
+      }
+    },
+    {
+      "description": "You pick up the folded shirt with both hands.",
+      "action_id": "a3",
+      "action_type": "processing",
+      "metadata": {
+        "hand_action": true,
+        "tool_use": null,
+        "both_hands": true
+      }
+    },
+    {
+      "description": "You place the folded shirt on top of the existing stack, carefully aligning it with the other shirts.",
+      "action_id": "a4",
+      "action_type": "processing",
+      "metadata": {
+        "hand_action": true,
+        "tool_use": null,
+        "both_hands": true
+      }
+    },
+    {
+      "description": "You lift the completed stack of folded shirts with both hands and walk toward the dresser.",
+      "action_id": "a5",
+      "action_type": "processing",
+      "metadata": {
+        "hand_action": true,
+        "tool_use": null,
+        "both_hands": true
+      }
+    },
+    {
+      "description": "You place the stack of folded shirts into the drawer, aligning them with the existing shirts, and smooth the top.",
+      "action_id": "a6",
+      "action_type": "processing",
+      "metadata": {
+        "hand_action": true,
+        "tool_use": null,
+        "both_hands": true
+      }
+    }
+  ],
+  "transitions": [
+    {
+      "transition_id": "t_0",
+      "start_state": {
+        "description": "You're standing beside a low bed, overwhelmed by a chaotic mountain of freshly washed laundry. Your arms are bare to the elbows, and you can smell the clean cotton. A small, half-full laundry basket sits near your left knee. You're looking down at a jumbled mix of shirts, pants, and towels, desperately needing to be sorted. In the corner of the room, you see the open drawer of a dresser, ready to receive the folded garments.",
+        "state_id": "s0",
+        "metadata": {
+          "progress": 0.0,
+          "camera_perspective": "first_person_ego",
+          "camera_height": "1.6m (eye level)",
+          "hands_visible": true,
+          "main_focus": "The chaotic pile of laundry."
+        }
+      },
+      "action": {
+        "description": "You reach out with your right hand and pick up a t-shirt from the pile. You separate the shirt from the other items.",
+        "action_id": "a0",
+        "action_type": "processing",
+        "metadata": {
+          "hand_action": true,
+          "tool_use": null,
+          "both_hands": false
+        }
+      },
+      "end_state": {
+        "description": "You lean over the bed, beginning to sort through the laundry. Your right hand reaches out to grab a t-shirt, its soft fabric cool against your fingertips. You lift the shirt, its vibrant color standing out against the whites and grays of the other clothes. You begin to separate the shirts, placing them in a pile to your left. Beside the pile, you can see a stack of folded towels waiting.",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.14,
+          "camera_perspective": "first_person_ego",
+          "camera_height": "1.6m (eye level)",
+          "hands_visible": true,
+          "main_focus": "Sorting the laundry."
+        }
+      }
+    },
+    {
+      "transition_id": "t_1",
+      "start_state": {
+        "description": "You lean over the bed, beginning to sort through the laundry. Your right hand reaches out to grab a t-shirt, its soft fabric cool against your fingertips. You lift the shirt, its vibrant color standing out against the whites and grays of the other clothes. You begin to separate the shirts, placing them in a pile to your left. Beside the pile, you can see a stack of folded towels waiting.",
+        "state_id": "s1",
+        "metadata": {
+          "progress": 0.14,
+          "camera_perspective": "first_person_ego",
+          "camera_height": "1.6m (eye level)",
+          "hands_visible": true,
+          "main_focus": "Sorting the laundry."
+        }
+      },
+      "action": {
+        "description": "You use your left hand to smooth the shirt on the bed. Then, you begin the fold, aligning the edges with your right hand.",
+        "action_id": "a1",
+        "action_type": "processing",
+        "metadata": {
+          "hand_action": true,
+          "tool_use": null,
+          "both_hands": true
+        }
+      },
+      "end_state": {
+        "description": "You're now holding a t-shirt, ready to fold it. Your left hand smooths out the fabric on the bed. You're focusing intently on making the fold precise. The scent of fresh laundry is strong as you position the shirt for a perfect fold. You notice the crisp line of a previously folded shirt near your elbow. A half-folded shirt is in your hands.",
+        "state_id": "s2",
+        "metadata": {
+          "progress": 0.28,
+          "camera_perspective": "first_person_ego",
+          "camera_height": "1.6m (eye level)",
+          "hands_visible": true,
+          "main_focus": "Folding the t-shirt."
+        }
+      }
+    },
+    {
+      "transition_id": "t_2",
+      "start_state": {
+        "description": "You're now holding a t-shirt, ready to fold it. Your left hand smooths out the fabric on the bed. You're focusing intently on making the fold precise. The scent of fresh laundry is strong as you position the shirt for a perfect fold. You notice the crisp line of a previously folded shirt near your elbow. A half-folded shirt is in your hands.",
+        "state_id": "s2",
+        "metadata": {
+          "progress": 0.28,
+          "camera_perspective": "first_person_ego",
+          "camera_height": "1.6m (eye level)",
+          "hands_visible": true,
+          "main_focus": "Folding the t-shirt."
+        }
+      },
+      "action": {
+        "description": "You bring the left side over the right, aligning the sleeves and bottom hem of the shirt and pressing the fold down. You ensure a straight line is created on the fold with your right hand.",
+        "action_id": "a2",
+        "action_type": "processing",
+        "metadata": {
+          "hand_action": true,
+          "tool_use": null,
+          "both_hands": true
+        }
+      },
+      "end_state": {
+        "description": "You fold the shirt neatly in half. Your right hand smooths the folded edge to create a crisp, clean line. You look down, making sure it\u2019s symmetrical. The folded shirt in your hands is now a neat rectangle. The partially folded shirt from the previous frame is now a completed fold. The bed feels smooth beneath your hands as you complete the fold.",
+        "state_id": "s3",
+        "metadata": {
+          "progress": 0.42,
+          "camera_perspective": "first_person_ego",
+          "camera_height": "1.6m (eye level)",
+          "hands_visible": true,
+          "main_focus": "Completing the fold."
+        }
+      }
+    },
+    {
+      "transition_id": "t_3",
+      "start_state": {
+        "description": "You fold the shirt neatly in half. Your right hand smooths the folded edge to create a crisp, clean line. You look down, making sure it\u2019s symmetrical. The folded shirt in your hands is now a neat rectangle. The partially folded shirt from the previous frame is now a completed fold. The bed feels smooth beneath your hands as you complete the fold.",
+        "state_id": "s3",
+        "metadata": {
+          "progress": 0.42,
+          "camera_perspective": "first_person_ego",
+          "camera_height": "1.6m (eye level)",
+          "hands_visible": true,
+          "main_focus": "Completing the fold."
+        }
+      },
+      "action": {
+        "description": "You pick up the folded shirt with both hands.",
+        "action_id": "a3",
+        "action_type": "processing",
+        "metadata": {
+          "hand_action": true,
+          "tool_use": null,
+          "both_hands": true
+        }
+      },
+      "end_state": {
+        "description": "You pick up the folded shirt with both hands, ready to stack it. You look towards the growing stack of neatly folded shirts on your left. The folded shirts form a symmetrical stack. The clean, folded edge of the shirt in your hands faces outward. The drawer is still open, ready to receive the stack.",
+        "state_id": "s4",
+        "metadata": {
+          "progress": 0.56,
+          "camera_perspective": "first_person_ego",
+          "camera_height": "1.6m (eye level)",
+          "hands_visible": true,
+          "main_focus": "Stacking the folded shirt."
+        }
+      }
+    },
+    {
+      "transition_id": "t_4",
+      "start_state": {
+        "description": "You pick up the folded shirt with both hands, ready to stack it. You look towards the growing stack of neatly folded shirts on your left. The folded shirts form a symmetrical stack. The clean, folded edge of the shirt in your hands faces outward. The drawer is still open, ready to receive the stack.",
+        "state_id": "s4",
+        "metadata": {
+          "progress": 0.56,
+          "camera_perspective": "first_person_ego",
+          "camera_height": "1.6m (eye level)",
+          "hands_visible": true,
+          "main_focus": "Stacking the folded shirt."
+        }
+      },
+      "action": {
+        "description": "You place the folded shirt on top of the existing stack, carefully aligning it with the other shirts.",
+        "action_id": "a4",
+        "action_type": "processing",
+        "metadata": {
+          "hand_action": true,
+          "tool_use": null,
+          "both_hands": true
+        }
+      },
+      "end_state": {
+        "description": "You place the folded shirt on top of the growing stack. The pile is starting to form. You check the alignment of the shirts. You carefully adjust the placement for symmetry. The fresh scent of laundry surrounds you as you make the final adjustments to the stack.",
+        "state_id": "s5",
+        "metadata": {
+          "progress": 0.7,
+          "camera_perspective": "first_person_ego",
+          "camera_height": "1.6m (eye level)",
+          "hands_visible": true,
+          "main_focus": "Adding to the shirt stack."
+        }
+      }
+    },
+    {
+      "transition_id": "t_5",
+      "start_state": {
+        "description": "You place the folded shirt on top of the growing stack. The pile is starting to form. You check the alignment of the shirts. You carefully adjust the placement for symmetry. The fresh scent of laundry surrounds you as you make the final adjustments to the stack.",
+        "state_id": "s5",
+        "metadata": {
+          "progress": 0.7,
+          "camera_perspective": "first_person_ego",
+          "camera_height": "1.6m (eye level)",
+          "hands_visible": true,
+          "main_focus": "Adding to the shirt stack."
+        }
+      },
+      "action": {
+        "description": "You lift the completed stack of folded shirts with both hands and walk toward the dresser.",
+        "action_id": "a5",
+        "action_type": "processing",
+        "metadata": {
+          "hand_action": true,
+          "tool_use": null,
+          "both_hands": true
+        }
+      },
+      "end_state": {
+        "description": "You're approaching the open drawer. Your right hand gently holds the stack of folded shirts. You're walking toward the dresser, a satisfying feeling of accomplishment building. The stacks of shirts in the drawer are organized and crisp. The light from the window illuminates the drawer's interior.",
+        "state_id": "s6",
+        "metadata": {
+          "progress": 0.84,
+          "camera_perspective": "first_person_ego",
+          "camera_height": "1.6m (eye level)",
+          "hands_visible": true,
+          "main_focus": "Moving toward the drawer."
+        }
+      }
+    },
+    {
+      "transition_id": "t_6",
+      "start_state": {
+        "description": "You're approaching the open drawer. Your right hand gently holds the stack of folded shirts. You're walking toward the dresser, a satisfying feeling of accomplishment building. The stacks of shirts in the drawer are organized and crisp. The light from the window illuminates the drawer's interior.",
+        "state_id": "s6",
+        "metadata": {
+          "progress": 0.84,
+          "camera_perspective": "first_person_ego",
+          "camera_height": "1.6m (eye level)",
+          "hands_visible": true,
+          "main_focus": "Moving toward the drawer."
+        }
+      },
+      "action": {
+        "description": "You place the stack of folded shirts into the drawer, aligning them with the existing shirts, and smooth the top.",
+        "action_id": "a6",
+        "action_type": "processing",
+        "metadata": {
+          "hand_action": true,
+          "tool_use": null,
+          "both_hands": true
+        }
+      },
+      "end_state": {
+        "description": "You're sliding the final stack of perfectly folded shirts into the drawer. Your hands glide over the smooth top shirt as you align the pile. Every other stack on the shelf looks symmetrical and crisp. The laundry room is tidy. The satisfaction of a completed task washes over you.",
+        "state_id": "s7",
+        "metadata": {
+          "progress": 1.0,
+          "camera_perspective": "first_person_ego",
+          "camera_height": "1.6m (eye level)",
+          "hands_visible": true,
+          "main_focus": "Storing the folded shirts in the drawer."
+        }
+      }
+    }
+  ],
+  "initial_state": {
+    "description": "You're standing beside a low bed, overwhelmed by a chaotic mountain of freshly washed laundry. Your arms are bare to the elbows, and you can smell the clean cotton. A small, half-full laundry basket sits near your left knee. You're looking down at a jumbled mix of shirts, pants, and towels, desperately needing to be sorted. In the corner of the room, you see the open drawer of a dresser, ready to receive the folded garments.",
+    "state_id": "s0",
+    "metadata": {
+      "progress": 0.0,
+      "camera_perspective": "first_person_ego",
+      "camera_height": "1.6m (eye level)",
+      "hands_visible": true,
+      "main_focus": "The chaotic pile of laundry."
+    }
+  },
+  "goal_states": [
+    {
+      "description": "You're sliding the final stack of perfectly folded shirts into the drawer. Your hands glide over the smooth top shirt as you align the pile. Every other stack on the shelf looks symmetrical and crisp. The laundry room is tidy. The satisfaction of a completed task washes over you.",
+      "state_id": "s7",
+      "metadata": {
+        "progress": 1.0,
+        "camera_perspective": "first_person_ego",
+        "camera_height": "1.6m (eye level)",
+        "hands_visible": true,
+        "main_focus": "Storing the folded shirts in the drawer."
+      }
+    }
+  ],
+  "final_states": [
+    {
+      "description": "You're sliding the final stack of perfectly folded shirts into the drawer. Your hands glide over the smooth top shirt as you align the pile. Every other stack on the shelf looks symmetrical and crisp. The laundry room is tidy. The satisfaction of a completed task washes over you.",
+      "state_id": "s7",
+      "metadata": {
+        "progress": 1.0,
+        "camera_perspective": "first_person_ego",
+        "camera_height": "1.6m (eye level)",
+        "hands_visible": true,
+        "main_focus": "Storing the folded shirts in the drawer."
+      }
+    }
+  ],
+  "goal_state": {
+    "description": "You're sliding the final stack of perfectly folded shirts into the drawer. Your hands glide over the smooth top shirt as you align the pile. Every other stack on the shelf looks symmetrical and crisp. The laundry room is tidy. The satisfaction of a completed task washes over you.",
+    "state_id": "s7",
+    "metadata": {
+      "progress": 1.0,
+      "camera_perspective": "first_person_ego",
+      "camera_height": "1.6m (eye level)",
+      "hands_visible": true,
+      "main_focus": "Storing the folded shirts in the drawer."
+    }
+  }
+}

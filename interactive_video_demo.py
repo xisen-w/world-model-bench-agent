@@ -422,6 +422,8 @@ def main():
             text_world_file = "ikea_desk_multi_ending_world.json"
         elif "apple_eating" in image_source:
             text_world_file = "apple_eating_branching_world.json"
+        elif "indoor_plant" in image_source:
+            text_world_file = "indoor_plant_watering_repotting_branching_egocentric_world.json"
         else:
             text_world_name = image_source.replace("_images", "").replace("_image_world", "")
             text_world_file = f"{text_world_name}.json"
