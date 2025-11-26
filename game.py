@@ -264,7 +264,7 @@ class WorldExplorerGame:
 
     def update_action_buttons(self):
         """Update action buttons based on current state."""
-        available_actions = self.text_world.get_available_actions(self.current_state)
+        available_actions = self.text_world.get_possible_actions(self.current_state)
 
         self.action_buttons = []
         button_height = 60
