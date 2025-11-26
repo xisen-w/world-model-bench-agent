@@ -42,6 +42,15 @@ except ImportError:
     HAS_PIL = False
     print("WARNING: PIL not installed. Image display will be limited. Install with: pip install Pillow")
 
+# Try to import opencv for video playback
+try:
+    import cv2
+    import numpy as np
+    HAS_OPENCV = True
+except ImportError:
+    HAS_OPENCV = False
+    print("WARNING: opencv-python not installed. Video playback will use external player. Install with: pip install opencv-python")
+
 
 # Colors
 WHITE = (255, 255, 255)
@@ -54,6 +63,127 @@ DARK_BLUE = (50, 90, 160)
 GREEN = (80, 200, 120)
 RED = (220, 80, 80)
 YELLOW = (255, 220, 60)
+
+
+class VideoPlayer:
+    """Embedded video player using OpenCV."""
+
+    def __init__(self, rect: Rect):
+        self.rect = rect
+        self.video_path = None
+        self.cap = None
+        self.current_frame = None
+        self.is_playing = False
+        self.fps = 30
+        self.frame_count = 0
+        self.total_frames = 0
+        self.last_frame_time = 0
+
+    def load_video(self, video_path: str) -> bool:
+        """Load a video file."""
+        if not HAS_OPENCV:
+            return False
+
+        try:
+            self.video_path = video_path
+            self.cap = cv2.VideoCapture(video_path)
+
+            if not self.cap.isOpened():
+                print(f"Failed to open video: {video_path}")
+                return False
+
+            self.fps = self.cap.get(cv2.CAP_PROP_FPS) or 30
+            self.total_frames = int(self.cap.get(cv2.CAP_PROP_FRAME_COUNT))
+            self.frame_count = 0
+            self.is_playing = True
+            self.last_frame_time = pygame.time.get_ticks()
+
+            print(f"Video loaded: {video_path}")
+            print(f"  FPS: {self.fps}, Total frames: {self.total_frames}")
+
+            return True
+
+        except Exception as e:
+            print(f"Error loading video: {e}")
+            return False
+
+    def update(self) -> bool:
+        """Update video playback. Returns False when video ends."""
+        if not self.is_playing or not self.cap:
+            return False
+
+        current_time = pygame.time.get_ticks()
+        time_per_frame = 1000 / self.fps  # milliseconds per frame
+
+        # Check if it's time for next frame
+        if current_time - self.last_frame_time >= time_per_frame:
+            ret, frame = self.cap.read()
+
+            if ret:
+                # Convert BGR to RGB
+                frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+
+                # Resize to fit rect
+                frame_h, frame_w = frame.shape[:2]
+                rect_w, rect_h = self.rect.width, self.rect.height
+
+                # Calculate scaling to fit
+                scale = min(rect_w / frame_w, rect_h / frame_h)
+                new_w = int(frame_w * scale)
+                new_h = int(frame_h * scale)
+
+                frame = cv2.resize(frame, (new_w, new_h), interpolation=cv2.INTER_LINEAR)
+
+                # Convert to pygame surface
+                self.current_frame = pygame.surfarray.make_surface(
+                    np.transpose(frame, (1, 0, 2))
+                )
+
+                self.frame_count += 1
+                self.last_frame_time = current_time
+                return True
+            else:
+                # Video ended
+                self.stop()
+                return False
+
+        return True
+
+    def draw(self, surface: Surface):
+        """Draw current video frame."""
+        if self.current_frame:
+            # Center frame in rect
+            frame_rect = self.current_frame.get_rect()
+            frame_rect.center = self.rect.center
+            surface.blit(self.current_frame, frame_rect)
+
+            # Draw progress bar
+            if self.total_frames > 0:
+                progress = self.frame_count / self.total_frames
+                bar_width = self.rect.width - 40
+                bar_height = 8
+                bar_x = self.rect.x + 20
+                bar_y = self.rect.bottom - 30
+
+                # Background
+                pygame.draw.rect(surface, DARK_GRAY,
+                               (bar_x, bar_y, bar_width, bar_height),
+                               border_radius=4)
+                # Progress
+                pygame.draw.rect(surface, GREEN,
+                               (bar_x, bar_y, int(bar_width * progress), bar_height),
+                               border_radius=4)
+
+    def stop(self):
+        """Stop video playback."""
+        self.is_playing = False
+        if self.cap:
+            self.cap.release()
+            self.cap = None
+
+    def is_finished(self) -> bool:
+        """Check if video has finished."""
+        return not self.is_playing
 
 
 class Button:
@@ -118,11 +248,14 @@ class WorldExplorerGame:
         self.current_state = None
         self.history = []
         self.action_buttons = []
-        self.video_playing = False
         self.current_image = None
 
         # UI setup
         self.setup_ui()
+
+        # Video player
+        self.video_player = VideoPlayer(self.media_rect)
+        self.pending_action = None  # Action to execute after video finishes
 
         # Start at initial state
         self.set_initial_state()
@@ -297,7 +430,8 @@ class WorldExplorerGame:
 
         next_state = next_states[0]
 
-        # Play video if available
+        # Play video if available (embedded or external)
+        video_played = False
         if self.world_type == "video":
             video_trans = self.find_video_transition(
                 self.current_state.state_id,
@@ -306,11 +440,25 @@ class WorldExplorerGame:
             )
 
             if video_trans and video_trans.video_path and Path(video_trans.video_path).exists():
-                self.play_video(video_trans.video_path)
+                if HAS_OPENCV:
+                    # Use embedded video player
+                    if self.video_player.load_video(video_trans.video_path):
+                        # Store pending action data to update after video finishes
+                        self.pending_action = (self.current_state, action, next_state)
+                        video_played = True
+                else:
+                    # Fall back to external player
+                    self.play_video_external(video_trans.video_path)
 
+        # If no video, update state immediately
+        if not video_played:
+            self.complete_action(self.current_state, action, next_state)
+
+    def complete_action(self, start_state: State, action: Action, end_state: State):
+        """Complete action transition after video finishes."""
         # Update state
-        self.history.append((self.current_state, action, next_state))
-        self.current_state = next_state
+        self.history.append((start_state, action, end_state))
+        self.current_state = end_state
 
         # Update UI
         self.update_action_buttons()
@@ -325,8 +473,8 @@ class WorldExplorerGame:
                 return trans
         return None
 
-    def play_video(self, video_path: str):
-        """Play video using system player."""
+    def play_video_external(self, video_path: str):
+        """Play video using external system player."""
         try:
             # Use system default player
             if sys.platform == "darwin":  # macOS
@@ -335,8 +483,6 @@ class WorldExplorerGame:
                 os.startfile(video_path)
             else:  # Linux
                 subprocess.Popen(["xdg-open", video_path])
-
-            self.video_playing = True
         except Exception as e:
             print(f"Error playing video: {e}")
 
@@ -379,7 +525,10 @@ class WorldExplorerGame:
         pygame.draw.rect(self.screen, LIGHT_GRAY, self.media_rect, border_radius=10)
         pygame.draw.rect(self.screen, DARK_GRAY, self.media_rect, width=3, border_radius=10)
 
-        if self.current_image:
+        # Show video if playing, otherwise show image
+        if self.video_player.is_playing:
+            self.video_player.draw(self.screen)
+        elif self.current_image:
             # Center image in media rect
             img_rect = self.current_image.get_rect()
             img_rect.center = self.media_rect.center
@@ -428,9 +577,15 @@ class WorldExplorerGame:
                 quality_rect = quality_text.get_rect(center=(self.actions_rect.centerx, self.actions_rect.centery + 40))
                 self.screen.blit(quality_text, quality_rect)
         else:
-            # Draw action buttons
-            for button in self.action_buttons:
-                button.draw(self.screen, self.small_font)
+            # Draw action buttons (disabled during video playback)
+            if self.video_player.is_playing:
+                # Show "Playing video..." message
+                playing_text = self.text_font.render("Playing video...", True, DARK_GRAY)
+                playing_rect = playing_text.get_rect(center=(self.actions_rect.centerx, self.actions_rect.centery))
+                self.screen.blit(playing_text, playing_rect)
+            else:
+                for button in self.action_buttons:
+                    button.draw(self.screen, self.small_font)
 
         # Draw stats area
         pygame.draw.rect(self.screen, LIGHT_GRAY, self.stats_rect, border_radius=10)
@@ -468,11 +623,13 @@ class WorldExplorerGame:
 
         elif event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 1:  # Left click
-                # Check button clicks
-                for button in self.action_buttons:
-                    if button.is_clicked(event.pos):
-                        self.perform_action(button.action)
-                        break
+                # Don't allow clicks during video playback
+                if not self.video_player.is_playing:
+                    # Check button clicks
+                    for button in self.action_buttons:
+                        if button.is_clicked(event.pos):
+                            self.perform_action(button.action)
+                            break
 
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
@@ -487,6 +644,17 @@ class WorldExplorerGame:
             # Handle events
             for event in pygame.event.get():
                 self.handle_event(event)
+
+            # Update video player
+            if self.video_player.is_playing:
+                self.video_player.update()
+
+                # Check if video finished
+                if self.video_player.is_finished() and self.pending_action:
+                    # Complete the action transition
+                    start_state, action, end_state = self.pending_action
+                    self.complete_action(start_state, action, end_state)
+                    self.pending_action = None
 
             # Draw
             self.draw()
