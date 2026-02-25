@@ -311,7 +311,7 @@
       "start_state_id": "s1",
       "action_id": "a3_turn_right_clean",
       "end_state_id": "s3_track2",
-      "action_description": "Twist the right face 90\u00b0 clockwise (R move). Rotate the right layer to change its configuration.",
+      "action_description": "Twist the top face 90\u00b0 anticlockwise (U' move). The upper layer rotates counterclockwise, changing the top edges and corners.",
       "video_path": "experiments/recorded_videos/cube_world/real_turn_right_instead_initial_state_same_with_recover_right_1_both_clean_start.mov",
       "metadata": {
         "track": "track_2",
@@ -372,7 +372,7 @@
       "start_state_id": "s1",
       "action_id": "a6_turn_down_t3",
       "end_state_id": "s_dead_2",
-      "action_description": "Twist the bottom face 90\u00b0 clockwise (D move). Rotate the bottom layer to change the lower face configuration.",
+      "action_description": "Twist the right face 90\u00b0 anticlockwise (R' move). The right layer rotates counterclockwise, changing the edge and corner pieces on that face.",
       "video_path": "experiments/recorded_videos/cube_world/turn_down_dead_end_initial_state_turn_left.mov",
       "metadata": {
         "track": "track_3",
@@ -387,7 +387,7 @@
       "start_state_id": "s1",
       "action_id": "a7_turn_up",
       "end_state_id": "s5_track4",
-      "action_description": "Twist the top face 90\u00b0 clockwise (U move). The upper layer rotates, changing the top edges and corners.",
+      "action_description": "Twist the top face 90\u00b0 anticlockwise (U' move). The upper layer rotates counterclockwise, changing the top edges and corners.",
       "video_path": "experiments/recorded_videos/cube_world/turn_up_back_on_track.mov",
       "metadata": {
         "track": "track_4",

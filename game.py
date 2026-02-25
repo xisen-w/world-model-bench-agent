@@ -78,6 +78,8 @@ class VideoPlayer:
         self.frame_count = 0
         self.total_frames = 0
         self.last_frame_time = 0
+        self.progress_bar_rect = None
+        self.is_dragging = False
 
     def load_video(self, video_path: str) -> bool:
         """Load a video file."""
@@ -161,22 +163,87 @@ class VideoPlayer:
             if self.total_frames > 0:
                 progress = self.frame_count / self.total_frames
                 bar_width = self.rect.width - 40
-                bar_height = 8
+                bar_height = 20  # Increased height for easier clicking
                 bar_x = self.rect.x + 20
-                bar_y = self.rect.bottom - 30
+                bar_y = self.rect.bottom - 35
+
+                # Store progress bar rect for click detection
+                self.progress_bar_rect = Rect(bar_x, bar_y, bar_width, bar_height)
 
                 # Background
                 pygame.draw.rect(surface, DARK_GRAY,
                                (bar_x, bar_y, bar_width, bar_height),
                                border_radius=4)
                 # Progress
-                pygame.draw.rect(surface, GREEN,
+                pygame.draw.rect(surface, BLUE,
                                (bar_x, bar_y, int(bar_width * progress), bar_height),
                                border_radius=4)
+
+                # Draw time labels
+                font = pygame.font.Font(None, 20)
+                current_time = self.frame_count / self.fps
+                total_time = self.total_frames / self.fps
+                time_text = font.render(f"{current_time:.1f}s / {total_time:.1f}s", True, WHITE)
+                surface.blit(time_text, (bar_x, bar_y - 20))
+
+    def seek(self, frame_number: int):
+        """Seek to a specific frame."""
+        if not self.cap or frame_number < 0 or frame_number >= self.total_frames:
+            return
+
+        self.cap.set(cv2.CAP_PROP_POS_FRAMES, frame_number)
+        self.frame_count = frame_number
+
+        # Read and display the frame immediately
+        ret, frame = self.cap.read()
+        if ret:
+            # Convert BGR to RGB
+            frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+
+            # Resize to fit rect
+            frame_h, frame_w = frame.shape[:2]
+            rect_w, rect_h = self.rect.width, self.rect.height
+
+            scale = min(rect_w / frame_w, rect_h / frame_h)
+            new_w = int(frame_w * scale)
+            new_h = int(frame_h * scale)
+
+            frame = cv2.resize(frame, (new_w, new_h), interpolation=cv2.INTER_LINEAR)
+
+            # Convert to pygame surface
+            self.current_frame = pygame.surfarray.make_surface(
+                np.transpose(frame, (1, 0, 2))
+            )
+
+        self.last_frame_time = pygame.time.get_ticks()
+
+    def seek_to_progress(self, progress: float):
+        """Seek to a position based on progress (0.0 to 1.0)."""
+        if self.total_frames > 0:
+            frame_number = int(progress * self.total_frames)
+            self.seek(frame_number)
+
+    def handle_progress_bar_click(self, mouse_pos: tuple) -> bool:
+        """Handle click on progress bar. Returns True if clicked."""
+        if not self.progress_bar_rect:
+            return False
+
+        if self.progress_bar_rect.collidepoint(mouse_pos):
+            # Calculate progress based on click position
+            relative_x = mouse_pos[0] - self.progress_bar_rect.x
+            progress = relative_x / self.progress_bar_rect.width
+            progress = max(0.0, min(1.0, progress))  # Clamp to 0-1
+
+            self.seek_to_progress(progress)
+            self.is_dragging = True
+            return True
+
+        return False
 
     def stop(self):
         """Stop video playback."""
         self.is_playing = False
+        self.is_dragging = False
         if self.cap:
             self.cap.release()
             self.cap = None
@@ -679,6 +746,10 @@ class WorldExplorerGame:
             self.running = False
 
         elif event.type == pygame.MOUSEMOTION:
+            # Handle video progress bar dragging
+            if self.video_player.is_dragging:
+                self.video_player.handle_progress_bar_click(event.pos)
+
             # Update button hover states
             for button in self.action_buttons:
                 button.update_hover(event.pos)
@@ -691,7 +762,11 @@ class WorldExplorerGame:
 
         elif event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 1:  # Left click
-                # Don't allow clicks during video playback
+                # Check video progress bar click (always allow during video playback)
+                if self.video_player.is_playing and self.video_player.handle_progress_bar_click(event.pos):
+                    return
+
+                # Don't allow other clicks during video playback
                 if not self.video_player.is_playing:
                     # Check retry button click if at final state
                     if self.text_world.is_final_state(self.current_state):
@@ -710,6 +785,10 @@ class WorldExplorerGame:
                             self.perform_action(button.action)
                             break
 
+        elif event.type == pygame.MOUSEBUTTONUP:
+            if event.button == 1:  # Left click released
+                self.video_player.is_dragging = False
+
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
                 self.running = False
@@ -720,6 +799,27 @@ class WorldExplorerGame:
                 # Undo
                 if not self.video_player.is_playing:
                     self.undo_action()
+            elif event.key == pygame.K_SPACE:
+                # Toggle pause/play video
+                if self.video_player.is_playing:
+                    self.video_player.is_playing = not self.video_player.is_playing
+            elif event.key == pygame.K_RIGHT:
+                # Skip forward 1 second
+                if self.video_player.cap and self.video_player.total_frames > 0:
+                    skip_frames = int(self.video_player.fps)
+                    new_frame = min(self.video_player.frame_count + skip_frames, self.video_player.total_frames - 1)
+                    self.video_player.seek(new_frame)
+            elif event.key == pygame.K_LEFT:
+                # Skip backward 1 second
+                if self.video_player.cap and self.video_player.total_frames > 0:
+                    skip_frames = int(self.video_player.fps)
+                    new_frame = max(self.video_player.frame_count - skip_frames, 0)
+                    self.video_player.seek(new_frame)
+            elif event.key == pygame.K_s:
+                # Skip to end of video
+                if self.video_player.cap and self.video_player.total_frames > 0:
+                    self.video_player.seek(self.video_player.total_frames - 1)
+                    self.video_player.stop()
 
     def run(self):
         """Main game loop."""
