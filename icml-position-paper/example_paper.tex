@@ -1,0 +1,458 @@
+%%%%%%%% ICML 2026 EXAMPLE LATEX SUBMISSION FILE %%%%%%%%%%%%%%%%%
+
+\documentclass{article}
+
+% Recommended, but optional, packages for figures and better typesetting:
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{booktabs} % for professional tables
+
+% hyperref makes hyperlinks in the resulting PDF.
+% If your build breaks (sometimes temporarily if a hyperlink spans a page)
+% please comment out the following usepackage line and replace
+% \usepackage{icml2026} with \usepackage[nohyperref]{icml2026} above.
+\usepackage{hyperref}
+\usepackage{enumitem} % already common in ICML-style submissions
+
+% Attempt to make hyperref and algorithmic work together better:
+\newcommand{\theHalgorithm}{\arabic{algorithm}}
+
+% Use the following line for the initial blind version submitted for review:
+\usepackage{icml2026}
+
+% % For preprint, use
+% \usepackage[preprint]{icml2026}
+
+% If accepted, instead use the following line for the camera-ready submission:
+% \usepackage[accepted]{icml2026}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{tabularx}
+
+% if you use cleveref..
+\usepackage[capitalize,noabbrev]{cleveref}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% THEOREMS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}[theorem]{Assumption}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+% Todonotes is useful during development; simply uncomment the next line
+%    and comment out the line below the next line to turn off comments
+%\usepackage[disable,textsize=tiny]{todonotes}
+\usepackage[textsize=tiny]{todonotes}
+
+% The \icmltitle you define below is probably too long as a header.
+% Therefore, a short form for the running title is supplied here:
+\icmltitlerunning{World Models Should Be Benchmarked for Action–State Consistency}
+
+\begin{document}
+
+\twocolumn[
+  \icmltitle{Position: World Models Should Be Benchmarked for Action--State Consistency}
+
+  % It is OKAY to include author information, even for blind submissions: the
+  % style file will automatically remove it for you unless you've provided
+  % the [accepted] option to the icml2026 package.
+
+  % List of affiliations: The first argument should be a (short) identifier you
+  % will use later to specify author affiliations Academic affiliations
+  % should list Department, University, City, Region, Country Industry
+  % affiliations should list Company, City, Region, Country
+
+  % You can specify symbols, otherwise they are numbered in order. Ideally, you
+  % should not use this facility. Affiliations will be numbered in order of
+  % appearance and this is the preferred way.
+  \icmlsetsymbol{equal}{*}
+
+  \begin{icmlauthorlist}
+    \icmlauthor{Firstname1 Lastname1}{equal,yyy}
+    \icmlauthor{Firstname2 Lastname2}{equal,yyy,comp}
+    \icmlauthor{Firstname3 Lastname3}{comp}
+    \icmlauthor{Firstname4 Lastname4}{sch}
+    \icmlauthor{Firstname5 Lastname5}{yyy}
+    \icmlauthor{Firstname6 Lastname6}{sch,yyy,comp}
+    \icmlauthor{Firstname7 Lastname7}{comp}
+    %\icmlauthor{}{sch}
+    \icmlauthor{Firstname8 Lastname8}{sch}
+    \icmlauthor{Firstname8 Lastname8}{yyy,comp}
+    %\icmlauthor{}{sch}
+    %\icmlauthor{}{sch}
+  \end{icmlauthorlist}
+
+  \icmlaffiliation{yyy}{Department of XXX, University of YYY, Location, Country}
+  \icmlaffiliation{comp}{Company Name, Location, Country}
+  \icmlaffiliation{sch}{School of ZZZ, Institute of WWW, Location, Country}
+
+  \icmlcorrespondingauthor{Firstname1 Lastname1}{first1.last1@xxx.edu}
+  \icmlcorrespondingauthor{Firstname2 Lastname2}{first2.last2@www.uk}
+
+  % You may provide any keywords that you find helpful for describing your
+  % paper; these are used to populate the "keywords" metadata in the PDF but
+  % will not be shown in the document
+  \icmlkeywords{Machine Learning, ICML}
+
+  \vskip 0.3in
+]
+
+% this must go after the closing bracket ] following \twocolumn[ ...
+
+% This command actually creates the footnote in the first column listing the
+% affiliations and the copyright notice. The command takes one argument, which
+% is text to display at the start of the footnote. The \icmlEqualContribution
+% command is standard text for equal contribution. Remove it (just {}) if you
+% do not need this facility.
+
+% Use ONE of the following lines. DO NOT remove the command.
+% If you have no special notice, KEEP empty braces:
+\printAffiliationsAndNotice{}  % no special notice (required even if empty)
+% Or, if applicable, use the standard equal contribution text:
+% \printAffiliationsAndNotice{\icmlEqualContribution}
+
+\begin{abstract}
+World models are increasingly used as simulation backbones for reasoning, planning, and interaction. Yet most evaluations still prioritize perceptual fidelity under passive rollouts, leaving action-conditioned dynamics under-specified. We argue that world models should be benchmarked for action--state consistency: whether interventions induce reliable, causally legible state transitions. We contribute a state-modality x action-interface taxonomy, a metric quad that separates state consistency and diversity from action rationality and branching control, and an explicit action-graph construction (AC-World) that makes these principles operational. We also define a minimal, code-backed diagnostic that measures action inference on a small branching world, illustrating how action-centric evaluation remains well-posed when prompt-only rollouts do not.
+\end{abstract}
+
+\section{Introduction}
+World models aim to capture \emph{how the world changes}: not only what is observed, but how latent state evolves over time and how interventions shape future outcomes. This ambition is no longer confined to model-based reinforcement learning (MBRL)---it now spans text-to-video generation (Sora, Veo) \cite{sora2024,veo2024}, history-conditioned video simulation and interactive world models (PAN, Genie, Oasis, GameNGen) \cite{pan2025,genie2024,oasis2024,gamengen2024}, 3D and spatial world construction (World Labs Marble) \cite{worldlabs2024}, and robotics or driving systems that couple perception to action (RT-2, UniSim, GAIA, Cosmos) \cite{rt22023,unisim2024,gaia2023,cosmos2025}. The community increasingly talks about these systems in a shared vocabulary of ``world models,'' often implying a common scale of progress.
+
+The problem is that \emph{progress is currently easy to claim but hard to compare}. ``World model'' describes incompatible objects: latent dynamics used for planning in Dreamer-style agents, pixel-level simulators for games, and prompt-only video generators with no stable action interface. Without a shared notion of state and action, papers talk past each other, and benchmarks reward the wrong properties. This mismatch is not cosmetic. Agents do not merely \emph{watch} the world; they \emph{intervene}. A system can produce visually coherent videos yet fail as a world model if interventions do not induce reliable, context-appropriate changes.
+
+We argue that the field is missing two foundations. First, there is no widely adopted taxonomy that organizes world models by what they represent as \emph{state} (text, images, video, learned latents, or explicit spatial structure) and how they accept or expose \emph{actions} (none/prompt-only, pixel-level control, continuous motor commands, discrete symbolic actions, or hybrid mixes). This absence produces apples-to-oranges comparisons: a high-fidelity generator may look impressive yet be unusable for interaction; a controllable simulator may enable planning yet appear visually crude. Second, there is no principled evaluation axis that directly tests what makes a model a \emph{world} model rather than a passive predictor: whether it preserves coherent, \emph{action-conditioned} transitions under interventions.
+
+Our position is simple: \textbf{world models should be evaluated by action--state consistency, not only by perceptual fidelity under passive rollouts.} This does not mean visual realism is irrelevant; it means realism is an incomplete proxy for the properties required by planning, tool use, and safety verification. We therefore advocate an action-centric framing that separates (i) how well the world holds together and how rich it is, from (ii) whether actions are causally legible and whether they provide meaningful branching control.
+
+As a position paper, we make three contributions:
+\begin{itemize}[leftmargin=*,itemsep=2pt]
+  \item \textbf{Taxonomy (Section~\ref{sec:taxonomy}).} We first define the core components of a world model (state, action, transition, agent) as a shared discussion ground, and show how this yields a practical state-modality $\times$ action-interface taxonomy \cite{ke2023reviewworldmodel}.
+  \item \textbf{Missing axis (Section~\ref{sec:missing_axis}).} We argue that action--state consistency is missing from dominant benchmarks, and propose an action-centric evaluation lens (metric quad) that includes inverse-action rationality and controllable branching \cite{zhang2018lpips,unterthiner2019fvd,du2023vbench}.
+  \item \textbf{Existence proof (Section~\ref{sec:construction}).} We describe an explicit action-graph construction (AC-World) that makes states, actions, and transitions groundable into text, images, and video for concrete diagnostics.
+\end{itemize}
+We include one minimal diagnostic (Section~\ref{sec:evidence}) that our current implementation can run end-to-end, illustrating that action-centric evaluation is measurable today.
+
+\subsection{Definitions and Notation}
+\label{subsec:defs_notation}
+We model an environment as a controlled dynamical system with \emph{state space} $\mathcal{S}$ and \emph{action space} $\mathcal{A}$. At time $t$, the environment is represented by a state $s_t\in\mathcal{S}$. An intervention $a_t\in\mathcal{A}$ induces a (possibly stochastic) transition
+\[
+\mathcal{T}:\ \mathcal{S}\times\mathcal{A}\to \Delta(\mathcal{S}),\qquad s_{t+1}\sim \mathcal{T}(s_t,a_t),
+\]
+where $\Delta(\mathcal{S})$ denotes a distribution over next states.
+A benchmark instance is $\mathcal{I}=(s_0,\,G,\,\mathcal{C},\,T)$ with initial state $s_0$, horizon $T$, a goal predicate $G:\mathcal{S}\to\{0,1\}$, and optional dynamic constraints $\mathcal{C}$ enforced along a rollout.
+A world-model agent consists of a learned \emph{world model} $M_\theta$ and, optionally, a \emph{policy} $\pi_\phi$:
+\[
+M_\theta:\ (h_t,a_t)\ \mapsto\ p_\theta(s_{t+1}\mid h_t,a_t),\qquad a_t\sim \pi_\phi(\cdot\mid h_t),\qquad h_t\coloneqq (s_{\le t},a_{<t}).
+\]
+Throughout, we use ``state'' to mean the step-to-step representation exposed to an evaluator (text, image, video, latent, or spatial/3D); the taxonomy below makes this representation choice explicit.
+
+\section{A Taxonomy for World Models}
+\label{sec:taxonomy}
+\subsection{World model components: a unified discussion ground}
+The term ``world model'' is used across communities to describe systems with different interfaces and different objects of prediction. To keep comparisons precise, we refer to the notation in Section~\ref{subsec:defs_notation}: an environment evolves as $s_{t+1}\!\sim\!\mathcal{T}(s_t,a_t)$, and a world model $M_\theta$ is any learned predictor that can be rolled out under interventions $a_t$ (either because it directly models $p_\theta(s_{t+1}\mid h_t,a_t)$, or because it implements an equivalent simulator). A policy $\pi_\phi$ may be explicit (selecting $a_t\in\mathcal{A}$) or implicit (e.g., prompt-based control), but in all cases it induces trajectories by repeated action selection and state update.
+
+This decomposition is intentionally generic; its value is that it makes two questions unavoidable for benchmarking: \emph{what counts as state} (i.e., what representation is carried forward as $s_t$), and \emph{what counts as action} (i.e., what interface defines admissible interventions in $\mathcal{A}$). These choices determine what a ``rollout'' means, what errors are diagnosable, and what metrics are well-posed.
+
+\subsection{Taxonomy axes derived from the components}
+With the above decomposition, two evaluation-critical axes become explicit.
+\emph{State modality} is the type of representation used for $s_t$ (text/image/video/latent/spatial), and \emph{action interface} is how interventions $a_t$ are specified and constrained (none/prompt-only, pixel, motor/continuous, symbolic, hybrid). The taxonomy is intentionally simple: it does not attempt to capture every modeling choice (e.g., diffusion vs.\ autoregressive), but it does capture the two degrees of freedom that most directly determine \emph{what can be evaluated}. The same system can be strong under one axis and weak under another; without making both axes explicit, evaluation confounds representation choices with interface choices.
+
+\subsection{State modality: how is state exposed?}
+State modality specifies the representational layer at which the world is exposed to the evaluator:
+\emph{text} (language state descriptions), \emph{image} (single-frame visual state), \emph{video} (temporal visual state), \emph{latent} (learned compact state sufficient for prediction/control), and \emph{spatial/3D} (explicit geometry or persistent spatial structure). This axis matters because state is not merely a snapshot: it encodes what is assumed to be tracked and preserved across time. In MBRL, latent states are learned to be predictive under actions (PlaNet, Dreamer) \cite{hafner2019planet,hafner2020dreamer,hafner2021dreamerv2}, while in modern generative models, the state may be an image or video stream optimized for perceptual realism \cite{sora2024,veo2024,wu2023vastdreamer,lu2024freelong,tan2024videoinfinity}. In spatial world modeling, state may include an explicit, editable representation of a scene with persistent structure \cite{worldlabs2024}.
+
+This axis also clarifies the role of representation learning: methods such as DINO, CLIP, and JEPA-style predictors \cite{caron2021dino,radford2021clip,lecun2022path,assran2023ijepa,bardes2024vjepa} provide \emph{state encoders} and predictive features that can support world modeling, but by themselves do not define an interactive world model without an action interface and a transition semantics.
+
+\subsection{Action interface: what counts as an ``action''?}
+Action interface specifies how interventions are represented and interpreted by the system:
+\textbf{none} (prompt-only or passive generation), \textbf{pixel} (low-level control like mouse/keyboard or pixel deltas), \textbf{motor} (continuous control signals), \textbf{symbolic} (discrete structured commands), and \textbf{hybrid} (structured high-level actions with optional low-level conditioning). This axis matters because it determines whether the system can be used as an environment for planning: actions must have stable semantics across time and contexts.
+
+Classical control and robotics benchmarks naturally inhabit motor/symbolic interfaces \cite{fu2021d4rl,yu2020metaworld,james2020rlbench,li2022behavior}. Recent interactive world models explore pixel-level control \cite{genie2024,oasis2024,gamengen2024}, while others use natural language as an action channel \cite{pan2025,unisim2024}. Prompt-only video generators occupy the none/prompt-only interface: they may accept instructions, but they do not expose a stable, stepwise action semantics that would allow comparable evaluation across multi-step rollouts.
+
+\subsection{Why these axes matter: comparability and failure attribution}
+The consequence of the taxonomy is methodological: evaluation should be reported \emph{within each cell} $(m_S, m_A)$, rather than across cells. Within a cell, we can define consistent inputs/outputs, comparable action sets, and meaningful metrics. Across cells, differences can be attributed to interface regimes rather than to the quality of a model.
+
+Table~\ref{tab:model_taxonomy} illustrates representative systems. Prompt-only video generators such as Sora and Veo \cite{sora2024,veo2024} reside in the video/none cell, while interactive models such as Genie, Oasis, and GameNGen \cite{genie2024,oasis2024,gamengen2024} occupy video/pixel or video/symbolic interfaces. PAN uses natural language as a structured action channel for video simulation \cite{pan2025}. Robotics and autonomous driving systems such as RT-2, UniSim, and GAIA couple perception with motor or hybrid actions \cite{rt22023,unisim2024,gaia2023}. This taxonomy makes explicit why ``visual realism'' and ``action controllability'' are often confounded: many systems optimize one axis while leaving the other under-specified.
+
+\begin{table*}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{2.5pt}
+\caption{Taxonomy of world models across state modality and action interface. SC=State Consistency, SD=State DoF, AR=Action Rationality ($\mathsf{AR}_{\text{inv}}$), AF=Action DoF. Scores: H=High, M=Medium, L=Low, F=Finite, V=Variable, --=N/A, 0=Zero.}
+\label{tab:model_taxonomy}
+\begin{tabular}{@{}lllcccc|lllcccc@{}}
+\toprule
+\textbf{Model} & \textbf{State} & \textbf{Action} & \textbf{SC} & \textbf{SD} & \textbf{AR} & \textbf{AF} &
+\textbf{Model} & \textbf{State} & \textbf{Action} & \textbf{SC} & \textbf{SD} & \textbf{AR} & \textbf{AF} \\
+\midrule
+\multicolumn{7}{@{}l}{\textit{\textbf{Model-Based RL}}} & \multicolumn{7}{l}{\textit{\textbf{Interactive World Models}}} \\
+PlaNet \cite{hafner2019planet} & Latent & Motor & H & M & H & M &
+Genie 1 \cite{bruce2024genie} & Video & Pixel & M & M & M & M \\
+Dreamer \cite{hafner2020dreamer} & Latent & Motor & H & M & H & M &
+Genie 2/3 & 3D/Video & Pixel+NL & H & H & M & M \\
+DreamerV2 \cite{hafner2021dreamerv2} & Latent & Symbolic & H & F & H & F &
+Oasis \cite{decart2024oasis} & Video & Pixel & M & M & M & M \\
+DreamerV3 \cite{hafner2023dreamerv3} & Latent & Motor/Sym & H & V & H & V &
+GameNGen \cite{valevski2024gamengen} & Video & Symbolic & H & F & H & F \\
+MuZero \cite{schrittwieser2020muzero} & Latent & Symbolic & H & V & H & F &
+Oh et al.\ \cite{oh2015action} & Video & Symbolic & M & F & H & F \\
+DIAMOND \cite{alonso2024diamond} & Video & Symbolic & H & F & H & F &
+& & & & & & \\
+\midrule
+\multicolumn{7}{@{}l}{\textit{\textbf{Video Generation (Passive)}}} & \multicolumn{7}{l}{\textit{\textbf{Robotics \& Physical AI}}} \\
+Sora \cite{openai2024sora} & Video & None & H & H & L & 0 &
+RT-2 \cite{brohan2023rt2} & Image & Motor & V & M & H & M \\
+Veo 2/3 \cite{veo2024} & Video & None & H & H & L & 0 &
+UniSim \cite{yang2024unisim} & Video & NL & H & M & H & M \\
+VastDreamer \cite{wu2023vastdreamer} & 3D/Video & None & H & H & L & 0 &
+Cosmos \cite{nvidia2025cosmos} & Video & Motor & H & H & H & H \\
+FreeLong \cite{lu2024freelong} & Video & None & H & H & L & 0 &
+OpenVLA \cite{kim2024openvla} & Image & Motor & V & M & H & M \\
+Video-Infinity \cite{tan2024videoinfinity} & Video & None & H & H & L & 0 &
+V-JEPA 2 \cite{bardes2025vjepa2} & Video & Motor & H & M & H & M \\
+\midrule
+\multicolumn{7}{@{}l}{\textit{\textbf{Autonomous Driving}}} & \multicolumn{7}{l}{\textit{\textbf{LLM \& Web-Based World Models}}} \\
+GAIA-1 \cite{hu2023gaia1} & Video & Motor+Text & H & H & M & M &
+LLM World Sim \cite{wang2024llmworldsim} & Text & Symbolic & M & V & M & M \\
+GAIA-2 & Video & Motor+Text & H & H & M & M &
+Web World Models \cite{feng2025webworldmodels} & Text/Web & Sym+NL & H & V & H & M \\
+& & & & & & &
+WebDreamer \cite{gu2024webdreamer} & Text/HTML & Symbolic & M & M & H & M \\
+\midrule
+\multicolumn{7}{@{}l}{\textit{\textbf{3D World Generation}}} & \multicolumn{7}{l}{\textit{\textbf{History-Conditioned Video}}} \\
+World Labs \cite{worldlabs2024} & 3D/Video & Continuous & H & F & H & F &
+PAN \cite{pan2025worldmodel} & Video & NL & H & H & H & M \\
+\midrule
+\multicolumn{7}{@{}l}{\textit{\textbf{Representation Learning (State Encoders)}}} & \multicolumn{7}{l}{\textit{\textbf{Reference Environments}}} \\
+I-JEPA \cite{assran2023ijepa} & Latent & None & H & M & -- & -- &
+Classic Games (Mario) & 2D Video & Symbolic & H & F & H & F \\
+V-JEPA \cite{bardes2024vjepa} & Video & None & H & M & -- & -- &
+Minecraft & 3D Block & Hybrid & M & $\infty$ & H & H \\
+DINO \cite{caron2021dino} & Image & None & H & M & -- & -- &
+Real World & Physical & All & H & $\infty$ & H & $\infty$ \\
+\midrule
+\multicolumn{14}{@{}l}{\textit{\textbf{Proposed}}} \\
+\multicolumn{3}{@{}l}{\textbf{AC-World (ours)}} & \multicolumn{4}{l}{Video + Graph \quad Hybrid} &
+\multicolumn{3}{l}{} & H & H & H & H \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\section{Why Action--State Consistency Is the Missing Axis}
+\label{sec:missing_axis}
+Current evaluation practice systematically underweights the properties that make a model \emph{interactive}. Broadly, there are two dominant evaluation families:
+\emph{(i) perceptual fidelity under passive generation}, and \emph{(ii) downstream task success under a policy}. Both are useful; neither isolates the fidelity of action-conditioned dynamics.
+
+\subsection{What benchmarks measure today}
+For video and image generation, benchmarks and metrics such as LPIPS, FVD, and VBench largely reward perceptual realism, temporal smoothness, and semantic alignment under prompt-only rollouts \cite{zhang2018lpips,unterthiner2019fvd,du2023vbench}. Recent long-horizon generation work explicitly targets extended coherence \cite{lu2024freelong,tan2024videoinfinity}, reinforcing the idea that longer, smoother video implies a stronger world model. For embodied settings, benchmarks such as D4RL, Meta-World, BEHAVIOR, RLBench, ALFRED, Habitat, and Ego4D focus on end-task performance, instruction following, or embodied perception \cite{fu2021d4rl,yu2020metaworld,li2022behavior,james2020rlbench,shridhar2020alfred,savva2019habitat,grauman2022ego4d}. These evaluations conflate multiple factors: the policy, exploration and data collection, reward structure, and environment design. Even when a learned world model is present, the benchmark signal is not diagnostic of whether the model's dynamics are correct.
+
+Agent benchmarks for tool use and web interaction further expand the scope but also amplify the confound: results reflect the full stack (planning, tool use, prompting, web priors), not the causal fidelity of the underlying dynamics \cite{liu2023agentbench,xu2023toolbench,zhou2023webarena}. Recent work has started to formalize diagnostics for what it means for a generative model to ``contain'' an implicit world model \cite{vafa2024evaluating}, but the community still lacks a standard substrate where action-conditioned transitions are explicitly specified and thus directly testable.
+
+\subsection{Action--state consistency: the interactive criterion}
+Action--state consistency asks two simple questions that are fundamental for interactive use:
+\emph{(i) can we infer the action from the transition}, and \emph{(ii) do different actions reliably induce different futures}? These questions capture causal legibility and controllable branching, two requirements for planning and verification. They are not equivalent to perceptual realism: a transition can look plausible yet correspond to no coherent intervention (action ambiguity), or distinct actions can lead to visually similar outcomes (branch collapse).
+
+We emphasize that this is not merely an academic preference. In planning, an agent must reason about counterfactuals: ``if I take action $a$ instead of $a'$, do I end up somewhere meaningfully different?'' In safety and verification, we need to check whether interventions have predictable effects, and whether the model respects constraints (e.g., object permanence, conservation, contact). A model that fails these tests may still produce excellent videos, but it cannot serve as a reliable simulator for decision making.
+
+\subsection{A metric quad for interface-aware evaluation}
+To operationalize this criterion, we define a compact metric quad (Table~\ref{tab:metric_quad_overview}) spanning the state and action axes, and the consistency vs.\ degrees-of-freedom axes. The quad is intentionally interface-aware: it can be instantiated across modalities, but it must be evaluated within a fixed taxonomy cell.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Metric quad (overview).}
+\label{tab:metric_quad_overview}
+\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\columnwidth}{@{}l|>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X@{}}
+\toprule
+ & \textbf{Consistency} & \textbf{Degree of Freedom} \\
+\midrule
+\textbf{State ($\mathcal{S}$)}
+ & State Consistency ($\mathsf{SC}$)
+ & State DoF ($\mathsf{SD}$) \\
+\textbf{Action ($\mathcal{A}$)}
+ & Action Rationality ($\mathsf{AR}_{\text{inv}}$)
+ & Action DoF ($\mathsf{AF}$) \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\paragraph{State Consistency ($\mathsf{SC}$).}
+Does the world hold together over time? $\mathsf{SC}$ captures temporal coherence and structural stability: objects do not teleport or morph without cause, camera pose does not drift arbitrarily, and long-horizon rollouts do not degrade into implausible artifacts. For visual modalities, $\mathsf{SC}$ can be instantiated by aggregating distributional and framewise measures (e.g., FVD, LPIPS-based stability, optical-flow consistency) \cite{unterthiner2019fvd,zhang2018lpips}. For text modalities, $\mathsf{SC}$ can be instantiated via contradiction/entailment checks and event-chain consistency.
+
+\paragraph{State DoF ($\mathsf{SD}$).}
+How rich is the reachable world? $\mathsf{SD}$ measures the diversity of valid reachable states under reasonable behavior. Operationally, one can embed reachable states (or rollouts) using fixed perceptual encoders such as CLIP or DINO \cite{radford2021clip,caron2021dino}, then cluster to estimate the number of distinct modes. This is not a perfect measure of openness, but it distinguishes collapsed worlds (few reachable modes) from worlds that support meaningfully different trajectories.
+
+\paragraph{Action Rationality via Inverse Dynamics ($\mathsf{AR}_{\text{inv}}$).}
+Are transitions causally legible? $\mathsf{AR}_{\text{inv}}$ measures whether a transition is interpretable as the consequence of a specific intervention. Given a before/after pair $(s_t, s_{t+1})$ and a candidate action set $\mathcal{A}_{\text{cand}}$ (defined by the action interface), an inverse-dynamics judge $\Psi$ predicts $\hat a_t$. We score
+\[
+\mathsf{AR}_{\text{inv}} = \mathbb{E}_\tau[\mathbf{1}\{\hat a_t = a_t\}],
+\]
+where low values indicate action ambiguity or inconsistent dynamics. Importantly, $\mathsf{AR}_{\text{inv}}$ is \emph{ill-posed} when no candidate set exists (prompt-only generation), because there is no stable action vocabulary against which to evaluate invertibility. This is a central reason we argue that prompt-only rollouts cannot serve as a benchmark for interactive world modeling.
+
+\paragraph{Action DoF ($\mathsf{AF}$).}
+How many distinct futures can actions reliably induce from the same state? $\mathsf{AF}$ measures controllable branching: from the same state, do different actions induce meaningfully different outcomes? Operationally, from a fixed state $s_t$, sample a set of distinct candidate actions $\{a_t^{(n)}\}_{n=1}^N$, predict next states $\{\tilde s_{t+1}^{(n)}\}$, embed with a fixed encoder $\phi$, and cluster outcomes to estimate the number of distinct modes. Low $\mathsf{AF}$ corresponds to ``rail-shooter'' dynamics where many actions collapse to the same future; high $\mathsf{AF}$ corresponds to sandbox-like control.
+
+\subsection{Why prompts are not actions}
+A natural objection is that ``a prompt \emph{is} an action.'' In an informal sense, it is: prompts influence the distribution of generated outputs. But as an \emph{action interface} for benchmarking and control, prompts have three fundamental problems.
+
+First, prompts do not define a closed, stable action set. Even if we restrict prompts to a template, small paraphrases can change semantics, and the space is unbounded. This makes inverse-dynamics evaluation ambiguous: without a candidate set, there is no well-posed notion of whether a transition is uniquely attributable to an intervention.
+
+Second, prompts do not enforce stepwise compositionality. An interactive interface should support repeated application of actions with consistent semantics across states. Prompt-only generation typically treats each request as a new sample from a conditional distribution, without an explicit state that is updated by a fixed transition semantics. As a result, multi-step ``rollouts'' are often a sequence of loosely related generations rather than a coherent trajectory.
+
+Third, prompt semantics are entangled with rendering. If the only way to induce a change is to rewrite a full scene description, then ``action'' becomes indistinguishable from ``state specification.'' This collapses the distinction between dynamics and state representation, and makes it difficult to attribute failure: did the model misunderstand the intervention, or did it simply generate a different scene?
+
+These issues motivate a practical stance: prompts can be \emph{one} way to specify actions, but only when embedded in a structured interface that defines candidate actions, state updates, and evaluation protocols.
+
+\section{From Principle to Practice: An Action-Centric Construction}
+\label{sec:construction}
+Our goal is not to claim a state-of-the-art model, but to show one concrete path that makes action--state consistency operational. We instantiate this path as explicit action-conditioned world graphs, then ground them into text, images, and videos.
+
+\subsection{Design Requirements}
+The thesis implies a minimal set of design requirements. (i) \textbf{An explicit action interface}: actions must be enumerable (or at least discretizable) so that evaluation can define candidate sets and compare outcomes. (ii) \textbf{Explicit, human-interpretable states}: states must be describable in a way that supports grounding into the chosen modality (text/image/video). (iii) \textbf{Graph-structured transitions}: branching should be an explicit object, not an emergent property of sampling. (iv) \textbf{Multi-ending outcomes}: many real tasks admit graded success and multiple failure modes; explicit endings enable richer evaluation than binary success/failure.
+
+These requirements are intentionally weaker than ``build a perfect simulator.'' They are sufficient to expose the failure modes we care about and to make action-centric diagnostics measurable.
+
+\subsection{Action-Conditioned World Representation}
+Referring to the definitions introduced in Section~\ref{subsec:defs_notation}, we represent worlds as explicit action-conditioned graphs, following the AC-World formalism. Conceptually, an AC-World instantiates an MDP-like structure, but with one design choice that is crucial for diagnosis: each state is an \emph{explicit, human-interpretable description} rather than an opaque symbol. A world is a controlled dynamical system
+\[
+(\mathcal{S}, \mathcal{A}, \mathcal{T}, s_0, G, \mathcal{F}),
+\]
+where we make the support of the transition mechanism explicit as a directed multigraph $\mathcal{T} \subseteq \mathcal{S} \times \mathcal{A} \times \mathcal{S}$. A trajectory is a finite path
+\[
+\tau = \big((s_0,a_0,s_1), \dots, (s_{T-1},a_{T-1},s_T)\big),
+\]
+with $(s_t,a_t,s_{t+1}) \in \mathcal{T}$ and $s_T \in \mathcal{F}$. States are textual descriptions with structured metadata (progress, quality, tools), and actions are human-readable descriptions with optional type and risk labels. This makes both dynamics errors and policy errors diagnosable at the level of graph edges and branch choices.
+
+\paragraph{States as anchors for grounding.}
+Each state includes (i) a natural language description that can be used directly for text-only evaluation and (ii) structured metadata for task-relevant variables. In practical worlds (e.g., assembly, cooking, driving), metadata can encode progress, quality, constraints, and safety-critical indicators. These fields do not replace perception; they provide a scaffold that makes grounding and evaluation less ambiguous. For instance, a driving world can explicitly represent whether a seatbelt is buckled or whether the parking brake is engaged, enabling unambiguous action effects even when rendered visually.
+
+\paragraph{Actions as causal abstractions.}
+Actions are described at a human-interpretable granularity: they are intended to be inferable from state changes and stable across contexts. This differs from prompt-only control, where actions are often entangled with full-scene specification. It also differs from raw motor control, where action semantics may be too low-level for interpretability. In this sense, AC-World's actions are closer to the abstraction level of symbolic planning while remaining compatible with grounding into continuous visual change.
+
+\paragraph{Graph diagnostics.}
+Once transitions are explicit, the graph itself becomes analyzable. We can measure decision points (states with multiple outgoing actions), branching factor, path diversity, and the structure of failure basins. This enables a new kind of evaluation: we can distinguish whether a model fails because it cannot represent branching, because it violates constraints, or because it collapses multiple actions into a single future.
+
+\subsection{World Families and Decision Structure}
+We construct three families of worlds that probe increasing decision complexity while remaining interpretable.
+\emph{Linear worlds} contain a single canonical path and primarily test temporal consistency and stepwise execution. \emph{Branching worlds} introduce decision points where multiple admissible actions are available, testing whether a model can represent alternative futures and whether actions induce distinct outcomes. \emph{Multi-ending worlds} enrich the graph with multiple terminal states of varying quality, including explicit failures, reflecting that many tasks have graded success and multiple ways to go wrong.
+
+These families align with a practical view of benchmark design: difficulty is not only about long horizon, but also about the density and irreversibility of decisions. A world with a few high-stakes branch points can be more challenging (and more diagnostic) than a long linear procedure, because it requires causal reasoning and counterfactual prediction rather than memorization.
+
+We emphasize that the graph formalism is compatible with both hand-curated worlds and LLM-generated worlds. LLM generation is useful for scaling diversity, while explicit graph validation prevents common failure modes such as unreachable states or inconsistent transitions.
+
+\subsection{Grounding into Textual, Egocentric, and Visual Modalities}
+We ground the same underlying action graph into multiple modalities, preserving transition structure across representations.
+
+\paragraph{Text worlds.}
+Text worlds can be generated by an LLM as a sequence of concrete state descriptions and actions, then expanded into branching and multi-ending variants by inserting alternative actions (shortcuts, risky choices, common mistakes) at selected states. Text worlds support fast iteration and allow evaluation of language-only world models or planners. They also provide a clean setting for action-inference diagnostics, because before/after states are explicit.
+
+\paragraph{Egocentric worlds.}
+For tasks where visual grounding matters, we rewrite state descriptions into strict egocentric, first-person keyframes: camera height and angle, visible hands and tools, object layout, and salient cues. Actions specify hand trajectories and object motion, reducing ambiguity and making visual grounding more consistent. This aligns with egocentric datasets and embodied perception benchmarks \cite{grauman2022ego4d,goyal2017something}.
+
+\paragraph{Image worlds via reference-based variation.}
+Image worlds are generated by first rendering an initial state from scratch, then generating subsequent states via action-conditioned image variation using the previous image as a reference. This design is pragmatic: it enforces identity persistence (same objects, same layout, same camera) while isolating the visible change caused by the action. It directly supports evaluation of $\mathsf{AR}_{\text{inv}}$ (action inference from image pairs) and $\mathsf{SC}$ (temporal stability across transitions).
+
+\paragraph{Video worlds via first/last-frame interpolation.}
+Given images for states, transition videos are generated using first-frame + last-frame interpolation guided by an action prompt. This ensures that the video begins and ends at known states, making evaluation and debugging tractable. Importantly, grounding into video does not change the underlying graph: the world remains a set of discrete states with explicit transitions; the video is a rendering of an edge.
+
+\paragraph{Implementation note: canonical vs.\ full-world grounding.}
+In branching graphs, full grounding of all states and all transitions can be expensive. We therefore distinguish \emph{canonical path} grounding (a main success path) from \emph{full-world} grounding (BFS over the reachable graph). This separation makes it feasible to scale curation without paying the full cost of rendering every branch upfront, while still supporting on-demand diagnostics for branches that matter.
+
+\subsection{Protocols enabled by explicit graphs}
+Once the world is explicit, evaluation can separate the fidelity of a world model from the competence of a policy. We can evaluate in a teacher-forced setting (predict $s_{t+1}$ given $(s_t,a_t)$) to test transition modeling, in an inverse setting (infer $a_t$ from $(s_t,s_{t+1})$) to test causal legibility, and in a branching setting (compare outcomes under alternative actions) to test controllability. These protocols are difficult to define when the world is implicit in a generator and actions are not enumerable.
+
+\begin{algorithm}[t]
+\caption{Full-world image grounding via BFS over an action-conditioned graph.}
+\label{alg:bfs_grounding}
+\begin{algorithmic}[1]
+\STATE Generate initial image for $s_0$ from scratch.
+\STATE Initialize queue with outgoing transitions $(s_0,a,s')$.
+\WHILE{queue not empty}
+  \STATE Pop $(s,a,s')$ from queue.
+  \IF{$s'$ not yet rendered}
+    \STATE Render $s'$ by varying the image of $s$ conditioned on $a$.
+  \ENDIF
+  \STATE Record the transition edge $(s,a,s')$.
+  \STATE Push all outgoing transitions from $s'$ to queue.
+\ENDWHILE
+\end{algorithmic}
+\end{algorithm}
+
+\section{Evidence: What Breaks Without Action-Centricity}
+\label{sec:evidence}
+We include a single minimal diagnostic experiment that is feasible with our current implementation and that directly targets the action-centric failure mode: \emph{action ambiguity}. The diagnostic is intentionally small and interpretable; the goal is to demonstrate that action-centric evaluation is well-posed and measurable, not to establish a leaderboard.
+
+\paragraph{Minimal diagnostic: action inference on a small branching world.}
+We use a small branching world (apple-eating) with 8 states and 7 transitions. Each state is a concrete, human-interpretable description of a tabletop scene; branches correspond to distinct interventions (e.g., \emph{cut} vs.\ \emph{bite}), and terminal states represent different outcomes. The task is: for each transition $(s_t,a_t,s_{t+1})$, infer $a_t$ from the pair $(s_t,s_{t+1})$.
+
+\textbf{Protocol.} For each transition, we define a candidate set $\mathcal{A}_{\text{cand}}$ consisting of (i) the outgoing actions available from $s_t$ in the graph and (ii) a small set of hard negatives sampled from other parts of the world (actions that are plausible in the domain but not valid from $s_t$). We then ask an inverse-dynamics judge $\Psi$ (an LLM for text states, or a VLM for image states) to select the most likely action. We report top-1 accuracy, which instantiates $\mathsf{AR}_{\text{inv}}$.
+
+\textbf{Why this matters.} If a world model collapses distinct interventions into visually similar outcomes, or produces transitions that could plausibly be explained by multiple actions, then $\mathsf{AR}_{\text{inv}}$ will be low. Conversely, when actions produce distinct and consistent effects, inverse inference becomes reliable. Prompt-only rollouts typically do not provide a stable $\mathcal{A}_{\text{cand}}$ because there is no fixed action vocabulary; as a result, the diagnostic becomes ill-posed or degenerates into free-form prompt matching.
+
+\textbf{Interpretation.} This diagnostic does not require long-horizon rollouts; it is a one-step test of causal legibility. Its purpose is to surface failure modes that are invisible to perceptual metrics: a video can be smooth and realistic while still being action-ambiguous.
+
+\begin{table}[t]
+  \centering
+  \small
+  \caption{Minimal action-inference diagnostic aligned to the current AC-World implementation.}
+  \label{tab:minimal_diagnostic}
+  \begin{tabular}{l}
+  \toprule
+  \textbf{World:} Apple-eating (branching) \\
+  \textbf{States:} 8 \\
+  \textbf{Transitions:} 7 \\
+  \textbf{Metric:} Top-1 action-inference accuracy ($\mathsf{AR}_{\text{inv}}$) \\
+  \bottomrule
+  \end{tabular}
+  \end{table}
+
+\section{Implications for the Field}
+Action-centric evaluation has immediate consequences for benchmarking, model design, and how the field communicates progress.
+
+\paragraph{Benchmarks should separate dynamics from policies.}
+Many benchmarks conflate environment dynamics with agent competence. An action-centric substrate enables teacher-forced evaluation of transition fidelity and inverse-dynamics evaluation of causal legibility, decoupling model errors from policy errors. This is especially important for multimodal agents where prompt engineering can mask dynamics failures.
+
+\paragraph{World graphs as reusable testbeds.}
+Explicit action graphs provide reusable, shareable environments that can be grounded into different modalities without changing underlying dynamics. This makes results comparable across model classes: a text-only planner, an image-conditioned model, and a video world model can be evaluated on the same graph, at the interface appropriate to each.
+
+\paragraph{Co-evolution of models and policies becomes diagnosable.}
+If world models and policies are trained together, it becomes hard to tell whether progress comes from better dynamics or better exploitation of quirks. Graphs make failure analysis concrete: did the policy choose a bad branch, or did the model mispredict an edge? This distinction matters for safety and for scientific understanding.
+
+\paragraph{Representation learning is necessary but insufficient.}
+Self-supervised representation learning and JEPA-style prediction \cite{lecun2022path,assran2023ijepa,bardes2024vjepa} provide powerful state abstractions and may improve stability and long-horizon prediction. But without explicit action interfaces and measurable branching, progress can still be mis-scored by passive realism. In other words: better latents help, but action grounding is the missing axis for benchmarking interactive correctness.
+
+\paragraph{A call for standardization.}
+We propose that future benchmark releases report results by taxonomy cell, include explicit candidate action sets, and publish graph-level statistics (branching factor, decision-point density, ending diversity). This would move the field from impressionistic comparisons to interface-aware, diagnosable evaluation.
+
+\section{Alternative Views and Counterarguments}
+\textbf{``Prompts are actions.''}
+Prompts influence outputs, but as a benchmark interface they lack a stable, enumerable action set and do not enforce stepwise compositionality. Without a candidate set, inverse-dynamics evaluation is ill-posed; without step semantics, rollouts do not define a coherent transition system. Prompts can be part of an action interface (e.g., as a natural language action token), but only when embedded in a structured state/action protocol.
+
+\textbf{``Agents can learn around it.''}
+An agent may compensate for dynamics errors by exploiting biases or memorizing trajectories, especially in small benchmarks. This is precisely why evaluation should separate transition fidelity from policy success: otherwise we reward brittle strategies that do not generalize, and we fail to measure whether the world model itself is correct.
+
+\textbf{``Realism correlates with usefulness.''}
+Realism may correlate with some forms of usefulness, but correlation is not evaluation. A benchmark must support falsifiable diagnostics: it must tell us when action-conditioned dynamics are wrong, not merely when outputs look plausible. Action-centric metrics complement realism metrics by measuring what realism does not: causal legibility and controllable branching.
+
+\textbf{``Physical consistency should be the priority.''}
+Physical consistency is necessary, but many physically plausible futures are compatible with the same perceptual stream unless actions are specified. Action--state consistency does not replace physical evaluation; it makes it conditional on interventions, which is the regime where agents operate.
+
+\section{Conclusion}
+We argued that progress in world models should be measured not by how real the world looks, but by how reliably it responds to intervention. A state-modality $\times$ action-interface taxonomy makes comparisons well-posed, a compact metric quad exposes the missing evaluation axis, and an explicit action-graph construction makes the principle operational across modalities. Our minimal diagnostic illustrates that action-centric evaluation is feasible today and surfaces failure modes invisible to passive perceptual metrics. If the field wants world models that support planning, tool use, and verification, it should benchmark what agents need: action--state consistency.
+
+\bibliography{example_paper}
+\bibliographystyle{icml2026}
+
+\end{document}

@@ -336,6 +336,26 @@ class WorldExplorerGame:
         self.update_action_buttons()
         self.load_current_media()
 
+    def undo_action(self):
+        """Go back to the previous state."""
+        if not self.history:
+            return
+
+        # Remove the last action from history
+        self.history.pop()
+
+        # If history is empty, go back to initial state
+        if not self.history:
+            self.current_state = self.text_world.initial_state
+        else:
+            # Go back to the end state of the previous action
+            _, _, prev_state = self.history[-1]
+            self.current_state = prev_state
+
+        # Update UI
+        self.update_action_buttons()
+        self.load_current_media()
+
     def load_current_media(self):
         """Load media (image/video) for current state."""
         if self.world_type == "video":
@@ -421,6 +441,10 @@ class WorldExplorerGame:
 
     def perform_action(self, action: Action):
         """Perform an action and transition to next state."""
+        # Clean up retry button if it exists
+        if hasattr(self, 'retry_button'):
+            delattr(self, 'retry_button')
+
         # Find next state
         next_states = self.text_world.get_next_states(self.current_state, action)
 
@@ -565,17 +589,39 @@ class WorldExplorerGame:
 
         # Check if final state
         if self.text_world.is_final_state(self.current_state):
-            final_text = self.text_font.render("THE END", True, RED)
-            final_rect = final_text.get_rect(center=(self.actions_rect.centerx, self.actions_rect.centery))
-            self.screen.blit(final_text, final_rect)
+            # Determine if success or failure
+            outcome = self.current_state.metadata.get("outcome", "unknown")
+            is_success = outcome == "success"
 
-            # Show quality if available
-            quality = self.current_state.metadata.get("quality", 0)
-            if quality:
-                stars = "⭐" * int(quality * 5)
-                quality_text = self.text_font.render(f"Quality: {stars} ({quality})", True, BLACK)
-                quality_rect = quality_text.get_rect(center=(self.actions_rect.centerx, self.actions_rect.centery + 40))
-                self.screen.blit(quality_text, quality_rect)
+            # Show SUCCESS or FAIL message
+            if is_success:
+                result_text = self.title_font.render("✓ SUCCESS!", True, (0, 150, 0))  # Green
+                success_type = self.current_state.metadata.get("success_type", "")
+                if success_type:
+                    detail_text = self.text_font.render(f"Exit found!", True, BLACK)
+                    detail_rect = detail_text.get_rect(center=(self.actions_rect.centerx, self.actions_rect.centery + 50))
+                    self.screen.blit(detail_text, detail_rect)
+            else:
+                result_text = self.title_font.render("✗ DEAD END", True, (200, 0, 0))  # Red
+                detail_text = self.text_font.render("No further passage", True, BLACK)
+                detail_rect = detail_text.get_rect(center=(self.actions_rect.centerx, self.actions_rect.centery + 50))
+                self.screen.blit(detail_text, detail_rect)
+
+            result_rect = result_text.get_rect(center=(self.actions_rect.centerx, self.actions_rect.centery - 30))
+            self.screen.blit(result_text, result_rect)
+
+            # Draw RETRY button
+            retry_button_rect = Rect(
+                self.actions_rect.centerx - 100,
+                self.actions_rect.centery + 100,
+                200,
+                60
+            )
+            retry_button = Button(retry_button_rect, "🔄 Retry Maze", color=(100, 150, 255))
+            retry_button.draw(self.screen, self.text_font)
+
+            # Store retry button for click handling
+            self.retry_button = retry_button
         else:
             # Draw action buttons (disabled during video playback)
             if self.video_player.is_playing:
@@ -586,6 +632,22 @@ class WorldExplorerGame:
             else:
                 for button in self.action_buttons:
                     button.draw(self.screen, self.small_font)
+
+                # Draw undo button if there's history
+                if self.history:
+                    undo_button_rect = Rect(
+                        self.actions_rect.x + self.actions_rect.width - 160,
+                        self.actions_rect.y + self.actions_rect.height - 70,
+                        150,
+                        50
+                    )
+                    undo_button = Button(undo_button_rect, "← Back", color=(150, 150, 150))
+                    undo_button.draw(self.screen, self.text_font)
+                    self.undo_button = undo_button
+                else:
+                    # Clear undo button if no history
+                    if hasattr(self, 'undo_button'):
+                        delattr(self, 'undo_button')
 
         # Draw stats area
         pygame.draw.rect(self.screen, LIGHT_GRAY, self.stats_rect, border_radius=10)
@@ -620,12 +682,29 @@ class WorldExplorerGame:
             # Update button hover states
             for button in self.action_buttons:
                 button.update_hover(event.pos)
+            # Update undo button hover
+            if hasattr(self, 'undo_button'):
+                self.undo_button.update_hover(event.pos)
+            # Update retry button hover
+            if hasattr(self, 'retry_button'):
+                self.retry_button.update_hover(event.pos)
 
         elif event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 1:  # Left click
                 # Don't allow clicks during video playback
                 if not self.video_player.is_playing:
-                    # Check button clicks
+                    # Check retry button click if at final state
+                    if self.text_world.is_final_state(self.current_state):
+                        if hasattr(self, 'retry_button') and self.retry_button.is_clicked(event.pos):
+                            self.set_initial_state()
+                            return
+
+                    # Check undo button click
+                    if hasattr(self, 'undo_button') and self.undo_button.is_clicked(event.pos):
+                        self.undo_action()
+                        return
+
+                    # Check action button clicks
                     for button in self.action_buttons:
                         if button.is_clicked(event.pos):
                             self.perform_action(button.action)
@@ -637,6 +716,10 @@ class WorldExplorerGame:
             elif event.key == pygame.K_r:
                 # Restart
                 self.set_initial_state()
+            elif event.key == pygame.K_BACKSPACE or event.key == pygame.K_u:
+                # Undo
+                if not self.video_player.is_playing:
+                    self.undo_action()
 
     def run(self):
         """Main game loop."""

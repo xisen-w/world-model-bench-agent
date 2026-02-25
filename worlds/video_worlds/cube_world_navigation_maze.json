@@ -1,0 +1,566 @@
+{
+  "name": "rubiks_cube_layer_twist_challenge",
+  "image_world_source": "cube_world_recorded_gameplay",
+  "description": "A 3x3 Rubik's cube layer twist challenge. Each action is a 90-degree rotation of a specific layer (R, L, U, D, F, B notation). Find the correct sequence of layer twists to reach solved configurations.",
+  "domain": "physical_manipulation",
+  "generation_metadata": {
+    "source": "recorded_gameplay",
+    "timestamp": "2026-02-20",
+    "video_format": ".mov",
+    "total_paths": 11,
+    "success_paths": 3,
+    "dead_ends": 4,
+    "has_loops": true,
+    "loop_count": 1,
+    "loop_description": "Track 2.2 recovery path loops back to first decision point"
+  },
+  "states": [
+    {
+      "state_id": "s0",
+      "text_description": "The cube sits on the table in its solved state. All faces show solid colors - white, yellow, red, orange, blue, and green. The cube has not been scrambled yet.",
+      "parent_state_id": null,
+      "parent_action_id": null,
+      "metadata": {
+        "position": "start",
+        "perspective": "first_person",
+        "environment": "3d_maze"
+      },
+      "image_path": "generated_images/cube_world_states/s0.png",
+      "generation_prompt": null,
+      "reference_image": null
+    },
+    {
+      "state_id": "s0_5",
+      "text_description": "The cube has been scrambled and is now in its starting configuration for the challenge. The faces show a mixed pattern of colors. This is the initial puzzle state that needs to be solved.",
+      "parent_state_id": "s0",
+      "parent_action_id": "a0_initial",
+      "metadata": {
+        "position": "post_scramble",
+        "perspective": "first_person",
+        "environment": "3d_maze"
+      },
+      "image_path": "generated_images/cube_world_states/s0_5.png",
+      "generation_prompt": null,
+      "reference_image": null
+    },
+    {
+      "state_id": "s1",
+      "text_description": "After the first move, the cube shows a new configuration. Multiple layer twists are possible: right face (R), left face (L), top face (U), or bottom face (D). Each will create a different arrangement of colors and patterns.",
+      "parent_state_id": "s0_5",
+      "parent_action_id": "a0_5_observe",
+      "metadata": {
+        "position": "first_decision_point",
+        "branches": 4,
+        "perspective": "first_person"
+      },
+      "image_path": "generated_images/cube_world_states/s1.png",
+      "generation_prompt": null,
+      "reference_image": null
+    },
+    {
+      "state_id": "s2_track1",
+      "text_description": "The right face has been twisted once (R move applied). The layer rotation created new edge and corner positions. Another right face twist is available to continue this sequence.",
+      "parent_state_id": "s1",
+      "parent_action_id": "a1_recover_right_1",
+      "metadata": {
+        "track": "track_1",
+        "track_name": "recover_path",
+        "depth": 1
+      },
+      "image_path": "generated_images/cube_world_states/s2_track1.png",
+      "generation_prompt": null,
+      "reference_image": null
+    },
+    {
+      "state_id": "s_success_1",
+      "text_description": "Success! After two consecutive right face twists (R R sequence), the cube has reached a solved configuration. The color patterns align correctly.",
+      "parent_state_id": "s2_track1",
+      "parent_action_id": "a2_recover_right_2",
+      "metadata": {
+        "outcome": "success",
+        "success_type": "recover_path",
+        "path_length": "short",
+        "quality": 1.0
+      },
+      "image_path": "generated_images/cube_world_states/s_success_1.png",
+      "generation_prompt": null,
+      "reference_image": null
+    },
+    {
+      "state_id": "s3_track2",
+      "text_description": "One right face twist completed (R move). From here, you can twist either the bottom face (D move) or the left face (L move). Different layer choices lead to different outcomes.",
+      "parent_state_id": "s1",
+      "parent_action_id": "a3_turn_right_clean",
+      "metadata": {
+        "track": "track_2",
+        "track_name": "right_path_branches",
+        "depth": 1
+      },
+      "image_path": "generated_images/cube_world_states/s3_track2.png",
+      "generation_prompt": null,
+      "reference_image": null
+    },
+    {
+      "state_id": "s_dead_1",
+      "text_description": "Dead end. After twisting right then down (R D sequence), the cube is in an unsolvable configuration for this challenge. The layer combination doesn't lead to any solution.",
+      "parent_state_id": "s3_track2",
+      "parent_action_id": "a4_turn_down_t2",
+      "metadata": {
+        "outcome": "failure",
+        "failure_type": "dead_end",
+        "track": "track_2.1"
+      },
+      "image_path": "generated_images/cube_world_states/s_dead_1.png",
+      "generation_prompt": null,
+      "reference_image": null
+    },
+    {
+      "state_id": "s4_track2_recovery",
+      "text_description": "After right and left layer twists (R then L sequence), the cube has returned to a familiar configuration. The state resembles an earlier branching point with multiple options.",
+      "parent_state_id": "s3_track2",
+      "parent_action_id": "a5_turn_left_recover",
+      "metadata": {
+        "track": "track_2.2",
+        "track_name": "recovery_loop",
+        "path_type": "recovery_to_start",
+        "loops_to": "s1",
+        "depth": 2
+      },
+      "image_path": "generated_images/cube_world_states/s4_track2_recovery.png",
+      "generation_prompt": null,
+      "reference_image": null
+    },
+    {
+      "state_id": "s_dead_2",
+      "text_description": "Dead end. The bottom face twist from the initial state (D move) led to a configuration that doesn't connect to any solution path. This layer choice was not productive.",
+      "parent_state_id": "s1",
+      "parent_action_id": "a6_turn_down_t3",
+      "metadata": {
+        "outcome": "failure",
+        "failure_type": "dead_end",
+        "track": "track_3"
+      },
+      "image_path": "generated_images/cube_world_states/s_dead_2.png",
+      "generation_prompt": null,
+      "reference_image": null
+    },
+    {
+      "state_id": "s5_track4",
+      "text_description": "The top face has been twisted (U move applied). The upper layer rotation changed the top edges and corners. From this configuration, three layer options are available: right face (R), left face (L), or a combination move.",
+      "parent_state_id": "s1",
+      "parent_action_id": "a7_turn_up",
+      "metadata": {
+        "track": "track_4",
+        "track_name": "ascent_path",
+        "elevation": "upper",
+        "branches": 3,
+        "depth": 1
+      },
+      "image_path": "generated_images/cube_world_states/s5_track4.png",
+      "generation_prompt": null,
+      "reference_image": null
+    },
+    {
+      "state_id": "s6_track4_1",
+      "text_description": "After top and right twists (U R sequence). The cube shows the result of these two layer rotations. Another choice: continue with right (R) or twist bottom (D).",
+      "parent_state_id": "s5_track4",
+      "parent_action_id": "a8_turn_right_t4",
+      "metadata": {
+        "track": "track_4.1",
+        "track_name": "right_series",
+        "depth": 2
+      },
+      "image_path": "generated_images/cube_world_states/s6_track4_1.png",
+      "generation_prompt": null,
+      "reference_image": null
+    },
+    {
+      "state_id": "s7_track4_1_again",
+      "text_description": "Two consecutive right face twists after the top twist (U R R sequence). The layer rotations have significantly changed the configuration. Final decision: one more right twist (R) or bottom twist (D).",
+      "parent_state_id": "s6_track4_1",
+      "parent_action_id": "a9_turn_right_again",
+      "metadata": {
+        "track": "track_4.1",
+        "track_name": "double_right",
+        "depth": 3
+      },
+      "image_path": "generated_images/cube_world_states/s7_track4_1_again.png",
+      "generation_prompt": null,
+      "reference_image": null
+    },
+    {
+      "state_id": "s_dead_3",
+      "text_description": "Dead end. The sequence U R R D (top, right, right, down) led to an unsolvable configuration. The bottom face twist at this point was the wrong choice.",
+      "parent_state_id": "s7_track4_1_again",
+      "parent_action_id": "a10_turn_down_t4_1_1",
+      "metadata": {
+        "outcome": "failure",
+        "failure_type": "dead_end",
+        "track": "track_4.1.1"
+      },
+      "image_path": "generated_images/cube_world_states/s_dead_3.png",
+      "generation_prompt": null,
+      "reference_image": null
+    },
+    {
+      "state_id": "s_success_3",
+      "text_description": "Success! Three consecutive right face twists after the top twist (U R R R sequence) solved the cube. This longer layer sequence reached a valid solution.",
+      "parent_state_id": "s7_track4_1_again",
+      "parent_action_id": "a11_turn_right_third",
+      "metadata": {
+        "outcome": "success",
+        "success_type": "triple_right_path",
+        "path_length": "long",
+        "quality": 1.0,
+        "strategy": "commit_to_direction"
+      },
+      "image_path": "generated_images/cube_world_states/s_success_3.png",
+      "generation_prompt": null,
+      "reference_image": null
+    },
+    {
+      "state_id": "s_success_2",
+      "text_description": "Success! The top face followed by left face twist (U L sequence) quickly solved the cube. This efficient two-move layer sequence is the shortest solution.",
+      "parent_state_id": "s5_track4",
+      "parent_action_id": "a12_direct_left",
+      "metadata": {
+        "outcome": "success",
+        "success_type": "direct_left_path",
+        "path_length": "shortest",
+        "quality": 1.0,
+        "strategy": "efficiency"
+      },
+      "image_path": "generated_images/cube_world_states/s_success_2.png",
+      "generation_prompt": null,
+      "reference_image": null
+    },
+    {
+      "state_id": "s_dead_4",
+      "text_description": "Dead end. After the top twist, the left-bottom combination (U then L D) created an unsolvable state. This layer sequence doesn't lead to solutions.",
+      "parent_state_id": "s5_track4",
+      "parent_action_id": "a13_turn_left_down",
+      "metadata": {
+        "outcome": "failure",
+        "failure_type": "dead_end",
+        "track": "track_4.3"
+      },
+      "image_path": "generated_images/cube_world_states/s_dead_4.png",
+      "generation_prompt": null,
+      "reference_image": null
+    }
+  ],
+  "transitions": [
+    {
+      "start_state_id": "s0",
+      "action_id": "a0_initial",
+      "end_state_id": "s0_5",
+      "action_description": "Pick up the cube and scramble it. The solved cube is mixed into a starting configuration for the challenge.",
+      "video_path": "experiments/recorded_videos/cube_world/grand_start.mov",
+      "metadata": {
+        "transition_type": "initialization",
+        "duration": "intro"
+      },
+      "start_image_path": "experiments/recorded_videos/cube_world/grand_start.mov",
+      "end_image_path": "experiments/recorded_videos/cube_world/grand_start.mov",
+      "generation_prompt": null
+    },
+    {
+      "start_state_id": "s0_5",
+      "action_id": "a0_5_observe",
+      "end_state_id": "s1",
+      "action_description": "Observe the scrambled cube configuration. Examine the current color arrangement on all visible faces before making your first move.",
+      "video_path": "experiments/recorded_videos/cube_world/new_start_non_cheat_observation.mov",
+      "metadata": {
+        "transition_type": "observation",
+        "duration": "short"
+      },
+      "start_image_path": "experiments/recorded_videos/cube_world/new_start_non_cheat_observation.mov",
+      "end_image_path": "experiments/recorded_videos/cube_world/new_start_non_cheat_observation.mov",
+      "generation_prompt": null
+    },
+    {
+      "start_state_id": "s1",
+      "action_id": "a1_recover_right_1",
+      "end_state_id": "s2_track1",
+      "action_description": "Twist the right face 90\u00b0 clockwise (R move). The right layer rotates, changing the edge and corner pieces on that face.",
+      "video_path": "experiments/recorded_videos/cube_world/recover_right_1.mov",
+      "metadata": {
+        "track": "track_1",
+        "decision_number": 1
+      },
+      "start_image_path": "experiments/recorded_videos/cube_world/recover_right_1.mov",
+      "end_image_path": "experiments/recorded_videos/cube_world/recover_right_1.mov",
+      "generation_prompt": null
+    },
+    {
+      "start_state_id": "s2_track1",
+      "action_id": "a2_recover_right_2",
+      "end_state_id": "s_success_1",
+      "action_description": "Twist the right face 90\u00b0 clockwise again (R move). Second consecutive right face rotation.",
+      "video_path": "experiments/recorded_videos/cube_world/recover_right_2_final_step_success_end.mov",
+      "metadata": {
+        "track": "track_1",
+        "outcome": "success",
+        "path_complete": true
+      },
+      "start_image_path": "experiments/recorded_videos/cube_world/recover_right_2_final_step_success_end.mov",
+      "end_image_path": "experiments/recorded_videos/cube_world/recover_right_2_final_step_success_end.mov",
+      "generation_prompt": null
+    },
+    {
+      "start_state_id": "s1",
+      "action_id": "a3_turn_right_clean",
+      "end_state_id": "s3_track2",
+      "action_description": "Twist the right face 90\u00b0 clockwise (R move). Rotate the right layer to change its configuration.",
+      "video_path": "experiments/recorded_videos/cube_world/real_turn_right_instead_initial_state_same_with_recover_right_1_both_clean_start.mov",
+      "metadata": {
+        "track": "track_2",
+        "decision_number": 1,
+        "path_type": "clean_start"
+      },
+      "start_image_path": "experiments/recorded_videos/cube_world/real_turn_right_instead_initial_state_same_with_recover_right_1_both_clean_start.mov",
+      "end_image_path": "experiments/recorded_videos/cube_world/real_turn_right_instead_initial_state_same_with_recover_right_1_both_clean_start.mov",
+      "generation_prompt": null
+    },
+    {
+      "start_state_id": "s3_track2",
+      "action_id": "a4_turn_down_t2",
+      "end_state_id": "s_dead_1",
+      "action_description": "Twist the bottom face 90\u00b0 clockwise (D move). The bottom layer rotates, affecting the lower edges and corners.",
+      "video_path": "experiments/recorded_videos/cube_world/turn_down_dead_end_initial_state_is_turn_right_so_this_is_after.mov",
+      "metadata": {
+        "track": "track_2.1",
+        "outcome": "dead_end",
+        "decision_number": 2
+      },
+      "start_image_path": "experiments/recorded_videos/cube_world/turn_down_dead_end_initial_state_is_turn_right_so_this_is_after.mov",
+      "end_image_path": "experiments/recorded_videos/cube_world/turn_down_dead_end_initial_state_is_turn_right_so_this_is_after.mov",
+      "generation_prompt": null
+    },
+    {
+      "start_state_id": "s3_track2",
+      "action_id": "a5_turn_left_recover",
+      "end_state_id": "s4_track2_recovery",
+      "action_description": "Twist the left face 90\u00b0 clockwise (L move). The left layer rotates, changing pieces on that side.",
+      "video_path": "experiments/recorded_videos/cube_world/turn_left_so_effectively_we_are_back_on_track_initial_state_turn_right.mov",
+      "metadata": {
+        "track": "track_2.2",
+        "path_type": "recovery_loop",
+        "decision_number": 2
+      },
+      "start_image_path": "experiments/recorded_videos/cube_world/turn_left_so_effectively_we_are_back_on_track_initial_state_turn_right.mov",
+      "end_image_path": "experiments/recorded_videos/cube_world/turn_left_so_effectively_we_are_back_on_track_initial_state_turn_right.mov",
+      "generation_prompt": null
+    },
+    {
+      "start_state_id": "s4_track2_recovery",
+      "action_id": "a14_loop_back",
+      "end_state_id": "s1",
+      "action_description": "The layer sequence has returned the cube to a familiar configuration. You recognize this as the same decision point from earlier.",
+      "video_path": "experiments/recorded_videos/cube_world/new_start_non_cheat_observation.mov",
+      "metadata": {
+        "track": "track_2.2_complete",
+        "path_type": "loop_completion",
+        "decision_number": 3,
+        "loops_back": true
+      },
+      "start_image_path": "experiments/recorded_videos/cube_world/new_start_non_cheat_observation.mov",
+      "end_image_path": "experiments/recorded_videos/cube_world/new_start_non_cheat_observation.mov",
+      "generation_prompt": null
+    },
+    {
+      "start_state_id": "s1",
+      "action_id": "a6_turn_down_t3",
+      "end_state_id": "s_dead_2",
+      "action_description": "Twist the bottom face 90\u00b0 clockwise (D move). Rotate the bottom layer to change the lower face configuration.",
+      "video_path": "experiments/recorded_videos/cube_world/turn_down_dead_end_initial_state_turn_left.mov",
+      "metadata": {
+        "track": "track_3",
+        "outcome": "dead_end",
+        "decision_number": 1
+      },
+      "start_image_path": "experiments/recorded_videos/cube_world/turn_down_dead_end_initial_state_turn_left.mov",
+      "end_image_path": "experiments/recorded_videos/cube_world/turn_down_dead_end_initial_state_turn_left.mov",
+      "generation_prompt": null
+    },
+    {
+      "start_state_id": "s1",
+      "action_id": "a7_turn_up",
+      "end_state_id": "s5_track4",
+      "action_description": "Twist the top face 90\u00b0 clockwise (U move). The upper layer rotates, changing the top edges and corners.",
+      "video_path": "experiments/recorded_videos/cube_world/turn_up_back_on_track.mov",
+      "metadata": {
+        "track": "track_4",
+        "elevation_change": "ascend",
+        "decision_number": 1
+      },
+      "start_image_path": "experiments/recorded_videos/cube_world/turn_up_back_on_track.mov",
+      "end_image_path": "experiments/recorded_videos/cube_world/turn_up_back_on_track.mov",
+      "generation_prompt": null
+    },
+    {
+      "start_state_id": "s5_track4",
+      "action_id": "a8_turn_right_t4",
+      "end_state_id": "s6_track4_1",
+      "action_description": "Twist the right face 90\u00b0 clockwise (R move). Another right face layer rotation.",
+      "video_path": "experiments/recorded_videos/cube_world/turn_right.mov",
+      "metadata": {
+        "track": "track_4.1",
+        "strategy": "commit_right",
+        "decision_number": 2
+      },
+      "start_image_path": "experiments/recorded_videos/cube_world/turn_right.mov",
+      "end_image_path": "experiments/recorded_videos/cube_world/turn_right.mov",
+      "generation_prompt": null
+    },
+    {
+      "start_state_id": "s6_track4_1",
+      "action_id": "a9_turn_right_again",
+      "end_state_id": "s7_track4_1_again",
+      "action_description": "Twist the right face 90\u00b0 clockwise again (R move). Second consecutive right layer twist in this sequence.",
+      "video_path": "experiments/recorded_videos/cube_world/turn_right_again.mov",
+      "metadata": {
+        "track": "track_4.1",
+        "strategy": "double_right",
+        "decision_number": 3
+      },
+      "start_image_path": "experiments/recorded_videos/cube_world/turn_right_again.mov",
+      "end_image_path": "experiments/recorded_videos/cube_world/turn_right_again.mov",
+      "generation_prompt": null
+    },
+    {
+      "start_state_id": "s7_track4_1_again",
+      "action_id": "a10_turn_down_t4_1_1",
+      "end_state_id": "s_dead_3",
+      "action_description": "Twist the bottom face 90\u00b0 clockwise (D move). Rotate the bottom layer downward.",
+      "video_path": "experiments/recorded_videos/cube_world/turn_down_another_dead_end.mov",
+      "metadata": {
+        "track": "track_4.1.1",
+        "outcome": "dead_end",
+        "decision_number": 4
+      },
+      "start_image_path": "experiments/recorded_videos/cube_world/turn_down_another_dead_end.mov",
+      "end_image_path": "experiments/recorded_videos/cube_world/turn_down_another_dead_end.mov",
+      "generation_prompt": null
+    },
+    {
+      "start_state_id": "s7_track4_1_again",
+      "action_id": "a11_turn_right_third",
+      "end_state_id": "s_success_3",
+      "action_description": "Twist the right face 90\u00b0 clockwise for the third time (R move). Third consecutive right layer rotation completes this sequence.",
+      "video_path": "experiments/recorded_videos/cube_world/turn_right_the_third_time_success_end.mov",
+      "metadata": {
+        "track": "track_4.1.2",
+        "outcome": "success",
+        "strategy": "triple_right",
+        "path_complete": true
+      },
+      "start_image_path": "experiments/recorded_videos/cube_world/turn_right_the_third_time_success_end.mov",
+      "end_image_path": "experiments/recorded_videos/cube_world/turn_right_the_third_time_success_end.mov",
+      "generation_prompt": null
+    },
+    {
+      "start_state_id": "s5_track4",
+      "action_id": "a12_direct_left",
+      "end_state_id": "s_success_2",
+      "action_description": "Twist the left face 90\u00b0 clockwise (L move). Direct left layer rotation from this configuration.",
+      "video_path": "experiments/recorded_videos/cube_world/direct_turn_left_success_end_initial_state_turn_up.mov",
+      "metadata": {
+        "track": "track_4.2",
+        "outcome": "success",
+        "strategy": "direct_efficiency",
+        "path_complete": true
+      },
+      "start_image_path": "experiments/recorded_videos/cube_world/direct_turn_left_success_end_initial_state_turn_up.mov",
+      "end_image_path": "experiments/recorded_videos/cube_world/direct_turn_left_success_end_initial_state_turn_up.mov",
+      "generation_prompt": null
+    },
+    {
+      "start_state_id": "s5_track4",
+      "action_id": "a13_turn_left_down",
+      "end_state_id": "s_dead_4",
+      "action_description": "Twist the left face 90\u00b0 clockwise followed by bottom face 90\u00b0 clockwise (L then D moves). Combined layer rotation sequence.",
+      "video_path": "experiments/recorded_videos/cube_world/turn_left_down_dead-end.mov",
+      "metadata": {
+        "track": "track_4.3",
+        "outcome": "dead_end",
+        "decision_number": 2
+      },
+      "start_image_path": "experiments/recorded_videos/cube_world/turn_left_down_dead-end.mov",
+      "end_image_path": "experiments/recorded_videos/cube_world/turn_left_down_dead-end.mov",
+      "generation_prompt": null
+    }
+  ],
+  "initial_state_id": "s0",
+  "goal_state_ids": [
+    "s_success_1",
+    "s_success_2",
+    "s_success_3"
+  ],
+  "failure_state_ids": [
+    "s_dead_1",
+    "s_dead_2",
+    "s_dead_3",
+    "s_dead_4"
+  ],
+  "metadata": {
+    "complexity": "medium_high",
+    "branching_points": [
+      {
+        "state_id": "s1",
+        "branches": 4,
+        "description": "First major decision point"
+      },
+      {
+        "state_id": "s3_track2",
+        "branches": 2,
+        "description": "Track 2 fork - down vs left"
+      },
+      {
+        "state_id": "s5_track4",
+        "branches": 3,
+        "description": "Upper level - three choices"
+      },
+      {
+        "state_id": "s7_track4_1_again",
+        "branches": 2,
+        "description": "Final choice - right vs down"
+      }
+    ],
+    "success_strategies": [
+      {
+        "name": "Recover Path",
+        "path": "s0 \u2192 s1 \u2192 s2_track1 \u2192 s_success_1",
+        "length": 3,
+        "difficulty": "easy"
+      },
+      {
+        "name": "Direct Left Path",
+        "path": "s0 \u2192 s1 \u2192 s5_track4 \u2192 s_success_2",
+        "length": 3,
+        "difficulty": "easy",
+        "note": "Shortest path"
+      },
+      {
+        "name": "Triple Right Path",
+        "path": "s0 \u2192 s1 \u2192 s5_track4 \u2192 s6_track4_1 \u2192 s7_track4_1_again \u2192 s_success_3",
+        "length": 5,
+        "difficulty": "medium",
+        "note": "Requires commitment and patience"
+      }
+    ],
+    "evaluation_metrics": [
+      "path_efficiency",
+      "dead_ends_explored",
+      "decision_quality",
+      "recovery_capability",
+      "goal_achievement_rate"
+    ],
+    "recommended_for": [
+      "spatial_reasoning_evaluation",
+      "decision_making_under_uncertainty",
+      "exploration_vs_exploitation",
+      "backtracking_capability"
+    ]
+  }
+}

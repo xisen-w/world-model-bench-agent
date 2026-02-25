@@ -1,0 +1,388 @@
+\begin{thebibliography}{53}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Alonso et~al.(2024)Alonso, Jelley, Micheli, Kanervisto, Storkey,
+  Pearce, and Fleuret]{alonso2024diamond}
+Alonso, E., Jelley, A., Micheli, V., Kanervisto, A., Storkey, A., Pearce, T.,
+  and Fleuret, F.
+\newblock Diffusion for world modeling: Visual details matter in atari.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}, 2024.
+\newblock URL \url{https://arxiv.org/abs/2405.12399}.
+\newblock Spotlight.
+
+\bibitem[Assran et~al.(2023)Assran, Duval, Misra, Bojanowski, Vincent, Rabbat,
+  LeCun, and Ballas]{assran2023ijepa}
+Assran, M., Duval, Q., Misra, I., Bojanowski, P., Vincent, P., Rabbat, M.,
+  LeCun, Y., and Ballas, N.
+\newblock Self-supervised learning from images with a joint-embedding
+  predictive architecture.
+\newblock In \emph{Proceedings of the IEEE/CVF Conference on Computer Vision
+  and Pattern Recognition (CVPR)}, 2023.
+\newblock URL
+  \url{https://openaccess.thecvf.com/content/CVPR2023/papers/Assran_Self-Supervised_Learning_From_Images_With_a_Joint-Embedding_Predictive_Architecture_CVPR_2023_paper.pdf}.
+
+\bibitem[Bardes et~al.(2024)Bardes, Garrido, Ponce, Chen, Rabbat, LeCun,
+  Assran, and Ballas]{bardes2024vjepa}
+Bardes, A., Garrido, Q., Ponce, J., Chen, X., Rabbat, M., LeCun, Y., Assran,
+  M., and Ballas, N.
+\newblock Revisiting feature prediction for learning visual representations
+  from video.
+\newblock \emph{arXiv preprint arXiv:2404.08471}, 2024.
+\newblock URL \url{https://arxiv.org/abs/2404.08471}.
+
+\bibitem[Bardes et~al.(2025)]{bardes2025vjepa2}
+Bardes, A. et~al.
+\newblock V-jepa 2: Self-supervised video models enable understanding,
+  prediction and planning.
+\newblock \emph{arXiv preprint}, 2025.
+\newblock URL \url{https://arxiv.org/abs/2506.09985}.
+
+\bibitem[Brohan et~al.(2023{\natexlab{a}})Brohan, Brown, Carbajal, Chebotar,
+  Chen, Choromanski, et~al.]{brohan2023rt2}
+Brohan, A., Brown, N., Carbajal, J., Chebotar, Y., Chen, X., Choromanski, K.,
+  et~al.
+\newblock Rt-2: Vision-language-action models transfer web knowledge to robotic
+  control.
+\newblock \emph{arXiv preprint arXiv:2307.15818}, 2023{\natexlab{a}}.
+\newblock URL \url{https://arxiv.org/abs/2307.15818}.
+
+\bibitem[Brohan et~al.(2023{\natexlab{b}})]{rt22023}
+Brohan, A. et~al.
+\newblock Rt-2: Vision-language-action models transfer web knowledge to robotic
+  control, 2023{\natexlab{b}}.
+\newblock URL \url{https://arxiv.org/abs/2307.15818}.
+\newblock Alias for brohan2023rt2.
+
+\bibitem[Bruce et~al.(2024)Bruce, Dennis, Edwards, Parker-Holder, Shi, Hughes,
+  Lai, Mber, Dasgupta, Lohman, Bengio, Clark, de~Freitas,
+  et~al.]{bruce2024genie}
+Bruce, J., Dennis, M., Edwards, A., Parker-Holder, J., Shi, Y., Hughes, E.,
+  Lai, M., Mber, A., Dasgupta, R., Lohman, R., Bengio, E., Clark, C.,
+  de~Freitas, N., et~al.
+\newblock Genie: Generative interactive environments.
+\newblock \emph{arXiv preprint arXiv:2402.15391}, 2024.
+\newblock URL \url{https://arxiv.org/abs/2402.15391}.
+
+\bibitem[Caron et~al.(2021)Caron, Touvron, Misra, J{\'e}gou, Mairal,
+  Bojanowski, and Joulin]{caron2021dino}
+Caron, M., Touvron, H., Misra, I., J{\'e}gou, H., Mairal, J., Bojanowski, P.,
+  and Joulin, A.
+\newblock Emerging properties in self-supervised vision transformers.
+\newblock In \emph{Proceedings of the IEEE/CVF International Conference on
+  Computer Vision (ICCV)}, 2021.
+\newblock URL
+  \url{https://openaccess.thecvf.com/content/ICCV2021/papers/Caron_Emerging_Properties_in_Self-Supervised_Vision_Transformers_ICCV_2021_paper.pdf}.
+
+\bibitem[{Decart AI}(2024)]{decart2024oasis}
+{Decart AI}.
+\newblock Oasis: A universe in a transformer.
+\newblock \emph{Decart Technical Report}, 2024.
+\newblock URL
+  \url{https://decart.ai/publications/oasis-interactive-ai-video-game-model}.
+
+\bibitem[Du et~al.(2023)]{du2023vbench}
+Du, Y. et~al.
+\newblock Vbench: Comprehensive benchmark suite for video generative models.
+\newblock \emph{arXiv}, 2023.
+\newblock URL \url{https://arxiv.org/abs/2311.17982}.
+
+\bibitem[Feng et~al.(2025)Feng, Zhang, Zhang, Lu, Liu, and
+  Wang]{feng2025webworldmodels}
+Feng, J., Zhang, Y., Zhang, C., Lu, Y., Liu, S., and Wang, M.
+\newblock Web world models.
+\newblock \emph{arXiv preprint arXiv:2512.23676}, 2025.
+\newblock URL \url{https://arxiv.org/abs/2512.23676}.
+
+\bibitem[Fu et~al.(2021)Fu, Kumar, Nachum, Tucker, and Levine]{fu2021d4rl}
+Fu, J., Kumar, A., Nachum, O., Tucker, G., and Levine, S.
+\newblock D4rl: Datasets for deep data-driven reinforcement learning.
+\newblock \emph{NeurIPS}, 2021.
+
+\bibitem[{Google DeepMind}(2024)]{veo2024}
+{Google DeepMind}.
+\newblock Veo: State-of-the-art video generation, 2024.
+\newblock URL \url{https://deepmind.google/models/veo/}.
+
+\bibitem[Goyal et~al.(2017)]{goyal2017something}
+Goyal, R. et~al.
+\newblock The "something something" video dataset for learning and evaluating
+  visual common sense.
+\newblock \emph{ICCV}, 2017.
+
+\bibitem[Grauman et~al.(2022)]{grauman2022ego4d}
+Grauman, K. et~al.
+\newblock Ego4d: Human-centric video understanding at scale.
+\newblock \emph{CVPR}, 2022.
+
+\bibitem[Gu et~al.(2025)Gu, Zheng, et~al.]{gu2024webdreamer}
+Gu, Y., Zheng, B., et~al.
+\newblock Is your llm secretly a world model of the internet? model-based
+  planning for web agents.
+\newblock \emph{Transactions on Machine Learning Research (TMLR)}, 2025.
+\newblock URL \url{https://arxiv.org/abs/2411.06559}.
+
+\bibitem[Hafner et~al.(2019)Hafner, Lillicrap, Norouzi, and
+  Ba]{hafner2019planet}
+Hafner, D., Lillicrap, T., Norouzi, M., and Ba, J.
+\newblock Learning latent dynamics for planning from pixels.
+\newblock \emph{ICML}, 2019.
+
+\bibitem[Hafner et~al.(2020)Hafner, Lillicrap, Ba, and
+  Norouzi]{hafner2020dreamer}
+Hafner, D., Lillicrap, T.~P., Ba, J., and Norouzi, M.
+\newblock Dream to control: Learning behaviors by latent imagination.
+\newblock \emph{ICLR}, 2020.
+
+\bibitem[Hafner et~al.(2023)Hafner, Pasukonis, Ba, and
+  Lillicrap]{hafner2023dreamerv3}
+Hafner, D., Pasukonis, J., Ba, J., and Lillicrap, T.
+\newblock Mastering diverse domains through world models.
+\newblock \emph{arXiv preprint arXiv:2301.04104}, 2023.
+\newblock URL \url{https://arxiv.org/abs/2301.04104}.
+
+\bibitem[Hafner et~al.(2021)]{hafner2021dreamerv2}
+Hafner, D. et~al.
+\newblock Mastering atari with discrete world models.
+\newblock \emph{ICLR}, 2021.
+
+\bibitem[Hu et~al.(2023{\natexlab{a}})Hu, Russell, Yeo, Murez, Fedoseev,
+  Kendall, Hafner, and Sherrod]{hu2023gaia1}
+Hu, A., Russell, L., Yeo, H., Murez, Z., Fedoseev, G., Kendall, A., Hafner, J.,
+  and Sherrod, V.
+\newblock Gaia-1: A generative world model for autonomous driving.
+\newblock \emph{arXiv preprint arXiv:2309.17080}, 2023{\natexlab{a}}.
+\newblock URL \url{https://arxiv.org/abs/2309.17080}.
+
+\bibitem[Hu et~al.(2023{\natexlab{b}})]{gaia2023}
+Hu, A. et~al.
+\newblock Gaia-1: A generative world model for autonomous driving,
+  2023{\natexlab{b}}.
+\newblock URL \url{https://arxiv.org/abs/2309.17080}.
+\newblock Alias for hu2023gaia1.
+
+\bibitem[James et~al.(2020)James, Ma, and Rosman]{james2020rlbench}
+James, S., Ma, Z., and Rosman, B.
+\newblock Rlbench: The robot learning benchmark \& learning environment.
+\newblock In \emph{IEEE RA-L}, 2020.
+
+\bibitem[Ke et~al.(2023)]{ke2023reviewworldmodel}
+Ke, T.-H. et~al.
+\newblock A survey of world models.
+\newblock \emph{arXiv}, 2023.
+
+\bibitem[Kim et~al.(2024)Kim, Pertsch, Karamcheti, et~al.]{kim2024openvla}
+Kim, M.~J., Pertsch, K., Karamcheti, S., et~al.
+\newblock Openvla: An open-source vision-language-action model.
+\newblock \emph{arXiv preprint arXiv:2406.09246}, 2024.
+\newblock URL \url{https://arxiv.org/abs/2406.09246}.
+
+\bibitem[LeCun(2022)]{lecun2022path}
+LeCun, Y.
+\newblock A path towards autonomous machine intelligence (version 0.9).
+\newblock 2022.
+\newblock URL \url{https://openreview.net/pdf?id=BZ5a1r-kVsf}.
+
+\bibitem[Li et~al.(2022)]{li2022behavior}
+Li, C. et~al.
+\newblock Behavior: Benchmark for everyday household activities in virtual,
+  interactive, and ecological environments.
+\newblock In \emph{CVPR}, 2022.
+
+\bibitem[Li et~al.(2024)Li, Johnson, Lassner, and Mildenhall]{worldlabs2024}
+Li, F.-F., Johnson, J., Lassner, C., and Mildenhall, B.
+\newblock World labs: Spatial intelligence for 3d world generation, 2024.
+\newblock URL \url{https://www.worldlabs.ai/}.
+
+\bibitem[Liu et~al.(2025)Liu, Yu, Zhang, Xu, Lei, Lai, Gu, Ding, Men, Yang,
+  Zhang, Deng, Zeng, Du, Zhang, Shen, Zhang, Su, Sun, Huang, Dong, and
+  Tang]{liu2023agentbench}
+Liu, X., Yu, H., Zhang, H., Xu, Y., Lei, X., Lai, H., Gu, Y., Ding, H., Men,
+  K., Yang, K., Zhang, S., Deng, X., Zeng, A., Du, Z., Zhang, C., Shen, S.,
+  Zhang, T., Su, Y., Sun, H., Huang, M., Dong, Y., and Tang, J.
+\newblock Agentbench: Evaluating llms as agents, 2025.
+\newblock URL \url{https://arxiv.org/abs/2308.03688}.
+
+\bibitem[Lu et~al.(2024)Lu, Liang, Zhu, and Yang]{lu2024freelong}
+Lu, Y., Liang, Y., Zhu, L., and Yang, Y.
+\newblock Freelong: Training-free long video generation with spectralblend
+  temporal attention.
+\newblock \emph{arXiv preprint arXiv:2407.19918}, 2024.
+\newblock URL \url{https://arxiv.org/abs/2407.19918}.
+
+\bibitem[{NVIDIA Research}(2025{\natexlab{a}})]{cosmos2025}
+{NVIDIA Research}.
+\newblock Cosmos world foundation model platform for physical ai,
+  2025{\natexlab{a}}.
+\newblock URL
+  \url{https://research.nvidia.com/publication/2025-01_cosmos-world-foundation-model-platform-physical-ai}.
+\newblock Alias for nvidia2025cosmos.
+
+\bibitem[{NVIDIA Research}(2025{\natexlab{b}})]{nvidia2025cosmos}
+{NVIDIA Research}.
+\newblock Cosmos world foundation model platform for physical ai.
+\newblock \emph{NVIDIA Technical Report}, 2025{\natexlab{b}}.
+\newblock URL
+  \url{https://research.nvidia.com/publication/2025-01_cosmos-world-foundation-model-platform-physical-ai}.
+
+\bibitem[Oh et~al.(2015)Oh, Guo, Lee, Lewis, and Singh]{oh2015action}
+Oh, J., Guo, X., Lee, H., Lewis, R.~L., and Singh, S.
+\newblock Action-conditional video prediction using deep networks in atari
+  games.
+\newblock In \emph{NeurIPS}, 2015.
+
+\bibitem[{OpenAI}(2024{\natexlab{a}})]{openai2024sora}
+{OpenAI}.
+\newblock Video generation models as world simulators.
+\newblock \emph{OpenAI Technical Report}, 2024{\natexlab{a}}.
+\newblock URL
+  \url{https://openai.com/index/video-generation-models-as-world-simulators/}.
+
+\bibitem[{OpenAI}(2024{\natexlab{b}})]{sora2024}
+{OpenAI}.
+\newblock Video generation models as world simulators, 2024{\natexlab{b}}.
+\newblock URL
+  \url{https://openai.com/index/video-generation-models-as-world-simulators/}.
+\newblock Alias for openai2024sora.
+
+\bibitem[Radford et~al.(2021)Radford, Kim, Hallacy, Ramesh, Goh, Agarwal,
+  Sastry, Askell, Mishkin, Clark, Krueger, and Sutskever]{radford2021clip}
+Radford, A., Kim, J.~W., Hallacy, C., Ramesh, A., Goh, G., Agarwal, S., Sastry,
+  G., Askell, A., Mishkin, P., Clark, J., Krueger, G., and Sutskever, I.
+\newblock Learning transferable visual models from natural language
+  supervision.
+\newblock In \emph{Proceedings of the International Conference on Machine
+  Learning (ICML)}, 2021.
+
+\bibitem[Savva et~al.(2019)]{savva2019habitat}
+Savva, M. et~al.
+\newblock Habitat: A platform for embodied ai research.
+\newblock In \emph{ICCV}, 2019.
+
+\bibitem[Schrittwieser et~al.(2020)Schrittwieser, Antonoglou, Hubert, Simonyan,
+  Sifre, Schmitt, Guez, Lockhart, Hassabis, Graepel, Lillicrap, and
+  Silver]{schrittwieser2020muzero}
+Schrittwieser, J., Antonoglou, I., Hubert, T., Simonyan, K., Sifre, L.,
+  Schmitt, S., Guez, A., Lockhart, E., Hassabis, D., Graepel, T., Lillicrap,
+  T., and Silver, D.
+\newblock Mastering atari, go, chess and shogi by planning with a learned
+  model.
+\newblock \emph{Nature}, 588\penalty0 (7839):\penalty0 604--609, 2020.
+\newblock URL \url{https://arxiv.org/abs/1911.08265}.
+
+\bibitem[Shridhar et~al.(2020)]{shridhar2020alfred}
+Shridhar, M. et~al.
+\newblock Alfred: A benchmark for interpreting grounded instructions.
+\newblock In \emph{CVPR}, 2020.
+
+\bibitem[Tan et~al.(2024)Tan, Yang, Liu, and Wang]{tan2024videoinfinity}
+Tan, Z., Yang, X., Liu, S., and Wang, X.
+\newblock Video-infinity: Distributed long video generation.
+\newblock \emph{arXiv preprint arXiv:2406.16260}, 2024.
+\newblock URL \url{https://arxiv.org/abs/2406.16260}.
+
+\bibitem[Team(2025)]{pan2025}
+Team, M.~I.
+\newblock Pan: A world model for general, interactable, and long-horizon world
+  simulation, 2025.
+\newblock URL \url{https://arxiv.org/abs/2511.09057}.
+\newblock Alias for pan2025worldmodel.
+
+\bibitem[Team et~al.(2025)Team, Xiang, Gu, Liu, Feng, Gao, Hu, Huang, Liu,
+  Yang, Zhou, Abrahamyan, Ahmad, Bannur, Chen, Chen, Deng, Han, Huang, Kang,
+  Liu, Ma, Ren, Shinde, Shingre, Tanikella, Tao, Yang, Yu, Zeng, Zhou, Liu, Hu,
+  and Xing]{pan2025worldmodel}
+Team, P., Xiang, J., Gu, Y., Liu, Z., Feng, Z., Gao, Q., Hu, Y., Huang, B.,
+  Liu, G., Yang, Y., Zhou, K., Abrahamyan, D., Ahmad, A., Bannur, G., Chen, J.,
+  Chen, K., Deng, M., Han, R., Huang, X., Kang, H., Liu, Z., Ma, E., Ren, H.,
+  Shinde, Y., Shingre, R., Tanikella, R., Tao, K., Yang, D., Yu, X., Zeng, C.,
+  Zhou, B., Liu, Z., Hu, Z., and Xing, E.~P.
+\newblock Pan: A world model for general, interactable, and long-horizon world
+  simulation, 2025.
+\newblock URL \url{https://arxiv.org/abs/2511.09057}.
+
+\bibitem[Unterthiner et~al.(2019)Unterthiner, van Steenkiste, Kurach, Marinier,
+  Michalski, and Gelly]{unterthiner2019fvd}
+Unterthiner, T., van Steenkiste, S., Kurach, K., Marinier, R., Michalski, M.,
+  and Gelly, S.
+\newblock Towards accurate generative models of video: A new metric &
+  challenges, 2019.
+\newblock URL \url{https://arxiv.org/abs/1812.01717}.
+
+\bibitem[Vafa et~al.(2024)Vafa, Chen, Rambachan, Kleinberg, and
+  Mullainathan]{vafa2024evaluating}
+Vafa, K., Chen, J.~Y., Rambachan, A., Kleinberg, J., and Mullainathan, S.
+\newblock Evaluating the world model implicit in a generative model.
+\newblock \emph{arXiv preprint arXiv:2406.03689}, 2024.
+\newblock URL \url{https://arxiv.org/abs/2406.03689}.
+
+\bibitem[Valevski et~al.(2025)Valevski, Leviathan, Arar, and
+  Fruchter]{valevski2024gamengen}
+Valevski, D., Leviathan, Y., Arar, M., and Fruchter, S.
+\newblock Diffusion models are real-time game engines, 2025.
+\newblock URL \url{https://arxiv.org/abs/2408.14837}.
+
+\bibitem[Valevski et~al.(2024)]{gamengen2024}
+Valevski, D. et~al.
+\newblock Diffusion models are real-time game engines, 2024.
+\newblock URL \url{https://arxiv.org/abs/2408.14837}.
+\newblock Alias for valevski2024gamengen.
+
+\bibitem[Wang et~al.(2024)Wang, Todd, Yuan, Xiao, Gartner, Cote, Clark, and
+  Clark]{wang2024llmworldsim}
+Wang, R., Todd, G., Yuan, E., Xiao, Z., Gartner, R., Cote, M.-A., Clark, P.,
+  and Clark, C.
+\newblock Can language models serve as text-based world simulators?
+\newblock In \emph{Proceedings of the 62nd Annual Meeting of the Association
+  for Computational Linguistics (ACL)}, 2024.
+\newblock URL \url{https://arxiv.org/abs/2406.06485}.
+
+\bibitem[Xu et~al.(2023)Xu, Hong, Li, Hu, Chen, and Zhang]{xu2023toolbench}
+Xu, Q., Hong, F., Li, B., Hu, C., Chen, Z., and Zhang, J.
+\newblock On the tool manipulation capability of open-source large language
+  models, 2023.
+\newblock URL \url{https://arxiv.org/abs/2305.16504}.
+
+\bibitem[Yang et~al.(2024{\natexlab{a}})Yang, Du, Ghasemipour, Tompson,
+  Kaelbling, Schuurmans, and Abbeel]{yang2024unisim}
+Yang, S., Du, Y., Ghasemipour, K., Tompson, J., Kaelbling, L., Schuurmans, D.,
+  and Abbeel, P.
+\newblock Learning interactive real-world simulators.
+\newblock In \emph{International Conference on Learning Representations
+  (ICLR)}, 2024{\natexlab{a}}.
+\newblock URL \url{https://arxiv.org/abs/2310.06114}.
+\newblock Outstanding Paper Award.
+
+\bibitem[Yang et~al.(2024{\natexlab{b}})]{unisim2024}
+Yang, S. et~al.
+\newblock Learning interactive real-world simulators, 2024{\natexlab{b}}.
+\newblock URL \url{https://arxiv.org/abs/2310.06114}.
+\newblock Alias for yang2024unisim.
+
+\bibitem[Yu et~al.(2020)]{yu2020metaworld}
+Yu, T. et~al.
+\newblock Meta-world: A benchmark and evaluation for multi-task and meta
+  reinforcement learning.
+\newblock In \emph{CoRL}, 2020.
+
+\bibitem[Zhang et~al.(2018)Zhang, Isola, Efros, Shechtman, and
+  Wang]{zhang2018lpips}
+Zhang, R., Isola, P., Efros, A.~A., Shechtman, E., and Wang, O.
+\newblock The unreasonable effectiveness of deep features as a perceptual
+  metric.
+\newblock In \emph{Proceedings of the IEEE Conference on Computer Vision and
+  Pattern Recognition (CVPR)}, 2018.
+
+\bibitem[Zhou et~al.(2024)Zhou, Xu, Zhu, Zhou, Lo, Sridhar, Cheng, Ou, Bisk,
+  Fried, Alon, and Neubig]{zhou2023webarena}
+Zhou, S., Xu, F.~F., Zhu, H., Zhou, X., Lo, R., Sridhar, A., Cheng, X., Ou, T.,
+  Bisk, Y., Fried, D., Alon, U., and Neubig, G.
+\newblock Webarena: A realistic web environment for building autonomous agents,
+  2024.
+\newblock URL \url{https://arxiv.org/abs/2307.13854}.
+
+\end{thebibliography}

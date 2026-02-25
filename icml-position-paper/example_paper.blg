@@ -1,0 +1,51 @@
+This is BibTeX, Version 0.99d (TeX Live 2025)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: example_paper.aux
+The style file: icml2026.bst
+Database file #1: example_paper.bib
+Warning--I didn't find a database entry for "genie2024"
+Warning--I didn't find a database entry for "oasis2024"
+Warning--I didn't find a database entry for "wu2023vastdreamer"
+Warning--empty journal in lecun2022path
+You've used 53 entries,
+            2773 wiz_defined-function locations,
+            830 strings with 15645 characters,
+and the built_in function-call counts, 28434 in all, are:
+= -- 2237
+> -- 2627
+< -- 22
++ -- 892
+- -- 834
+* -- 2435
+:= -- 4668
+add.period$ -- 191
+call.type$ -- 53
+change.case$ -- 419
+chr.to.int$ -- 48
+cite$ -- 107
+duplicate$ -- 1031
+empty$ -- 1792
+format.name$ -- 901
+if$ -- 5736
+int.to.chr$ -- 6
+int.to.str$ -- 1
+missing$ -- 38
+newline$ -- 305
+num.names$ -- 212
+pop$ -- 932
+preamble$ -- 1
+purify$ -- 366
+quote$ -- 0
+skip$ -- 922
+stack$ -- 0
+substring$ -- 131
+swap$ -- 75
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 583
+warning$ -- 1
+while$ -- 161
+width$ -- 0
+write$ -- 707
+(There were 4 warnings)

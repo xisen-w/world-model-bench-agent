@@ -54,6 +54,21 @@ test_*.png
 test_*.jpg
 test_*.mp4
 
+# Media files and common media folders
+*.mov
+*.mp4
+*.avi
+*.mkv
+*.webm
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+**/videos/
+**/images/
+**/recorded_videos/
+
 # Logs
 *.log
 logs/
