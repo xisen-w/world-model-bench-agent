@@ -199,10 +199,18 @@
   "actions": [
     {
       "action_id": "a0_initial",
-      "description": "Pick up the cube to begin. Starting configuration ready for first move.",
+      "description": "Pick up the cube and scramble it. The solved cube is mixed into a starting configuration for the challenge.",
       "metadata": {
         "transition_type": "initialization",
         "duration": "intro"
+      }
+    },
+    {
+      "action_id": "a0_5_observe",
+      "description": "Observe the scrambled cube configuration. Examine the current color arrangement on all visible faces before making your first move.",
+      "metadata": {
+        "transition_type": "observation",
+        "duration": "short"
       }
     },
     {
@@ -338,19 +346,37 @@
     {
       "start_state": {
         "state_id": "s0",
-        "description": "Starting configuration. The cube is in its initial state, ready for the first layer twist. All faces show their starting color patterns."
+        "description": "The cube sits on the table in its solved state. All faces show solid colors - white, yellow, red, orange, blue, and green. The cube has not been scrambled yet."
       },
       "action": {
         "action_id": "a0_initial",
-        "description": "Pick up the cube to begin. Starting configuration ready for first move."
+        "description": "Pick up the cube and scramble it. The solved cube is mixed into a starting configuration for the challenge."
+      },
+      "end_state": {
+        "state_id": "s0_5",
+        "description": "The cube has been scrambled and is now in its starting configuration for the challenge. The faces show a mixed pattern of colors. This is the initial puzzle state that needs to be solved."
+      },
+      "metadata": {
+        "transition_type": "initialization",
+        "duration": "intro"
+      }
+    },
+    {
+      "start_state": {
+        "state_id": "s0_5",
+        "description": "The cube has been scrambled and is now in its starting configuration for the challenge. The faces show a mixed pattern of colors. This is the initial puzzle state that needs to be solved."
+      },
+      "action": {
+        "action_id": "a0_5_observe",
+        "description": "Observe the scrambled cube configuration. Examine the current color arrangement on all visible faces before making your first move."
       },
       "end_state": {
         "state_id": "s1",
         "description": "After the first move, the cube shows a new configuration. Multiple layer twists are possible: right face (R), left face (L), top face (U), or bottom face (D). Each will create a different arrangement of colors and patterns."
       },
       "metadata": {
-        "transition_type": "initialization",
-        "duration": "intro"
+        "transition_type": "observation",
+        "duration": "short"
       }
     },
     {
